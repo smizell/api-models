@@ -1,0 +1,1741 @@
+FORMAT: 1A
+
+# Google Play Game Services API
+
+The API for Google Play Game Services.
+
+### Resource /achievements [/games/v1/achievements{?language,maxResults,pageToken}]
+
+#### games.achievementDefinitions.list [GET]
+
++ Parameters
+
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /achievements/{achievementId}/increment [/games/v1/achievements/{achievementId}/increment{?stepsToIncrement,requestId}]
+
+#### games.achievements.increment [POST]
+
++ Parameters
+
+    + achievementId (required)
+  
+    + stepsToIncrement (required)
+  
+    + requestId
+
++ Response 200
+
+### Resource /players/{playerId}/achievements [/games/v1/players/{playerId}/achievements{?language,maxResults,pageToken,state}]
+
+#### games.achievements.list [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+  
+    + state
+
++ Response 200
+
+### Resource /achievements/{achievementId}/reveal [/achievements/{achievementId}/reveal]
+
+#### games.achievements.reveal [POST]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+### Resource /achievements/{achievementId}/setStepsAtLeast [/games/v1/achievements/{achievementId}/setStepsAtLeast{?steps}]
+
+#### games.achievements.setStepsAtLeast [POST]
+
++ Parameters
+
+    + achievementId (required)
+  
+    + steps (required)
+
++ Response 200
+
+### Resource /achievements/{achievementId}/unlock [/achievements/{achievementId}/unlock]
+
+#### games.achievements.unlock [POST]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+### Resource /achievements/updateMultiple [/achievements/updateMultiple]
+
+#### games.achievements.updateMultiple [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a list of achievement update requests.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateMultipleRequest.",
+                  "default": "games#achievementUpdateMultipleRequest"
+                },
+                "updates": {
+                  "type": "array",
+                  "description": "The individual achievement update requests.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for a request to update an achievement.",
+                    "properties": {
+                      "achievementId": {
+                        "type": "string",
+                        "description": "The achievement this update is being applied to."
+                      },
+                      "incrementPayload": {
+                        "type": "object",
+                        "description": "This is a JSON template for the payload to request to increment an achievement.",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#GamesAchievementIncrement.",
+                            "default": "games#GamesAchievementIncrement"
+                          },
+                          "requestId": {
+                            "type": "string",
+                            "description": "The requestId associated with an increment to an achievement.",
+                            "format": "int64"
+                          },
+                          "steps": {
+                            "type": "integer",
+                            "description": "The number of steps to be incremented.",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#achievementUpdateRequest.",
+                        "default": "games#achievementUpdateRequest"
+                      },
+                      "setStepsAtLeastPayload": {
+                        "type": "object",
+                        "description": "This is a JSON template for the payload to request to increment an achievement.",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#GamesAchievementSetStepsAtLeast.",
+                            "default": "games#GamesAchievementSetStepsAtLeast"
+                          },
+                          "steps": {
+                            "type": "integer",
+                            "description": "The minimum number of steps for the achievement to be set to.",
+                            "format": "int32"
+                          }
+                        }
+                      },
+                      "updateType": {
+                        "type": "string",
+                        "description": "The type of update being applied.\nPossible values are:  \n- \"REVEAL\" - Achievement is revealed. \n- \"UNLOCK\" - Achievement is unlocked. \n- \"INCREMENT\" - Achievement is incremented. \n- \"SET_STEPS_AT_LEAST\" - Achievement progress is set to at least the passed value."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /applications/{applicationId} [/games/v1/applications/{applicationId}{?language,platformType}]
+
+#### games.applications.get [GET]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + language
+  
+    + platformType
+
++ Response 200
+
+### Resource /applications/played [/applications/played]
+
+#### games.applications.played [POST]
+
++ Response 200
+
+### Resource /events [/games/v1/events{?language}]
+
+#### games.events.listByPlayer [GET]
+
++ Parameters
+
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+#### games.events.record [POST]
+
++ Parameters
+
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an event period update resource.",
+              "properties": {
+                "currentTimeMillis": {
+                  "type": "string",
+                  "description": "The current time when this update was sent, in milliseconds, since 1970 UTC (Unix Epoch).",
+                  "format": "int64"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#eventRecordRequest.",
+                  "default": "games#eventRecordRequest"
+                },
+                "requestId": {
+                  "type": "string",
+                  "description": "The request ID used to identify this attempt to record events.",
+                  "format": "int64"
+                },
+                "timePeriods": {
+                  "type": "array",
+                  "description": "A list of the time period updates being made in this request.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for an event period update resource.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#eventPeriodUpdate.",
+                        "default": "games#eventPeriodUpdate"
+                      },
+                      "timePeriod": {
+                        "type": "object",
+                        "description": "This is a JSON template for an event period time range.",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#eventPeriodRange.",
+                            "default": "games#eventPeriodRange"
+                          },
+                          "periodEndMillis": {
+                            "type": "string",
+                            "description": "The time when this update period ends, in millis, since 1970 UTC (Unix Epoch).",
+                            "format": "int64"
+                          },
+                          "periodStartMillis": {
+                            "type": "string",
+                            "description": "The time when this update period begins, in millis, since 1970 UTC (Unix Epoch).",
+                            "format": "int64"
+                          }
+                        }
+                      },
+                      "updates": {
+                        "type": "array",
+                        "description": "The updates being made for this time period.",
+                        "items": {
+                          "type": "object",
+                          "description": "This is a JSON template for an event period update resource.",
+                          "properties": {
+                            "definitionId": {
+                              "type": "string",
+                              "description": "The ID of the event being modified in this update."
+                            },
+                            "kind": {
+                              "type": "string",
+                              "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#eventUpdateRequest.",
+                              "default": "games#eventUpdateRequest"
+                            },
+                            "updateCount": {
+                              "type": "string",
+                              "description": "The number of times this event occurred in this time period.",
+                              "format": "int64"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /eventDefinitions [/games/v1/eventDefinitions{?language,maxResults,pageToken}]
+
+#### games.events.listDefinitions [GET]
+
++ Parameters
+
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId} [/games/v1/leaderboards/{leaderboardId}{?language}]
+
+#### games.leaderboards.get [GET]
+
++ Parameters
+
+    + leaderboardId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /leaderboards [/games/v1/leaderboards{?language,maxResults,pageToken}]
+
+#### games.leaderboards.list [GET]
+
++ Parameters
+
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /metagameConfig [/metagameConfig]
+
+#### games.metagame.getMetagameConfig [GET]
+
++ Response 200
+
+### Resource /players/{playerId}/categories/{collection} [/games/v1/players/{playerId}/categories/{collection}{?language,maxResults,pageToken}]
+
+#### games.metagame.listCategoriesByPlayer [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + collection (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /players/{playerId} [/games/v1/players/{playerId}{?language}]
+
+#### games.players.get [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /players/me/players/{collection} [/games/v1/players/me/players/{collection}{?language,maxResults,pageToken}]
+
+#### games.players.list [GET]
+
++ Parameters
+
+    + collection (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /pushtokens/remove [/pushtokens/remove]
+
+#### games.pushtokens.remove [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a push token ID resource.",
+              "properties": {
+                "ios": {
+                  "type": "object",
+                  "description": "A push token ID for iOS devices.",
+                  "properties": {
+                    "apns_device_token": {
+                      "type": "string",
+                      "description": "Device token supplied by an iOS system call to register for remote notifications. Encode this field as web-safe base64.",
+                      "format": "byte"
+                    },
+                    "apns_environment": {
+                      "type": "string",
+                      "description": "Indicates whether this token should be used for the production or sandbox APNS server."
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#pushTokenId.",
+                  "default": "games#pushTokenId"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /pushtokens [/pushtokens]
+
+#### games.pushtokens.update [PUT]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a push token resource.",
+              "properties": {
+                "clientRevision": {
+                  "type": "string",
+                  "description": "The revision of the client SDK used by your application, in the same format that's used by revisions.check. Used to send backward compatible messages. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:  \n- IOS - Push token is for iOS"
+                },
+                "id": {
+                  "type": "object",
+                  "description": "This is a JSON template for a push token ID resource.",
+                  "properties": {
+                    "ios": {
+                      "type": "object",
+                      "description": "A push token ID for iOS devices.",
+                      "properties": {
+                        "apns_device_token": {
+                          "type": "string",
+                          "description": "Device token supplied by an iOS system call to register for remote notifications. Encode this field as web-safe base64.",
+                          "format": "byte"
+                        },
+                        "apns_environment": {
+                          "type": "string",
+                          "description": "Indicates whether this token should be used for the production or sandbox APNS server."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#pushTokenId.",
+                      "default": "games#pushTokenId"
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#pushToken.",
+                  "default": "games#pushToken"
+                },
+                "language": {
+                  "type": "string",
+                  "description": "The preferred language for notifications that are sent using this token."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /quests/{questId}/milestones/{milestoneId}/claim [/games/v1/quests/{questId}/milestones/{milestoneId}/claim{?requestId}]
+
+#### games.questMilestones.claim [PUT]
+
++ Parameters
+
+    + questId (required)
+  
+    + milestoneId (required)
+  
+    + requestId (required)
+
++ Response 200
+
+### Resource /quests/{questId}/accept [/games/v1/quests/{questId}/accept{?language}]
+
+#### games.quests.accept [POST]
+
++ Parameters
+
+    + questId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /players/{playerId}/quests [/games/v1/players/{playerId}/quests{?language,maxResults,pageToken}]
+
+#### games.quests.list [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /revisions/check [/games/v1/revisions/check{?clientRevision}]
+
+#### games.revisions.check [GET]
+
++ Parameters
+
+    + clientRevision (required)
+
++ Response 200
+
+### Resource /rooms/create [/games/v1/rooms/create{?language}]
+
+#### games.rooms.create [POST]
+
++ Parameters
+
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a room creation request.",
+              "properties": {
+                "autoMatchingCriteria": {
+                  "type": "object",
+                  "description": "This is a JSON template for a room auto-match criteria object.",
+                  "properties": {
+                    "exclusiveBitmask": {
+                      "type": "string",
+                      "description": "A bitmask indicating when auto-matches are valid. When ANDed with other exclusive bitmasks, the result must be zero. Can be used to support exclusive roles within a game.",
+                      "format": "int64"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomAutoMatchingCriteria.",
+                      "default": "games#roomAutoMatchingCriteria"
+                    },
+                    "maxAutoMatchingPlayers": {
+                      "type": "integer",
+                      "description": "The maximum number of players that should be added to the room by auto-matching.",
+                      "format": "int32"
+                    },
+                    "minAutoMatchingPlayers": {
+                      "type": "integer",
+                      "description": "The minimum number of players that should be added to the room by auto-matching.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "capabilities": {
+                  "type": "array",
+                  "description": "The capabilities that this client supports for realtime communication.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "clientAddress": {
+                  "type": "object",
+                  "description": "This is a JSON template for the client address when setting up a room.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomClientAddress.",
+                      "default": "games#roomClientAddress"
+                    },
+                    "xmppAddress": {
+                      "type": "string",
+                      "description": "The XMPP address of the client on the Google Games XMPP network."
+                    }
+                  }
+                },
+                "invitedPlayerIds": {
+                  "type": "array",
+                  "description": "The player IDs to invite to the room.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomCreateRequest.",
+                  "default": "games#roomCreateRequest"
+                },
+                "networkDiagnostics": {
+                  "type": "object",
+                  "description": "This is a JSON template for network diagnostics reported for a client.",
+                  "properties": {
+                    "androidNetworkSubtype": {
+                      "type": "integer",
+                      "description": "The Android network subtype.",
+                      "format": "int32"
+                    },
+                    "androidNetworkType": {
+                      "type": "integer",
+                      "description": "The Android network type.",
+                      "format": "int32"
+                    },
+                    "iosNetworkType": {
+                      "type": "integer",
+                      "description": "iOS network type as defined in Reachability.h.",
+                      "format": "int32"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#networkDiagnostics.",
+                      "default": "games#networkDiagnostics"
+                    },
+                    "networkOperatorCode": {
+                      "type": "string",
+                      "description": "The MCC+MNC code for the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator() On iOS, see: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html"
+                    },
+                    "networkOperatorName": {
+                      "type": "string",
+                      "description": "The name of the carrier of the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName"
+                    },
+                    "registrationLatencyMillis": {
+                      "type": "integer",
+                      "description": "The amount of time in milliseconds it took for the client to establish a connection with the XMPP server.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "requestId": {
+                  "type": "string",
+                  "description": "A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.",
+                  "format": "int64"
+                },
+                "variant": {
+                  "type": "integer",
+                  "description": "The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /rooms/{roomId}/decline [/games/v1/rooms/{roomId}/decline{?language}]
+
+#### games.rooms.decline [POST]
+
++ Parameters
+
+    + roomId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /rooms/{roomId}/dismiss [/rooms/{roomId}/dismiss]
+
+#### games.rooms.dismiss [POST]
+
++ Parameters
+
+    + roomId (required)
+
++ Response 200
+
+### Resource /rooms/{roomId} [/games/v1/rooms/{roomId}{?language}]
+
+#### games.rooms.get [GET]
+
++ Parameters
+
+    + roomId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /rooms/{roomId}/join [/games/v1/rooms/{roomId}/join{?language}]
+
+#### games.rooms.join [POST]
+
++ Parameters
+
+    + roomId (required)
+  
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a join room request.",
+              "properties": {
+                "capabilities": {
+                  "type": "array",
+                  "description": "The capabilities that this client supports for realtime communication.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "clientAddress": {
+                  "type": "object",
+                  "description": "This is a JSON template for the client address when setting up a room.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomClientAddress.",
+                      "default": "games#roomClientAddress"
+                    },
+                    "xmppAddress": {
+                      "type": "string",
+                      "description": "The XMPP address of the client on the Google Games XMPP network."
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomJoinRequest.",
+                  "default": "games#roomJoinRequest"
+                },
+                "networkDiagnostics": {
+                  "type": "object",
+                  "description": "This is a JSON template for network diagnostics reported for a client.",
+                  "properties": {
+                    "androidNetworkSubtype": {
+                      "type": "integer",
+                      "description": "The Android network subtype.",
+                      "format": "int32"
+                    },
+                    "androidNetworkType": {
+                      "type": "integer",
+                      "description": "The Android network type.",
+                      "format": "int32"
+                    },
+                    "iosNetworkType": {
+                      "type": "integer",
+                      "description": "iOS network type as defined in Reachability.h.",
+                      "format": "int32"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#networkDiagnostics.",
+                      "default": "games#networkDiagnostics"
+                    },
+                    "networkOperatorCode": {
+                      "type": "string",
+                      "description": "The MCC+MNC code for the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator() On iOS, see: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html"
+                    },
+                    "networkOperatorName": {
+                      "type": "string",
+                      "description": "The name of the carrier of the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName"
+                    },
+                    "registrationLatencyMillis": {
+                      "type": "integer",
+                      "description": "The amount of time in milliseconds it took for the client to establish a connection with the XMPP server.",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /rooms/{roomId}/leave [/games/v1/rooms/{roomId}/leave{?language}]
+
+#### games.rooms.leave [POST]
+
++ Parameters
+
+    + roomId (required)
+  
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a leave room request.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomLeaveRequest.",
+                  "default": "games#roomLeaveRequest"
+                },
+                "leaveDiagnostics": {
+                  "type": "object",
+                  "description": "This is a JSON template for room leave diagnostics.",
+                  "properties": {
+                    "androidNetworkSubtype": {
+                      "type": "integer",
+                      "description": "Android network subtype. http://developer.android.com/reference/android/net/NetworkInfo.html#getSubtype()",
+                      "format": "int32"
+                    },
+                    "androidNetworkType": {
+                      "type": "integer",
+                      "description": "Android network type. http://developer.android.com/reference/android/net/NetworkInfo.html#getType()",
+                      "format": "int32"
+                    },
+                    "iosNetworkType": {
+                      "type": "integer",
+                      "description": "iOS network type as defined in Reachability.h.",
+                      "format": "int32"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomLeaveDiagnostics.",
+                      "default": "games#roomLeaveDiagnostics"
+                    },
+                    "networkOperatorCode": {
+                      "type": "string",
+                      "description": "The MCC+MNC code for the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperator() On iOS, see: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html"
+                    },
+                    "networkOperatorName": {
+                      "type": "string",
+                      "description": "The name of the carrier of the client's network connection. On Android: http://developer.android.com/reference/android/telephony/TelephonyManager.html#getNetworkOperatorName() On iOS: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Reference/CTCarrier/Reference/Reference.html#//apple_ref/occ/instp/CTCarrier/carrierName"
+                    },
+                    "peerSession": {
+                      "type": "array",
+                      "description": "Diagnostics about all peer sessions.",
+                      "items": {
+                        "type": "object",
+                        "description": "This is a JSON template for peer session diagnostics.",
+                        "properties": {
+                          "connectedTimestampMillis": {
+                            "type": "string",
+                            "description": "Connected time in milliseconds.",
+                            "format": "int64"
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#peerSessionDiagnostics.",
+                            "default": "games#peerSessionDiagnostics"
+                          },
+                          "participantId": {
+                            "type": "string",
+                            "description": "The participant ID of the peer."
+                          },
+                          "reliableChannel": {
+                            "type": "object",
+                            "description": "This is a JSON template for peer channel diagnostics.",
+                            "properties": {
+                              "bytesReceived": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "bytesSent": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#peerChannelDiagnostics.",
+                                "default": "games#peerChannelDiagnostics"
+                              },
+                              "numMessagesLost": {
+                                "type": "integer",
+                                "description": "Number of messages lost.",
+                                "format": "int32"
+                              },
+                              "numMessagesReceived": {
+                                "type": "integer",
+                                "description": "Number of messages received.",
+                                "format": "int32"
+                              },
+                              "numMessagesSent": {
+                                "type": "integer",
+                                "description": "Number of messages sent.",
+                                "format": "int32"
+                              },
+                              "numSendFailures": {
+                                "type": "integer",
+                                "description": "Number of send failures.",
+                                "format": "int32"
+                              },
+                              "roundtripLatencyMillis": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "unreliableChannel": {
+                            "type": "object",
+                            "description": "This is a JSON template for peer channel diagnostics.",
+                            "properties": {
+                              "bytesReceived": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "bytesSent": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#peerChannelDiagnostics.",
+                                "default": "games#peerChannelDiagnostics"
+                              },
+                              "numMessagesLost": {
+                                "type": "integer",
+                                "description": "Number of messages lost.",
+                                "format": "int32"
+                              },
+                              "numMessagesReceived": {
+                                "type": "integer",
+                                "description": "Number of messages received.",
+                                "format": "int32"
+                              },
+                              "numMessagesSent": {
+                                "type": "integer",
+                                "description": "Number of messages sent.",
+                                "format": "int32"
+                              },
+                              "numSendFailures": {
+                                "type": "integer",
+                                "description": "Number of send failures.",
+                                "format": "int32"
+                              },
+                              "roundtripLatencyMillis": {
+                                "type": "object",
+                                "description": "This is a JSON template for aggregate stats.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of messages sent between a pair of peers.",
+                                    "format": "int64"
+                                  },
+                                  "kind": {
+                                    "type": "string",
+                                    "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#aggregateStats.",
+                                    "default": "games#aggregateStats"
+                                  },
+                                  "max": {
+                                    "type": "string",
+                                    "description": "The maximum amount.",
+                                    "format": "int64"
+                                  },
+                                  "min": {
+                                    "type": "string",
+                                    "description": "The minimum amount.",
+                                    "format": "int64"
+                                  },
+                                  "sum": {
+                                    "type": "string",
+                                    "description": "The total number of bytes sent for messages between a pair of peers.",
+                                    "format": "int64"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "socketsUsed": {
+                      "type": "boolean",
+                      "description": "Whether or not sockets were used."
+                    }
+                  }
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "Reason for leaving the match.\nPossible values are:  \n- \"PLAYER_LEFT\" - The player chose to leave the room.. \n- \"GAME_LEFT\" - The game chose to remove the player from the room. \n- \"REALTIME_ABANDONED\" - The player switched to another application and abandoned the room. \n- \"REALTIME_PEER_CONNECTION_FAILURE\" - The client was unable to establish a connection to other peer(s). \n- \"REALTIME_SERVER_CONNECTION_FAILURE\" - The client was unable to communicate with the server. \n- \"REALTIME_SERVER_ERROR\" - The client received an error response when it tried to communicate with the server. \n- \"REALTIME_TIMEOUT\" - The client timed out while waiting for a room. \n- \"REALTIME_CLIENT_DISCONNECTING\" - The client disconnects without first calling Leave. \n- \"REALTIME_SIGN_OUT\" - The user signed out of G+ while in the room. \n- \"REALTIME_GAME_CRASHED\" - The game crashed. \n- \"REALTIME_ROOM_SERVICE_CRASHED\" - RoomAndroidService crashed. \n- \"REALTIME_DIFFERENT_CLIENT_ROOM_OPERATION\" - Another client is trying to enter a room. \n- \"REALTIME_SAME_CLIENT_ROOM_OPERATION\" - The same client is trying to enter a new room."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /rooms [/games/v1/rooms{?language,maxResults,pageToken}]
+
+#### games.rooms.list [GET]
+
++ Parameters
+
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /rooms/{roomId}/reportstatus [/games/v1/rooms/{roomId}/reportstatus{?language}]
+
+#### games.rooms.reportStatus [POST]
+
++ Parameters
+
+    + roomId (required)
+  
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an update on the status of peers in a room.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatuses.",
+                  "default": "games#roomP2PStatuses"
+                },
+                "updates": {
+                  "type": "array",
+                  "description": "The updates for the peers.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for an update on the status of a peer in a room.",
+                    "properties": {
+                      "connectionSetupLatencyMillis": {
+                        "type": "integer",
+                        "description": "The amount of time in milliseconds it took to establish connections with this peer.",
+                        "format": "int32"
+                      },
+                      "error": {
+                        "type": "string",
+                        "description": "The error code in event of a failure.\nPossible values are:  \n- \"P2P_FAILED\" - The client failed to establish a P2P connection with the peer. \n- \"PRESENCE_FAILED\" - The client failed to register to receive P2P connections. \n- \"RELAY_SERVER_FAILED\" - The client received an error when trying to use the relay server to establish a P2P connection with the peer."
+                      },
+                      "error_reason": {
+                        "type": "string",
+                        "description": "More detailed diagnostic message returned in event of a failure."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#roomP2PStatus.",
+                        "default": "games#roomP2PStatus"
+                      },
+                      "participantId": {
+                        "type": "string",
+                        "description": "The ID of the participant."
+                      },
+                      "status": {
+                        "type": "string",
+                        "description": "The status of the peer in the room.\nPossible values are:  \n- \"CONNECTION_ESTABLISHED\" - The client established a P2P connection with the peer. \n- \"CONNECTION_FAILED\" - The client failed to establish directed presence with the peer."
+                      },
+                      "unreliableRoundtripLatencyMillis": {
+                        "type": "integer",
+                        "description": "The amount of time in milliseconds it took to send packets back and forth on the unreliable channel with this peer.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan} [/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}{?includeRankType,language,maxResults,pageToken}]
+
+#### games.scores.get [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + leaderboardId (required)
+  
+    + timeSpan (required)
+  
+    + includeRankType
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId}/scores/{collection} [/games/v1/leaderboards/{leaderboardId}/scores/{collection}{?timeSpan,language,maxResults,pageToken}]
+
+#### games.scores.list [GET]
+
++ Parameters
+
+    + leaderboardId (required)
+  
+    + collection (required)
+  
+    + timeSpan (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId}/window/{collection} [/games/v1/leaderboards/{leaderboardId}/window/{collection}{?timeSpan,language,maxResults,pageToken,resultsAbove,returnTopIfAbsent}]
+
+#### games.scores.listWindow [GET]
+
++ Parameters
+
+    + leaderboardId (required)
+  
+    + collection (required)
+  
+    + timeSpan (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+  
+    + resultsAbove
+  
+    + returnTopIfAbsent
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId}/scores [/games/v1/leaderboards/{leaderboardId}/scores{?score,language,scoreTag}]
+
+#### games.scores.submit [POST]
+
++ Parameters
+
+    + leaderboardId (required)
+  
+    + score (required)
+  
+    + language
+  
+    + scoreTag
+
++ Response 200
+
+### Resource /leaderboards/scores [/games/v1/leaderboards/scores{?language}]
+
+#### games.scores.submitMultiple [POST]
+
++ Parameters
+
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a list of score submission requests",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#playerScoreSubmissionList.",
+                  "default": "games#playerScoreSubmissionList"
+                },
+                "scores": {
+                  "type": "array",
+                  "description": "The score submissions.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for a request to submit a score to leaderboards.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#scoreSubmission.",
+                        "default": "games#scoreSubmission"
+                      },
+                      "leaderboardId": {
+                        "type": "string",
+                        "description": "The leaderboard this score is being submitted to."
+                      },
+                      "score": {
+                        "type": "string",
+                        "description": "The new score being submitted.",
+                        "format": "int64"
+                      },
+                      "scoreTag": {
+                        "type": "string",
+                        "description": "Additional information about this score. Values will contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.",
+                        "pattern": "[a-zA-Z0-9-._~]{0,64}"
+                      },
+                      "signature": {
+                        "type": "string",
+                        "description": "Signature Values will contain URI-safe characters as defined by section 2.3 of RFC 3986."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /snapshots/{snapshotId} [/games/v1/snapshots/{snapshotId}{?language}]
+
+#### games.snapshots.get [GET]
+
++ Parameters
+
+    + snapshotId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /players/{playerId}/snapshots [/games/v1/players/{playerId}/snapshots{?language,maxResults,pageToken}]
+
+#### games.snapshots.list [GET]
+
++ Parameters
+
+    + playerId (required)
+  
+    + language
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/cancel [/turnbasedmatches/{matchId}/cancel]
+
+#### games.turnBasedMatches.cancel [PUT]
+
++ Parameters
+
+    + matchId (required)
+
++ Response 200
+
+### Resource /turnbasedmatches/create [/games/v1/turnbasedmatches/create{?language}]
+
+#### games.turnBasedMatches.create [POST]
+
++ Parameters
+
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a turn-based match creation request.",
+              "properties": {
+                "autoMatchingCriteria": {
+                  "type": "object",
+                  "description": "This is a JSON template for an turn-based auto-match criteria object.",
+                  "properties": {
+                    "exclusiveBitmask": {
+                      "type": "string",
+                      "description": "A bitmask indicating when auto-matches are valid. When ANDed with other exclusive bitmasks, the result must be zero. Can be used to support exclusive roles within a game.",
+                      "format": "int64"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedAutoMatchingCriteria.",
+                      "default": "games#turnBasedAutoMatchingCriteria"
+                    },
+                    "maxAutoMatchingPlayers": {
+                      "type": "integer",
+                      "description": "The maximum number of players that should be added to the match by auto-matching.",
+                      "format": "int32"
+                    },
+                    "minAutoMatchingPlayers": {
+                      "type": "integer",
+                      "description": "The minimum number of players that should be added to the match by auto-matching.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "invitedPlayerIds": {
+                  "type": "array",
+                  "description": "The player ids to invite to the match.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchCreateRequest.",
+                  "default": "games#turnBasedMatchCreateRequest"
+                },
+                "requestId": {
+                  "type": "string",
+                  "description": "A randomly generated numeric ID. This number is used at the server to ensure that the request is handled correctly across retries.",
+                  "format": "int64"
+                },
+                "variant": {
+                  "type": "integer",
+                  "description": "The variant / mode of the application to be played. This can be any integer value, or left blank. You should use a small number of variants to keep the auto-matching pool as large as possible.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/decline [/games/v1/turnbasedmatches/{matchId}/decline{?language}]
+
+#### games.turnBasedMatches.decline [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/dismiss [/turnbasedmatches/{matchId}/dismiss]
+
+#### games.turnBasedMatches.dismiss [PUT]
+
++ Parameters
+
+    + matchId (required)
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/finish [/games/v1/turnbasedmatches/{matchId}/finish{?language}]
+
+#### games.turnBasedMatches.finish [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a turn-based match results object.",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "description": "This is a JSON template for sending a turn-based match data object.",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "description": "The byte representation of the data (limited to 128 kB), as a Base64-encoded string with the URL_SAFE encoding option.",
+                      "format": "byte"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchDataRequest.",
+                      "default": "games#turnBasedMatchDataRequest"
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchResults.",
+                  "default": "games#turnBasedMatchResults"
+                },
+                "matchVersion": {
+                  "type": "integer",
+                  "description": "The version of the match being updated.",
+                  "format": "int32"
+                },
+                "results": {
+                  "type": "array",
+                  "description": "The match results for the participants in the match.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for a result for a match participant.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#participantResult.",
+                        "default": "games#participantResult"
+                      },
+                      "participantId": {
+                        "type": "string",
+                        "description": "The ID of the participant."
+                      },
+                      "placing": {
+                        "type": "integer",
+                        "description": "The placement or ranking of the participant in the match results; a number from one to the number of participants in the match. Multiple participants may have the same placing value in case of a type.",
+                        "format": "int32"
+                      },
+                      "result": {
+                        "type": "string",
+                        "description": "The result of the participant for this match.\nPossible values are:  \n- \"MATCH_RESULT_WIN\" - The participant won the match. \n- \"MATCH_RESULT_LOSS\" - The participant lost the match. \n- \"MATCH_RESULT_TIE\" - The participant tied the match. \n- \"MATCH_RESULT_NONE\" - There was no winner for the match (nobody wins or loses this kind of game.) \n- \"MATCH_RESULT_DISCONNECT\" - The participant disconnected / left during the match. \n- \"MATCH_RESULT_DISAGREED\" - Different clients reported different results for this participant."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId} [/games/v1/turnbasedmatches/{matchId}{?includeMatchData,language}]
+
+#### games.turnBasedMatches.get [GET]
+
++ Parameters
+
+    + matchId (required)
+  
+    + includeMatchData
+  
+    + language
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/join [/games/v1/turnbasedmatches/{matchId}/join{?language}]
+
+#### games.turnBasedMatches.join [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/leave [/games/v1/turnbasedmatches/{matchId}/leave{?language}]
+
+#### games.turnBasedMatches.leave [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/leaveTurn [/games/v1/turnbasedmatches/{matchId}/leaveTurn{?matchVersion,language,pendingParticipantId}]
+
+#### games.turnBasedMatches.leaveTurn [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + matchVersion (required)
+  
+    + language
+  
+    + pendingParticipantId
+
++ Response 200
+
+### Resource /turnbasedmatches [/games/v1/turnbasedmatches{?includeMatchData,language,maxCompletedMatches,maxResults,pageToken}]
+
+#### games.turnBasedMatches.list [GET]
+
++ Parameters
+
+    + includeMatchData
+  
+    + language
+  
+    + maxCompletedMatches
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/rematch [/games/v1/turnbasedmatches/{matchId}/rematch{?language,requestId}]
+
+#### games.turnBasedMatches.rematch [POST]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+  
+    + requestId
+
++ Response 200
+
+### Resource /turnbasedmatches/sync [/games/v1/turnbasedmatches/sync{?includeMatchData,language,maxCompletedMatches,maxResults,pageToken}]
+
+#### games.turnBasedMatches.sync [GET]
+
++ Parameters
+
+    + includeMatchData
+  
+    + language
+  
+    + maxCompletedMatches
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /turnbasedmatches/{matchId}/turn [/games/v1/turnbasedmatches/{matchId}/turn{?language}]
+
+#### games.turnBasedMatches.takeTurn [PUT]
+
++ Parameters
+
+    + matchId (required)
+  
+    + language
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for the object representing a turn.",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "description": "This is a JSON template for sending a turn-based match data object.",
+                  "properties": {
+                    "data": {
+                      "type": "string",
+                      "description": "The byte representation of the data (limited to 128 kB), as a Base64-encoded string with the URL_SAFE encoding option.",
+                      "format": "byte"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchDataRequest.",
+                      "default": "games#turnBasedMatchDataRequest"
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#turnBasedMatchTurn.",
+                  "default": "games#turnBasedMatchTurn"
+                },
+                "matchVersion": {
+                  "type": "integer",
+                  "description": "The version of this match: an increasing counter, used to avoid out-of-date updates to the match.",
+                  "format": "int32"
+                },
+                "pendingParticipantId": {
+                  "type": "string",
+                  "description": "The ID of the participant who should take their turn next. May be set to the current player's participant ID to update match state without changing the turn. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players."
+                },
+                "results": {
+                  "type": "array",
+                  "description": "The match results for the participants in the match.",
+                  "items": {
+                    "type": "object",
+                    "description": "This is a JSON template for a result for a match participant.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string games#participantResult.",
+                        "default": "games#participantResult"
+                      },
+                      "participantId": {
+                        "type": "string",
+                        "description": "The ID of the participant."
+                      },
+                      "placing": {
+                        "type": "integer",
+                        "description": "The placement or ranking of the participant in the match results; a number from one to the number of participants in the match. Multiple participants may have the same placing value in case of a type.",
+                        "format": "int32"
+                      },
+                      "result": {
+                        "type": "string",
+                        "description": "The result of the participant for this match.\nPossible values are:  \n- \"MATCH_RESULT_WIN\" - The participant won the match. \n- \"MATCH_RESULT_LOSS\" - The participant lost the match. \n- \"MATCH_RESULT_TIE\" - The participant tied the match. \n- \"MATCH_RESULT_NONE\" - There was no winner for the match (nobody wins or loses this kind of game.) \n- \"MATCH_RESULT_DISCONNECT\" - The participant disconnected / left during the match. \n- \"MATCH_RESULT_DISAGREED\" - Different clients reported different results for this participant."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+

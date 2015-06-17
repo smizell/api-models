@@ -1,0 +1,1356 @@
+FORMAT: 1A
+
+# DoubleClick Search API
+
+Report and modify your advertising data in DoubleClick Search (for example, campaigns, ad groups, keywords, and conversions).
+
+### Resource /agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion [/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion{?endDate,rowCount,startDate,startRow,adGroupId,adId,campaignId,criterionId}]
+
+#### doubleclicksearch.conversion.get [GET]
+
++ Parameters
+
+    + agencyId (required)
+  
+    + advertiserId (required)
+  
+    + engineAccountId (required)
+  
+    + endDate (required)
+  
+    + rowCount (required)
+  
+    + startDate (required)
+  
+    + startRow (required)
+  
+    + adGroupId
+  
+    + adId
+  
+    + campaignId
+  
+    + criterionId
+
++ Response 200
+
+### Resource /conversion [/conversion]
+
+#### doubleclicksearch.conversion.insert [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A list of conversions.",
+              "properties": {
+                "conversion": {
+                  "type": "array",
+                  "description": "The conversions being requested.",
+                  "items": {
+                    "type": "object",
+                    "description": "A conversion containing data relevant to DoubleClick Search.",
+                    "properties": {
+                      "adGroupId": {
+                        "type": "string",
+                        "description": "DS ad group ID.",
+                        "format": "int64"
+                      },
+                      "adId": {
+                        "type": "string",
+                        "description": "DS ad ID.",
+                        "format": "int64"
+                      },
+                      "advertiserId": {
+                        "type": "string",
+                        "description": "DS advertiser ID.",
+                        "format": "int64"
+                      },
+                      "agencyId": {
+                        "type": "string",
+                        "description": "DS agency ID.",
+                        "format": "int64"
+                      },
+                      "attributionModel": {
+                        "type": "string",
+                        "description": "This field is ignored."
+                      },
+                      "campaignId": {
+                        "type": "string",
+                        "description": "DS campaign ID.",
+                        "format": "int64"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "description": "Sales channel for the product. Acceptable values are:  \n- \"local\": a physical store \n- \"online\": an online store"
+                      },
+                      "clickId": {
+                        "type": "string",
+                        "description": "DS click ID for the conversion."
+                      },
+                      "conversionId": {
+                        "type": "string",
+                        "description": "For offline conversions, this is an ID provided by advertisers. Advertisers can use this property to specify an ID that is meaningful to them. If an advertiser doesn't specify a conversionId, DoubleClick Search generates one. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser's Floodlight instructions."
+                      },
+                      "conversionModifiedTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion was last modified, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "conversionTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion took place, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "countMillis": {
+                        "type": "string",
+                        "description": "This field is ignored.",
+                        "format": "int64"
+                      },
+                      "criterionId": {
+                        "type": "string",
+                        "description": "DS criterion (keyword) ID.",
+                        "format": "int64"
+                      },
+                      "currencyCode": {
+                        "type": "string",
+                        "description": "The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format."
+                      },
+                      "customDimension": {
+                        "type": "array",
+                        "description": "Custom dimensions for the conversion, which can be used to filter data in a report.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome dimension.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom dimension name."
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "Custom dimension value."
+                            }
+                          }
+                        }
+                      },
+                      "customMetric": {
+                        "type": "array",
+                        "description": "Custom metrics for the conversion.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome metric.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom metric name."
+                            },
+                            "value": {
+                              "type": "number",
+                              "description": "Custom metric numeric value.",
+                              "format": "double"
+                            }
+                          }
+                        }
+                      },
+                      "deviceType": {
+                        "type": "string",
+                        "description": "The type of device on which the conversion occurred."
+                      },
+                      "dsConversionId": {
+                        "type": "string",
+                        "description": "ID that DoubleClick Search generates for each conversion.",
+                        "format": "int64"
+                      },
+                      "engineAccountId": {
+                        "type": "string",
+                        "description": "DS engine account ID.",
+                        "format": "int64"
+                      },
+                      "floodlightOrderId": {
+                        "type": "string",
+                        "description": "The Floodlight order ID provided by the advertiser for the conversion."
+                      },
+                      "inventoryAccountId": {
+                        "type": "string",
+                        "description": "ID that DS generates and uses to uniquely identify the inventory account that contains the product.",
+                        "format": "int64"
+                      },
+                      "productCountry": {
+                        "type": "string",
+                        "description": "The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country."
+                      },
+                      "productGroupId": {
+                        "type": "string",
+                        "description": "DS product group ID.",
+                        "format": "int64"
+                      },
+                      "productId": {
+                        "type": "string",
+                        "description": "The product ID (SKU)."
+                      },
+                      "productLanguage": {
+                        "type": "string",
+                        "description": "The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language."
+                      },
+                      "quantityMillis": {
+                        "type": "string",
+                        "description": "The quantity of this conversion, in millis.",
+                        "format": "int64"
+                      },
+                      "revenueMicros": {
+                        "type": "string",
+                        "description": "The revenue amount of this TRANSACTION conversion, in micros.",
+                        "format": "int64"
+                      },
+                      "segmentationId": {
+                        "type": "string",
+                        "description": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).",
+                        "format": "int64"
+                      },
+                      "segmentationName": {
+                        "type": "string",
+                        "description": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+                      },
+                      "segmentationType": {
+                        "type": "string",
+                        "description": "The segmentation type of this conversion (for example, FLOODLIGHT)."
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "The state of the conversion, that is, either ACTIVE or REMOVED. Note: state DELETED is deprecated."
+                      },
+                      "storeId": {
+                        "type": "string",
+                        "description": "The ID of the local store for which the product was advertised. Applicable only when the channel is \"local\"."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION)."
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.",
+                  "default": "doubleclicksearch#conversionList"
+                }
+              }
+            }
+
++ Response 200
+
+#### doubleclicksearch.conversion.patch [PATCH]
+
++ Parameters
+
+    + advertiserId (required)
+  
+    + agencyId (required)
+  
+    + endDate (required)
+  
+    + engineAccountId (required)
+  
+    + rowCount (required)
+  
+    + startDate (required)
+  
+    + startRow (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A list of conversions.",
+              "properties": {
+                "conversion": {
+                  "type": "array",
+                  "description": "The conversions being requested.",
+                  "items": {
+                    "type": "object",
+                    "description": "A conversion containing data relevant to DoubleClick Search.",
+                    "properties": {
+                      "adGroupId": {
+                        "type": "string",
+                        "description": "DS ad group ID.",
+                        "format": "int64"
+                      },
+                      "adId": {
+                        "type": "string",
+                        "description": "DS ad ID.",
+                        "format": "int64"
+                      },
+                      "advertiserId": {
+                        "type": "string",
+                        "description": "DS advertiser ID.",
+                        "format": "int64"
+                      },
+                      "agencyId": {
+                        "type": "string",
+                        "description": "DS agency ID.",
+                        "format": "int64"
+                      },
+                      "attributionModel": {
+                        "type": "string",
+                        "description": "This field is ignored."
+                      },
+                      "campaignId": {
+                        "type": "string",
+                        "description": "DS campaign ID.",
+                        "format": "int64"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "description": "Sales channel for the product. Acceptable values are:  \n- \"local\": a physical store \n- \"online\": an online store"
+                      },
+                      "clickId": {
+                        "type": "string",
+                        "description": "DS click ID for the conversion."
+                      },
+                      "conversionId": {
+                        "type": "string",
+                        "description": "For offline conversions, this is an ID provided by advertisers. Advertisers can use this property to specify an ID that is meaningful to them. If an advertiser doesn't specify a conversionId, DoubleClick Search generates one. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser's Floodlight instructions."
+                      },
+                      "conversionModifiedTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion was last modified, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "conversionTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion took place, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "countMillis": {
+                        "type": "string",
+                        "description": "This field is ignored.",
+                        "format": "int64"
+                      },
+                      "criterionId": {
+                        "type": "string",
+                        "description": "DS criterion (keyword) ID.",
+                        "format": "int64"
+                      },
+                      "currencyCode": {
+                        "type": "string",
+                        "description": "The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format."
+                      },
+                      "customDimension": {
+                        "type": "array",
+                        "description": "Custom dimensions for the conversion, which can be used to filter data in a report.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome dimension.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom dimension name."
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "Custom dimension value."
+                            }
+                          }
+                        }
+                      },
+                      "customMetric": {
+                        "type": "array",
+                        "description": "Custom metrics for the conversion.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome metric.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom metric name."
+                            },
+                            "value": {
+                              "type": "number",
+                              "description": "Custom metric numeric value.",
+                              "format": "double"
+                            }
+                          }
+                        }
+                      },
+                      "deviceType": {
+                        "type": "string",
+                        "description": "The type of device on which the conversion occurred."
+                      },
+                      "dsConversionId": {
+                        "type": "string",
+                        "description": "ID that DoubleClick Search generates for each conversion.",
+                        "format": "int64"
+                      },
+                      "engineAccountId": {
+                        "type": "string",
+                        "description": "DS engine account ID.",
+                        "format": "int64"
+                      },
+                      "floodlightOrderId": {
+                        "type": "string",
+                        "description": "The Floodlight order ID provided by the advertiser for the conversion."
+                      },
+                      "inventoryAccountId": {
+                        "type": "string",
+                        "description": "ID that DS generates and uses to uniquely identify the inventory account that contains the product.",
+                        "format": "int64"
+                      },
+                      "productCountry": {
+                        "type": "string",
+                        "description": "The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country."
+                      },
+                      "productGroupId": {
+                        "type": "string",
+                        "description": "DS product group ID.",
+                        "format": "int64"
+                      },
+                      "productId": {
+                        "type": "string",
+                        "description": "The product ID (SKU)."
+                      },
+                      "productLanguage": {
+                        "type": "string",
+                        "description": "The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language."
+                      },
+                      "quantityMillis": {
+                        "type": "string",
+                        "description": "The quantity of this conversion, in millis.",
+                        "format": "int64"
+                      },
+                      "revenueMicros": {
+                        "type": "string",
+                        "description": "The revenue amount of this TRANSACTION conversion, in micros.",
+                        "format": "int64"
+                      },
+                      "segmentationId": {
+                        "type": "string",
+                        "description": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).",
+                        "format": "int64"
+                      },
+                      "segmentationName": {
+                        "type": "string",
+                        "description": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+                      },
+                      "segmentationType": {
+                        "type": "string",
+                        "description": "The segmentation type of this conversion (for example, FLOODLIGHT)."
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "The state of the conversion, that is, either ACTIVE or REMOVED. Note: state DELETED is deprecated."
+                      },
+                      "storeId": {
+                        "type": "string",
+                        "description": "The ID of the local store for which the product was advertised. Applicable only when the channel is \"local\"."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION)."
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.",
+                  "default": "doubleclicksearch#conversionList"
+                }
+              }
+            }
+
++ Response 200
+
+#### doubleclicksearch.conversion.update [PUT]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A list of conversions.",
+              "properties": {
+                "conversion": {
+                  "type": "array",
+                  "description": "The conversions being requested.",
+                  "items": {
+                    "type": "object",
+                    "description": "A conversion containing data relevant to DoubleClick Search.",
+                    "properties": {
+                      "adGroupId": {
+                        "type": "string",
+                        "description": "DS ad group ID.",
+                        "format": "int64"
+                      },
+                      "adId": {
+                        "type": "string",
+                        "description": "DS ad ID.",
+                        "format": "int64"
+                      },
+                      "advertiserId": {
+                        "type": "string",
+                        "description": "DS advertiser ID.",
+                        "format": "int64"
+                      },
+                      "agencyId": {
+                        "type": "string",
+                        "description": "DS agency ID.",
+                        "format": "int64"
+                      },
+                      "attributionModel": {
+                        "type": "string",
+                        "description": "This field is ignored."
+                      },
+                      "campaignId": {
+                        "type": "string",
+                        "description": "DS campaign ID.",
+                        "format": "int64"
+                      },
+                      "channel": {
+                        "type": "string",
+                        "description": "Sales channel for the product. Acceptable values are:  \n- \"local\": a physical store \n- \"online\": an online store"
+                      },
+                      "clickId": {
+                        "type": "string",
+                        "description": "DS click ID for the conversion."
+                      },
+                      "conversionId": {
+                        "type": "string",
+                        "description": "For offline conversions, this is an ID provided by advertisers. Advertisers can use this property to specify an ID that is meaningful to them. If an advertiser doesn't specify a conversionId, DoubleClick Search generates one. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser's Floodlight instructions."
+                      },
+                      "conversionModifiedTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion was last modified, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "conversionTimestamp": {
+                        "type": "string",
+                        "description": "The time at which the conversion took place, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "countMillis": {
+                        "type": "string",
+                        "description": "This field is ignored.",
+                        "format": "int64"
+                      },
+                      "criterionId": {
+                        "type": "string",
+                        "description": "DS criterion (keyword) ID.",
+                        "format": "int64"
+                      },
+                      "currencyCode": {
+                        "type": "string",
+                        "description": "The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format."
+                      },
+                      "customDimension": {
+                        "type": "array",
+                        "description": "Custom dimensions for the conversion, which can be used to filter data in a report.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome dimension.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom dimension name."
+                            },
+                            "value": {
+                              "type": "string",
+                              "description": "Custom dimension value."
+                            }
+                          }
+                        }
+                      },
+                      "customMetric": {
+                        "type": "array",
+                        "description": "Custom metrics for the conversion.",
+                        "items": {
+                          "type": "object",
+                          "description": "A message containing the custome metric.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Custom metric name."
+                            },
+                            "value": {
+                              "type": "number",
+                              "description": "Custom metric numeric value.",
+                              "format": "double"
+                            }
+                          }
+                        }
+                      },
+                      "deviceType": {
+                        "type": "string",
+                        "description": "The type of device on which the conversion occurred."
+                      },
+                      "dsConversionId": {
+                        "type": "string",
+                        "description": "ID that DoubleClick Search generates for each conversion.",
+                        "format": "int64"
+                      },
+                      "engineAccountId": {
+                        "type": "string",
+                        "description": "DS engine account ID.",
+                        "format": "int64"
+                      },
+                      "floodlightOrderId": {
+                        "type": "string",
+                        "description": "The Floodlight order ID provided by the advertiser for the conversion."
+                      },
+                      "inventoryAccountId": {
+                        "type": "string",
+                        "description": "ID that DS generates and uses to uniquely identify the inventory account that contains the product.",
+                        "format": "int64"
+                      },
+                      "productCountry": {
+                        "type": "string",
+                        "description": "The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country."
+                      },
+                      "productGroupId": {
+                        "type": "string",
+                        "description": "DS product group ID.",
+                        "format": "int64"
+                      },
+                      "productId": {
+                        "type": "string",
+                        "description": "The product ID (SKU)."
+                      },
+                      "productLanguage": {
+                        "type": "string",
+                        "description": "The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language."
+                      },
+                      "quantityMillis": {
+                        "type": "string",
+                        "description": "The quantity of this conversion, in millis.",
+                        "format": "int64"
+                      },
+                      "revenueMicros": {
+                        "type": "string",
+                        "description": "The revenue amount of this TRANSACTION conversion, in micros.",
+                        "format": "int64"
+                      },
+                      "segmentationId": {
+                        "type": "string",
+                        "description": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).",
+                        "format": "int64"
+                      },
+                      "segmentationName": {
+                        "type": "string",
+                        "description": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+                      },
+                      "segmentationType": {
+                        "type": "string",
+                        "description": "The segmentation type of this conversion (for example, FLOODLIGHT)."
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "The state of the conversion, that is, either ACTIVE or REMOVED. Note: state DELETED is deprecated."
+                      },
+                      "storeId": {
+                        "type": "string",
+                        "description": "The ID of the local store for which the product was advertised. Applicable only when the channel is \"local\"."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "The type of the conversion, that is, either ACTION or TRANSACTION. An ACTION conversion is an action by the user that has no monetarily quantifiable value, while a TRANSACTION conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (ACTION) versus ecommerce purchases (TRANSACTION)."
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a ConversionList resource. Value: the fixed string doubleclicksearch#conversionList.",
+                  "default": "doubleclicksearch#conversionList"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /conversion/updateAvailability [/conversion/updateAvailability]
+
+#### doubleclicksearch.conversion.updateAvailability [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to update availability.",
+              "properties": {
+                "availabilities": {
+                  "type": "array",
+                  "description": "The availabilities being requested.",
+                  "items": {
+                    "type": "object",
+                    "description": "A message containing availability data relevant to DoubleClick Search.",
+                    "properties": {
+                      "advertiserId": {
+                        "type": "string",
+                        "description": "DS advertiser ID.",
+                        "format": "int64"
+                      },
+                      "agencyId": {
+                        "type": "string",
+                        "description": "DS agency ID.",
+                        "format": "int64"
+                      },
+                      "availabilityTimestamp": {
+                        "type": "string",
+                        "description": "The time by which all conversions have been uploaded, in epoch millis UTC.",
+                        "format": "uint64"
+                      },
+                      "segmentationId": {
+                        "type": "string",
+                        "description": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID).",
+                        "format": "int64"
+                      },
+                      "segmentationName": {
+                        "type": "string",
+                        "description": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+                      },
+                      "segmentationType": {
+                        "type": "string",
+                        "description": "The segmentation type that this availability is for (its default value is FLOODLIGHT)."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /reports/generate [/reports/generate]
+
+#### doubleclicksearch.reports.generate [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A request object used to create a DoubleClick Search report.",
+              "properties": {
+                "columns": {
+                  "type": "array",
+                  "description": "The columns to include in the report. This includes both DoubleClick Search columns and saved columns. For DoubleClick Search columns, only the columnName parameter is required. For saved columns only the savedColumnName parameter is required. Both columnName and savedColumnName cannot be set in the same stanza.",
+                  "items": {
+                    "type": "object",
+                    "description": "A request object used to create a DoubleClick Search report.",
+                    "properties": {
+                      "columnName": {
+                        "type": "string",
+                        "description": "Name of a DoubleClick Search column to include in the report."
+                      },
+                      "customDimensionName": {
+                        "type": "string",
+                        "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                      },
+                      "customMetricName": {
+                        "type": "string",
+                        "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                      },
+                      "groupByColumn": {
+                        "type": "boolean",
+                        "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                        "default": "false"
+                      },
+                      "headerText": {
+                        "type": "string",
+                        "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                      },
+                      "platformSource": {
+                        "type": "string",
+                        "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                      },
+                      "savedColumnName": {
+                        "type": "string",
+                        "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                      }
+                    }
+                  }
+                },
+                "downloadFormat": {
+                  "type": "string",
+                  "description": "Format that the report should be returned in. Currently csv or tsv is supported."
+                },
+                "filters": {
+                  "type": "array",
+                  "description": "A list of filters to be applied to the report.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "column": {
+                        "type": "object",
+                        "description": "A request object used to create a DoubleClick Search report.",
+                        "properties": {
+                          "columnName": {
+                            "type": "string",
+                            "description": "Name of a DoubleClick Search column to include in the report."
+                          },
+                          "customDimensionName": {
+                            "type": "string",
+                            "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                          },
+                          "customMetricName": {
+                            "type": "string",
+                            "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                          },
+                          "groupByColumn": {
+                            "type": "boolean",
+                            "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                            "default": "false"
+                          },
+                          "headerText": {
+                            "type": "string",
+                            "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                          },
+                          "platformSource": {
+                            "type": "string",
+                            "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                          },
+                          "savedColumnName": {
+                            "type": "string",
+                            "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                          }
+                        }
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "Operator to use in the filter. See the filter reference for a list of available operators."
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "A list of values to filter the column value against.",
+                        "items": {}
+                      }
+                    }
+                  }
+                },
+                "includeDeletedEntities": {
+                  "type": "boolean",
+                  "description": "Determines if removed entities should be included in the report. Defaults to false. Deprecated, please use includeRemovedEntities instead.",
+                  "default": "false"
+                },
+                "includeRemovedEntities": {
+                  "type": "boolean",
+                  "description": "Determines if removed entities should be included in the report. Defaults to false.",
+                  "default": "false"
+                },
+                "maxRowsPerFile": {
+                  "type": "integer",
+                  "description": "Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are 1000000 to 100000000, inclusive.",
+                  "format": "int32",
+                  "minimum": 1000000,
+                  "maximum": 100000000
+                },
+                "orderBy": {
+                  "type": "array",
+                  "description": "Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "column": {
+                        "type": "object",
+                        "description": "A request object used to create a DoubleClick Search report.",
+                        "properties": {
+                          "columnName": {
+                            "type": "string",
+                            "description": "Name of a DoubleClick Search column to include in the report."
+                          },
+                          "customDimensionName": {
+                            "type": "string",
+                            "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                          },
+                          "customMetricName": {
+                            "type": "string",
+                            "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                          },
+                          "groupByColumn": {
+                            "type": "boolean",
+                            "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                            "default": "false"
+                          },
+                          "headerText": {
+                            "type": "string",
+                            "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                          },
+                          "platformSource": {
+                            "type": "string",
+                            "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                          },
+                          "savedColumnName": {
+                            "type": "string",
+                            "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                          }
+                        }
+                      },
+                      "sortOrder": {
+                        "type": "string",
+                        "description": "The sort direction, which is either ascending or descending."
+                      }
+                    }
+                  }
+                },
+                "reportScope": {
+                  "type": "object",
+                  "description": "The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required.",
+                  "properties": {
+                    "adGroupId": {
+                      "type": "string",
+                      "description": "DS ad group ID.",
+                      "format": "int64"
+                    },
+                    "adId": {
+                      "type": "string",
+                      "description": "DS ad ID.",
+                      "format": "int64"
+                    },
+                    "advertiserId": {
+                      "type": "string",
+                      "description": "DS advertiser ID.",
+                      "format": "int64"
+                    },
+                    "agencyId": {
+                      "type": "string",
+                      "description": "DS agency ID.",
+                      "format": "int64"
+                    },
+                    "campaignId": {
+                      "type": "string",
+                      "description": "DS campaign ID.",
+                      "format": "int64"
+                    },
+                    "engineAccountId": {
+                      "type": "string",
+                      "description": "DS engine account ID.",
+                      "format": "int64"
+                    },
+                    "keywordId": {
+                      "type": "string",
+                      "description": "DS keyword ID.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "reportType": {
+                  "type": "string",
+                  "description": "Determines the type of rows that are returned in the report. For example, if you specify reportType: keyword, each row in the report will contain data about a keyword. See the Types of Reports reference for the columns that are available for each type."
+                },
+                "rowCount": {
+                  "type": "integer",
+                  "description": "Synchronous report only. The maxinum number of rows to return; additional rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults to 10000.",
+                  "default": "10000",
+                  "format": "int32",
+                  "minimum": 0,
+                  "maximum": 10000
+                },
+                "startRow": {
+                  "type": "integer",
+                  "description": "Synchronous report only. Zero-based index of the first row to return. Acceptable values are 0 to 50000, inclusive. Defaults to 0.",
+                  "default": "0",
+                  "format": "int32",
+                  "minimum": 0,
+                  "maximum": 50000
+                },
+                "statisticsCurrency": {
+                  "type": "string",
+                  "description": "Specifies the currency in which monetary will be returned. Possible values are: usd, agency (valid if the report is scoped to agency or lower), advertiser (valid if the report is scoped to * advertiser or lower), or account (valid if the report is scoped to engine account or lower)."
+                },
+                "timeRange": {
+                  "type": "object",
+                  "description": "If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range.",
+                  "properties": {
+                    "changedAttributesSinceTimestamp": {
+                      "type": "string",
+                      "description": "Inclusive UTC timestamp in RFC format, e.g., 2013-07-16T10:16:23.555Z. See additional references on how changed attribute reports work.",
+                      "format": "date-time"
+                    },
+                    "changedMetricsSinceTimestamp": {
+                      "type": "string",
+                      "description": "Inclusive UTC timestamp in RFC format, e.g., 2013-07-16T10:16:23.555Z. See additional references on how changed metrics reports work.",
+                      "format": "date-time"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "description": "Inclusive date in YYYY-MM-DD format."
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Inclusive date in YYYY-MM-DD format."
+                    }
+                  }
+                },
+                "verifySingleTimeZone": {
+                  "type": "boolean",
+                  "description": "If true, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to false.",
+                  "default": "false"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /reports/{reportId} [/reports/{reportId}]
+
+#### doubleclicksearch.reports.get [GET]
+
++ Parameters
+
+    + reportId (required)
+
++ Response 200
+
+### Resource /reports/{reportId}/files/{reportFragment} [/reports/{reportId}/files/{reportFragment}]
+
+#### doubleclicksearch.reports.getFile [GET]
+
++ Parameters
+
+    + reportId (required)
+  
+    + reportFragment (required)
+
++ Response 200
+
+### Resource /reports [/reports]
+
+#### doubleclicksearch.reports.request [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A request object used to create a DoubleClick Search report.",
+              "properties": {
+                "columns": {
+                  "type": "array",
+                  "description": "The columns to include in the report. This includes both DoubleClick Search columns and saved columns. For DoubleClick Search columns, only the columnName parameter is required. For saved columns only the savedColumnName parameter is required. Both columnName and savedColumnName cannot be set in the same stanza.",
+                  "items": {
+                    "type": "object",
+                    "description": "A request object used to create a DoubleClick Search report.",
+                    "properties": {
+                      "columnName": {
+                        "type": "string",
+                        "description": "Name of a DoubleClick Search column to include in the report."
+                      },
+                      "customDimensionName": {
+                        "type": "string",
+                        "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                      },
+                      "customMetricName": {
+                        "type": "string",
+                        "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                      },
+                      "endDate": {
+                        "type": "string",
+                        "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                      },
+                      "groupByColumn": {
+                        "type": "boolean",
+                        "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                        "default": "false"
+                      },
+                      "headerText": {
+                        "type": "string",
+                        "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                      },
+                      "platformSource": {
+                        "type": "string",
+                        "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                      },
+                      "savedColumnName": {
+                        "type": "string",
+                        "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                      }
+                    }
+                  }
+                },
+                "downloadFormat": {
+                  "type": "string",
+                  "description": "Format that the report should be returned in. Currently csv or tsv is supported."
+                },
+                "filters": {
+                  "type": "array",
+                  "description": "A list of filters to be applied to the report.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "column": {
+                        "type": "object",
+                        "description": "A request object used to create a DoubleClick Search report.",
+                        "properties": {
+                          "columnName": {
+                            "type": "string",
+                            "description": "Name of a DoubleClick Search column to include in the report."
+                          },
+                          "customDimensionName": {
+                            "type": "string",
+                            "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                          },
+                          "customMetricName": {
+                            "type": "string",
+                            "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                          },
+                          "groupByColumn": {
+                            "type": "boolean",
+                            "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                            "default": "false"
+                          },
+                          "headerText": {
+                            "type": "string",
+                            "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                          },
+                          "platformSource": {
+                            "type": "string",
+                            "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                          },
+                          "savedColumnName": {
+                            "type": "string",
+                            "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                          }
+                        }
+                      },
+                      "operator": {
+                        "type": "string",
+                        "description": "Operator to use in the filter. See the filter reference for a list of available operators."
+                      },
+                      "values": {
+                        "type": "array",
+                        "description": "A list of values to filter the column value against.",
+                        "items": {}
+                      }
+                    }
+                  }
+                },
+                "includeDeletedEntities": {
+                  "type": "boolean",
+                  "description": "Determines if removed entities should be included in the report. Defaults to false. Deprecated, please use includeRemovedEntities instead.",
+                  "default": "false"
+                },
+                "includeRemovedEntities": {
+                  "type": "boolean",
+                  "description": "Determines if removed entities should be included in the report. Defaults to false.",
+                  "default": "false"
+                },
+                "maxRowsPerFile": {
+                  "type": "integer",
+                  "description": "Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are 1000000 to 100000000, inclusive.",
+                  "format": "int32",
+                  "minimum": 1000000,
+                  "maximum": 100000000
+                },
+                "orderBy": {
+                  "type": "array",
+                  "description": "Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "column": {
+                        "type": "object",
+                        "description": "A request object used to create a DoubleClick Search report.",
+                        "properties": {
+                          "columnName": {
+                            "type": "string",
+                            "description": "Name of a DoubleClick Search column to include in the report."
+                          },
+                          "customDimensionName": {
+                            "type": "string",
+                            "description": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\nIf used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+                          },
+                          "customMetricName": {
+                            "type": "string",
+                            "description": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+                          },
+                          "endDate": {
+                            "type": "string",
+                            "description": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with startDate."
+                          },
+                          "groupByColumn": {
+                            "type": "boolean",
+                            "description": "Synchronous report only. Set to true to group by this column. Defaults to false.",
+                            "default": "false"
+                          },
+                          "headerText": {
+                            "type": "string",
+                            "description": "Text used to identify this column in the report output; defaults to columnName or savedColumnName when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+                          },
+                          "platformSource": {
+                            "type": "string",
+                            "description": "The platform that is used to provide data for the custom dimension. Acceptable values are \"Floodlight\"."
+                          },
+                          "savedColumnName": {
+                            "type": "string",
+                            "description": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+                          },
+                          "startDate": {
+                            "type": "string",
+                            "description": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with endDate."
+                          }
+                        }
+                      },
+                      "sortOrder": {
+                        "type": "string",
+                        "description": "The sort direction, which is either ascending or descending."
+                      }
+                    }
+                  }
+                },
+                "reportScope": {
+                  "type": "object",
+                  "description": "The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required.",
+                  "properties": {
+                    "adGroupId": {
+                      "type": "string",
+                      "description": "DS ad group ID.",
+                      "format": "int64"
+                    },
+                    "adId": {
+                      "type": "string",
+                      "description": "DS ad ID.",
+                      "format": "int64"
+                    },
+                    "advertiserId": {
+                      "type": "string",
+                      "description": "DS advertiser ID.",
+                      "format": "int64"
+                    },
+                    "agencyId": {
+                      "type": "string",
+                      "description": "DS agency ID.",
+                      "format": "int64"
+                    },
+                    "campaignId": {
+                      "type": "string",
+                      "description": "DS campaign ID.",
+                      "format": "int64"
+                    },
+                    "engineAccountId": {
+                      "type": "string",
+                      "description": "DS engine account ID.",
+                      "format": "int64"
+                    },
+                    "keywordId": {
+                      "type": "string",
+                      "description": "DS keyword ID.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "reportType": {
+                  "type": "string",
+                  "description": "Determines the type of rows that are returned in the report. For example, if you specify reportType: keyword, each row in the report will contain data about a keyword. See the Types of Reports reference for the columns that are available for each type."
+                },
+                "rowCount": {
+                  "type": "integer",
+                  "description": "Synchronous report only. The maxinum number of rows to return; additional rows are dropped. Acceptable values are 0 to 10000, inclusive. Defaults to 10000.",
+                  "default": "10000",
+                  "format": "int32",
+                  "minimum": 0,
+                  "maximum": 10000
+                },
+                "startRow": {
+                  "type": "integer",
+                  "description": "Synchronous report only. Zero-based index of the first row to return. Acceptable values are 0 to 50000, inclusive. Defaults to 0.",
+                  "default": "0",
+                  "format": "int32",
+                  "minimum": 0,
+                  "maximum": 50000
+                },
+                "statisticsCurrency": {
+                  "type": "string",
+                  "description": "Specifies the currency in which monetary will be returned. Possible values are: usd, agency (valid if the report is scoped to agency or lower), advertiser (valid if the report is scoped to * advertiser or lower), or account (valid if the report is scoped to engine account or lower)."
+                },
+                "timeRange": {
+                  "type": "object",
+                  "description": "If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range.",
+                  "properties": {
+                    "changedAttributesSinceTimestamp": {
+                      "type": "string",
+                      "description": "Inclusive UTC timestamp in RFC format, e.g., 2013-07-16T10:16:23.555Z. See additional references on how changed attribute reports work.",
+                      "format": "date-time"
+                    },
+                    "changedMetricsSinceTimestamp": {
+                      "type": "string",
+                      "description": "Inclusive UTC timestamp in RFC format, e.g., 2013-07-16T10:16:23.555Z. See additional references on how changed metrics reports work.",
+                      "format": "date-time"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "description": "Inclusive date in YYYY-MM-DD format."
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Inclusive date in YYYY-MM-DD format."
+                    }
+                  }
+                },
+                "verifySingleTimeZone": {
+                  "type": "boolean",
+                  "description": "If true, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to false.",
+                  "default": "false"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /agency/{agencyId}/advertiser/{advertiserId}/savedcolumns [/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns]
+
+#### doubleclicksearch.savedColumns.list [GET]
+
++ Parameters
+
+    + agencyId (required)
+  
+    + advertiserId (required)
+
++ Response 200
+

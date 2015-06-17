@@ -1,0 +1,96 @@
+FORMAT: 1A
+
+# MassiveRand TRNG Web Service
+
+This is the experimental API documentation for <a href='http://www.massiverand.com/'>MassiveRand</a> TRNG Web Service. Serving true random numbers since December 2014!<p>Explore our <a href='../tutorials'>Tutorials</a>.</p>
+
+### Resource /randprime [/randprime]
+
+#### randprime [GET]
+
+Generate a large random prime number.
+
++ Response 200
+
++ Response 500
+
+### Resource /rand [//rand{?length,sep}]
+
+#### rand [GET]
+
+Generate a page of true random numbers.
+
++ Parameters
+
+    + length
+  
+    + sep
+
++ Response 200
+
++ Response 500
+
+### Resource /randjson [//randjson{?length,sep}]
+
+#### rand [GET]
+
+Generate a JSON list of true random numbers.
+
++ Parameters
+
+    + length
+  
+    + sep
+
++ Response 200
+
++ Response 500
+
+### Resource /randbindl [//randbindl{?length}]
+
+#### rand [GET]
+
+Generate a binary encoded file of true random numbers.
+
++ Parameters
+
+    + length
+
++ Response 200
+
++ Response 500
+
+### Resource /randbinds [//randbinds{?length}]
+
+#### rand [GET]
+
+Generate a binary stream of true random numbers.
+
++ Parameters
+
+    + length
+
++ Response 200
+
++ Response 500
+
+### Resource /randb64 [/randb64]
+
+#### rand [GET]
+
+Generate a base64 encoded page of true random numbers.
+
++ Response 200
+
++ Response 500
+
+### Resource /randb58 [/randb58]
+
+#### rand [GET]
+
+Generate a base58 encoded page of true random numbers.
+
++ Response 200
+
++ Response 500
+

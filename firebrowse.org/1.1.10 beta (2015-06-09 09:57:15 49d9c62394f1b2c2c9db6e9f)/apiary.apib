@@ -1,0 +1,552 @@
+FORMAT: 1A
+
+# firebrowse.org
+
+### Resource /Samples/mRNASeq [/api/v1/Samples/mRNASeq{?format,gene,cohort,tcga_participant_barcode,sample_type,protocol,page,page_size,sort_by}]
+
+#### mRNASeq [GET]
+
+Retrieve mRNASeq data.
+
++ Parameters
+
+    + format
+  
+    + gene
+  
+    + cohort
+  
+    + tcga_participant_barcode
+  
+    + sample_type
+  
+    + protocol
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Samples/miRSeq [/api/v1/Samples/miRSeq{?format,mir,cohort,tcga_participant_barcode,tool,sample_type,page,page_size,sort_by}]
+
+#### miRSeq [GET]
+
+Retrieve miRSeq data.
+
++ Parameters
+
+    + format
+  
+    + mir
+  
+    + cohort
+  
+    + tcga_participant_barcode
+  
+    + tool
+  
+    + sample_type
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Samples/ClinicalTier1 [/api/v1/Samples/ClinicalTier1{?format,cohort,tcga_participant_barcode,tier1_cde_name,page,page_size,sort_by}]
+
+#### ClinicalTier1 [GET]
+
+Retrieve clinical pick tier 1 data.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + tcga_participant_barcode
+  
+    + tier1_cde_name
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/Mutation/MAF [/api/v1/Analyses/Mutation/MAF{?format,cohort,tool,gene,tcga_participant_barcode,column,page,page_size,sort_by}]
+
+#### MAF [GET]
+
+Retrieve MutSig final analysis MAF.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + tool
+  
+    + gene
+  
+    + tcga_participant_barcode
+  
+    + column
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/Mutation/SMG [/api/v1/Analyses/Mutation/SMG{?format,cohort,tool,rank,gene,q,page,page_size,sort_by}]
+
+#### SMG [GET]
+
+Retrieve Significantly Mutated Genes (SMG).
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + tool
+  
+    + rank
+  
+    + gene
+  
+    + q
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/CopyNumber/Genes/All [/api/v1/Analyses/CopyNumber/Genes/All{?format,cohort,gene,tcga_participant_barcode,page,page_size,sort_by}]
+
+#### All [GET]
+
+Retrieve all data by genes Gistic2 results.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + gene
+  
+    + tcga_participant_barcode
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/CopyNumber/Genes/Focal [/api/v1/Analyses/CopyNumber/Genes/Focal{?format,cohort,gene,tcga_participant_barcode,page,page_size,sort_by}]
+
+#### Focal [GET]
+
+Retrieve focal data by genes Gistic2 results.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + gene
+  
+    + tcga_participant_barcode
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/CopyNumber/Genes/Thresholded [/api/v1/Analyses/CopyNumber/Genes/Thresholded{?format,cohort,gene,tcga_participant_barcode,page,page_size,sort_by}]
+
+#### Thresholded [GET]
+
+Retrieve all thresholded by genes Gistic2 results.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + gene
+  
+    + tcga_participant_barcode
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/CopyNumber/Genes/Amplified [/api/v1/Analyses/CopyNumber/Genes/Amplified{?format,cohort,gene,q,page,page_size,sort_by}]
+
+#### Amplified [GET]
+
+Retrieve Gistic2 significantly amplified genes results.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + gene
+  
+    + q
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/CopyNumber/Genes/Deleted [/api/v1/Analyses/CopyNumber/Genes/Deleted{?format,cohort,gene,q,page,page_size,sort_by}]
+
+#### Deleted [GET]
+
+Retrieve Gistic2 significantly deleted genes results.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + gene
+  
+    + q
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/mRNASeq/Quartiles [/api/v1/Analyses/mRNASeq/Quartiles{?format,gene,cohort,protocol,sample_type,Exclude}]
+
+#### mRNASeq/Quartiles [GET]
+
+Returns RNASeq expression quartiles, e.g. suitable for drawing a boxplot.
+
++ Parameters
+
+    + format
+  
+    + gene (required)
+  
+    + cohort
+  
+    + protocol
+  
+    + sample_type
+  
+    + Exclude
+
++ Response 200
+
+### Resource /Analyses/Reports [/api/v1/Analyses/Reports{?format,date,cohort,name,type,page,page_size,sort_by}]
+
+#### Reports [GET]
+
+Retrieve links to summary reports from Firehose analysis runs.
+
++ Parameters
+
+    + format
+  
+    + date
+  
+    + cohort
+  
+    + name
+  
+    + type
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Analyses/FeatureTable [/api/v1/Analyses/FeatureTable{?format,cohort,date,column,page,page_size}]
+
+#### FeatureTable [GET]
+
+Retrieve aggregated analysis features table.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + date
+  
+    + column
+  
+    + page
+  
+    + page_size
+
++ Response 200
+
+### Resource /Archives/StandardData [/api/v1/Archives/StandardData{?format,date,cohort,data_type,tool,platform,center,level,protocol,page,page_size,sort_by}]
+
+#### StandardData [GET]
+
+Retrieve standard data archives.
+
++ Parameters
+
+    + format
+  
+    + date (required)
+  
+    + cohort
+  
+    + data_type
+  
+    + tool
+  
+    + platform
+  
+    + center
+  
+    + level
+  
+    + protocol
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Metadata/Centers [/api/v1/Metadata/Centers{?format,center}]
+
+#### Centers [GET]
+
+Obtain identities of TCGA consortium member centers.
+
++ Parameters
+
+    + format
+  
+    + center
+
++ Response 200
+
+### Resource /Metadata/ClinicalTier1 [/api/v1/Metadata/ClinicalTier1{?format}]
+
+#### ClinicalTier1 [GET]
+
+Retrieve names of all available clinical data elements (CDEs).
+
++ Parameters
+
+    + format
+
++ Response 200
+
+### Resource /Metadata/Cohort/{cohort} [/api/v1/Metadata/Cohort/{cohort}{?format}]
+
+#### Cohort [GET]
+
+Retrieve formal disease name(s) for cohort abbreviation(s).
+
++ Parameters
+
+    + format
+  
+    + cohort (required)
+
++ Response 200
+
+### Resource /Metadata/Cohorts [/api/v1/Metadata/Cohorts{?format,cohort}]
+
+#### Cohorts [GET]
+
+Translate TCGA cohort abbreviations to full disease names.
+
++ Parameters
+
+    + format
+  
+    + cohort
+
++ Response 200
+
+### Resource /Metadata/Counts [/api/v1/Metadata/Counts{?format,date,cohort,sample_type,data_type,totals}]
+
+#### Counts [GET]
+
+Retrieve sample counts.
+
++ Parameters
+
+    + format
+  
+    + date (required)
+  
+    + cohort
+  
+    + sample_type
+  
+    + data_type
+  
+    + totals
+
++ Response 200
+
+### Resource /Metadata/Dates [/api/v1/Metadata/Dates{?format}]
+
+#### Dates [GET]
+
+Retrieve list of Firehose standard data and analyses dates.
+
++ Parameters
+
+    + format
+
++ Response 200
+
+### Resource /Metadata/HeartBeat [/api/v1/Metadata/HeartBeat{?format}]
+
+#### HeartBeat [GET]
+
+Simple way to discern whether API server is up and running
+
++ Parameters
+
+    + format
+
++ Response 200
+
+### Resource /Metadata/Patients [/api/v1/Metadata/Patients{?format,cohort,page,page_size,sort_by}]
+
+#### Patients [GET]
+
+Retrieve list of all TCGA patients.
+
++ Parameters
+
+    + format
+  
+    + cohort
+  
+    + page
+  
+    + page_size
+  
+    + sort_by
+
++ Response 200
+
+### Resource /Metadata/Platforms [/api/v1/Metadata/Platforms{?format,platform}]
+
+#### Platforms [GET]
+
+Translate TCGA platform codes to full platform names.
+
++ Parameters
+
+    + format
+  
+    + platform
+
++ Response 200
+
+### Resource /Metadata/SampleTypes [/api/v1/Metadata/SampleTypes{?format}]
+
+#### SampleTypes [GET]
+
+Return all TCGA sample type codes, both numeric and symbolic.
+
++ Parameters
+
+    + format
+
++ Response 200
+
+### Resource /Metadata/SampleType/Barcode/{TCGA_Barcode} [/api/v1/Metadata/SampleType/Barcode/{TCGA_Barcode}{?format}]
+
+#### Barcode [GET]
+
+Given a TCGA barcode, return its short letter sample type code.
+
++ Parameters
+
+    + format
+  
+    + TCGA_Barcode (required)
+
++ Response 200
+
+### Resource /Metadata/SampleType/Code/{code} [/api/v1/Metadata/SampleType/Code/{code}{?format}]
+
+#### Code [GET]
+
+Translate from numeric to symbolic TCGA sample codes.
+
++ Parameters
+
+    + format
+  
+    + code (required)
+
++ Response 200
+
+### Resource /Metadata/SampleType/ShortLetterCode/{short_letter_code} [/api/v1/Metadata/SampleType/ShortLetterCode/{short_letter_code}{?format}]
+
+#### ShortLetterCode [GET]
+
+Translate from symbolic to numeric TCGA sample codes.
+
++ Parameters
+
+    + format
+  
+    + short_letter_code (required)
+
++ Response 200
+

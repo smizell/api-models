@@ -1,0 +1,222 @@
+FORMAT: 1A
+
+# Ad Exchange Seller API
+
+Gives Ad Exchange seller users access to their inventory and the ability to generate reports
+
+### Resource /accounts/{accountId} [/accounts/{accountId}]
+
+#### adexchangeseller.accounts.get [GET]
+
++ Parameters
+
+    + accountId (required)
+
++ Response 200
+
+### Resource /adclients [/adexchangeseller/v1.1/adclients{?maxResults,pageToken}]
+
+#### adexchangeseller.adclients.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits/{adUnitId} [/adclients/{adClientId}/adunits/{adUnitId}]
+
+#### adexchangeseller.adunits.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits [/adexchangeseller/v1.1/adclients/{adClientId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adexchangeseller.adunits.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits/{adUnitId}/customchannels [/adexchangeseller/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels{?maxResults,pageToken}]
+
+#### adexchangeseller.adunits.customchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + adUnitId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /alerts [/adexchangeseller/v1.1/alerts{?locale}]
+
+#### adexchangeseller.alerts.list [GET]
+
++ Parameters
+
+    + locale
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels/{customChannelId} [/adclients/{adClientId}/customchannels/{customChannelId}]
+
+#### adexchangeseller.customchannels.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels [/adexchangeseller/v1.1/adclients/{adClientId}/customchannels{?maxResults,pageToken}]
+
+#### adexchangeseller.customchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels/{customChannelId}/adunits [/adexchangeseller/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adexchangeseller.customchannels.adunits.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /metadata/dimensions [/metadata/dimensions]
+
+#### adexchangeseller.metadata.dimensions.list [GET]
+
++ Response 200
+
+### Resource /metadata/metrics [/metadata/metrics]
+
+#### adexchangeseller.metadata.metrics.list [GET]
+
++ Response 200
+
+### Resource /preferreddeals/{dealId} [/preferreddeals/{dealId}]
+
+#### adexchangeseller.preferreddeals.get [GET]
+
++ Parameters
+
+    + dealId (required)
+
++ Response 200
+
+### Resource /preferreddeals [/preferreddeals]
+
+#### adexchangeseller.preferreddeals.list [GET]
+
++ Response 200
+
+### Resource /reports [/adexchangeseller/v1.1/reports{?startDate,endDate,dimension,filter,locale,maxResults,metric,sort,startIndex}]
+
+#### adexchangeseller.reports.generate [GET]
+
++ Parameters
+
+    + startDate (required)
+  
+    + endDate (required)
+  
+    + dimension
+  
+    + filter
+  
+    + locale
+  
+    + maxResults
+  
+    + metric
+  
+    + sort
+  
+    + startIndex
+
++ Response 200
+
+### Resource /reports/{savedReportId} [/adexchangeseller/v1.1/reports/{savedReportId}{?locale,maxResults,startIndex}]
+
+#### adexchangeseller.reports.saved.generate [GET]
+
++ Parameters
+
+    + savedReportId (required)
+  
+    + locale
+  
+    + maxResults
+  
+    + startIndex
+
++ Response 200
+
+### Resource /reports/saved [/adexchangeseller/v1.1/reports/saved{?maxResults,pageToken}]
+
+#### adexchangeseller.reports.saved.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/urlchannels [/adexchangeseller/v1.1/adclients/{adClientId}/urlchannels{?maxResults,pageToken}]
+
+#### adexchangeseller.urlchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

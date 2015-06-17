@@ -1,0 +1,547 @@
+FORMAT: 1A
+
+# Tasks API
+
+Lets you manage your tasks and task lists.
+
+### Resource /users/@me/lists/{tasklist} [/users/@me/lists/{tasklist}]
+
+#### tasks.tasklists.delete [DELETE]
+
++ Parameters
+
+    + tasklist (required)
+
++ Response 200
+
+#### tasks.tasklists.get [GET]
+
++ Parameters
+
+    + tasklist (required)
+
++ Response 200
+
+#### tasks.tasklists.patch [PATCH]
+
++ Parameters
+
+    + tasklist (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task list identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#taskList\".",
+                  "default": "tasks#taskList"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task list. Used to retrieve, update, or delete this task list."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task list."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task list (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+#### tasks.tasklists.update [PUT]
+
++ Parameters
+
+    + tasklist (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task list identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#taskList\".",
+                  "default": "tasks#taskList"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task list. Used to retrieve, update, or delete this task list."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task list."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task list (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /users/@me/lists [/tasks/v1/users/@me/lists{?maxResults,pageToken}]
+
+#### tasks.tasklists.insert [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task list identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#taskList\".",
+                  "default": "tasks#taskList"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task list. Used to retrieve, update, or delete this task list."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task list."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task list (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+#### tasks.tasklists.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /lists/{tasklist}/clear [/lists/{tasklist}/clear]
+
+#### tasks.tasks.clear [POST]
+
++ Parameters
+
+    + tasklist (required)
+
++ Response 200
+
+### Resource /lists/{tasklist}/tasks/{task} [/lists/{tasklist}/tasks/{task}]
+
+#### tasks.tasks.delete [DELETE]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + task (required)
+
++ Response 200
+
+#### tasks.tasks.get [GET]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + task (required)
+
++ Response 200
+
+#### tasks.tasks.patch [PATCH]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + task (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "completed": {
+                  "type": "string",
+                  "description": "Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.",
+                  "format": "date-time"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task has been deleted. The default if False."
+                },
+                "due": {
+                  "type": "string",
+                  "description": "Due date of the task (as a RFC 3339 timestamp). Optional.",
+                  "format": "date-time"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#task\".",
+                  "default": "tasks#task"
+                },
+                "links": {
+                  "type": "array",
+                  "description": "Collection of links. This collection is read-only.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "The description. In HTML speak: Everything between <a> and </a>."
+                      },
+                      "link": {
+                        "type": "string",
+                        "description": "The URL."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Type of the link, e.g. \"email\"."
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Notes describing the task. Optional."
+                },
+                "parent": {
+                  "type": "string",
+                  "description": "Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level."
+                },
+                "position": {
+                  "type": "string",
+                  "description": "String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the \"move\" method to move the task to another position."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task. Used to retrieve, update, or delete this task."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the task. This is either \"needsAction\" or \"completed\"."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+#### tasks.tasks.update [PUT]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + task (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "completed": {
+                  "type": "string",
+                  "description": "Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.",
+                  "format": "date-time"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task has been deleted. The default if False."
+                },
+                "due": {
+                  "type": "string",
+                  "description": "Due date of the task (as a RFC 3339 timestamp). Optional.",
+                  "format": "date-time"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#task\".",
+                  "default": "tasks#task"
+                },
+                "links": {
+                  "type": "array",
+                  "description": "Collection of links. This collection is read-only.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "The description. In HTML speak: Everything between <a> and </a>."
+                      },
+                      "link": {
+                        "type": "string",
+                        "description": "The URL."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Type of the link, e.g. \"email\"."
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Notes describing the task. Optional."
+                },
+                "parent": {
+                  "type": "string",
+                  "description": "Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level."
+                },
+                "position": {
+                  "type": "string",
+                  "description": "String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the \"move\" method to move the task to another position."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task. Used to retrieve, update, or delete this task."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the task. This is either \"needsAction\" or \"completed\"."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /lists/{tasklist}/tasks [/tasks/v1/lists/{tasklist}/tasks{?completedMax,completedMin,dueMax,dueMin,maxResults,pageToken,showCompleted,showDeleted,showHidden,updatedMin}]
+
+#### tasks.tasks.insert [POST]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + parent
+  
+    + previous
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "completed": {
+                  "type": "string",
+                  "description": "Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.",
+                  "format": "date-time"
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task has been deleted. The default if False."
+                },
+                "due": {
+                  "type": "string",
+                  "description": "Due date of the task (as a RFC 3339 timestamp). Optional.",
+                  "format": "date-time"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Task identifier."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource. This is always \"tasks#task\".",
+                  "default": "tasks#task"
+                },
+                "links": {
+                  "type": "array",
+                  "description": "Collection of links. This collection is read-only.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "The description. In HTML speak: Everything between <a> and </a>."
+                      },
+                      "link": {
+                        "type": "string",
+                        "description": "The URL."
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "Type of the link, e.g. \"email\"."
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Notes describing the task. Optional."
+                },
+                "parent": {
+                  "type": "string",
+                  "description": "Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the \"move\" method to move the task under a different parent or to the top level."
+                },
+                "position": {
+                  "type": "string",
+                  "description": "String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the \"move\" method to move the task to another position."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL pointing to this task. Used to retrieve, update, or delete this task."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the task. This is either \"needsAction\" or \"completed\"."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the task."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the task (as a RFC 3339 timestamp).",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+#### tasks.tasks.list [GET]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + completedMax
+  
+    + completedMin
+  
+    + dueMax
+  
+    + dueMin
+  
+    + maxResults
+  
+    + pageToken
+  
+    + showCompleted
+  
+    + showDeleted
+  
+    + showHidden
+  
+    + updatedMin
+
++ Response 200
+
+### Resource /lists/{tasklist}/tasks/{task}/move [/tasks/v1/lists/{tasklist}/tasks/{task}/move{?parent,previous}]
+
+#### tasks.tasks.move [POST]
+
++ Parameters
+
+    + tasklist (required)
+  
+    + task (required)
+  
+    + parent
+  
+    + previous
+
++ Response 200
+

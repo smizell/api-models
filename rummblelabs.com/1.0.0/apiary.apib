@@ -1,0 +1,412 @@
+FORMAT: 1A
+
+# Seldon API
+
+### Resource /token [/token{?consumer_key,consumer_secret}]
+
+#### getToken [GET]
+
+get token
+
++ Parameters
+
+    + consumer_key (required)
+  
+    + consumer_secret (required)
+
++ Response 400
+
+### Resource /items [/items{?oauth_token}]
+
+#### getItems [GET]
+
+get items
+
++ Parameters
+
+    + oauth_token
+  
+    + full
+  
+    + name
+  
+    + dimension
+  
+    + type
+  
+    + limit
+
++ Response 400
+
+#### postItem [POST]
+
+post new item
+
++ Parameters
+
+    + oauth_token
+
++ Request
+
+    + Schema
+
+            {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "myid1234"
+                },
+                "type": {
+                  "type": "integer",
+                  "example": 1,
+                  "description": "type of item"
+                },
+                "attributesName": {
+                  "properties": {
+                    "attrName1": {
+                      "type": "string",
+                      "example": "attrValue1"
+                    },
+                    "attrName2": {
+                      "type": "string",
+                      "example": "attrValue2"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 400
+
+#### putItem [PUT]
+
+update item
+
++ Parameters
+
+    + oauth_token
+
++ Request
+
+    + Schema
+
+            {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "myid1234"
+                },
+                "type": {
+                  "type": "integer",
+                  "example": 1,
+                  "description": "type of item"
+                },
+                "attributesName": {
+                  "properties": {
+                    "attrName1": {
+                      "type": "string",
+                      "example": "attrValue1"
+                    },
+                    "attrName2": {
+                      "type": "string",
+                      "example": "attrValue2"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 400
+
+### Resource /items/{itemId} [/items/{itemId}{?oauth_token,full}]
+
+#### getItem [GET]
+
+get item
+
++ Parameters
+
+    + oauth_token
+  
+    + itemId (required)
+  
+    + full
+
++ Response 400
+
+### Resource /items/type [/items/type{?oauth_token}]
+
+#### getItemTypes [GET]
+
+get item type
+
++ Parameters
+
+    + oauth_token
+
++ Response 400
+
+### Resource /users [/users{?oauth_token}]
+
+#### getUsers [GET]
+
+get users
+
++ Parameters
+
+    + oauth_token
+  
+    + full
+  
+    + name
+  
+    + limit
+
++ Response 400
+
+#### postUser [POST]
+
+post new user
+
++ Parameters
+
+    + oauth_token
+
++ Request
+
+    + Schema
+
+            {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "myid1234"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "Joe Bloggs",
+                  "description": "name of user"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "whether user is active"
+                },
+                "attributesName": {
+                  "properties": {
+                    "attrName1": {
+                      "type": "string",
+                      "example": "attrValue1"
+                    },
+                    "attrName2": {
+                      "type": "string",
+                      "example": "attrValue2"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 400
+
+#### updateUser [PUT]
+
+update user
+
++ Parameters
+
+    + oauth_token
+
++ Request
+
+    + Schema
+
+            {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "myid1234"
+                },
+                "username": {
+                  "type": "string",
+                  "example": "Joe Bloggs",
+                  "description": "name of user"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "whether user is active"
+                },
+                "attributesName": {
+                  "properties": {
+                    "attrName1": {
+                      "type": "string",
+                      "example": "attrValue1"
+                    },
+                    "attrName2": {
+                      "type": "string",
+                      "example": "attrValue2"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 400
+
+### Resource /users/{userId} [/users/{userId}{?oauth_token,full}]
+
+#### getUser [GET]
+
+get a user
+
++ Parameters
+
+    + oauth_token
+  
+    + userId (required)
+  
+    + full
+
++ Response 400
+
+### Resource /users/{userId}/actions [/users/{userId}/actions{?oauth_token,full,limit}]
+
+#### getUserActions [GET]
+
+get a user's recent actions
+
++ Parameters
+
+    + oauth_token
+  
+    + userId (required)
+  
+    + full
+  
+    + limit
+
++ Response 400
+
+### Resource /users/{userId}/recommendations [/users/{userId}/recommendations{?oauth_token,full,limit,dimension,algorithms}]
+
+#### getUserRecommendations [GET]
+
+get recommendations for a user
+
++ Parameters
+
+    + oauth_token
+  
+    + userId (required)
+  
+    + full
+  
+    + limit
+  
+    + dimension
+  
+    + algorithms
+
++ Response 400
+
+### Resource /actions [/actions{?oauth_token}]
+
+#### postAction [POST]
+
+post new action between a user and an item
+
++ Parameters
+
+    + oauth_token
+
++ Request
+
+    + Schema
+
+            {
+              "required": [
+                "user",
+                "item",
+                "type"
+              ],
+              "properties": {
+                "user": {
+                  "type": "string",
+                  "example": "user1234"
+                },
+                "item": {
+                  "type": "string",
+                  "example": "item1234"
+                },
+                "type": {
+                  "type": "integer",
+                  "description": "action type"
+                },
+                "value": {
+                  "type": "number",
+                  "description": "action value (e.g. a rating)"
+                }
+              }
+            }
+
++ Response 400
+
+### Resource /js/action/new [/js/action/new{?consumer_key,user,item,type,jsonpCallback,timestamp}]
+
+#### addAction [GET]
+
+Add a user interaction
+
++ Parameters
+
+    + consumer_key (required)
+  
+    + user (required)
+  
+    + item (required)
+  
+    + type (required)
+  
+    + jsonpCallback (required)
+  
+    + timestamp
+
++ Response 400
+
+### Resource /js/recommendations [/js/recommendations{?consumer_key,user,item,limit,dimension,attributes,algorithms,jsonpCallback}]
+
+#### getRecommendation [GET]
+
+Get recommendations for a user
+
++ Parameters
+
+    + consumer_key (required)
+  
+    + user (required)
+  
+    + item
+  
+    + limit
+  
+    + dimension
+  
+    + attributes
+  
+    + algorithms
+  
+    + jsonpCallback (required)
+
++ Response 400
+

@@ -1,0 +1,338 @@
+FORMAT: 1A
+
+# Google Compute Engine Instance Groups API
+
+The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
+
+### Resource /{project}/zones/{zone}/operations/{operation} [/{project}/zones/{zone}/operations/{operation}]
+
+#### resourceviews.zoneOperations.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + operation (required)
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/operations [/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations{?filter,maxResults,pageToken}]
+
+#### resourceviews.zoneOperations.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + filter
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView}/addResources [/{project}/zones/{zone}/resourceViews/{resourceView}/addResources]
+
+#### resourceviews.zoneViews.addResources [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to add resources to the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be added.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView} [/{project}/zones/{zone}/resourceViews/{resourceView}]
+
+#### resourceviews.zoneViews.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+
++ Response 200
+
+#### resourceviews.zoneViews.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView}/getService [/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService{?resourceName}]
+
+#### resourceviews.zoneViews.getService [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+  
+    + resourceName
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews [/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews{?maxResults,pageToken}]
+
+#### resourceviews.zoneViews.insert [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The resource view object.",
+              "properties": {
+                "creationTimestamp": {
+                  "type": "string",
+                  "description": "The creation time of the resource view."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The detailed description of the resource view."
+                },
+                "endpoints": {
+                  "type": "array",
+                  "description": "Services endpoint information.",
+                  "items": {
+                    "type": "object",
+                    "description": "The service endpoint that may be started in a VM.",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the service endpoint."
+                      },
+                      "port": {
+                        "type": "integer",
+                        "description": "The port of the service endpoint.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "fingerprint": {
+                  "type": "string",
+                  "description": "The fingerprint of the service endpoint information."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "[Output Only] The ID of the resource view."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource.",
+                  "default": "resourceviews#resourceView"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The labels for events.",
+                  "items": {
+                    "type": "object",
+                    "description": "The Label to be applied to the resource views.",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "description": "Key of the label."
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the label."
+                      }
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the resource view."
+                },
+                "network": {
+                  "type": "string",
+                  "description": "The URL of a Compute Engine network to which the resources in the view belong."
+                },
+                "resources": {
+                  "type": "array",
+                  "description": "A list of all resources in the resource view.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "[Output Only] A self-link to the resource view."
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "The total number of resources in the resource view.",
+                  "format": "uint32"
+                }
+              }
+            }
+
++ Response 200
+
+#### resourceviews.zoneViews.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView}/resources [/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources{?format,listState,maxResults,pageToken,serviceName}]
+
+#### resourceviews.zoneViews.listResources [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+  
+    + format
+  
+    + listState
+  
+    + maxResults
+  
+    + pageToken
+  
+    + serviceName
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView}/removeResources [/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources]
+
+#### resourceviews.zoneViews.removeResources [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to remove resources from the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be removed.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/resourceViews/{resourceView}/setService [/{project}/zones/{zone}/resourceViews/{resourceView}/setService]
+
+#### resourceviews.zoneViews.setService [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + resourceView (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "endpoints": {
+                  "type": "array",
+                  "description": "The service information to be updated.",
+                  "items": {
+                    "type": "object",
+                    "description": "The service endpoint that may be started in a VM.",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the service endpoint."
+                      },
+                      "port": {
+                        "type": "integer",
+                        "description": "The port of the service endpoint.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "fingerprint": {
+                  "type": "string",
+                  "description": "Fingerprint of the service information; a hash of the contents. This field is used for optimistic locking when updating the service entries."
+                },
+                "resourceName": {
+                  "type": "string",
+                  "description": "The name of the resource if user wants to update the service information of the resource."
+                }
+              }
+            }
+
++ Response 200
+

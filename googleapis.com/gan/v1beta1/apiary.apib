@@ -1,0 +1,449 @@
+FORMAT: 1A
+
+# Google Affiliate Network API
+
+Lets you have programmatic access to your Google Affiliate Network data.
+
+### Resource /{role}/{roleId}/advertiser [/gan/v1beta1/{role}/{roleId}/advertiser{?advertiserId}]
+
+#### gan.advertisers.get [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + advertiserId
+
++ Response 200
+
+### Resource /{role}/{roleId}/advertisers [/gan/v1beta1/{role}/{roleId}/advertisers{?advertiserCategory,maxResults,minNinetyDayEpc,minPayoutRank,minSevenDayEpc,pageToken,relationshipStatus}]
+
+#### gan.advertisers.list [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + advertiserCategory
+  
+    + maxResults
+  
+    + minNinetyDayEpc
+  
+    + minPayoutRank
+  
+    + minSevenDayEpc
+  
+    + pageToken
+  
+    + relationshipStatus
+
++ Response 200
+
+### Resource /publishers/{publisher}/ccOffers [/gan/v1beta1/publishers/{publisher}/ccOffers{?advertiser,projection}]
+
+#### gan.ccOffers.list [GET]
+
++ Parameters
+
+    + publisher (required)
+  
+    + advertiser
+  
+    + projection
+
++ Response 200
+
+### Resource /{role}/{roleId}/events [/gan/v1beta1/{role}/{roleId}/events{?advertiserId,chargeType,eventDateMax,eventDateMin,linkId,maxResults,memberId,modifyDateMax,modifyDateMin,orderId,pageToken,productCategory,publisherId,sku,status,type}]
+
+#### gan.events.list [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + advertiserId
+  
+    + chargeType
+  
+    + eventDateMax
+  
+    + eventDateMin
+  
+    + linkId
+  
+    + maxResults
+  
+    + memberId
+  
+    + modifyDateMax
+  
+    + modifyDateMin
+  
+    + orderId
+  
+    + pageToken
+  
+    + productCategory
+  
+    + publisherId
+  
+    + sku
+  
+    + status
+  
+    + type
+
++ Response 200
+
+### Resource /{role}/{roleId}/link/{linkId} [/{role}/{roleId}/link/{linkId}]
+
+#### gan.links.get [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + linkId (required)
+
++ Response 200
+
+### Resource /{role}/{roleId}/link [/{role}/{roleId}/link]
+
+#### gan.links.insert [POST]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A LinkResource.",
+              "properties": {
+                "advertiserId": {
+                  "type": "string",
+                  "description": "The advertiser id for the advertiser who owns this link.",
+                  "format": "int64"
+                },
+                "authorship": {
+                  "type": "string",
+                  "description": "Authorship"
+                },
+                "availability": {
+                  "type": "string",
+                  "description": "Availability."
+                },
+                "clickTrackingUrl": {
+                  "type": "string",
+                  "description": "Tracking url for clicks."
+                },
+                "createDate": {
+                  "type": "string",
+                  "description": "Date that this link was created.",
+                  "format": "date-time"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description."
+                },
+                "destinationUrl": {
+                  "type": "string",
+                  "description": "The destination URL for the link."
+                },
+                "duration": {
+                  "type": "string",
+                  "description": "Duration"
+                },
+                "endDate": {
+                  "type": "string",
+                  "description": "Date that this link becomes inactive.",
+                  "format": "date-time"
+                },
+                "epcNinetyDayAverage": {
+                  "type": "object",
+                  "description": "An ApiMoneyProto.",
+                  "properties": {
+                    "amount": {
+                      "type": "number",
+                      "description": "The amount of money.",
+                      "format": "double"
+                    },
+                    "currencyCode": {
+                      "type": "string",
+                      "description": "The 3-letter code of the currency in question."
+                    }
+                  }
+                },
+                "epcSevenDayAverage": {
+                  "type": "object",
+                  "description": "An ApiMoneyProto.",
+                  "properties": {
+                    "amount": {
+                      "type": "number",
+                      "description": "The amount of money.",
+                      "format": "double"
+                    },
+                    "currencyCode": {
+                      "type": "string",
+                      "description": "The 3-letter code of the currency in question."
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of this link.",
+                  "format": "int64"
+                },
+                "imageAltText": {
+                  "type": "string",
+                  "description": "image alt text."
+                },
+                "impressionTrackingUrl": {
+                  "type": "string",
+                  "description": "Tracking url for impressions."
+                },
+                "isActive": {
+                  "type": "boolean",
+                  "description": "Flag for if this link is active."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind for one entity.",
+                  "default": "gan#link"
+                },
+                "linkType": {
+                  "type": "string",
+                  "description": "The link type."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The logical name for this link."
+                },
+                "promotionType": {
+                  "type": "string",
+                  "description": "Promotion Type"
+                },
+                "specialOffers": {
+                  "type": "object",
+                  "description": "Special offers on the link.",
+                  "properties": {
+                    "freeGift": {
+                      "type": "boolean",
+                      "description": "Whether there is a free gift"
+                    },
+                    "freeShipping": {
+                      "type": "boolean",
+                      "description": "Whether there is free shipping"
+                    },
+                    "freeShippingMin": {
+                      "type": "object",
+                      "description": "An ApiMoneyProto.",
+                      "properties": {
+                        "amount": {
+                          "type": "number",
+                          "description": "The amount of money.",
+                          "format": "double"
+                        },
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The 3-letter code of the currency in question."
+                        }
+                      }
+                    },
+                    "percentOff": {
+                      "type": "number",
+                      "description": "Percent off on the purchase",
+                      "format": "double"
+                    },
+                    "percentOffMin": {
+                      "type": "object",
+                      "description": "An ApiMoneyProto.",
+                      "properties": {
+                        "amount": {
+                          "type": "number",
+                          "description": "The amount of money.",
+                          "format": "double"
+                        },
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The 3-letter code of the currency in question."
+                        }
+                      }
+                    },
+                    "priceCut": {
+                      "type": "object",
+                      "description": "An ApiMoneyProto.",
+                      "properties": {
+                        "amount": {
+                          "type": "number",
+                          "description": "The amount of money.",
+                          "format": "double"
+                        },
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The 3-letter code of the currency in question."
+                        }
+                      }
+                    },
+                    "priceCutMin": {
+                      "type": "object",
+                      "description": "An ApiMoneyProto.",
+                      "properties": {
+                        "amount": {
+                          "type": "number",
+                          "description": "The amount of money.",
+                          "format": "double"
+                        },
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The 3-letter code of the currency in question."
+                        }
+                      }
+                    },
+                    "promotionCodes": {
+                      "type": "array",
+                      "description": "List of promotion code associated with the link",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "startDate": {
+                  "type": "string",
+                  "description": "Date that this link becomes active.",
+                  "format": "date-time"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{role}/{roleId}/links [/gan/v1beta1/{role}/{roleId}/links{?advertiserId,assetSize,authorship,createDateMax,createDateMin,linkType,maxResults,pageToken,promotionType,relationshipStatus,searchText,startDateMax,startDateMin}]
+
+#### gan.links.list [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + advertiserId
+  
+    + assetSize
+  
+    + authorship
+  
+    + createDateMax
+  
+    + createDateMin
+  
+    + linkType
+  
+    + maxResults
+  
+    + pageToken
+  
+    + promotionType
+  
+    + relationshipStatus
+  
+    + searchText
+  
+    + startDateMax
+  
+    + startDateMin
+
++ Response 200
+
+### Resource /{role}/{roleId}/publisher [/gan/v1beta1/{role}/{roleId}/publisher{?publisherId}]
+
+#### gan.publishers.get [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + publisherId
+
++ Response 200
+
+### Resource /{role}/{roleId}/publishers [/gan/v1beta1/{role}/{roleId}/publishers{?maxResults,minNinetyDayEpc,minPayoutRank,minSevenDayEpc,pageToken,publisherCategory,relationshipStatus}]
+
+#### gan.publishers.list [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + maxResults
+  
+    + minNinetyDayEpc
+  
+    + minPayoutRank
+  
+    + minSevenDayEpc
+  
+    + pageToken
+  
+    + publisherCategory
+  
+    + relationshipStatus
+
++ Response 200
+
+### Resource /{role}/{roleId}/report/{reportType} [/gan/v1beta1/{role}/{roleId}/report/{reportType}{?advertiserId,calculateTotals,endDate,eventType,linkId,maxResults,orderId,publisherId,startDate,startIndex,status}]
+
+#### gan.reports.get [GET]
+
++ Parameters
+
+    + role (required)
+  
+    + roleId (required)
+  
+    + reportType (required)
+  
+    + advertiserId
+  
+    + calculateTotals
+  
+    + endDate
+  
+    + eventType
+  
+    + linkId
+  
+    + maxResults
+  
+    + orderId
+  
+    + publisherId
+  
+    + startDate
+  
+    + startIndex
+  
+    + status
+
++ Response 200
+

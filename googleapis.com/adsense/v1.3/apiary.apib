@@ -1,0 +1,506 @@
+FORMAT: 1A
+
+# AdSense Management API
+
+Gives AdSense publishers access to their inventory and the ability to generate reports
+
+### Resource /accounts/{accountId} [/adsense/v1.3/accounts/{accountId}{?tree}]
+
+#### adsense.accounts.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + tree
+
++ Response 200
+
+### Resource /accounts [/adsense/v1.3/accounts{?maxResults,pageToken}]
+
+#### adsense.accounts.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients [/adsense/v1.3/accounts/{accountId}/adclients{?maxResults,pageToken}]
+
+#### adsense.accounts.adclients.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId} [/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}]
+
+#### adsense.accounts.adunits.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode [/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode]
+
+#### adsense.accounts.adunits.getAdCode [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits [/adsense/v1.3/accounts/{accountId}/adclients/{adClientId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adsense.accounts.adunits.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels [/adsense/v1.3/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels{?maxResults,pageToken}]
+
+#### adsense.accounts.adunits.customchannels.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/alerts [/adsense/v1.3/accounts/{accountId}/alerts{?locale}]
+
+#### adsense.accounts.alerts.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + locale
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId} [/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}]
+
+#### adsense.accounts.customchannels.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/customchannels [/adsense/v1.3/accounts/{accountId}/adclients/{adClientId}/customchannels{?maxResults,pageToken}]
+
+#### adsense.accounts.customchannels.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits [/adsense/v1.3/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adsense.accounts.customchannels.adunits.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + customChannelId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/reports [/adsense/v1.3/accounts/{accountId}/reports{?startDate,endDate,currency,dimension,filter,locale,maxResults,metric,sort,startIndex,useTimezoneReporting}]
+
+#### adsense.accounts.reports.generate [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + startDate (required)
+  
+    + endDate (required)
+  
+    + currency
+  
+    + dimension
+  
+    + filter
+  
+    + locale
+  
+    + maxResults
+  
+    + metric
+  
+    + sort
+  
+    + startIndex
+  
+    + useTimezoneReporting
+
++ Response 200
+
+### Resource /accounts/{accountId}/reports/{savedReportId} [/adsense/v1.3/accounts/{accountId}/reports/{savedReportId}{?locale,maxResults,startIndex}]
+
+#### adsense.accounts.reports.saved.generate [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + savedReportId (required)
+  
+    + locale
+  
+    + maxResults
+  
+    + startIndex
+
++ Response 200
+
+### Resource /accounts/{accountId}/reports/saved [/adsense/v1.3/accounts/{accountId}/reports/saved{?maxResults,pageToken}]
+
+#### adsense.accounts.reports.saved.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/savedadstyles/{savedAdStyleId} [/accounts/{accountId}/savedadstyles/{savedAdStyleId}]
+
+#### adsense.accounts.savedadstyles.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + savedAdStyleId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/savedadstyles [/adsense/v1.3/accounts/{accountId}/savedadstyles{?maxResults,pageToken}]
+
+#### adsense.accounts.savedadstyles.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/urlchannels [/adsense/v1.3/accounts/{accountId}/adclients/{adClientId}/urlchannels{?maxResults,pageToken}]
+
+#### adsense.accounts.urlchannels.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients [/adsense/v1.3/adclients{?maxResults,pageToken}]
+
+#### adsense.adclients.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits/{adUnitId} [/adclients/{adClientId}/adunits/{adUnitId}]
+
+#### adsense.adunits.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits/{adUnitId}/adcode [/adclients/{adClientId}/adunits/{adUnitId}/adcode]
+
+#### adsense.adunits.getAdCode [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits [/adsense/v1.3/adclients/{adClientId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adsense.adunits.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/adunits/{adUnitId}/customchannels [/adsense/v1.3/adclients/{adClientId}/adunits/{adUnitId}/customchannels{?maxResults,pageToken}]
+
+#### adsense.adunits.customchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + adUnitId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /alerts [/adsense/v1.3/alerts{?locale}]
+
+#### adsense.alerts.list [GET]
+
++ Parameters
+
+    + locale
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels/{customChannelId} [/adclients/{adClientId}/customchannels/{customChannelId}]
+
+#### adsense.customchannels.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels [/adsense/v1.3/adclients/{adClientId}/customchannels{?maxResults,pageToken}]
+
+#### adsense.customchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels/{customChannelId}/adunits [/adsense/v1.3/adclients/{adClientId}/customchannels/{customChannelId}/adunits{?includeInactive,maxResults,pageToken}]
+
+#### adsense.customchannels.adunits.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /metadata/dimensions [/metadata/dimensions]
+
+#### adsense.metadata.dimensions.list [GET]
+
++ Response 200
+
+### Resource /metadata/metrics [/metadata/metrics]
+
+#### adsense.metadata.metrics.list [GET]
+
++ Response 200
+
+### Resource /reports [/adsense/v1.3/reports{?startDate,endDate,accountId,currency,dimension,filter,locale,maxResults,metric,sort,startIndex,useTimezoneReporting}]
+
+#### adsense.reports.generate [GET]
+
++ Parameters
+
+    + startDate (required)
+  
+    + endDate (required)
+  
+    + accountId
+  
+    + currency
+  
+    + dimension
+  
+    + filter
+  
+    + locale
+  
+    + maxResults
+  
+    + metric
+  
+    + sort
+  
+    + startIndex
+  
+    + useTimezoneReporting
+
++ Response 200
+
+### Resource /reports/{savedReportId} [/adsense/v1.3/reports/{savedReportId}{?locale,maxResults,startIndex}]
+
+#### adsense.reports.saved.generate [GET]
+
++ Parameters
+
+    + savedReportId (required)
+  
+    + locale
+  
+    + maxResults
+  
+    + startIndex
+
++ Response 200
+
+### Resource /reports/saved [/adsense/v1.3/reports/saved{?maxResults,pageToken}]
+
+#### adsense.reports.saved.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /savedadstyles/{savedAdStyleId} [/savedadstyles/{savedAdStyleId}]
+
+#### adsense.savedadstyles.get [GET]
+
++ Parameters
+
+    + savedAdStyleId (required)
+
++ Response 200
+
+### Resource /savedadstyles [/adsense/v1.3/savedadstyles{?maxResults,pageToken}]
+
+#### adsense.savedadstyles.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /adclients/{adClientId}/urlchannels [/adsense/v1.3/adclients/{adClientId}/urlchannels{?maxResults,pageToken}]
+
+#### adsense.urlchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

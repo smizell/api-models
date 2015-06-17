@@ -1,0 +1,67 @@
+FORMAT: 1A
+
+# Email Migration API v2
+
+Email Migration API lets you migrate emails of users to Google backends.
+
+### Resource /{userKey}/mail [/{userKey}/mail]
+
+#### emailMigration.mail.insert [POST]
+
++ Parameters
+
+    + userKey (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for MailItem object in Email Migration API.",
+              "properties": {
+                "isDeleted": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is deleted (used in Vault)"
+                },
+                "isDraft": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is draft"
+                },
+                "isInbox": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is in inbox"
+                },
+                "isSent": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is in 'sent mails'"
+                },
+                "isStarred": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is starred"
+                },
+                "isTrash": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is in trash"
+                },
+                "isUnread": {
+                  "type": "boolean",
+                  "description": "Boolean indicating if the mail is unread"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is.",
+                  "default": "mailItem"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "List of labels (strings)",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+

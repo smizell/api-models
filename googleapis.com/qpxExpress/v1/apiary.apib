@@ -1,0 +1,160 @@
+FORMAT: 1A
+
+# QPX Express API
+
+Lets you find the least expensive flights between an origin and a destination.
+
+### Resource /search [/search]
+
+#### qpxExpress.trips.search [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A QPX Express search request.",
+              "properties": {
+                "request": {
+                  "type": "object",
+                  "description": "A QPX Express search request, which will yield one or more solutions.",
+                  "properties": {
+                    "maxPrice": {
+                      "type": "string",
+                      "description": "Do not return solutions that cost more than this price. The alphabetical part of the price is in ISO 4217. The format, in regex, is [A-Z]{3}\\d+(\\.\\d+)? Example: $102.07"
+                    },
+                    "passengers": {
+                      "type": "object",
+                      "description": "The number and type of passengers. Unfortunately the definition of an infant, child, adult, and senior citizen varies across carriers and reservation systems.",
+                      "properties": {
+                        "adultCount": {
+                          "type": "integer",
+                          "description": "The number of passengers that are adults.",
+                          "format": "int32"
+                        },
+                        "childCount": {
+                          "type": "integer",
+                          "description": "The number of passengers that are children.",
+                          "format": "int32"
+                        },
+                        "infantInLapCount": {
+                          "type": "integer",
+                          "description": "The number of passengers that are infants travelling in the lap of an adult.",
+                          "format": "int32"
+                        },
+                        "infantInSeatCount": {
+                          "type": "integer",
+                          "description": "The number of passengers that are infants each assigned a seat.",
+                          "format": "int32"
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this as a passenger count object, representing the number of passengers. Value: the fixed string qpxexpress#passengerCounts.",
+                          "default": "qpxexpress#passengerCounts"
+                        },
+                        "seniorCount": {
+                          "type": "integer",
+                          "description": "The number of passengers that are senior citizens.",
+                          "format": "int32"
+                        }
+                      }
+                    },
+                    "refundable": {
+                      "type": "boolean",
+                      "description": "Return only solutions with refundable fares."
+                    },
+                    "saleCountry": {
+                      "type": "string",
+                      "description": "IATA country code representing the point of sale. This determines the \"equivalent amount paid\" currency for the ticket."
+                    },
+                    "slice": {
+                      "type": "array",
+                      "description": "The slices that make up the itinerary of this trip. A slice represents a traveler's intent, the portion of a low-fare search corresponding to a traveler's request to get between two points. One-way journeys are generally expressed using one slice, round-trips using two. An example of a one slice trip with three segments might be BOS-SYD, SYD-LAX, LAX-BOS if the traveler only stopped in SYD and LAX just long enough to change planes.",
+                      "items": {
+                        "type": "object",
+                        "description": "Criteria a desired slice must satisfy.",
+                        "properties": {
+                          "alliance": {
+                            "type": "string",
+                            "description": "Slices with only the carriers in this alliance should be returned; do not use this field with permittedCarrier. Allowed values are ONEWORLD, SKYTEAM, and STAR."
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "Departure date in YYYY-MM-DD format."
+                          },
+                          "destination": {
+                            "type": "string",
+                            "description": "Airport or city IATA designator of the destination."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "Identifies this as a slice input object, representing the criteria a desired slice must satisfy. Value: the fixed string qpxexpress#sliceInput.",
+                            "default": "qpxexpress#sliceInput"
+                          },
+                          "maxConnectionDuration": {
+                            "type": "integer",
+                            "description": "The longest connection between two legs, in minutes, you are willing to accept.",
+                            "format": "int32"
+                          },
+                          "maxStops": {
+                            "type": "integer",
+                            "description": "The maximum number of stops you are willing to accept in this slice.",
+                            "format": "int32"
+                          },
+                          "origin": {
+                            "type": "string",
+                            "description": "Airport or city IATA designator of the origin."
+                          },
+                          "permittedCarrier": {
+                            "type": "array",
+                            "description": "A list of 2-letter IATA airline designators. Slices with only these carriers should be returned.",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "permittedDepartureTime": {
+                            "type": "object",
+                            "description": "Two times in a single day defining a time range.",
+                            "properties": {
+                              "earliestTime": {
+                                "type": "string",
+                                "description": "The earliest time of day in HH:MM format."
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this as a time of day range object, representing two times in a single day defining a time range. Value: the fixed string qpxexpress#timeOfDayRange.",
+                                "default": "qpxexpress#timeOfDayRange"
+                              },
+                              "latestTime": {
+                                "type": "string",
+                                "description": "The latest time of day in HH:MM format."
+                              }
+                            }
+                          },
+                          "preferredCabin": {
+                            "type": "string",
+                            "description": "Prefer solutions that book in this cabin for this slice. Allowed values are COACH, PREMIUM_COACH, BUSINESS, and FIRST."
+                          },
+                          "prohibitedCarrier": {
+                            "type": "array",
+                            "description": "A list of 2-letter IATA airline designators. Exclude slices that use these carriers.",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "solutions": {
+                      "type": "integer",
+                      "description": "The number of solutions to return, maximum 500.",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+

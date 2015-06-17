@@ -1,0 +1,76 @@
+FORMAT: 1A
+
+# Google App State API
+
+The Google App State API.
+
+### Resource /states/{stateKey}/clear [/appstate/v1/states/{stateKey}/clear{?currentDataVersion}]
+
+#### appstate.states.clear [POST]
+
++ Parameters
+
+    + stateKey (required)
+  
+    + currentDataVersion
+
++ Response 200
+
+### Resource /states/{stateKey} [/appstate/v1/states/{stateKey}{?currentStateVersion}]
+
+#### appstate.states.delete [DELETE]
+
++ Parameters
+
+    + stateKey (required)
+
++ Response 200
+
+#### appstate.states.get [GET]
+
++ Parameters
+
+    + stateKey (required)
+
++ Response 200
+
+#### appstate.states.update [PUT]
+
++ Parameters
+
+    + stateKey (required)
+  
+    + currentStateVersion
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for a requests which update app state",
+              "properties": {
+                "data": {
+                  "type": "string",
+                  "description": "The new app state data that your application is trying to update with."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string appstate#updateRequest.",
+                  "default": "appstate#updateRequest"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /states [/appstate/v1/states{?includeData}]
+
+#### appstate.states.list [GET]
+
++ Parameters
+
+    + includeData
+
++ Response 200
+

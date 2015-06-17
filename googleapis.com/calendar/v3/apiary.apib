@@ -1,0 +1,3028 @@
+FORMAT: 1A
+
+# Calendar API
+
+Lets you manipulate events and other calendar data.
+
+### Resource /calendars/{calendarId}/acl/{ruleId} [/calendars/{calendarId}/acl/{ruleId}]
+
+#### calendar.acl.delete [DELETE]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + ruleId (required)
+
++ Response 200
+
+#### calendar.acl.get [GET]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + ruleId (required)
+
++ Response 200
+
+#### calendar.acl.patch [PATCH]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + ruleId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the ACL rule."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#aclRule\").",
+                  "default": "calendar#aclRule"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "scope": {
+                  "type": "object",
+                  "description": "The scope of the rule.",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the scope. Possible values are:  \n- \"default\" - The public scope. This is the default value. \n- \"user\" - Limits the scope to a single user. \n- \"group\" - Limits the scope to a group. \n- \"domain\" - Limits the scope to a domain.  Note: The permissions granted to the \"default\", or public, scope apply to any user, authenticated or not."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type \"default\"."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.acl.update [PUT]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + ruleId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the ACL rule."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#aclRule\").",
+                  "default": "calendar#aclRule"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "scope": {
+                  "type": "object",
+                  "description": "The scope of the rule.",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the scope. Possible values are:  \n- \"default\" - The public scope. This is the default value. \n- \"user\" - Limits the scope to a single user. \n- \"group\" - Limits the scope to a group. \n- \"domain\" - Limits the scope to a domain.  Note: The permissions granted to the \"default\", or public, scope apply to any user, authenticated or not."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type \"default\"."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /calendars/{calendarId}/acl [/calendar/v3/calendars/{calendarId}/acl{?maxResults,pageToken,showDeleted,syncToken}]
+
+#### calendar.acl.insert [POST]
+
++ Parameters
+
+    + calendarId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the ACL rule."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#aclRule\").",
+                  "default": "calendar#aclRule"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The role assigned to the scope. Possible values are:  \n- \"none\" - Provides no access. \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "scope": {
+                  "type": "object",
+                  "description": "The scope of the rule.",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "The type of the scope. Possible values are:  \n- \"default\" - The public scope. This is the default value. \n- \"user\" - Limits the scope to a single user. \n- \"group\" - Limits the scope to a group. \n- \"domain\" - Limits the scope to a domain.  Note: The permissions granted to the \"default\", or public, scope apply to any user, authenticated or not."
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type \"default\"."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.acl.list [GET]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + maxResults
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + syncToken
+
++ Response 200
+
+### Resource /calendars/{calendarId}/acl/watch [/calendar/v3/calendars/{calendarId}/acl/watch{?maxResults,pageToken,showDeleted,syncToken}]
+
+#### calendar.acl.watch [POST]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + maxResults
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + syncToken
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /users/me/calendarList/{calendarId} [/calendar/v3/users/me/calendarList/{calendarId}{?colorRgbFormat}]
+
+#### calendar.calendarList.delete [DELETE]
+
++ Parameters
+
+    + calendarId (required)
+
++ Response 200
+
+#### calendar.calendarList.get [GET]
+
++ Parameters
+
+    + calendarId (required)
+
++ Response 200
+
+#### calendar.calendarList.patch [PATCH]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + colorRgbFormat
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "accessRole": {
+                  "type": "string",
+                  "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "description": "The main color of the calendar in the hexadecimal format \"#0088aa\". This property supersedes the index-based colorId property. Optional."
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). Optional."
+                },
+                "defaultReminders": {
+                  "type": "array",
+                  "description": "The default reminders that the authenticated user has for this calendar.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "method": {
+                        "type": "string",
+                        "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                      },
+                      "minutes": {
+                        "type": "integer",
+                        "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional. Read-only."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "foregroundColor": {
+                  "type": "string",
+                  "description": "The foreground color of the calendar in the hexadecimal format \"#ffffff\". This property supersedes the index-based colorId property. Optional."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Whether the calendar has been hidden from the list. Optional. The default is False.",
+                  "default": "false"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendarListEntry\").",
+                  "default": "calendar#calendarListEntry"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional. Read-only."
+                },
+                "notificationSettings": {
+                  "type": "object",
+                  "description": "The notifications that the authenticated user is receiving for this calendar.",
+                  "properties": {
+                    "notifications": {
+                      "type": "array",
+                      "description": "The list of notifications set for this calendar.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used to deliver the notification. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. This value is read-only and is ignored on inserts and updates."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "The type of notification. Possible values are:  \n- \"eventCreation\" - Notification sent when a new event is put on the calendar. \n- \"eventChange\" - Notification sent when an event is changed. \n- \"eventCancellation\" - Notification sent when an event is cancelled. \n- \"eventResponse\" - Notification sent when an event is changed. \n- \"agenda\" - An agenda with the events of the day (sent out in the morning)."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "primary": {
+                  "type": "boolean",
+                  "description": "Whether the calendar is the primary calendar of the authenticated user. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "selected": {
+                  "type": "boolean",
+                  "description": "Whether the calendar content shows up in the calendar UI. Optional. The default is False.",
+                  "default": "false"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar. Read-only."
+                },
+                "summaryOverride": {
+                  "type": "string",
+                  "description": "The summary that the authenticated user has set for this calendar. Optional."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. Optional. Read-only."
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.calendarList.update [PUT]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + colorRgbFormat
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "accessRole": {
+                  "type": "string",
+                  "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "description": "The main color of the calendar in the hexadecimal format \"#0088aa\". This property supersedes the index-based colorId property. Optional."
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). Optional."
+                },
+                "defaultReminders": {
+                  "type": "array",
+                  "description": "The default reminders that the authenticated user has for this calendar.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "method": {
+                        "type": "string",
+                        "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                      },
+                      "minutes": {
+                        "type": "integer",
+                        "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional. Read-only."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "foregroundColor": {
+                  "type": "string",
+                  "description": "The foreground color of the calendar in the hexadecimal format \"#ffffff\". This property supersedes the index-based colorId property. Optional."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Whether the calendar has been hidden from the list. Optional. The default is False.",
+                  "default": "false"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendarListEntry\").",
+                  "default": "calendar#calendarListEntry"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional. Read-only."
+                },
+                "notificationSettings": {
+                  "type": "object",
+                  "description": "The notifications that the authenticated user is receiving for this calendar.",
+                  "properties": {
+                    "notifications": {
+                      "type": "array",
+                      "description": "The list of notifications set for this calendar.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used to deliver the notification. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. This value is read-only and is ignored on inserts and updates."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "The type of notification. Possible values are:  \n- \"eventCreation\" - Notification sent when a new event is put on the calendar. \n- \"eventChange\" - Notification sent when an event is changed. \n- \"eventCancellation\" - Notification sent when an event is cancelled. \n- \"eventResponse\" - Notification sent when an event is changed. \n- \"agenda\" - An agenda with the events of the day (sent out in the morning)."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "primary": {
+                  "type": "boolean",
+                  "description": "Whether the calendar is the primary calendar of the authenticated user. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "selected": {
+                  "type": "boolean",
+                  "description": "Whether the calendar content shows up in the calendar UI. Optional. The default is False.",
+                  "default": "false"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar. Read-only."
+                },
+                "summaryOverride": {
+                  "type": "string",
+                  "description": "The summary that the authenticated user has set for this calendar. Optional."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. Optional. Read-only."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /users/me/calendarList [/calendar/v3/users/me/calendarList{?maxResults,minAccessRole,pageToken,showDeleted,showHidden,syncToken}]
+
+#### calendar.calendarList.insert [POST]
+
++ Parameters
+
+    + colorRgbFormat
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "accessRole": {
+                  "type": "string",
+                  "description": "The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:  \n- \"freeBusyReader\" - Provides read access to free/busy information. \n- \"reader\" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. \n- \"writer\" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. \n- \"owner\" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs."
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "description": "The main color of the calendar in the hexadecimal format \"#0088aa\". This property supersedes the index-based colorId property. Optional."
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the calendar. This is an ID referring to an entry in the calendar section of the colors definition (see the colors endpoint). Optional."
+                },
+                "defaultReminders": {
+                  "type": "array",
+                  "description": "The default reminders that the authenticated user has for this calendar.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "method": {
+                        "type": "string",
+                        "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                      },
+                      "minutes": {
+                        "type": "integer",
+                        "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Whether this calendar list entry has been deleted from the calendar list. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional. Read-only."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "foregroundColor": {
+                  "type": "string",
+                  "description": "The foreground color of the calendar in the hexadecimal format \"#ffffff\". This property supersedes the index-based colorId property. Optional."
+                },
+                "hidden": {
+                  "type": "boolean",
+                  "description": "Whether the calendar has been hidden from the list. Optional. The default is False.",
+                  "default": "false"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendarListEntry\").",
+                  "default": "calendar#calendarListEntry"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional. Read-only."
+                },
+                "notificationSettings": {
+                  "type": "object",
+                  "description": "The notifications that the authenticated user is receiving for this calendar.",
+                  "properties": {
+                    "notifications": {
+                      "type": "array",
+                      "description": "The list of notifications set for this calendar.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used to deliver the notification. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. This value is read-only and is ignored on inserts and updates."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "The type of notification. Possible values are:  \n- \"eventCreation\" - Notification sent when a new event is put on the calendar. \n- \"eventChange\" - Notification sent when an event is changed. \n- \"eventCancellation\" - Notification sent when an event is cancelled. \n- \"eventResponse\" - Notification sent when an event is changed. \n- \"agenda\" - An agenda with the events of the day (sent out in the morning)."
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "primary": {
+                  "type": "boolean",
+                  "description": "Whether the calendar is the primary calendar of the authenticated user. Read-only. Optional. The default is False.",
+                  "default": "false"
+                },
+                "selected": {
+                  "type": "boolean",
+                  "description": "Whether the calendar content shows up in the calendar UI. Optional. The default is False.",
+                  "default": "false"
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar. Read-only."
+                },
+                "summaryOverride": {
+                  "type": "string",
+                  "description": "The summary that the authenticated user has set for this calendar. Optional."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. Optional. Read-only."
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.calendarList.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + minAccessRole
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + showHidden
+  
+    + syncToken
+
++ Response 200
+
+### Resource /users/me/calendarList/watch [/calendar/v3/users/me/calendarList/watch{?maxResults,minAccessRole,pageToken,showDeleted,showHidden,syncToken}]
+
+#### calendar.calendarList.watch [POST]
+
++ Parameters
+
+    + maxResults
+  
+    + minAccessRole
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + showHidden
+  
+    + syncToken
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /calendars/{calendarId}/clear [/calendars/{calendarId}/clear]
+
+#### calendar.calendars.clear [POST]
+
++ Parameters
+
+    + calendarId (required)
+
++ Response 200
+
+### Resource /calendars/{calendarId} [/calendars/{calendarId}]
+
+#### calendar.calendars.delete [DELETE]
+
++ Parameters
+
+    + calendarId (required)
+
++ Response 200
+
+#### calendar.calendars.get [GET]
+
++ Parameters
+
+    + calendarId (required)
+
++ Response 200
+
+#### calendar.calendars.patch [PATCH]
+
++ Parameters
+
+    + calendarId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendar\").",
+                  "default": "calendar#calendar"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) Optional."
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.calendars.update [PUT]
+
++ Parameters
+
+    + calendarId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendar\").",
+                  "default": "calendar#calendar"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) Optional."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /calendars [/calendars]
+
+#### calendar.calendars.insert [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Description of the calendar. Optional."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the calendar."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#calendar\").",
+                  "default": "calendar#calendar"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the calendar as free-form text. Optional."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the calendar."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) Optional."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /channels/stop [/channels/stop]
+
+#### calendar.channels.stop [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /colors [/colors]
+
+#### calendar.colors.get [GET]
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/{eventId} [/calendar/v3/calendars/{calendarId}/events/{eventId}{?alwaysIncludeEmail,maxAttendees,sendNotifications}]
+
+#### calendar.events.delete [DELETE]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + sendNotifications
+
++ Response 200
+
+#### calendar.events.get [GET]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + alwaysIncludeEmail
+  
+    + maxAttendees
+  
+    + timeZone
+
++ Response 200
+
+#### calendar.events.patch [PATCH]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + alwaysIncludeEmail
+  
+    + maxAttendees
+  
+    + sendNotifications
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "anyoneCanAddSelf": {
+                  "type": "boolean",
+                  "description": "Whether anyone can invite themselves to the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "attendees": {
+                  "type": "array",
+                  "description": "The attendees of the event.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "additionalGuests": {
+                        "type": "integer",
+                        "description": "Number of additional guests. Optional. The default is 0.",
+                        "default": "0",
+                        "format": "int32"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "description": "The attendee's response comment. Optional."
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "description": "The attendee's name, if available. Optional."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The attendee's email address, if available. This field must be present when adding an attendee."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The attendee's Profile ID, if available."
+                      },
+                      "optional": {
+                        "type": "boolean",
+                        "description": "Whether this is an optional attendee. Optional. The default is False.",
+                        "default": "false"
+                      },
+                      "organizer": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is the organizer of the event. Read-only. The default is False."
+                      },
+                      "resource": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is a resource. Read-only. The default is False.",
+                        "default": "false"
+                      },
+                      "responseStatus": {
+                        "type": "string",
+                        "description": "The attendee's response status. Possible values are:  \n- \"needsAction\" - The attendee has not responded to the invitation. \n- \"declined\" - The attendee has declined the invitation. \n- \"tentative\" - The attendee has tentatively accepted the invitation. \n- \"accepted\" - The attendee has accepted the invitation."
+                      },
+                      "self": {
+                        "type": "boolean",
+                        "description": "Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.",
+                        "default": "false"
+                      }
+                    }
+                  }
+                },
+                "attendeesOmitted": {
+                  "type": "boolean",
+                  "description": "Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.",
+                  "default": "false"
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional."
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Creation time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "creator": {
+                  "type": "object",
+                  "description": "The creator of the event. Read-only.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The creator's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The creator's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The creator's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the event. Optional."
+                },
+                "end": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "endTimeUnspecified": {
+                  "type": "boolean",
+                  "description": "Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.",
+                  "default": "false"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "extendedProperties": {
+                  "type": "object",
+                  "description": "Extended properties of the event.",
+                  "properties": {
+                    "private": {
+                      "type": "object",
+                      "description": "Properties that are private to the copy of the event that appears on this calendar.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the private property and the corresponding value."
+                      }
+                    },
+                    "shared": {
+                      "type": "object",
+                      "description": "Properties that are shared between copies of the event on other attendees' calendars.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the shared property and the corresponding value."
+                      }
+                    }
+                  }
+                },
+                "gadget": {
+                  "type": "object",
+                  "description": "A gadget that extends this event.",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "description": "The gadget's display mode. Optional. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "The gadget's height in pixels. Optional.",
+                      "format": "int32"
+                    },
+                    "iconLink": {
+                      "type": "string",
+                      "description": "The gadget's icon URL."
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "The gadget's URL."
+                    },
+                    "preferences": {
+                      "type": "object",
+                      "description": "Preferences.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The preference name and corresponding value."
+                      }
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The gadget's title."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The gadget's type."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "The gadget's width in pixels. Optional.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "guestsCanInviteOthers": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can invite others to the event. Optional. The default is True.",
+                  "default": "true"
+                },
+                "guestsCanModify": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can modify the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "guestsCanSeeOtherGuests": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.",
+                  "default": "true"
+                },
+                "hangoutLink": {
+                  "type": "string",
+                  "description": "An absolute link to the Google+ hangout associated with this event. Read-only."
+                },
+                "htmlLink": {
+                  "type": "string",
+                  "description": "An absolute link to this event in the Google Calendar Web UI. Read-only."
+                },
+                "iCalUID": {
+                  "type": "string",
+                  "description": "Event ID in the iCalendar format."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:  \n- characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938 \n- the length of the ID must be between 5 and 1024 characters \n- the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#event\").",
+                  "default": "calendar#event"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the event as free-form text. Optional."
+                },
+                "locked": {
+                  "type": "boolean",
+                  "description": "Whether this is a locked event copy where no changes can be made to the main event fields \"summary\", \"description\", \"location\", \"start\", \"end\" or \"recurrence\". The default is False. Read-Only.",
+                  "default": "false"
+                },
+                "organizer": {
+                  "type": "object",
+                  "description": "The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The organizer's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The organizer's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The organizer's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "originalStartTime": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "privateCopy": {
+                  "type": "boolean",
+                  "description": "Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable. The default is False.",
+                  "default": "false"
+                },
+                "recurrence": {
+                  "type": "array",
+                  "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recurringEventId": {
+                  "type": "string",
+                  "description": "For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable."
+                },
+                "reminders": {
+                  "type": "object",
+                  "description": "Information about the event's reminders for the authenticated user.",
+                  "properties": {
+                    "overrides": {
+                      "type": "array",
+                      "description": "If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    },
+                    "useDefault": {
+                      "type": "boolean",
+                      "description": "Whether the default reminders of the calendar apply to the event."
+                    }
+                  }
+                },
+                "sequence": {
+                  "type": "integer",
+                  "description": "Sequence number as per iCalendar.",
+                  "format": "int32"
+                },
+                "source": {
+                  "type": "object",
+                  "description": "Source of an event from which it was created; for example a web page, an email message or any document identifiable by an URL using HTTP/HTTPS protocol. Accessible only by the creator of the event.",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the source; for example a title of a web page or an email subject."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "URL of the source pointing to a resource. URL's protocol must be HTTP or HTTPS."
+                    }
+                  }
+                },
+                "start": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the event. Optional. Possible values are:  \n- \"confirmed\" - The event is confirmed. This is the default status. \n- \"tentative\" - The event is tentatively confirmed. \n- \"cancelled\" - The event is cancelled."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the event."
+                },
+                "transparency": {
+                  "type": "string",
+                  "description": "Whether the event blocks time on the calendar. Optional. Possible values are:  \n- \"opaque\" - The event blocks time on the calendar. This is the default value. \n- \"transparent\" - The event does not block time on the calendar.",
+                  "default": "opaque"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
+                  "default": "default"
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.events.update [PUT]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + alwaysIncludeEmail
+  
+    + maxAttendees
+  
+    + sendNotifications
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "anyoneCanAddSelf": {
+                  "type": "boolean",
+                  "description": "Whether anyone can invite themselves to the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "attendees": {
+                  "type": "array",
+                  "description": "The attendees of the event.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "additionalGuests": {
+                        "type": "integer",
+                        "description": "Number of additional guests. Optional. The default is 0.",
+                        "default": "0",
+                        "format": "int32"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "description": "The attendee's response comment. Optional."
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "description": "The attendee's name, if available. Optional."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The attendee's email address, if available. This field must be present when adding an attendee."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The attendee's Profile ID, if available."
+                      },
+                      "optional": {
+                        "type": "boolean",
+                        "description": "Whether this is an optional attendee. Optional. The default is False.",
+                        "default": "false"
+                      },
+                      "organizer": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is the organizer of the event. Read-only. The default is False."
+                      },
+                      "resource": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is a resource. Read-only. The default is False.",
+                        "default": "false"
+                      },
+                      "responseStatus": {
+                        "type": "string",
+                        "description": "The attendee's response status. Possible values are:  \n- \"needsAction\" - The attendee has not responded to the invitation. \n- \"declined\" - The attendee has declined the invitation. \n- \"tentative\" - The attendee has tentatively accepted the invitation. \n- \"accepted\" - The attendee has accepted the invitation."
+                      },
+                      "self": {
+                        "type": "boolean",
+                        "description": "Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.",
+                        "default": "false"
+                      }
+                    }
+                  }
+                },
+                "attendeesOmitted": {
+                  "type": "boolean",
+                  "description": "Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.",
+                  "default": "false"
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional."
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Creation time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "creator": {
+                  "type": "object",
+                  "description": "The creator of the event. Read-only.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The creator's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The creator's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The creator's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the event. Optional."
+                },
+                "end": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "endTimeUnspecified": {
+                  "type": "boolean",
+                  "description": "Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.",
+                  "default": "false"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "extendedProperties": {
+                  "type": "object",
+                  "description": "Extended properties of the event.",
+                  "properties": {
+                    "private": {
+                      "type": "object",
+                      "description": "Properties that are private to the copy of the event that appears on this calendar.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the private property and the corresponding value."
+                      }
+                    },
+                    "shared": {
+                      "type": "object",
+                      "description": "Properties that are shared between copies of the event on other attendees' calendars.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the shared property and the corresponding value."
+                      }
+                    }
+                  }
+                },
+                "gadget": {
+                  "type": "object",
+                  "description": "A gadget that extends this event.",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "description": "The gadget's display mode. Optional. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "The gadget's height in pixels. Optional.",
+                      "format": "int32"
+                    },
+                    "iconLink": {
+                      "type": "string",
+                      "description": "The gadget's icon URL."
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "The gadget's URL."
+                    },
+                    "preferences": {
+                      "type": "object",
+                      "description": "Preferences.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The preference name and corresponding value."
+                      }
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The gadget's title."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The gadget's type."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "The gadget's width in pixels. Optional.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "guestsCanInviteOthers": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can invite others to the event. Optional. The default is True.",
+                  "default": "true"
+                },
+                "guestsCanModify": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can modify the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "guestsCanSeeOtherGuests": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.",
+                  "default": "true"
+                },
+                "hangoutLink": {
+                  "type": "string",
+                  "description": "An absolute link to the Google+ hangout associated with this event. Read-only."
+                },
+                "htmlLink": {
+                  "type": "string",
+                  "description": "An absolute link to this event in the Google Calendar Web UI. Read-only."
+                },
+                "iCalUID": {
+                  "type": "string",
+                  "description": "Event ID in the iCalendar format."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:  \n- characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938 \n- the length of the ID must be between 5 and 1024 characters \n- the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#event\").",
+                  "default": "calendar#event"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the event as free-form text. Optional."
+                },
+                "locked": {
+                  "type": "boolean",
+                  "description": "Whether this is a locked event copy where no changes can be made to the main event fields \"summary\", \"description\", \"location\", \"start\", \"end\" or \"recurrence\". The default is False. Read-Only.",
+                  "default": "false"
+                },
+                "organizer": {
+                  "type": "object",
+                  "description": "The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The organizer's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The organizer's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The organizer's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "originalStartTime": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "privateCopy": {
+                  "type": "boolean",
+                  "description": "Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable. The default is False.",
+                  "default": "false"
+                },
+                "recurrence": {
+                  "type": "array",
+                  "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recurringEventId": {
+                  "type": "string",
+                  "description": "For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable."
+                },
+                "reminders": {
+                  "type": "object",
+                  "description": "Information about the event's reminders for the authenticated user.",
+                  "properties": {
+                    "overrides": {
+                      "type": "array",
+                      "description": "If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    },
+                    "useDefault": {
+                      "type": "boolean",
+                      "description": "Whether the default reminders of the calendar apply to the event."
+                    }
+                  }
+                },
+                "sequence": {
+                  "type": "integer",
+                  "description": "Sequence number as per iCalendar.",
+                  "format": "int32"
+                },
+                "source": {
+                  "type": "object",
+                  "description": "Source of an event from which it was created; for example a web page, an email message or any document identifiable by an URL using HTTP/HTTPS protocol. Accessible only by the creator of the event.",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the source; for example a title of a web page or an email subject."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "URL of the source pointing to a resource. URL's protocol must be HTTP or HTTPS."
+                    }
+                  }
+                },
+                "start": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the event. Optional. Possible values are:  \n- \"confirmed\" - The event is confirmed. This is the default status. \n- \"tentative\" - The event is tentatively confirmed. \n- \"cancelled\" - The event is cancelled."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the event."
+                },
+                "transparency": {
+                  "type": "string",
+                  "description": "Whether the event blocks time on the calendar. Optional. Possible values are:  \n- \"opaque\" - The event blocks time on the calendar. This is the default value. \n- \"transparent\" - The event does not block time on the calendar.",
+                  "default": "opaque"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
+                  "default": "default"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/import [/calendars/{calendarId}/events/import]
+
+#### calendar.events.import [POST]
+
++ Parameters
+
+    + calendarId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "anyoneCanAddSelf": {
+                  "type": "boolean",
+                  "description": "Whether anyone can invite themselves to the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "attendees": {
+                  "type": "array",
+                  "description": "The attendees of the event.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "additionalGuests": {
+                        "type": "integer",
+                        "description": "Number of additional guests. Optional. The default is 0.",
+                        "default": "0",
+                        "format": "int32"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "description": "The attendee's response comment. Optional."
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "description": "The attendee's name, if available. Optional."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The attendee's email address, if available. This field must be present when adding an attendee."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The attendee's Profile ID, if available."
+                      },
+                      "optional": {
+                        "type": "boolean",
+                        "description": "Whether this is an optional attendee. Optional. The default is False.",
+                        "default": "false"
+                      },
+                      "organizer": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is the organizer of the event. Read-only. The default is False."
+                      },
+                      "resource": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is a resource. Read-only. The default is False.",
+                        "default": "false"
+                      },
+                      "responseStatus": {
+                        "type": "string",
+                        "description": "The attendee's response status. Possible values are:  \n- \"needsAction\" - The attendee has not responded to the invitation. \n- \"declined\" - The attendee has declined the invitation. \n- \"tentative\" - The attendee has tentatively accepted the invitation. \n- \"accepted\" - The attendee has accepted the invitation."
+                      },
+                      "self": {
+                        "type": "boolean",
+                        "description": "Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.",
+                        "default": "false"
+                      }
+                    }
+                  }
+                },
+                "attendeesOmitted": {
+                  "type": "boolean",
+                  "description": "Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.",
+                  "default": "false"
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional."
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Creation time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "creator": {
+                  "type": "object",
+                  "description": "The creator of the event. Read-only.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The creator's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The creator's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The creator's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the event. Optional."
+                },
+                "end": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "endTimeUnspecified": {
+                  "type": "boolean",
+                  "description": "Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.",
+                  "default": "false"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "extendedProperties": {
+                  "type": "object",
+                  "description": "Extended properties of the event.",
+                  "properties": {
+                    "private": {
+                      "type": "object",
+                      "description": "Properties that are private to the copy of the event that appears on this calendar.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the private property and the corresponding value."
+                      }
+                    },
+                    "shared": {
+                      "type": "object",
+                      "description": "Properties that are shared between copies of the event on other attendees' calendars.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the shared property and the corresponding value."
+                      }
+                    }
+                  }
+                },
+                "gadget": {
+                  "type": "object",
+                  "description": "A gadget that extends this event.",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "description": "The gadget's display mode. Optional. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "The gadget's height in pixels. Optional.",
+                      "format": "int32"
+                    },
+                    "iconLink": {
+                      "type": "string",
+                      "description": "The gadget's icon URL."
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "The gadget's URL."
+                    },
+                    "preferences": {
+                      "type": "object",
+                      "description": "Preferences.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The preference name and corresponding value."
+                      }
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The gadget's title."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The gadget's type."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "The gadget's width in pixels. Optional.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "guestsCanInviteOthers": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can invite others to the event. Optional. The default is True.",
+                  "default": "true"
+                },
+                "guestsCanModify": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can modify the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "guestsCanSeeOtherGuests": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.",
+                  "default": "true"
+                },
+                "hangoutLink": {
+                  "type": "string",
+                  "description": "An absolute link to the Google+ hangout associated with this event. Read-only."
+                },
+                "htmlLink": {
+                  "type": "string",
+                  "description": "An absolute link to this event in the Google Calendar Web UI. Read-only."
+                },
+                "iCalUID": {
+                  "type": "string",
+                  "description": "Event ID in the iCalendar format."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:  \n- characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938 \n- the length of the ID must be between 5 and 1024 characters \n- the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#event\").",
+                  "default": "calendar#event"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the event as free-form text. Optional."
+                },
+                "locked": {
+                  "type": "boolean",
+                  "description": "Whether this is a locked event copy where no changes can be made to the main event fields \"summary\", \"description\", \"location\", \"start\", \"end\" or \"recurrence\". The default is False. Read-Only.",
+                  "default": "false"
+                },
+                "organizer": {
+                  "type": "object",
+                  "description": "The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The organizer's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The organizer's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The organizer's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "originalStartTime": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "privateCopy": {
+                  "type": "boolean",
+                  "description": "Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable. The default is False.",
+                  "default": "false"
+                },
+                "recurrence": {
+                  "type": "array",
+                  "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recurringEventId": {
+                  "type": "string",
+                  "description": "For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable."
+                },
+                "reminders": {
+                  "type": "object",
+                  "description": "Information about the event's reminders for the authenticated user.",
+                  "properties": {
+                    "overrides": {
+                      "type": "array",
+                      "description": "If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    },
+                    "useDefault": {
+                      "type": "boolean",
+                      "description": "Whether the default reminders of the calendar apply to the event."
+                    }
+                  }
+                },
+                "sequence": {
+                  "type": "integer",
+                  "description": "Sequence number as per iCalendar.",
+                  "format": "int32"
+                },
+                "source": {
+                  "type": "object",
+                  "description": "Source of an event from which it was created; for example a web page, an email message or any document identifiable by an URL using HTTP/HTTPS protocol. Accessible only by the creator of the event.",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the source; for example a title of a web page or an email subject."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "URL of the source pointing to a resource. URL's protocol must be HTTP or HTTPS."
+                    }
+                  }
+                },
+                "start": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the event. Optional. Possible values are:  \n- \"confirmed\" - The event is confirmed. This is the default status. \n- \"tentative\" - The event is tentatively confirmed. \n- \"cancelled\" - The event is cancelled."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the event."
+                },
+                "transparency": {
+                  "type": "string",
+                  "description": "Whether the event blocks time on the calendar. Optional. Possible values are:  \n- \"opaque\" - The event blocks time on the calendar. This is the default value. \n- \"transparent\" - The event does not block time on the calendar.",
+                  "default": "opaque"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
+                  "default": "default"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events [/calendar/v3/calendars/{calendarId}/events{?alwaysIncludeEmail,iCalUID,maxAttendees,maxResults,orderBy,pageToken,privateExtendedProperty,q,sharedExtendedProperty,showDeleted,showHiddenInvitations,singleEvents,syncToken,timeMax,timeMin,timeZone,updatedMin}]
+
+#### calendar.events.insert [POST]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + maxAttendees
+  
+    + sendNotifications
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "anyoneCanAddSelf": {
+                  "type": "boolean",
+                  "description": "Whether anyone can invite themselves to the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "attendees": {
+                  "type": "array",
+                  "description": "The attendees of the event.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "additionalGuests": {
+                        "type": "integer",
+                        "description": "Number of additional guests. Optional. The default is 0.",
+                        "default": "0",
+                        "format": "int32"
+                      },
+                      "comment": {
+                        "type": "string",
+                        "description": "The attendee's response comment. Optional."
+                      },
+                      "displayName": {
+                        "type": "string",
+                        "description": "The attendee's name, if available. Optional."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The attendee's email address, if available. This field must be present when adding an attendee."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The attendee's Profile ID, if available."
+                      },
+                      "optional": {
+                        "type": "boolean",
+                        "description": "Whether this is an optional attendee. Optional. The default is False.",
+                        "default": "false"
+                      },
+                      "organizer": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is the organizer of the event. Read-only. The default is False."
+                      },
+                      "resource": {
+                        "type": "boolean",
+                        "description": "Whether the attendee is a resource. Read-only. The default is False.",
+                        "default": "false"
+                      },
+                      "responseStatus": {
+                        "type": "string",
+                        "description": "The attendee's response status. Possible values are:  \n- \"needsAction\" - The attendee has not responded to the invitation. \n- \"declined\" - The attendee has declined the invitation. \n- \"tentative\" - The attendee has tentatively accepted the invitation. \n- \"accepted\" - The attendee has accepted the invitation."
+                      },
+                      "self": {
+                        "type": "boolean",
+                        "description": "Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.",
+                        "default": "false"
+                      }
+                    }
+                  }
+                },
+                "attendeesOmitted": {
+                  "type": "boolean",
+                  "description": "Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.",
+                  "default": "false"
+                },
+                "colorId": {
+                  "type": "string",
+                  "description": "The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional."
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Creation time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "creator": {
+                  "type": "object",
+                  "description": "The creator of the event. Read-only.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The creator's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The creator's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The creator's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the event. Optional."
+                },
+                "end": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "endTimeUnspecified": {
+                  "type": "boolean",
+                  "description": "Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.",
+                  "default": "false"
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "extendedProperties": {
+                  "type": "object",
+                  "description": "Extended properties of the event.",
+                  "properties": {
+                    "private": {
+                      "type": "object",
+                      "description": "Properties that are private to the copy of the event that appears on this calendar.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the private property and the corresponding value."
+                      }
+                    },
+                    "shared": {
+                      "type": "object",
+                      "description": "Properties that are shared between copies of the event on other attendees' calendars.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The name of the shared property and the corresponding value."
+                      }
+                    }
+                  }
+                },
+                "gadget": {
+                  "type": "object",
+                  "description": "A gadget that extends this event.",
+                  "properties": {
+                    "display": {
+                      "type": "string",
+                      "description": "The gadget's display mode. Optional. Possible values are:  \n- \"icon\" - The gadget displays next to the event's title in the calendar view. \n- \"chip\" - The gadget displays when the event is clicked."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "The gadget's height in pixels. Optional.",
+                      "format": "int32"
+                    },
+                    "iconLink": {
+                      "type": "string",
+                      "description": "The gadget's icon URL."
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "The gadget's URL."
+                    },
+                    "preferences": {
+                      "type": "object",
+                      "description": "Preferences.",
+                      "additionalProperties": {
+                        "type": "string",
+                        "description": "The preference name and corresponding value."
+                      }
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "The gadget's title."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The gadget's type."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "The gadget's width in pixels. Optional.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "guestsCanInviteOthers": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can invite others to the event. Optional. The default is True.",
+                  "default": "true"
+                },
+                "guestsCanModify": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can modify the event. Optional. The default is False.",
+                  "default": "false"
+                },
+                "guestsCanSeeOtherGuests": {
+                  "type": "boolean",
+                  "description": "Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.",
+                  "default": "true"
+                },
+                "hangoutLink": {
+                  "type": "string",
+                  "description": "An absolute link to the Google+ hangout associated with this event. Read-only."
+                },
+                "htmlLink": {
+                  "type": "string",
+                  "description": "An absolute link to this event in the Google Calendar Web UI. Read-only."
+                },
+                "iCalUID": {
+                  "type": "string",
+                  "description": "Event ID in the iCalendar format."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:  \n- characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938 \n- the length of the ID must be between 5 and 1024 characters \n- the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource (\"calendar#event\").",
+                  "default": "calendar#event"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Geographic location of the event as free-form text. Optional."
+                },
+                "locked": {
+                  "type": "boolean",
+                  "description": "Whether this is a locked event copy where no changes can be made to the main event fields \"summary\", \"description\", \"location\", \"start\", \"end\" or \"recurrence\". The default is False. Read-Only.",
+                  "default": "false"
+                },
+                "organizer": {
+                  "type": "object",
+                  "description": "The organizer of the event. If the organizer is also an attendee, this is indicated with a separate entry in attendees with the organizer field set to True. To change the organizer, use the move operation. Read-only, except when importing an event.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The organizer's name, if available."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The organizer's email address, if available."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The organizer's Profile ID, if available."
+                    },
+                    "self": {
+                      "type": "boolean",
+                      "description": "Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.",
+                      "default": "false"
+                    }
+                  }
+                },
+                "originalStartTime": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "privateCopy": {
+                  "type": "boolean",
+                  "description": "Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable. The default is False.",
+                  "default": "false"
+                },
+                "recurrence": {
+                  "type": "array",
+                  "description": "List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "recurringEventId": {
+                  "type": "string",
+                  "description": "For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable."
+                },
+                "reminders": {
+                  "type": "object",
+                  "description": "Information about the event's reminders for the authenticated user.",
+                  "properties": {
+                    "overrides": {
+                      "type": "array",
+                      "description": "If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "method": {
+                            "type": "string",
+                            "description": "The method used by this reminder. Possible values are:  \n- \"email\" - Reminders are sent via email. \n- \"sms\" - Reminders are sent via SMS. \n- \"popup\" - Reminders are sent via a UI popup."
+                          },
+                          "minutes": {
+                            "type": "integer",
+                            "description": "Number of minutes before the start of the event when the reminder should trigger.",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    },
+                    "useDefault": {
+                      "type": "boolean",
+                      "description": "Whether the default reminders of the calendar apply to the event."
+                    }
+                  }
+                },
+                "sequence": {
+                  "type": "integer",
+                  "description": "Sequence number as per iCalendar.",
+                  "format": "int32"
+                },
+                "source": {
+                  "type": "object",
+                  "description": "Source of an event from which it was created; for example a web page, an email message or any document identifiable by an URL using HTTP/HTTPS protocol. Accessible only by the creator of the event.",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Title of the source; for example a title of a web page or an email subject."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "URL of the source pointing to a resource. URL's protocol must be HTTP or HTTPS."
+                    }
+                  }
+                },
+                "start": {
+                  "type": "object",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date, in the format \"yyyy-mm-dd\", if this is an all-day event.",
+                      "format": "date"
+                    },
+                    "dateTime": {
+                      "type": "string",
+                      "description": "The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in timeZone.",
+                      "format": "date-time"
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. \"Europe/Zurich\".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end."
+                    }
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the event. Optional. Possible values are:  \n- \"confirmed\" - The event is confirmed. This is the default status. \n- \"tentative\" - The event is tentatively confirmed. \n- \"cancelled\" - The event is cancelled."
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "Title of the event."
+                },
+                "transparency": {
+                  "type": "string",
+                  "description": "Whether the event blocks time on the calendar. Optional. Possible values are:  \n- \"opaque\" - The event blocks time on the calendar. This is the default value. \n- \"transparent\" - The event does not block time on the calendar.",
+                  "default": "opaque"
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Last modification time of the event (as a RFC 3339 timestamp). Read-only.",
+                  "format": "date-time"
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
+                  "default": "default"
+                }
+              }
+            }
+
++ Response 200
+
+#### calendar.events.list [GET]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + alwaysIncludeEmail
+  
+    + iCalUID
+  
+    + maxAttendees
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+  
+    + privateExtendedProperty
+  
+    + q
+  
+    + sharedExtendedProperty
+  
+    + showDeleted
+  
+    + showHiddenInvitations
+  
+    + singleEvents
+  
+    + syncToken
+  
+    + timeMax
+  
+    + timeMin
+  
+    + timeZone
+  
+    + updatedMin
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/{eventId}/instances [/calendar/v3/calendars/{calendarId}/events/{eventId}/instances{?alwaysIncludeEmail,maxAttendees,maxResults,originalStart,pageToken,showDeleted,timeMax,timeMin,timeZone}]
+
+#### calendar.events.instances [GET]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + alwaysIncludeEmail
+  
+    + maxAttendees
+  
+    + maxResults
+  
+    + originalStart
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + timeMax
+  
+    + timeMin
+  
+    + timeZone
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/{eventId}/move [/calendar/v3/calendars/{calendarId}/events/{eventId}/move{?destination,sendNotifications}]
+
+#### calendar.events.move [POST]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + eventId (required)
+  
+    + destination (required)
+  
+    + sendNotifications
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/quickAdd [/calendar/v3/calendars/{calendarId}/events/quickAdd{?text,sendNotifications}]
+
+#### calendar.events.quickAdd [POST]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + text (required)
+  
+    + sendNotifications
+
++ Response 200
+
+### Resource /calendars/{calendarId}/events/watch [/calendar/v3/calendars/{calendarId}/events/watch{?alwaysIncludeEmail,iCalUID,maxAttendees,maxResults,orderBy,pageToken,privateExtendedProperty,q,sharedExtendedProperty,showDeleted,showHiddenInvitations,singleEvents,syncToken,timeMax,timeMin,timeZone,updatedMin}]
+
+#### calendar.events.watch [POST]
+
++ Parameters
+
+    + calendarId (required)
+  
+    + alwaysIncludeEmail
+  
+    + iCalUID
+  
+    + maxAttendees
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+  
+    + privateExtendedProperty
+  
+    + q
+  
+    + sharedExtendedProperty
+  
+    + showDeleted
+  
+    + showHiddenInvitations
+  
+    + singleEvents
+  
+    + syncToken
+  
+    + timeMax
+  
+    + timeMin
+  
+    + timeZone
+  
+    + updatedMin
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /freeBusy [/freeBusy]
+
+#### calendar.freebusy.query [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "calendarExpansionMax": {
+                  "type": "integer",
+                  "description": "Maximal number of calendars for which FreeBusy information is to be provided. Optional.",
+                  "format": "int32"
+                },
+                "groupExpansionMax": {
+                  "type": "integer",
+                  "description": "Maximal number of calendar identifiers to be provided for a single group. Optional. An error will be returned for a group with more members than this value.",
+                  "format": "int32"
+                },
+                "items": {
+                  "type": "array",
+                  "description": "List of calendars and/or groups to query.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The identifier of a calendar or a group."
+                      }
+                    }
+                  }
+                },
+                "timeMax": {
+                  "type": "string",
+                  "description": "The end of the interval for the query.",
+                  "format": "date-time"
+                },
+                "timeMin": {
+                  "type": "string",
+                  "description": "The start of the interval for the query.",
+                  "format": "date-time"
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "Time zone used in the response. Optional. The default is UTC.",
+                  "default": "UTC"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /users/me/settings/{setting} [/users/me/settings/{setting}]
+
+#### calendar.settings.get [GET]
+
++ Parameters
+
+    + setting (required)
+
++ Response 200
+
+### Resource /users/me/settings [/calendar/v3/users/me/settings{?maxResults,pageToken,syncToken}]
+
+#### calendar.settings.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+  
+    + syncToken
+
++ Response 200
+
+### Resource /users/me/settings/watch [/calendar/v3/users/me/settings/watch{?maxResults,pageToken,syncToken}]
+
+#### calendar.settings.watch [POST]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+  
+    + syncToken
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+

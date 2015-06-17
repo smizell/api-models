@@ -1,0 +1,675 @@
+FORMAT: 1A
+
+# Enterprise Apps Reseller API
+
+Lets you create and manage your customers and their subscriptions.
+
+### Resource /customers/{customerId} [/customers/{customerId}]
+
+#### reseller.customers.get [GET]
+
++ Parameters
+
+    + customerId (required)
+
++ Response 200
+
+#### reseller.customers.patch [PATCH]
+
++ Parameters
+
+    + customerId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for a customer.",
+              "properties": {
+                "alternateEmail": {
+                  "type": "string",
+                  "description": "The alternate email of the customer."
+                },
+                "customerDomain": {
+                  "type": "string",
+                  "description": "The domain name of the customer."
+                },
+                "customerId": {
+                  "type": "string",
+                  "description": "The id of the customer."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a customer.",
+                  "default": "reseller#customer"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "description": "The phone number of the customer."
+                },
+                "postalAddress": {
+                  "type": "object",
+                  "description": "JSON template for address of a customer.",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address line 1 of the address."
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address line 2 of the address."
+                    },
+                    "addressLine3": {
+                      "type": "string",
+                      "description": "Address line 3 of the address."
+                    },
+                    "contactName": {
+                      "type": "string",
+                      "description": "Name of the contact person."
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "ISO 3166 country code."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a customer address.",
+                      "default": "customers#address"
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Name of the locality. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Name of the organization."
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "The postal code. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "region": {
+                      "type": "string",
+                      "description": "Name of the region. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    }
+                  }
+                },
+                "resourceUiUrl": {
+                  "type": "string",
+                  "description": "Ui url for customer resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### reseller.customers.update [PUT]
+
++ Parameters
+
+    + customerId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for a customer.",
+              "properties": {
+                "alternateEmail": {
+                  "type": "string",
+                  "description": "The alternate email of the customer."
+                },
+                "customerDomain": {
+                  "type": "string",
+                  "description": "The domain name of the customer."
+                },
+                "customerId": {
+                  "type": "string",
+                  "description": "The id of the customer."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a customer.",
+                  "default": "reseller#customer"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "description": "The phone number of the customer."
+                },
+                "postalAddress": {
+                  "type": "object",
+                  "description": "JSON template for address of a customer.",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address line 1 of the address."
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address line 2 of the address."
+                    },
+                    "addressLine3": {
+                      "type": "string",
+                      "description": "Address line 3 of the address."
+                    },
+                    "contactName": {
+                      "type": "string",
+                      "description": "Name of the contact person."
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "ISO 3166 country code."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a customer address.",
+                      "default": "customers#address"
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Name of the locality. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Name of the organization."
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "The postal code. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "region": {
+                      "type": "string",
+                      "description": "Name of the region. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    }
+                  }
+                },
+                "resourceUiUrl": {
+                  "type": "string",
+                  "description": "Ui url for customer resource."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /customers [/apps/reseller/v1/customers{?customerAuthToken}]
+
+#### reseller.customers.insert [POST]
+
++ Parameters
+
+    + customerAuthToken
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for a customer.",
+              "properties": {
+                "alternateEmail": {
+                  "type": "string",
+                  "description": "The alternate email of the customer."
+                },
+                "customerDomain": {
+                  "type": "string",
+                  "description": "The domain name of the customer."
+                },
+                "customerId": {
+                  "type": "string",
+                  "description": "The id of the customer."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a customer.",
+                  "default": "reseller#customer"
+                },
+                "phoneNumber": {
+                  "type": "string",
+                  "description": "The phone number of the customer."
+                },
+                "postalAddress": {
+                  "type": "object",
+                  "description": "JSON template for address of a customer.",
+                  "properties": {
+                    "addressLine1": {
+                      "type": "string",
+                      "description": "Address line 1 of the address."
+                    },
+                    "addressLine2": {
+                      "type": "string",
+                      "description": "Address line 2 of the address."
+                    },
+                    "addressLine3": {
+                      "type": "string",
+                      "description": "Address line 3 of the address."
+                    },
+                    "contactName": {
+                      "type": "string",
+                      "description": "Name of the contact person."
+                    },
+                    "countryCode": {
+                      "type": "string",
+                      "description": "ISO 3166 country code."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a customer address.",
+                      "default": "customers#address"
+                    },
+                    "locality": {
+                      "type": "string",
+                      "description": "Name of the locality. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "organizationName": {
+                      "type": "string",
+                      "description": "Name of the organization."
+                    },
+                    "postalCode": {
+                      "type": "string",
+                      "description": "The postal code. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    },
+                    "region": {
+                      "type": "string",
+                      "description": "Name of the region. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element."
+                    }
+                  }
+                },
+                "resourceUiUrl": {
+                  "type": "string",
+                  "description": "Ui url for customer resource."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/activate [/customers/{customerId}/subscriptions/{subscriptionId}/activate]
+
+#### reseller.subscriptions.activate [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/changePlan [/customers/{customerId}/subscriptions/{subscriptionId}/changePlan]
+
+#### reseller.subscriptions.changePlan [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for the ChangePlan rpc request.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a subscription change plan request.",
+                  "default": "subscriptions#changePlanRequest"
+                },
+                "planName": {
+                  "type": "string",
+                  "description": "Name of the plan to change to."
+                },
+                "purchaseOrderId": {
+                  "type": "string",
+                  "description": "Purchase order id for your order tracking purposes."
+                },
+                "seats": {
+                  "type": "object",
+                  "description": "JSON template for subscription seats.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a subscription change plan request.",
+                      "default": "subscriptions#seats"
+                    },
+                    "licensedNumberOfSeats": {
+                      "type": "integer",
+                      "description": "Read-only field containing the current number of licensed seats for FLEXIBLE Google-Apps subscriptions and secondary subscriptions such as Google-Vault and Drive-storage.",
+                      "format": "int32"
+                    },
+                    "maximumNumberOfSeats": {
+                      "type": "integer",
+                      "description": "Maximum number of seats that can be purchased. This needs to be provided only for a non-commitment plan. For a commitment plan it is decided by the contract.",
+                      "format": "int32"
+                    },
+                    "numberOfSeats": {
+                      "type": "integer",
+                      "description": "Number of seats to purchase. This is applicable only for a commitment plan.",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings [/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings]
+
+#### reseller.subscriptions.changeRenewalSettings [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for a subscription renewal settings.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a subscription renewal setting.",
+                  "default": "subscriptions#renewalSettings"
+                },
+                "renewalType": {
+                  "type": "string",
+                  "description": "Subscription renewal type."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/changeSeats [/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats]
+
+#### reseller.subscriptions.changeSeats [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for subscription seats.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a subscription change plan request.",
+                  "default": "subscriptions#seats"
+                },
+                "licensedNumberOfSeats": {
+                  "type": "integer",
+                  "description": "Read-only field containing the current number of licensed seats for FLEXIBLE Google-Apps subscriptions and secondary subscriptions such as Google-Vault and Drive-storage.",
+                  "format": "int32"
+                },
+                "maximumNumberOfSeats": {
+                  "type": "integer",
+                  "description": "Maximum number of seats that can be purchased. This needs to be provided only for a non-commitment plan. For a commitment plan it is decided by the contract.",
+                  "format": "int32"
+                },
+                "numberOfSeats": {
+                  "type": "integer",
+                  "description": "Number of seats to purchase. This is applicable only for a commitment plan.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId} [/customers/{customerId}/subscriptions/{subscriptionId}]
+
+#### reseller.subscriptions.delete [DELETE]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+  
+    + deletionType (required)
+
++ Response 200
+
+#### reseller.subscriptions.get [GET]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions [/apps/reseller/v1/customers/{customerId}/subscriptions{?customerAuthToken}]
+
+#### reseller.subscriptions.insert [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + customerAuthToken
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "JSON template for a subscription.",
+              "properties": {
+                "billingMethod": {
+                  "type": "string",
+                  "description": "Billing method of this subscription."
+                },
+                "creationTime": {
+                  "type": "string",
+                  "description": "Creation time of this subscription in milliseconds since Unix epoch.",
+                  "format": "int64"
+                },
+                "customerId": {
+                  "type": "string",
+                  "description": "The id of the customer to whom the subscription belongs."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a Subscription.",
+                  "default": "reseller#subscription"
+                },
+                "plan": {
+                  "type": "object",
+                  "description": "Plan details of the subscription",
+                  "properties": {
+                    "commitmentInterval": {
+                      "type": "object",
+                      "description": "Interval of the commitment if it is a commitment plan.",
+                      "properties": {
+                        "endTime": {
+                          "type": "string",
+                          "description": "End time of the commitment interval in milliseconds since Unix epoch.",
+                          "format": "int64"
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "description": "Start time of the commitment interval in milliseconds since Unix epoch.",
+                          "format": "int64"
+                        }
+                      }
+                    },
+                    "isCommitmentPlan": {
+                      "type": "boolean",
+                      "description": "Whether the plan is a commitment plan or not."
+                    },
+                    "planName": {
+                      "type": "string",
+                      "description": "The plan name of this subscription's plan."
+                    }
+                  }
+                },
+                "purchaseOrderId": {
+                  "type": "string",
+                  "description": "Purchase order id for your order tracking purposes."
+                },
+                "renewalSettings": {
+                  "type": "object",
+                  "description": "JSON template for a subscription renewal settings.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a subscription renewal setting.",
+                      "default": "subscriptions#renewalSettings"
+                    },
+                    "renewalType": {
+                      "type": "string",
+                      "description": "Subscription renewal type."
+                    }
+                  }
+                },
+                "resourceUiUrl": {
+                  "type": "string",
+                  "description": "Ui url for subscription resource."
+                },
+                "seats": {
+                  "type": "object",
+                  "description": "JSON template for subscription seats.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies the resource as a subscription change plan request.",
+                      "default": "subscriptions#seats"
+                    },
+                    "licensedNumberOfSeats": {
+                      "type": "integer",
+                      "description": "Read-only field containing the current number of licensed seats for FLEXIBLE Google-Apps subscriptions and secondary subscriptions such as Google-Vault and Drive-storage.",
+                      "format": "int32"
+                    },
+                    "maximumNumberOfSeats": {
+                      "type": "integer",
+                      "description": "Maximum number of seats that can be purchased. This needs to be provided only for a non-commitment plan. For a commitment plan it is decided by the contract.",
+                      "format": "int32"
+                    },
+                    "numberOfSeats": {
+                      "type": "integer",
+                      "description": "Number of seats to purchase. This is applicable only for a commitment plan.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "skuId": {
+                  "type": "string",
+                  "description": "Name of the sku for which this subscription is purchased."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the subscription."
+                },
+                "subscriptionId": {
+                  "type": "string",
+                  "description": "The id of the subscription."
+                },
+                "suspensionReasons": {
+                  "type": "array",
+                  "description": "Suspension Reasons",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "transferInfo": {
+                  "type": "object",
+                  "description": "Transfer related information for the subscription.",
+                  "properties": {
+                    "minimumTransferableSeats": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "transferabilityExpirationTime": {
+                      "type": "string",
+                      "description": "Time when transfer token or intent to transfer will expire.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "trialSettings": {
+                  "type": "object",
+                  "description": "Trial Settings of the subscription.",
+                  "properties": {
+                    "isInTrial": {
+                      "type": "boolean",
+                      "description": "Whether the subscription is in trial."
+                    },
+                    "trialEndTime": {
+                      "type": "string",
+                      "description": "End time of the trial in milliseconds since Unix epoch.",
+                      "format": "int64"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /subscriptions [/apps/reseller/v1/subscriptions{?customerAuthToken,customerId,customerNamePrefix,maxResults,pageToken}]
+
+#### reseller.subscriptions.list [GET]
+
++ Parameters
+
+    + customerAuthToken
+  
+    + customerId
+  
+    + customerNamePrefix
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/startPaidService [/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService]
+
+#### reseller.subscriptions.startPaidService [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Response 200
+
+### Resource /customers/{customerId}/subscriptions/{subscriptionId}/suspend [/customers/{customerId}/subscriptions/{subscriptionId}/suspend]
+
+#### reseller.subscriptions.suspend [POST]
+
++ Parameters
+
+    + customerId (required)
+  
+    + subscriptionId (required)
+
++ Response 200
+

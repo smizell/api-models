@@ -1,0 +1,414 @@
+FORMAT: 1A
+
+# Resource Views API
+
+The Resource View API allows users to create and manage logical sets of Google Compute Engine instances.
+
+### Resource /{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources [/{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources]
+
+#### resourceviews.regionViews.addresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + resourceViewName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to add resources to the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be added.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{projectName}/regions/{region}/resourceViews/{resourceViewName} [/{projectName}/regions/{region}/resourceViews/{resourceViewName}]
+
+#### resourceviews.regionViews.delete [DELETE]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + resourceViewName (required)
+
++ Response 200
+
+#### resourceviews.regionViews.get [GET]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + resourceViewName (required)
+
++ Response 200
+
+### Resource /{projectName}/regions/{region}/resourceViews [/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews{?maxResults,pageToken}]
+
+#### resourceviews.regionViews.insert [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The resource view object.",
+              "properties": {
+                "creationTime": {
+                  "type": "string",
+                  "description": "The creation time of the resource view."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The detailed description of the resource view."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "[Output Only] The ID of the resource view."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource.",
+                  "default": "resourceviews#resourceView"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The labels for events.",
+                  "items": {
+                    "type": "object",
+                    "description": "The Label to be applied to the resource views.",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "description": "Key of the label."
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the label."
+                      }
+                    }
+                  }
+                },
+                "lastModified": {
+                  "type": "string",
+                  "description": "The last modified time of the view. Not supported yet."
+                },
+                "members": {
+                  "type": "array",
+                  "description": "A list of all resources in the resource view.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the resource view."
+                },
+                "numMembers": {
+                  "type": "integer",
+                  "description": "The total number of resources in the resource view.",
+                  "format": "uint32"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "[Output Only] A self-link to the resource view."
+                }
+              }
+            }
+
++ Response 200
+
+#### resourceviews.regionViews.list [GET]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources [/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources{?maxResults,pageToken}]
+
+#### resourceviews.regionViews.listresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + resourceViewName (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources [/{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources]
+
+#### resourceviews.regionViews.removeresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + region (required)
+  
+    + resourceViewName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to remove resources from the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be removed.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources [/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources]
+
+#### resourceviews.zoneViews.addresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + resourceViewName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to add resources to the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be added.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{projectName}/zones/{zone}/resourceViews/{resourceViewName} [/{projectName}/zones/{zone}/resourceViews/{resourceViewName}]
+
+#### resourceviews.zoneViews.delete [DELETE]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + resourceViewName (required)
+
++ Response 200
+
+#### resourceviews.zoneViews.get [GET]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + resourceViewName (required)
+
++ Response 200
+
+### Resource /{projectName}/zones/{zone}/resourceViews [/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews{?maxResults,pageToken}]
+
+#### resourceviews.zoneViews.insert [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The resource view object.",
+              "properties": {
+                "creationTime": {
+                  "type": "string",
+                  "description": "The creation time of the resource view."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The detailed description of the resource view."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "[Output Only] The ID of the resource view."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Type of the resource.",
+                  "default": "resourceviews#resourceView"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The labels for events.",
+                  "items": {
+                    "type": "object",
+                    "description": "The Label to be applied to the resource views.",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "description": "Key of the label."
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the label."
+                      }
+                    }
+                  }
+                },
+                "lastModified": {
+                  "type": "string",
+                  "description": "The last modified time of the view. Not supported yet."
+                },
+                "members": {
+                  "type": "array",
+                  "description": "A list of all resources in the resource view.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the resource view."
+                },
+                "numMembers": {
+                  "type": "integer",
+                  "description": "The total number of resources in the resource view.",
+                  "format": "uint32"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "[Output Only] A self-link to the resource view."
+                }
+              }
+            }
+
++ Response 200
+
+#### resourceviews.zoneViews.list [GET]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources [/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources{?maxResults,pageToken}]
+
+#### resourceviews.zoneViews.listresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + resourceViewName (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources [/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources]
+
+#### resourceviews.zoneViews.removeresources [POST]
+
++ Parameters
+
+    + projectName (required)
+  
+    + zone (required)
+  
+    + resourceViewName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request to remove resources from the resource view.",
+              "properties": {
+                "resources": {
+                  "type": "array",
+                  "description": "The list of resources to be removed.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+

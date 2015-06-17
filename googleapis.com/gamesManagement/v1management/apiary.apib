@@ -1,0 +1,310 @@
+FORMAT: 1A
+
+# Google Play Game Services Management API
+
+The Management API for Google Play Game Services.
+
+### Resource /achievements/{achievementId}/reset [/achievements/{achievementId}/reset]
+
+#### gamesManagement.achievements.reset [POST]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+### Resource /achievements/reset [/achievements/reset]
+
+#### gamesManagement.achievements.resetAll [POST]
+
++ Response 200
+
+### Resource /achievements/resetAllForAllPlayers [/achievements/resetAllForAllPlayers]
+
+#### gamesManagement.achievements.resetAllForAllPlayers [POST]
+
++ Response 200
+
+### Resource /achievements/{achievementId}/resetForAllPlayers [/achievements/{achievementId}/resetForAllPlayers]
+
+#### gamesManagement.achievements.resetForAllPlayers [POST]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+### Resource /achievements/resetMultipleForAllPlayers [/achievements/resetMultipleForAllPlayers]
+
+#### gamesManagement.achievements.resetMultipleForAllPlayers [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for multiple achievements reset all request.",
+              "properties": {
+                "achievement_ids": {
+                  "type": "array",
+                  "description": "The IDs of achievements to reset.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.",
+                  "default": "gamesManagement#achievementResetMultipleForAllRequest"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /applications/{applicationId}/players/hidden [/games/v1management/applications/{applicationId}/players/hidden{?maxResults,pageToken}]
+
+#### gamesManagement.applications.listHidden [GET]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /events/{eventId}/reset [/events/{eventId}/reset]
+
+#### gamesManagement.events.reset [POST]
+
++ Parameters
+
+    + eventId (required)
+
++ Response 200
+
+### Resource /events/reset [/events/reset]
+
+#### gamesManagement.events.resetAll [POST]
+
++ Response 200
+
+### Resource /events/resetAllForAllPlayers [/events/resetAllForAllPlayers]
+
+#### gamesManagement.events.resetAllForAllPlayers [POST]
+
++ Response 200
+
+### Resource /events/{eventId}/resetForAllPlayers [/events/{eventId}/resetForAllPlayers]
+
+#### gamesManagement.events.resetForAllPlayers [POST]
+
++ Parameters
+
+    + eventId (required)
+
++ Response 200
+
+### Resource /events/resetMultipleForAllPlayers [/events/resetMultipleForAllPlayers]
+
+#### gamesManagement.events.resetMultipleForAllPlayers [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for multiple events reset all request.",
+              "properties": {
+                "event_ids": {
+                  "type": "array",
+                  "description": "The IDs of events to reset.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.",
+                  "default": "gamesManagement#eventsResetMultipleForAllRequest"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /applications/{applicationId}/players/hidden/{playerId} [/applications/{applicationId}/players/hidden/{playerId}]
+
+#### gamesManagement.players.hide [POST]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + playerId (required)
+
++ Response 200
+
+#### gamesManagement.players.unhide [DELETE]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + playerId (required)
+
++ Response 200
+
+### Resource /quests/{questId}/reset [/quests/{questId}/reset]
+
+#### gamesManagement.quests.reset [POST]
+
++ Parameters
+
+    + questId (required)
+
++ Response 200
+
+### Resource /quests/reset [/quests/reset]
+
+#### gamesManagement.quests.resetAll [POST]
+
++ Response 200
+
+### Resource /quests/resetAllForAllPlayers [/quests/resetAllForAllPlayers]
+
+#### gamesManagement.quests.resetAllForAllPlayers [POST]
+
++ Response 200
+
+### Resource /quests/{questId}/resetForAllPlayers [/quests/{questId}/resetForAllPlayers]
+
+#### gamesManagement.quests.resetForAllPlayers [POST]
+
++ Parameters
+
+    + questId (required)
+
++ Response 200
+
+### Resource /quests/resetMultipleForAllPlayers [/quests/resetMultipleForAllPlayers]
+
+#### gamesManagement.quests.resetMultipleForAllPlayers [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for multiple quests reset all request.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#questsResetMultipleForAllRequest.",
+                  "default": "gamesManagement#questsResetMultipleForAllRequest"
+                },
+                "quest_ids": {
+                  "type": "array",
+                  "description": "The IDs of quests to reset.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /rooms/reset [/rooms/reset]
+
+#### gamesManagement.rooms.reset [POST]
+
++ Response 200
+
+### Resource /rooms/resetForAllPlayers [/rooms/resetForAllPlayers]
+
+#### gamesManagement.rooms.resetForAllPlayers [POST]
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId}/scores/reset [/leaderboards/{leaderboardId}/scores/reset]
+
+#### gamesManagement.scores.reset [POST]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Response 200
+
+### Resource /scores/reset [/scores/reset]
+
+#### gamesManagement.scores.resetAll [POST]
+
++ Response 200
+
+### Resource /scores/resetAllForAllPlayers [/scores/resetAllForAllPlayers]
+
+#### gamesManagement.scores.resetAllForAllPlayers [POST]
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId}/scores/resetForAllPlayers [/leaderboards/{leaderboardId}/scores/resetForAllPlayers]
+
+#### gamesManagement.scores.resetForAllPlayers [POST]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Response 200
+
+### Resource /scores/resetMultipleForAllPlayers [/scores/resetMultipleForAllPlayers]
+
+#### gamesManagement.scores.resetMultipleForAllPlayers [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for multiple scores reset all request.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.",
+                  "default": "gamesManagement#scoresResetMultipleForAllRequest"
+                },
+                "leaderboard_ids": {
+                  "type": "array",
+                  "description": "The IDs of leaderboards to reset.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /turnbasedmatches/reset [/turnbasedmatches/reset]
+
+#### gamesManagement.turnBasedMatches.reset [POST]
+
++ Response 200
+
+### Resource /turnbasedmatches/resetForAllPlayers [/turnbasedmatches/resetForAllPlayers]
+
+#### gamesManagement.turnBasedMatches.resetForAllPlayers [POST]
+
++ Response 200
+

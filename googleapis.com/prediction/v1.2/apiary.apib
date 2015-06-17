@@ -1,0 +1,158 @@
+FORMAT: 1A
+
+# Prediction API
+
+Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
+
+### Resource /training/{data}/predict [/training/{data}/predict]
+
+#### prediction.predict [POST]
+
++ Parameters
+
+    + data (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "object",
+                  "properties": {
+                    "csvInstance": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /hostedmodels/{hostedModelName}/predict [/hostedmodels/{hostedModelName}/predict]
+
+#### prediction.hostedmodels.predict [POST]
+
++ Parameters
+
+    + hostedModelName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "object",
+                  "properties": {
+                    "csvInstance": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /training/{data} [/training/{data}]
+
+#### prediction.training.delete [DELETE]
+
++ Parameters
+
+    + data (required)
+
++ Response 200
+
+#### prediction.training.get [GET]
+
++ Parameters
+
+    + data (required)
+
++ Response 200
+
+#### prediction.training.update [PUT]
+
++ Parameters
+
+    + data (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "classLabel": {
+                  "type": "string",
+                  "description": "The true class label of this instance"
+                },
+                "csvInstance": {
+                  "type": "array",
+                  "description": "The input features for this instance",
+                  "items": {}
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /training [/prediction/v1.2/training{?data}]
+
+#### prediction.training.insert [POST]
+
++ Parameters
+
+    + data
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "default": "prediction#training"
+                },
+                "modelInfo": {
+                  "type": "object",
+                  "properties": {
+                    "classificationAccuracy": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "meanSquaredError": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "modelType": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string"
+                },
+                "trainingStatus": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 200
+

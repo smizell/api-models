@@ -1,0 +1,189 @@
+FORMAT: 1A
+
+# Enterprise License Manager API
+
+Licensing API to view and manage license for your domain.
+
+### Resource /{productId}/sku/{skuId}/user/{userId} [/{productId}/sku/{skuId}/user/{userId}]
+
+#### licensing.licenseAssignments.delete [DELETE]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+  
+    + userId (required)
+
++ Response 200
+
+#### licensing.licenseAssignments.get [GET]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+  
+    + userId (required)
+
++ Response 200
+
+#### licensing.licenseAssignments.patch [PATCH]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+  
+    + userId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Template for LiscenseAssignment Resource",
+              "properties": {
+                "etags": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a LicenseAssignment.",
+                  "default": "licensing#licenseAssignment"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "Name of the product."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this page."
+                },
+                "skuId": {
+                  "type": "string",
+                  "description": "Name of the sku of the product."
+                },
+                "userId": {
+                  "type": "string",
+                  "description": "Email id of the user."
+                }
+              }
+            }
+
++ Response 200
+
+#### licensing.licenseAssignments.update [PUT]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+  
+    + userId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Template for LiscenseAssignment Resource",
+              "properties": {
+                "etags": {
+                  "type": "string",
+                  "description": "ETag of the resource."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies the resource as a LicenseAssignment.",
+                  "default": "licensing#licenseAssignment"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "Name of the product."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this page."
+                },
+                "skuId": {
+                  "type": "string",
+                  "description": "Name of the sku of the product."
+                },
+                "userId": {
+                  "type": "string",
+                  "description": "Email id of the user."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{productId}/sku/{skuId}/user [/{productId}/sku/{skuId}/user]
+
+#### licensing.licenseAssignments.insert [POST]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Template for LicenseAssignment Insert request",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "description": "Email id of the user"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{productId}/users [/apps/licensing/v1/product/{productId}/users{?customerId,maxResults,pageToken}]
+
+#### licensing.licenseAssignments.listForProduct [GET]
+
++ Parameters
+
+    + productId (required)
+  
+    + customerId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{productId}/sku/{skuId}/users [/apps/licensing/v1/product/{productId}/sku/{skuId}/users{?customerId,maxResults,pageToken}]
+
+#### licensing.licenseAssignments.listForProductAndSku [GET]
+
++ Parameters
+
+    + productId (required)
+  
+    + skuId (required)
+  
+    + customerId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

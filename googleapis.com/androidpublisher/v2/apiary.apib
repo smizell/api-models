@@ -1,0 +1,1711 @@
+FORMAT: 1A
+
+# Google Play Developer API
+
+Lets Android application developers access their Google Play accounts.
+
+### Resource /{packageName}/edits/{editId}:commit [/{packageName}/edits/{editId}:commit]
+
+#### androidpublisher.edits.commit [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId} [/{packageName}/edits/{editId}]
+
+#### androidpublisher.edits.delete [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+#### androidpublisher.edits.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits [/{packageName}/edits]
+
+#### androidpublisher.edits.insert [POST]
+
++ Parameters
+
+    + packageName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Represents an edit of an app. An edit allows clients to make multiple changes before committing them in one operation.",
+              "properties": {
+                "expiryTimeSeconds": {
+                  "type": "string",
+                  "description": "The time at which the edit will expire and will be no longer valid for use in any subsequent API calls (encoded as seconds since the Epoch)."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the edit that can be used in subsequent API calls."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}:validate [/{packageName}/edits/{editId}:validate]
+
+#### androidpublisher.edits.validate [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language} [/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}]
+
+#### androidpublisher.edits.apklistings.delete [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + language (required)
+
++ Response 200
+
+#### androidpublisher.edits.apklistings.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + language (required)
+
++ Response 200
+
+#### androidpublisher.edits.apklistings.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + language (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "type": "string",
+                  "description": "The language code, in BCP 47 format (eg \"en-US\")."
+                },
+                "recentChanges": {
+                  "type": "string",
+                  "description": "Describe what's new in your APK."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.apklistings.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + language (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "language": {
+                  "type": "string",
+                  "description": "The language code, in BCP 47 format (eg \"en-US\")."
+                },
+                "recentChanges": {
+                  "type": "string",
+                  "description": "Describe what's new in your APK."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/apks/{apkVersionCode}/listings [/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings]
+
+#### androidpublisher.edits.apklistings.deleteall [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+
++ Response 200
+
+#### androidpublisher.edits.apklistings.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/apks/externallyHosted [/{packageName}/edits/{editId}/apks/externallyHosted]
+
+#### androidpublisher.edits.apks.addexternallyhosted [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "externallyHostedApk": {
+                  "type": "object",
+                  "description": "Defines an APK available for this application that is hosted externally and not uploaded to Google Play. This function is only available to enterprises who are using Google Play for Work, and whos application is restricted to the enterprise private channel",
+                  "properties": {
+                    "applicationLabel": {
+                      "type": "string",
+                      "description": "The application label."
+                    },
+                    "certificateBase64s": {
+                      "type": "array",
+                      "description": "A certificate (or array of certificates if a certificate-chain is used) used to signed this APK, represented as a base64 encoded byte array.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "externallyHostedUrl": {
+                      "type": "string",
+                      "description": "The URL at which the APK is hosted. This must be an https URL."
+                    },
+                    "fileSha1Base64": {
+                      "type": "string",
+                      "description": "The SHA1 checksum of this APK, represented as a base64 encoded byte array."
+                    },
+                    "fileSha256Base64": {
+                      "type": "string",
+                      "description": "The SHA256 checksum of this APK, represented as a base64 encoded byte array."
+                    },
+                    "fileSize": {
+                      "type": "string",
+                      "description": "The file size in bytes of this APK.",
+                      "format": "int64"
+                    },
+                    "iconBase64": {
+                      "type": "string",
+                      "description": "The icon image from the APK, as a base64 encoded byte array."
+                    },
+                    "maximumSdk": {
+                      "type": "integer",
+                      "description": "The maximum SDK supported by this APK (optional).",
+                      "format": "int32"
+                    },
+                    "minimumSdk": {
+                      "type": "integer",
+                      "description": "The minimum SDK targeted by this APK.",
+                      "format": "int32"
+                    },
+                    "nativeCodes": {
+                      "type": "array",
+                      "description": "The native code environments supported by this APK (optional).",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "packageName": {
+                      "type": "string",
+                      "description": "The package name."
+                    },
+                    "usesFeatures": {
+                      "type": "array",
+                      "description": "The features required by this APK (optional).",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "usesPermissions": {
+                      "type": "array",
+                      "description": "The permissions requested by this APK.",
+                      "items": {
+                        "type": "object",
+                        "description": "A permission used by this APK.",
+                        "properties": {
+                          "maxSdkVersion": {
+                            "type": "integer",
+                            "description": "Optionally, the maximum SDK version for which the permission is required.",
+                            "format": "int32"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the permission requested."
+                          }
+                        }
+                      }
+                    },
+                    "versionCode": {
+                      "type": "integer",
+                      "description": "The version code of this APK.",
+                      "format": "int32"
+                    },
+                    "versionName": {
+                      "type": "string",
+                      "description": "The version name of this APK."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/apks [/{packageName}/edits/{editId}/apks]
+
+#### androidpublisher.edits.apks.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+#### androidpublisher.edits.apks.upload [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/details [/{packageName}/edits/{editId}/details]
+
+#### androidpublisher.edits.details.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+#### androidpublisher.edits.details.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "contactEmail": {
+                  "type": "string",
+                  "description": "The user-visible support email for this app."
+                },
+                "contactPhone": {
+                  "type": "string",
+                  "description": "The user-visible support telephone number for this app."
+                },
+                "contactWebsite": {
+                  "type": "string",
+                  "description": "The user-visible website for this app."
+                },
+                "defaultLanguage": {
+                  "type": "string",
+                  "description": "Default language code, in BCP 47 format (eg \"en-US\")."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.details.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "contactEmail": {
+                  "type": "string",
+                  "description": "The user-visible support email for this app."
+                },
+                "contactPhone": {
+                  "type": "string",
+                  "description": "The user-visible support telephone number for this app."
+                },
+                "contactWebsite": {
+                  "type": "string",
+                  "description": "The user-visible website for this app."
+                },
+                "defaultLanguage": {
+                  "type": "string",
+                  "description": "Default language code, in BCP 47 format (eg \"en-US\")."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType} [/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}]
+
+#### androidpublisher.edits.expansionfiles.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + expansionFileType (required)
+
++ Response 200
+
+#### androidpublisher.edits.expansionfiles.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + expansionFileType (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "fileSize": {
+                  "type": "string",
+                  "description": "If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK's Expansion File. The field's value is the size of the uploaded Expansion File in bytes.",
+                  "format": "int64"
+                },
+                "referencesVersion": {
+                  "type": "integer",
+                  "description": "If set this APK's Expansion File references another APK's Expansion File. The file_size field will not be set.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.expansionfiles.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + expansionFileType (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "fileSize": {
+                  "type": "string",
+                  "description": "If set this field indicates that this APK has an Expansion File uploaded to it: this APK does not reference another APK's Expansion File. The field's value is the size of the uploaded Expansion File in bytes.",
+                  "format": "int64"
+                },
+                "referencesVersion": {
+                  "type": "integer",
+                  "description": "If set this APK's Expansion File references another APK's Expansion File. The file_size field will not be set.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.expansionfiles.upload [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + apkVersionCode (required)
+  
+    + expansionFileType (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId} [/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}]
+
+#### androidpublisher.edits.images.delete [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+  
+    + imageType (required)
+  
+    + imageId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/listings/{language}/{imageType} [/{packageName}/edits/{editId}/listings/{language}/{imageType}]
+
+#### androidpublisher.edits.images.deleteall [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+  
+    + imageType (required)
+
++ Response 200
+
+#### androidpublisher.edits.images.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+  
+    + imageType (required)
+
++ Response 200
+
+#### androidpublisher.edits.images.upload [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+  
+    + imageType (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/listings/{language} [/{packageName}/edits/{editId}/listings/{language}]
+
+#### androidpublisher.edits.listings.delete [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+
++ Response 200
+
+#### androidpublisher.edits.listings.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+
++ Response 200
+
+#### androidpublisher.edits.listings.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "fullDescription": {
+                  "type": "string",
+                  "description": "Full description of the app; this may be up to 4000 characters in length."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Language localization code (for example, \"de-AT\" for Austrian German)."
+                },
+                "shortDescription": {
+                  "type": "string",
+                  "description": "Short description of the app (previously known as promo text); this may be up to 80 characters in length."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "App's localized title."
+                },
+                "video": {
+                  "type": "string",
+                  "description": "URL of a promotional YouTube video for the app."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.listings.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + language (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "fullDescription": {
+                  "type": "string",
+                  "description": "Full description of the app; this may be up to 4000 characters in length."
+                },
+                "language": {
+                  "type": "string",
+                  "description": "Language localization code (for example, \"de-AT\" for Austrian German)."
+                },
+                "shortDescription": {
+                  "type": "string",
+                  "description": "Short description of the app (previously known as promo text); this may be up to 80 characters in length."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "App's localized title."
+                },
+                "video": {
+                  "type": "string",
+                  "description": "URL of a promotional YouTube video for the app."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/listings [/{packageName}/edits/{editId}/listings]
+
+#### androidpublisher.edits.listings.deleteall [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+#### androidpublisher.edits.listings.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/testers/{track} [/{packageName}/edits/{editId}/testers/{track}]
+
+#### androidpublisher.edits.testers.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Response 200
+
+#### androidpublisher.edits.testers.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "googleGroups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "googlePlusCommunities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.testers.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "googleGroups": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "googlePlusCommunities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/tracks/{track} [/{packageName}/edits/{editId}/tracks/{track}]
+
+#### androidpublisher.edits.tracks.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Response 200
+
+#### androidpublisher.edits.tracks.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "track": {
+                  "type": "string"
+                },
+                "userFraction": {
+                  "type": "number",
+                  "format": "double"
+                },
+                "versionCodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.edits.tracks.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+  
+    + track (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "track": {
+                  "type": "string"
+                },
+                "userFraction": {
+                  "type": "number",
+                  "format": "double"
+                },
+                "versionCodes": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/edits/{editId}/tracks [/{packageName}/edits/{editId}/tracks]
+
+#### androidpublisher.edits.tracks.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + editId (required)
+
++ Response 200
+
+### Resource /{packageName}/entitlements [/androidpublisher/v2/applications/{packageName}/entitlements{?maxResults,productId,startIndex,token}]
+
+#### androidpublisher.entitlements.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + maxResults
+  
+    + productId
+  
+    + startIndex
+  
+    + token
+
++ Response 200
+
+### Resource /inappproducts/batch [/inappproducts/batch]
+
+#### androidpublisher.inappproducts.batch [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "entrys": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "batchId": {
+                        "type": "integer",
+                        "format": "uint32"
+                      },
+                      "inappproductsinsertrequest": {
+                        "type": "object",
+                        "properties": {
+                          "inappproduct": {
+                            "type": "object",
+                            "properties": {
+                              "defaultLanguage": {
+                                "type": "string",
+                                "description": "The default language of the localized data, as defined by BCP 47. e.g. \"en-US\", \"en-GB\"."
+                              },
+                              "defaultPrice": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "description": "3 letter Currency code, as defined by ISO 4217."
+                                  },
+                                  "priceMicros": {
+                                    "type": "string",
+                                    "description": "The price in millionths of the currency base unit represented as a string."
+                                  }
+                                }
+                              },
+                              "listings": {
+                                "type": "object",
+                                "description": "List of localized title and description data.",
+                                "additionalProperties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "packageName": {
+                                "type": "string",
+                                "description": "The package name of the parent app."
+                              },
+                              "prices": {
+                                "type": "object",
+                                "description": "Prices per buyer region. None of these prices should be zero. In-app products can never be free.",
+                                "additionalProperties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "currency": {
+                                      "type": "string",
+                                      "description": "3 letter Currency code, as defined by ISO 4217."
+                                    },
+                                    "priceMicros": {
+                                      "type": "string",
+                                      "description": "The price in millionths of the currency base unit represented as a string."
+                                    }
+                                  }
+                                }
+                              },
+                              "purchaseType": {
+                                "type": "string",
+                                "description": "Purchase type enum value. Unmodifiable after creation."
+                              },
+                              "season": {
+                                "type": "object",
+                                "properties": {
+                                  "end": {
+                                    "type": "object",
+                                    "properties": {
+                                      "day": {
+                                        "type": "integer",
+                                        "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                                        "format": "uint32"
+                                      },
+                                      "month": {
+                                        "type": "integer",
+                                        "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                                        "format": "uint32"
+                                      }
+                                    }
+                                  },
+                                  "start": {
+                                    "type": "object",
+                                    "properties": {
+                                      "day": {
+                                        "type": "integer",
+                                        "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                                        "format": "uint32"
+                                      },
+                                      "month": {
+                                        "type": "integer",
+                                        "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                                        "format": "uint32"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "sku": {
+                                "type": "string",
+                                "description": "The stock-keeping-unit (SKU) of the product, unique within an app."
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "subscriptionPeriod": {
+                                "type": "string",
+                                "description": "The period of the subscription (if any), i.e. period at which payments must happen. Defined as ISO 8601 duration, i.e. \"P1M\" for 1 month period."
+                              },
+                              "trialPeriod": {
+                                "type": "string",
+                                "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between \"P7D\" (seven days) and \"P999D\" (999 days). Seasonal subscriptions cannot have a trial period."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "inappproductsupdaterequest": {
+                        "type": "object",
+                        "properties": {
+                          "inappproduct": {
+                            "type": "object",
+                            "properties": {
+                              "defaultLanguage": {
+                                "type": "string",
+                                "description": "The default language of the localized data, as defined by BCP 47. e.g. \"en-US\", \"en-GB\"."
+                              },
+                              "defaultPrice": {
+                                "type": "object",
+                                "properties": {
+                                  "currency": {
+                                    "type": "string",
+                                    "description": "3 letter Currency code, as defined by ISO 4217."
+                                  },
+                                  "priceMicros": {
+                                    "type": "string",
+                                    "description": "The price in millionths of the currency base unit represented as a string."
+                                  }
+                                }
+                              },
+                              "listings": {
+                                "type": "object",
+                                "description": "List of localized title and description data.",
+                                "additionalProperties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "packageName": {
+                                "type": "string",
+                                "description": "The package name of the parent app."
+                              },
+                              "prices": {
+                                "type": "object",
+                                "description": "Prices per buyer region. None of these prices should be zero. In-app products can never be free.",
+                                "additionalProperties": {
+                                  "type": "object",
+                                  "properties": {
+                                    "currency": {
+                                      "type": "string",
+                                      "description": "3 letter Currency code, as defined by ISO 4217."
+                                    },
+                                    "priceMicros": {
+                                      "type": "string",
+                                      "description": "The price in millionths of the currency base unit represented as a string."
+                                    }
+                                  }
+                                }
+                              },
+                              "purchaseType": {
+                                "type": "string",
+                                "description": "Purchase type enum value. Unmodifiable after creation."
+                              },
+                              "season": {
+                                "type": "object",
+                                "properties": {
+                                  "end": {
+                                    "type": "object",
+                                    "properties": {
+                                      "day": {
+                                        "type": "integer",
+                                        "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                                        "format": "uint32"
+                                      },
+                                      "month": {
+                                        "type": "integer",
+                                        "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                                        "format": "uint32"
+                                      }
+                                    }
+                                  },
+                                  "start": {
+                                    "type": "object",
+                                    "properties": {
+                                      "day": {
+                                        "type": "integer",
+                                        "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                                        "format": "uint32"
+                                      },
+                                      "month": {
+                                        "type": "integer",
+                                        "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                                        "format": "uint32"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "sku": {
+                                "type": "string",
+                                "description": "The stock-keeping-unit (SKU) of the product, unique within an app."
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "subscriptionPeriod": {
+                                "type": "string",
+                                "description": "The period of the subscription (if any), i.e. period at which payments must happen. Defined as ISO 8601 duration, i.e. \"P1M\" for 1 month period."
+                              },
+                              "trialPeriod": {
+                                "type": "string",
+                                "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between \"P7D\" (seven days) and \"P999D\" (999 days). Seasonal subscriptions cannot have a trial period."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "methodName": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/inappproducts/{sku} [/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}{?autoConvertMissingPrices}]
+
+#### androidpublisher.inappproducts.delete [DELETE]
+
++ Parameters
+
+    + packageName (required)
+  
+    + sku (required)
+
++ Response 200
+
+#### androidpublisher.inappproducts.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + sku (required)
+
++ Response 200
+
+#### androidpublisher.inappproducts.patch [PATCH]
+
++ Parameters
+
+    + packageName (required)
+  
+    + sku (required)
+  
+    + autoConvertMissingPrices
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "defaultLanguage": {
+                  "type": "string",
+                  "description": "The default language of the localized data, as defined by BCP 47. e.g. \"en-US\", \"en-GB\"."
+                },
+                "defaultPrice": {
+                  "type": "object",
+                  "properties": {
+                    "currency": {
+                      "type": "string",
+                      "description": "3 letter Currency code, as defined by ISO 4217."
+                    },
+                    "priceMicros": {
+                      "type": "string",
+                      "description": "The price in millionths of the currency base unit represented as a string."
+                    }
+                  }
+                },
+                "listings": {
+                  "type": "object",
+                  "description": "List of localized title and description data.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "packageName": {
+                  "type": "string",
+                  "description": "The package name of the parent app."
+                },
+                "prices": {
+                  "type": "object",
+                  "description": "Prices per buyer region. None of these prices should be zero. In-app products can never be free.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "currency": {
+                        "type": "string",
+                        "description": "3 letter Currency code, as defined by ISO 4217."
+                      },
+                      "priceMicros": {
+                        "type": "string",
+                        "description": "The price in millionths of the currency base unit represented as a string."
+                      }
+                    }
+                  }
+                },
+                "purchaseType": {
+                  "type": "string",
+                  "description": "Purchase type enum value. Unmodifiable after creation."
+                },
+                "season": {
+                  "type": "object",
+                  "properties": {
+                    "end": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "start": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    }
+                  }
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "The stock-keeping-unit (SKU) of the product, unique within an app."
+                },
+                "status": {
+                  "type": "string"
+                },
+                "subscriptionPeriod": {
+                  "type": "string",
+                  "description": "The period of the subscription (if any), i.e. period at which payments must happen. Defined as ISO 8601 duration, i.e. \"P1M\" for 1 month period."
+                },
+                "trialPeriod": {
+                  "type": "string",
+                  "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between \"P7D\" (seven days) and \"P999D\" (999 days). Seasonal subscriptions cannot have a trial period."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.inappproducts.update [PUT]
+
++ Parameters
+
+    + packageName (required)
+  
+    + sku (required)
+  
+    + autoConvertMissingPrices
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "defaultLanguage": {
+                  "type": "string",
+                  "description": "The default language of the localized data, as defined by BCP 47. e.g. \"en-US\", \"en-GB\"."
+                },
+                "defaultPrice": {
+                  "type": "object",
+                  "properties": {
+                    "currency": {
+                      "type": "string",
+                      "description": "3 letter Currency code, as defined by ISO 4217."
+                    },
+                    "priceMicros": {
+                      "type": "string",
+                      "description": "The price in millionths of the currency base unit represented as a string."
+                    }
+                  }
+                },
+                "listings": {
+                  "type": "object",
+                  "description": "List of localized title and description data.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "packageName": {
+                  "type": "string",
+                  "description": "The package name of the parent app."
+                },
+                "prices": {
+                  "type": "object",
+                  "description": "Prices per buyer region. None of these prices should be zero. In-app products can never be free.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "currency": {
+                        "type": "string",
+                        "description": "3 letter Currency code, as defined by ISO 4217."
+                      },
+                      "priceMicros": {
+                        "type": "string",
+                        "description": "The price in millionths of the currency base unit represented as a string."
+                      }
+                    }
+                  }
+                },
+                "purchaseType": {
+                  "type": "string",
+                  "description": "Purchase type enum value. Unmodifiable after creation."
+                },
+                "season": {
+                  "type": "object",
+                  "properties": {
+                    "end": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "start": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    }
+                  }
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "The stock-keeping-unit (SKU) of the product, unique within an app."
+                },
+                "status": {
+                  "type": "string"
+                },
+                "subscriptionPeriod": {
+                  "type": "string",
+                  "description": "The period of the subscription (if any), i.e. period at which payments must happen. Defined as ISO 8601 duration, i.e. \"P1M\" for 1 month period."
+                },
+                "trialPeriod": {
+                  "type": "string",
+                  "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between \"P7D\" (seven days) and \"P999D\" (999 days). Seasonal subscriptions cannot have a trial period."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/inappproducts [/androidpublisher/v2/applications/{packageName}/inappproducts{?maxResults,startIndex,token}]
+
+#### androidpublisher.inappproducts.insert [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + autoConvertMissingPrices
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "defaultLanguage": {
+                  "type": "string",
+                  "description": "The default language of the localized data, as defined by BCP 47. e.g. \"en-US\", \"en-GB\"."
+                },
+                "defaultPrice": {
+                  "type": "object",
+                  "properties": {
+                    "currency": {
+                      "type": "string",
+                      "description": "3 letter Currency code, as defined by ISO 4217."
+                    },
+                    "priceMicros": {
+                      "type": "string",
+                      "description": "The price in millionths of the currency base unit represented as a string."
+                    }
+                  }
+                },
+                "listings": {
+                  "type": "object",
+                  "description": "List of localized title and description data.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "packageName": {
+                  "type": "string",
+                  "description": "The package name of the parent app."
+                },
+                "prices": {
+                  "type": "object",
+                  "description": "Prices per buyer region. None of these prices should be zero. In-app products can never be free.",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "currency": {
+                        "type": "string",
+                        "description": "3 letter Currency code, as defined by ISO 4217."
+                      },
+                      "priceMicros": {
+                        "type": "string",
+                        "description": "The price in millionths of the currency base unit represented as a string."
+                      }
+                    }
+                  }
+                },
+                "purchaseType": {
+                  "type": "string",
+                  "description": "Purchase type enum value. Unmodifiable after creation."
+                },
+                "season": {
+                  "type": "object",
+                  "properties": {
+                    "end": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "start": {
+                      "type": "object",
+                      "properties": {
+                        "day": {
+                          "type": "integer",
+                          "description": "Day of a month, value in [1, 31] range. Valid range depends on the specified month.",
+                          "format": "uint32"
+                        },
+                        "month": {
+                          "type": "integer",
+                          "description": "Month of a year. e.g. 1 = JAN, 2 = FEB etc.",
+                          "format": "uint32"
+                        }
+                      }
+                    }
+                  }
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "The stock-keeping-unit (SKU) of the product, unique within an app."
+                },
+                "status": {
+                  "type": "string"
+                },
+                "subscriptionPeriod": {
+                  "type": "string",
+                  "description": "The period of the subscription (if any), i.e. period at which payments must happen. Defined as ISO 8601 duration, i.e. \"P1M\" for 1 month period."
+                },
+                "trialPeriod": {
+                  "type": "string",
+                  "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between \"P7D\" (seven days) and \"P999D\" (999 days). Seasonal subscriptions cannot have a trial period."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidpublisher.inappproducts.list [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + maxResults
+  
+    + startIndex
+  
+    + token
+
++ Response 200
+
+### Resource /{packageName}/purchases/products/{productId}/tokens/{token} [/{packageName}/purchases/products/{productId}/tokens/{token}]
+
+#### androidpublisher.purchases.products.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + productId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel [/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel]
+
+#### androidpublisher.purchases.subscriptions.cancel [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer [/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer]
+
+#### androidpublisher.purchases.subscriptions.defer [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "deferralInfo": {
+                  "type": "object",
+                  "description": "A SubscriptionDeferralInfo contains the data needed to defer a subscription purchase to a future expiry time.",
+                  "properties": {
+                    "desiredExpiryTimeMillis": {
+                      "type": "string",
+                      "description": "The desired next expiry time for the subscription in milliseconds since Epoch. The given time must be after the current expiry time for the subscription.",
+                      "format": "int64"
+                    },
+                    "expectedExpiryTimeMillis": {
+                      "type": "string",
+                      "description": "The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.",
+                      "format": "int64"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token} [/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}]
+
+#### androidpublisher.purchases.subscriptions.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund [/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund]
+
+#### androidpublisher.purchases.subscriptions.refund [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke [/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke]
+
+#### androidpublisher.purchases.subscriptions.revoke [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+

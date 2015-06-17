@@ -1,0 +1,1551 @@
+FORMAT: 1A
+
+# Cloud Storage API
+
+Lets you store and retrieve potentially-large, immutable data objects.
+
+### Resource /b/{bucket}/acl/{entity} [/b/{bucket}/acl/{entity}]
+
+#### storage.bucketAccessControls.delete [DELETE]
+
++ Parameters
+
+    + bucket (required)
+  
+    + entity (required)
+
++ Response 200
+
+#### storage.bucketAccessControls.get [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + entity (required)
+
++ Response 200
+
+#### storage.bucketAccessControls.patch [PATCH]
+
++ Parameters
+
+    + bucket (required)
+  
+    + entity (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                  "default": "storage#bucketAccessControl"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.bucketAccessControls.update [PUT]
+
++ Parameters
+
+    + bucket (required)
+  
+    + entity (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                  "default": "storage#bucketAccessControl"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /b/{bucket}/acl [/b/{bucket}/acl]
+
+#### storage.bucketAccessControls.insert [POST]
+
++ Parameters
+
+    + bucket (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                  "default": "storage#bucketAccessControl"
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.bucketAccessControls.list [GET]
+
++ Parameters
+
+    + bucket (required)
+
++ Response 200
+
+### Resource /b/{bucket} [/storage/v1beta1/b/{bucket}{?projection}]
+
+#### storage.buckets.delete [DELETE]
+
++ Parameters
+
+    + bucket (required)
+
++ Response 200
+
+#### storage.buckets.get [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + projection
+
++ Response 200
+
+#### storage.buckets.patch [PATCH]
+
++ Parameters
+
+    + bucket (required)
+  
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A bucket.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the bucket.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                        "default": "storage#bucketAccessControl"
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "defaultObjectAcl": {
+                  "type": "array",
+                  "description": "Default access controls to apply to new objects when no ACL is provided.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For buckets, this is always storage#bucket.",
+                  "default": "storage#bucket"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the bucket. This will always be the project team's owner group.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form group-groupId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "projectId": {
+                  "type": "string",
+                  "description": "The project the bucket belongs to.",
+                  "format": "uint64"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this bucket."
+                },
+                "timeCreated": {
+                  "type": "string",
+                  "description": "Creation time of the bucket in RFC 3339 format.",
+                  "format": "date-time"
+                },
+                "website": {
+                  "type": "object",
+                  "description": "The bucket's website configuration.",
+                  "properties": {
+                    "mainPageSuffix": {
+                      "type": "string",
+                      "description": "Behaves as the bucket's directory index where missing objects are treated as potential directories."
+                    },
+                    "notFoundPage": {
+                      "type": "string",
+                      "description": "The custom object to return when a requested resource is not found."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.buckets.update [PUT]
+
++ Parameters
+
+    + bucket (required)
+  
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A bucket.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the bucket.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                        "default": "storage#bucketAccessControl"
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "defaultObjectAcl": {
+                  "type": "array",
+                  "description": "Default access controls to apply to new objects when no ACL is provided.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For buckets, this is always storage#bucket.",
+                  "default": "storage#bucket"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the bucket. This will always be the project team's owner group.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form group-groupId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "projectId": {
+                  "type": "string",
+                  "description": "The project the bucket belongs to.",
+                  "format": "uint64"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this bucket."
+                },
+                "timeCreated": {
+                  "type": "string",
+                  "description": "Creation time of the bucket in RFC 3339 format.",
+                  "format": "date-time"
+                },
+                "website": {
+                  "type": "object",
+                  "description": "The bucket's website configuration.",
+                  "properties": {
+                    "mainPageSuffix": {
+                      "type": "string",
+                      "description": "Behaves as the bucket's directory index where missing objects are treated as potential directories."
+                    },
+                    "notFoundPage": {
+                      "type": "string",
+                      "description": "The custom object to return when a requested resource is not found."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /b [/storage/v1beta1/b{?projectId,max-results,pageToken,projection}]
+
+#### storage.buckets.insert [POST]
+
++ Parameters
+
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A bucket.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the bucket.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.",
+                        "default": "storage#bucketAccessControl"
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER, WRITER, or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "defaultObjectAcl": {
+                  "type": "array",
+                  "description": "Default access controls to apply to new objects when no ACL is provided.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For buckets, this is always storage#bucket.",
+                  "default": "storage#bucket"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the bucket. This will always be the project team's owner group.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form group-groupId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "projectId": {
+                  "type": "string",
+                  "description": "The project the bucket belongs to.",
+                  "format": "uint64"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this bucket."
+                },
+                "timeCreated": {
+                  "type": "string",
+                  "description": "Creation time of the bucket in RFC 3339 format.",
+                  "format": "date-time"
+                },
+                "website": {
+                  "type": "object",
+                  "description": "The bucket's website configuration.",
+                  "properties": {
+                    "mainPageSuffix": {
+                      "type": "string",
+                      "description": "Behaves as the bucket's directory index where missing objects are treated as potential directories."
+                    },
+                    "notFoundPage": {
+                      "type": "string",
+                      "description": "The custom object to return when a requested resource is not found."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.buckets.list [GET]
+
++ Parameters
+
+    + projectId (required)
+  
+    + max-results
+  
+    + pageToken
+  
+    + projection
+
++ Response 200
+
+### Resource /b/{bucket}/o/{object}/acl/{entity} [/b/{bucket}/o/{object}/acl/{entity}]
+
+#### storage.objectAccessControls.delete [DELETE]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + entity (required)
+
++ Response 200
+
+#### storage.objectAccessControls.get [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + entity (required)
+
++ Response 200
+
+#### storage.objectAccessControls.patch [PATCH]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + entity (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                  "default": "storage#objectAccessControl"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "The name of the object."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.objectAccessControls.update [PUT]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + entity (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                  "default": "storage#objectAccessControl"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "The name of the object."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /b/{bucket}/o/{object}/acl [/b/{bucket}/o/{object}/acl]
+
+#### storage.objectAccessControls.insert [POST]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An access-control entry.",
+              "properties": {
+                "bucket": {
+                  "type": "string",
+                  "description": "The name of the bucket."
+                },
+                "domain": {
+                  "type": "string",
+                  "description": "The domain associated with the entity, if any."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email address associated with the entity, if any."
+                },
+                "entity": {
+                  "type": "string",
+                  "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                },
+                "entityId": {
+                  "type": "string",
+                  "description": "The ID for the entity, if any."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the access-control entry."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                  "default": "storage#objectAccessControl"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "The name of the object."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "The access permission for the entity. Can be READER or OWNER."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this access-control entry."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.objectAccessControls.list [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+
++ Response 200
+
+### Resource /b/{bucket}/o/{object} [/storage/v1beta1/b/{bucket}/o/{object}{?projection}]
+
+#### storage.objects.delete [DELETE]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+
++ Response 200
+
+#### storage.objects.get [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + projection
+
++ Response 200
+
+#### storage.objects.patch [PATCH]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the object.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "bucket": {
+                  "type": "string",
+                  "description": "The bucket containing this object."
+                },
+                "cacheControl": {
+                  "type": "string",
+                  "description": "Cache-Control directive for the object data."
+                },
+                "contentDisposition": {
+                  "type": "string",
+                  "description": "Content-Disposition of the object data."
+                },
+                "contentEncoding": {
+                  "type": "string",
+                  "description": "Content-Encoding of the object data."
+                },
+                "contentLanguage": {
+                  "type": "string",
+                  "description": "Content-Language of the object data."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the object."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For objects, this is always storage#object.",
+                  "default": "storage#object"
+                },
+                "media": {
+                  "type": "object",
+                  "description": "Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.",
+                  "properties": {
+                    "algorithm": {
+                      "type": "string",
+                      "description": "Hash algorithm used. Currently only MD5 is supported. Required if a hash is provided.",
+                      "default": "MD5"
+                    },
+                    "contentType": {
+                      "type": "string",
+                      "description": "Content-Type of the object data."
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "URL-safe Base64-encoded data. This property can be used to insert objects under 64KB in size, and will only be returned in response to the get method for objects so created. When this resource is returned in response to the list method, this property is omitted.",
+                      "format": "byte"
+                    },
+                    "hash": {
+                      "type": "string",
+                      "description": "Hash of the data. Required if a hash algorithm is provided."
+                    },
+                    "length": {
+                      "type": "string",
+                      "description": "Content-Length of the data in bytes.",
+                      "format": "uint64"
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "Media download link."
+                    },
+                    "timeCreated": {
+                      "type": "string",
+                      "description": "Creation time of the data in RFC 3339 format.",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "description": "User-provided metadata, in key/value pairs.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "An individual metadata entry."
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this object. Required if not specified by URL parameter."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the object. This will always be the uploader of the object.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form user-userId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this object."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.objects.update [PUT]
+
++ Parameters
+
+    + bucket (required)
+  
+    + object (required)
+  
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the object.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "bucket": {
+                  "type": "string",
+                  "description": "The bucket containing this object."
+                },
+                "cacheControl": {
+                  "type": "string",
+                  "description": "Cache-Control directive for the object data."
+                },
+                "contentDisposition": {
+                  "type": "string",
+                  "description": "Content-Disposition of the object data."
+                },
+                "contentEncoding": {
+                  "type": "string",
+                  "description": "Content-Encoding of the object data."
+                },
+                "contentLanguage": {
+                  "type": "string",
+                  "description": "Content-Language of the object data."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the object."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For objects, this is always storage#object.",
+                  "default": "storage#object"
+                },
+                "media": {
+                  "type": "object",
+                  "description": "Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.",
+                  "properties": {
+                    "algorithm": {
+                      "type": "string",
+                      "description": "Hash algorithm used. Currently only MD5 is supported. Required if a hash is provided.",
+                      "default": "MD5"
+                    },
+                    "contentType": {
+                      "type": "string",
+                      "description": "Content-Type of the object data."
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "URL-safe Base64-encoded data. This property can be used to insert objects under 64KB in size, and will only be returned in response to the get method for objects so created. When this resource is returned in response to the list method, this property is omitted.",
+                      "format": "byte"
+                    },
+                    "hash": {
+                      "type": "string",
+                      "description": "Hash of the data. Required if a hash algorithm is provided."
+                    },
+                    "length": {
+                      "type": "string",
+                      "description": "Content-Length of the data in bytes.",
+                      "format": "uint64"
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "Media download link."
+                    },
+                    "timeCreated": {
+                      "type": "string",
+                      "description": "Creation time of the data in RFC 3339 format.",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "description": "User-provided metadata, in key/value pairs.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "An individual metadata entry."
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this object. Required if not specified by URL parameter."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the object. This will always be the uploader of the object.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form user-userId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this object."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /b/{bucket}/o [/storage/v1beta1/b/{bucket}/o{?delimiter,max-results,pageToken,prefix,projection}]
+
+#### storage.objects.insert [POST]
+
++ Parameters
+
+    + bucket (required)
+  
+    + name
+  
+    + projection
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object.",
+              "properties": {
+                "acl": {
+                  "type": "array",
+                  "description": "Access controls on the object.",
+                  "items": {
+                    "type": "object",
+                    "description": "An access-control entry.",
+                    "properties": {
+                      "bucket": {
+                        "type": "string",
+                        "description": "The name of the bucket."
+                      },
+                      "domain": {
+                        "type": "string",
+                        "description": "The domain associated with the entity, if any."
+                      },
+                      "email": {
+                        "type": "string",
+                        "description": "The email address associated with the entity, if any."
+                      },
+                      "entity": {
+                        "type": "string",
+                        "description": "The entity holding the permission, in one of the following forms: \n- user-userId \n- user-email \n- group-groupId \n- group-email \n- domain-domain \n- allUsers \n- allAuthenticatedUsers Examples: \n- The user liz@example.com would be user-liz@example.com. \n- The group example@googlegroups.com would be group-example@googlegroups.com. \n- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com."
+                      },
+                      "entityId": {
+                        "type": "string",
+                        "description": "The ID for the entity, if any."
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the access-control entry."
+                      },
+                      "kind": {
+                        "type": "string",
+                        "description": "The kind of item this is. For object access control entries, this is always storage#objectAccessControl.",
+                        "default": "storage#objectAccessControl"
+                      },
+                      "object": {
+                        "type": "string",
+                        "description": "The name of the object."
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The access permission for the entity. Can be READER or OWNER."
+                      },
+                      "selfLink": {
+                        "type": "string",
+                        "description": "The link to this access-control entry."
+                      }
+                    }
+                  }
+                },
+                "bucket": {
+                  "type": "string",
+                  "description": "The bucket containing this object."
+                },
+                "cacheControl": {
+                  "type": "string",
+                  "description": "Cache-Control directive for the object data."
+                },
+                "contentDisposition": {
+                  "type": "string",
+                  "description": "Content-Disposition of the object data."
+                },
+                "contentEncoding": {
+                  "type": "string",
+                  "description": "Content-Encoding of the object data."
+                },
+                "contentLanguage": {
+                  "type": "string",
+                  "description": "Content-Language of the object data."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the object."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of item this is. For objects, this is always storage#object.",
+                  "default": "storage#object"
+                },
+                "media": {
+                  "type": "object",
+                  "description": "Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.",
+                  "properties": {
+                    "algorithm": {
+                      "type": "string",
+                      "description": "Hash algorithm used. Currently only MD5 is supported. Required if a hash is provided.",
+                      "default": "MD5"
+                    },
+                    "contentType": {
+                      "type": "string",
+                      "description": "Content-Type of the object data."
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "URL-safe Base64-encoded data. This property can be used to insert objects under 64KB in size, and will only be returned in response to the get method for objects so created. When this resource is returned in response to the list method, this property is omitted.",
+                      "format": "byte"
+                    },
+                    "hash": {
+                      "type": "string",
+                      "description": "Hash of the data. Required if a hash algorithm is provided."
+                    },
+                    "length": {
+                      "type": "string",
+                      "description": "Content-Length of the data in bytes.",
+                      "format": "uint64"
+                    },
+                    "link": {
+                      "type": "string",
+                      "description": "Media download link."
+                    },
+                    "timeCreated": {
+                      "type": "string",
+                      "description": "Creation time of the data in RFC 3339 format.",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "description": "User-provided metadata, in key/value pairs.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "An individual metadata entry."
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this object. Required if not specified by URL parameter."
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "The owner of the object. This will always be the uploader of the object.",
+                  "properties": {
+                    "entity": {
+                      "type": "string",
+                      "description": "The entity, in the form user-userId."
+                    },
+                    "entityId": {
+                      "type": "string",
+                      "description": "The ID for the entity."
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The link to this object."
+                }
+              }
+            }
+
++ Response 200
+
+#### storage.objects.list [GET]
+
++ Parameters
+
+    + bucket (required)
+  
+    + delimiter
+  
+    + max-results
+  
+    + pageToken
+  
+    + prefix
+  
+    + projection
+
++ Response 200
+

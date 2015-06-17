@@ -1,0 +1,48 @@
+FORMAT: 1A
+
+# Google Play Developer API
+
+Lets Android application developers access their Google Play accounts.
+
+### Resource /{packageName}/inapp/{productId}/purchases/{token} [/{packageName}/inapp/{productId}/purchases/{token}]
+
+#### androidpublisher.inapppurchases.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + productId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel [/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel]
+
+#### androidpublisher.purchases.cancel [POST]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+
+### Resource /{packageName}/subscriptions/{subscriptionId}/purchases/{token} [/{packageName}/subscriptions/{subscriptionId}/purchases/{token}]
+
+#### androidpublisher.purchases.get [GET]
+
++ Parameters
+
+    + packageName (required)
+  
+    + subscriptionId (required)
+  
+    + token (required)
+
++ Response 200
+

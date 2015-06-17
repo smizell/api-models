@@ -1,0 +1,970 @@
+FORMAT: 1A
+
+# Google Play EMM API
+
+Allows MDMs/EMMs and enterprises to manage the deployment of apps to Android for Work users.
+
+### Resource /enterprises/{enterpriseId}/collections/{collectionId} [/enterprises/{enterpriseId}/collections/{collectionId}]
+
+#### androidenterprise.collections.delete [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+
++ Response 200
+
+#### androidenterprise.collections.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+
++ Response 200
+
+#### androidenterprise.collections.patch [PATCH]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A collection resource defines a named set of apps that is visible to a set of users in the Google Play Store app running on those users' managed devices. Those users can then install any of those apps if they wish (which will trigger creation of install and entitlement resources). A user cannot install an app on a managed device unless the app is listed in at least one collection that is visible to that user.\n\nNote that the API can be used to directly install an app regardless of whether it is in any collection - so an enterprise has a choice of either directly pushing apps to users, or allowing users to install apps if they want. Which is appropriate will depend on the enterprise's policies and the purpose of the apps concerned.",
+              "properties": {
+                "collectionId": {
+                  "type": "string",
+                  "description": "Arbitrary unique ID, allocated by the API on creation."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#collection\".",
+                  "default": "androidenterprise#collection"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "A user-friendly name for the collection (should be unique), e.g. \"Accounting apps\"."
+                },
+                "productId": {
+                  "type": "array",
+                  "description": "The IDs of the products in the collection, in the order in which they should be displayed.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Whether this collection is visible to all users, or only to the users that have been granted access through the collection_viewers api. Even if a collection is visible to allUsers, it is possible to add and remove viewers, but this will have no effect until the collection's visibility changes to viewersOnly."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.collections.update [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A collection resource defines a named set of apps that is visible to a set of users in the Google Play Store app running on those users' managed devices. Those users can then install any of those apps if they wish (which will trigger creation of install and entitlement resources). A user cannot install an app on a managed device unless the app is listed in at least one collection that is visible to that user.\n\nNote that the API can be used to directly install an app regardless of whether it is in any collection - so an enterprise has a choice of either directly pushing apps to users, or allowing users to install apps if they want. Which is appropriate will depend on the enterprise's policies and the purpose of the apps concerned.",
+              "properties": {
+                "collectionId": {
+                  "type": "string",
+                  "description": "Arbitrary unique ID, allocated by the API on creation."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#collection\".",
+                  "default": "androidenterprise#collection"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "A user-friendly name for the collection (should be unique), e.g. \"Accounting apps\"."
+                },
+                "productId": {
+                  "type": "array",
+                  "description": "The IDs of the products in the collection, in the order in which they should be displayed.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Whether this collection is visible to all users, or only to the users that have been granted access through the collection_viewers api. Even if a collection is visible to allUsers, it is possible to add and remove viewers, but this will have no effect until the collection's visibility changes to viewersOnly."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/collections [/enterprises/{enterpriseId}/collections]
+
+#### androidenterprise.collections.insert [POST]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A collection resource defines a named set of apps that is visible to a set of users in the Google Play Store app running on those users' managed devices. Those users can then install any of those apps if they wish (which will trigger creation of install and entitlement resources). A user cannot install an app on a managed device unless the app is listed in at least one collection that is visible to that user.\n\nNote that the API can be used to directly install an app regardless of whether it is in any collection - so an enterprise has a choice of either directly pushing apps to users, or allowing users to install apps if they want. Which is appropriate will depend on the enterprise's policies and the purpose of the apps concerned.",
+              "properties": {
+                "collectionId": {
+                  "type": "string",
+                  "description": "Arbitrary unique ID, allocated by the API on creation."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#collection\".",
+                  "default": "androidenterprise#collection"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "A user-friendly name for the collection (should be unique), e.g. \"Accounting apps\"."
+                },
+                "productId": {
+                  "type": "array",
+                  "description": "The IDs of the products in the collection, in the order in which they should be displayed.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "visibility": {
+                  "type": "string",
+                  "description": "Whether this collection is visible to all users, or only to the users that have been granted access through the collection_viewers api. Even if a collection is visible to allUsers, it is possible to add and remove viewers, but this will have no effect until the collection's visibility changes to viewersOnly."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.collections.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/collections/{collectionId}/users/{userId} [/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}]
+
+#### androidenterprise.collectionviewers.delete [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+  
+    + userId (required)
+
++ Response 200
+
+#### androidenterprise.collectionviewers.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+  
+    + userId (required)
+
++ Response 200
+
+#### androidenterprise.collectionviewers.patch [PATCH]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+  
+    + userId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A user resource represents an individual user within the enterprise's domain.\n\nNote that each user is associated with a Google account based on the user's corporate email address (which must be in one of the enterprise's domains). As part of installing an MDM app to manage a device the Google account must be provisioned to the device, and so the user resource must be created before that. This can be done using the Google Admin SDK Directory API.\n\nThe ID for a user is an opaque string. It can be retrieved using the list method queried by the user's primary email address.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID for the user."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#user\".",
+                  "default": "androidenterprise#user"
+                },
+                "primaryEmail": {
+                  "type": "string",
+                  "description": "The user's primary email, e.g. \"jsmith@example.com\"."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.collectionviewers.update [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+  
+    + userId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A user resource represents an individual user within the enterprise's domain.\n\nNote that each user is associated with a Google account based on the user's corporate email address (which must be in one of the enterprise's domains). As part of installing an MDM app to manage a device the Google account must be provisioned to the device, and so the user resource must be created before that. This can be done using the Google Admin SDK Directory API.\n\nThe ID for a user is an opaque string. It can be retrieved using the list method queried by the user's primary email address.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID for the user."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#user\".",
+                  "default": "androidenterprise#user"
+                },
+                "primaryEmail": {
+                  "type": "string",
+                  "description": "The user's primary email, e.g. \"jsmith@example.com\"."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/collections/{collectionId}/users [/enterprises/{enterpriseId}/collections/{collectionId}/users]
+
+#### androidenterprise.collectionviewers.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + collectionId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId} [/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}]
+
+#### androidenterprise.devices.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state [/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state]
+
+#### androidenterprise.devices.getState [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+
++ Response 200
+
+#### androidenterprise.devices.setState [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The state of a user's device, as accessed by the getState and setState methods on device resources.",
+              "properties": {
+                "accountState": {
+                  "type": "string",
+                  "description": "The state of the Google account on the device. \"enabled\" indicates that the Google account on the device can be used to access Google services (including Google Play), while \"disabled\" means that it cannot. A new device is initially in the \"disabled\" state."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#deviceState\".",
+                  "default": "androidenterprise#deviceState"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/devices [/enterprises/{enterpriseId}/users/{userId}/devices]
+
+#### androidenterprise.devices.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId} [/enterprises/{enterpriseId}]
+
+#### androidenterprise.enterprises.delete [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Response 200
+
+#### androidenterprise.enterprises.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Response 200
+
+### Resource /enterprises/enroll [/androidenterprise/v1/enterprises/enroll{?token}]
+
+#### androidenterprise.enterprises.enroll [POST]
+
++ Parameters
+
+    + token (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An enterprise resource represents a binding between an organisation and their MDM.\n\nTo create an enterprise, an admin of the enterprise must first go through a Play for Work sign-up flow. At the end of this the admin will be presented with a token (a short opaque alphanumeric string). They must then present this to the MDM, who then supplies it to the enroll method. Until this is done the MDM will not have any access to the enterprise.\n\nAfter calling enroll the MDM should call setAccount to specify the service account that will be allowed to act on behalf of the enterprise, which will be required for access to the enterprise's data through this API. Only one call of setAccount is allowed for a given enterprise; the only way to change the account later is to unenroll the enterprise and enroll it again (obtaining a new token).\n\nThe MDM can unenroll an enterprise in order to sever the binding between them. Re-enrolling an enterprise is possible, but requires a new token to be retrieved. Enterprises.unenroll requires the MDM's credentials (as enroll does), not the enterprise's. Enterprises.unenroll can only be used for enterprises that were previously enrolled with the enroll call. Any enterprises that were enrolled using the (deprecated) Enterprises.insert call must be unenrolled with Enterprises.delete and can then be re-enrolled using the Enterprises.enroll call.\n\nThe ID for an enterprise is an opaque string. It is returned by insert and enroll and can also be retrieved if the enterprise's primary domain is known using the list method.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID for the enterprise."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#enterprise\".",
+                  "default": "androidenterprise#enterprise"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the enterprise, e.g. \"Example Inc\"."
+                },
+                "primaryDomain": {
+                  "type": "string",
+                  "description": "The enterprise's primary domain, e.g. \"example.com\"."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises [/androidenterprise/v1/enterprises{?domain}]
+
+#### androidenterprise.enterprises.insert [POST]
+
++ Parameters
+
+    + token (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An enterprise resource represents a binding between an organisation and their MDM.\n\nTo create an enterprise, an admin of the enterprise must first go through a Play for Work sign-up flow. At the end of this the admin will be presented with a token (a short opaque alphanumeric string). They must then present this to the MDM, who then supplies it to the enroll method. Until this is done the MDM will not have any access to the enterprise.\n\nAfter calling enroll the MDM should call setAccount to specify the service account that will be allowed to act on behalf of the enterprise, which will be required for access to the enterprise's data through this API. Only one call of setAccount is allowed for a given enterprise; the only way to change the account later is to unenroll the enterprise and enroll it again (obtaining a new token).\n\nThe MDM can unenroll an enterprise in order to sever the binding between them. Re-enrolling an enterprise is possible, but requires a new token to be retrieved. Enterprises.unenroll requires the MDM's credentials (as enroll does), not the enterprise's. Enterprises.unenroll can only be used for enterprises that were previously enrolled with the enroll call. Any enterprises that were enrolled using the (deprecated) Enterprises.insert call must be unenrolled with Enterprises.delete and can then be re-enrolled using the Enterprises.enroll call.\n\nThe ID for an enterprise is an opaque string. It is returned by insert and enroll and can also be retrieved if the enterprise's primary domain is known using the list method.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID for the enterprise."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#enterprise\".",
+                  "default": "androidenterprise#enterprise"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the enterprise, e.g. \"Example Inc\"."
+                },
+                "primaryDomain": {
+                  "type": "string",
+                  "description": "The enterprise's primary domain, e.g. \"example.com\"."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.enterprises.list [GET]
+
++ Parameters
+
+    + domain (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/account [/enterprises/{enterpriseId}/account]
+
+#### androidenterprise.enterprises.setAccount [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A service account that can be used to authenticate as the enterprise to API calls that require such authentication.",
+              "properties": {
+                "accountEmail": {
+                  "type": "string",
+                  "description": "The email address of the service account."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#enterpriseAccount\".",
+                  "default": "androidenterprise#enterpriseAccount"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/unenroll [/enterprises/{enterpriseId}/unenroll]
+
+#### androidenterprise.enterprises.unenroll [POST]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId} [/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}{?install}]
+
+#### androidenterprise.entitlements.delete [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + entitlementId (required)
+
++ Response 200
+
+#### androidenterprise.entitlements.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + entitlementId (required)
+
++ Response 200
+
+#### androidenterprise.entitlements.patch [PATCH]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + entitlementId (required)
+  
+    + install
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The existence of an entitlement resource means that a user has the right to use a particular app on any of their devices. This might be because the app is free or because they have been allocated a license to the app from a group license purchased by the enterprise.\n\nIt should always be true that a user has an app installed on one of their devices only if they have an entitlement to it. So if an entitlement is deleted, the app will be uninstalled from all devices. Similarly if the user installs an app (and is permitted to do so), or the MDM triggers an install of the app, an entitlement to that app is automatically created. If this is impossible - e.g. the enterprise has not purchased sufficient licenses - then installation fails.\n\nNote that entitlements are always user specific, not device specific; a user may have an entitlement even though they have not installed the app anywhere. Once they have an entitlement they can install the app on multiple devices.\n\nThe API can be used to create an entitlement. If the app is a free app, a group license for that app is created. If it's a paid app, creating the entitlement consumes one license; it remains consumed until the entitlement is removed. Optionally an installation of the app on all the user's managed devices can be triggered at the time the entitlement is created. An entitlement cannot be created for an app if the app requires permissions that the enterprise has not yet accepted.\n\nEntitlements for paid apps that are due to purchases by the user on a non-managed profile will have \"userPurchase\" as entitlement reason; those entitlements cannot be removed via the API.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#entitlement\".",
+                  "default": "androidenterprise#entitlement"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "The ID of the product that the entitlement is for, e.g. \"app:com.google.android.gm\"."
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "The reason for the entitlement, e.g. \"free\" for free apps. This is temporary, it will be replaced by the acquisition kind field of group licenses."
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.entitlements.update [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + entitlementId (required)
+  
+    + install
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The existence of an entitlement resource means that a user has the right to use a particular app on any of their devices. This might be because the app is free or because they have been allocated a license to the app from a group license purchased by the enterprise.\n\nIt should always be true that a user has an app installed on one of their devices only if they have an entitlement to it. So if an entitlement is deleted, the app will be uninstalled from all devices. Similarly if the user installs an app (and is permitted to do so), or the MDM triggers an install of the app, an entitlement to that app is automatically created. If this is impossible - e.g. the enterprise has not purchased sufficient licenses - then installation fails.\n\nNote that entitlements are always user specific, not device specific; a user may have an entitlement even though they have not installed the app anywhere. Once they have an entitlement they can install the app on multiple devices.\n\nThe API can be used to create an entitlement. If the app is a free app, a group license for that app is created. If it's a paid app, creating the entitlement consumes one license; it remains consumed until the entitlement is removed. Optionally an installation of the app on all the user's managed devices can be triggered at the time the entitlement is created. An entitlement cannot be created for an app if the app requires permissions that the enterprise has not yet accepted.\n\nEntitlements for paid apps that are due to purchases by the user on a non-managed profile will have \"userPurchase\" as entitlement reason; those entitlements cannot be removed via the API.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#entitlement\".",
+                  "default": "androidenterprise#entitlement"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "The ID of the product that the entitlement is for, e.g. \"app:com.google.android.gm\"."
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "The reason for the entitlement, e.g. \"free\" for free apps. This is temporary, it will be replaced by the acquisition kind field of group licenses."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/entitlements [/enterprises/{enterpriseId}/users/{userId}/entitlements]
+
+#### androidenterprise.entitlements.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/groupLicenses/{groupLicenseId} [/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}]
+
+#### androidenterprise.grouplicenses.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + groupLicenseId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/groupLicenses [/enterprises/{enterpriseId}/groupLicenses]
+
+#### androidenterprise.grouplicenses.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users [/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users]
+
+#### androidenterprise.grouplicenseusers.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + groupLicenseId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId} [/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}]
+
+#### androidenterprise.installs.delete [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+  
+    + installId (required)
+
++ Response 200
+
+#### androidenterprise.installs.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+  
+    + installId (required)
+
++ Response 200
+
+#### androidenterprise.installs.patch [PATCH]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+  
+    + installId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The existence of an install resource indicates that an app is installed on a particular device (or that an install is pending).\n\nThe API can be used to create an install resource using the update method. This triggers the actual install of the app on the device. If the user does not already have an entitlement for the app then an attempt is made to create one. If this fails (e.g. because the app is not free and there is no available license) then the creation of the install fails.\n\nThe API can also be used to update an installed app. If the update method is used on an existing install then the app will be updated to the latest available version.\n\nNote that it is not possible to force the installation of a specific version of an app; the version code is read-only.\n\nIf a user installs an app themselves (as permitted by the enterprise), then again an install resource and possibly an entitlement resource are automatically created.\n\nThe API can also be used to delete an install resource, which triggers the removal of the app from the device. Note that deleting an install does not automatically remove the corresponding entitlement, even if there are no remaining installs. The install resource will also be deleted if the user uninstalls the app themselves.",
+              "properties": {
+                "installState": {
+                  "type": "string",
+                  "description": "Install state. The state \"installPending\" means that an install request has recently been made and download to the device is in progress. The state \"installed\" means that the app has been installed. This field is read-only."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#install\".",
+                  "default": "androidenterprise#install"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "The ID of the product that the install is for, e.g. \"app:com.google.android.gm\"."
+                },
+                "versionCode": {
+                  "type": "integer",
+                  "description": "The version of the installed product. Guaranteed to be set only if the install state is \"installed\".",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+#### androidenterprise.installs.update [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+  
+    + installId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The existence of an install resource indicates that an app is installed on a particular device (or that an install is pending).\n\nThe API can be used to create an install resource using the update method. This triggers the actual install of the app on the device. If the user does not already have an entitlement for the app then an attempt is made to create one. If this fails (e.g. because the app is not free and there is no available license) then the creation of the install fails.\n\nThe API can also be used to update an installed app. If the update method is used on an existing install then the app will be updated to the latest available version.\n\nNote that it is not possible to force the installation of a specific version of an app; the version code is read-only.\n\nIf a user installs an app themselves (as permitted by the enterprise), then again an install resource and possibly an entitlement resource are automatically created.\n\nThe API can also be used to delete an install resource, which triggers the removal of the app from the device. Note that deleting an install does not automatically remove the corresponding entitlement, even if there are no remaining installs. The install resource will also be deleted if the user uninstalls the app themselves.",
+              "properties": {
+                "installState": {
+                  "type": "string",
+                  "description": "Install state. The state \"installPending\" means that an install request has recently been made and download to the device is in progress. The state \"installed\" means that the app has been installed. This field is read-only."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#install\".",
+                  "default": "androidenterprise#install"
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "The ID of the product that the install is for, e.g. \"app:com.google.android.gm\"."
+                },
+                "versionCode": {
+                  "type": "integer",
+                  "description": "The version of the installed product. Guaranteed to be set only if the install state is \"installed\".",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs [/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs]
+
+#### androidenterprise.installs.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+  
+    + deviceId (required)
+
++ Response 200
+
+### Resource /permissions/{permissionId} [/androidenterprise/v1/permissions/{permissionId}{?language}]
+
+#### androidenterprise.permissions.get [GET]
+
++ Parameters
+
+    + permissionId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/products/{productId}/approve [/enterprises/{enterpriseId}/products/{productId}/approve]
+
+#### androidenterprise.products.approve [POST]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "approvalUrlInfo": {
+                  "type": "object",
+                  "description": "Information on an approval URL.",
+                  "properties": {
+                    "approvalUrl": {
+                      "type": "string",
+                      "description": "A URL that displays a product's permissions and that can also be used to approve the product with the Products.approve call."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#approvalUrlInfo\".",
+                      "default": "androidenterprise#approvalUrlInfo"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl [/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl{?languageCode}]
+
+#### androidenterprise.products.generateApprovalUrl [POST]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+  
+    + languageCode
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/products/{productId} [/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}{?language}]
+
+#### androidenterprise.products.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema [/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema{?language}]
+
+#### androidenterprise.products.getAppRestrictionsSchema [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+  
+    + language
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/products/{productId}/permissions [/enterprises/{enterpriseId}/products/{productId}/permissions]
+
+#### androidenterprise.products.getPermissions [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+
++ Response 200
+
+#### androidenterprise.products.updatePermissions [PUT]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + productId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Information about the permissions required by a specific app and whether they have been accepted by the enterprise.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"androidenterprise#productPermissions\".",
+                  "default": "androidenterprise#productPermissions"
+                },
+                "permission": {
+                  "type": "array",
+                  "description": "The permissions required by the app.",
+                  "items": {
+                    "type": "object",
+                    "description": "A product permissions resource represents the set of permissions required by a specific app and whether or not they have been accepted by an enterprise admin.\n\nThe API can be used to read the set of permissions, and also to update the set to indicate that permissions have been accepted.",
+                    "properties": {
+                      "permissionId": {
+                        "type": "string",
+                        "description": "An opaque string uniquely identifying the permission."
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "Whether the permission has been accepted or not."
+                      }
+                    }
+                  }
+                },
+                "productId": {
+                  "type": "string",
+                  "description": "The ID of the app that the permissions relate to, e.g. \"app:com.google.android.gm\"."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId}/token [/enterprises/{enterpriseId}/users/{userId}/token]
+
+#### androidenterprise.users.generateToken [POST]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+
++ Response 200
+
+#### androidenterprise.users.revokeToken [DELETE]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users/{userId} [/enterprises/{enterpriseId}/users/{userId}]
+
+#### androidenterprise.users.get [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + userId (required)
+
++ Response 200
+
+### Resource /enterprises/{enterpriseId}/users [/androidenterprise/v1/enterprises/{enterpriseId}/users{?email}]
+
+#### androidenterprise.users.list [GET]
+
++ Parameters
+
+    + enterpriseId (required)
+  
+    + email (required)
+
++ Response 200
+

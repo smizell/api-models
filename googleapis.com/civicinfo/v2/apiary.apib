@@ -1,0 +1,68 @@
+FORMAT: 1A
+
+# Google Civic Information API
+
+An API for accessing civic information.
+
+### Resource /divisions [/civicinfo/v2/divisions{?query}]
+
+#### civicinfo.divisions.search [GET]
+
++ Parameters
+
+    + query
+
++ Response 200
+
+### Resource /elections [/elections]
+
+#### civicinfo.elections.electionQuery [GET]
+
++ Response 200
+
+### Resource /voterinfo [/civicinfo/v2/voterinfo{?address,electionId,officialOnly}]
+
+#### civicinfo.elections.voterInfoQuery [GET]
+
++ Parameters
+
+    + address (required)
+  
+    + electionId
+  
+    + officialOnly
+
++ Response 200
+
+### Resource /representatives [/civicinfo/v2/representatives{?address,includeOffices,levels,roles}]
+
+#### civicinfo.representatives.representativeInfoByAddress [GET]
+
++ Parameters
+
+    + address
+  
+    + includeOffices
+  
+    + levels
+  
+    + roles
+
++ Response 200
+
+### Resource /representatives/{ocdId} [/civicinfo/v2/representatives/{ocdId}{?levels,recursive,roles}]
+
+#### civicinfo.representatives.representativeInfoByDivision [GET]
+
++ Parameters
+
+    + ocdId (required)
+  
+    + levels
+  
+    + recursive
+  
+    + roles
+
++ Response 200
+

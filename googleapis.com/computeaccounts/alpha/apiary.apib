@@ -1,0 +1,421 @@
+FORMAT: 1A
+
+# Compute Accounts API
+
+API for the Google Compute Accounts service.
+
+### Resource /{project}/global/operations/{operation} [/{project}/global/operations/{operation}]
+
+#### computeaccounts.globalAccountsOperations.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + operation (required)
+
++ Response 200
+
+#### computeaccounts.globalAccountsOperations.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + operation (required)
+
++ Response 200
+
+### Resource /{project}/global/operations [/computeaccounts/alpha/projects/{project}/global/operations{?filter,maxResults,orderBy,pageToken}]
+
+#### computeaccounts.globalAccountsOperations.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + filter
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/global/groups/{groupName}/addMember [/{project}/global/groups/{groupName}/addMember]
+
+#### computeaccounts.groups.addMember [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + groupName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "users": {
+                  "type": "array",
+                  "description": "Fully-qualified URLs of the User resources to add.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/global/groups/{groupName} [/{project}/global/groups/{groupName}]
+
+#### computeaccounts.groups.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + groupName (required)
+
++ Response 200
+
+#### computeaccounts.groups.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + groupName (required)
+
++ Response 200
+
+### Resource /{project}/global/groups [/computeaccounts/alpha/projects/{project}/global/groups{?filter,maxResults,orderBy,pageToken}]
+
+#### computeaccounts.groups.insert [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Group resource.",
+              "properties": {
+                "creationTimestamp": {
+                  "type": "string",
+                  "description": "[Output Only] Creation timestamp in RFC3339 text format."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An optional textual description of the resource; provided by the client when the resource is created."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+                  "format": "uint64"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "[Output Only] Type of the resource. Always computeaccounts#group for groups.",
+                  "default": "computeaccounts#group"
+                },
+                "members": {
+                  "type": "array",
+                  "description": "[Output Only] A list of URLs to User resources who belong to the group. Users may only be members of groups in the same project.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the resource; provided by the client when the resource is created.",
+                  "pattern": "[a-z][-a-z0-9_]{0,31}"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "[Output Only] Server defined URL for the resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### computeaccounts.groups.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + filter
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/global/groups/{groupName}/removeMember [/{project}/global/groups/{groupName}/removeMember]
+
+#### computeaccounts.groups.removeMember [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + groupName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "users": {
+                  "type": "array",
+                  "description": "Fully-qualified URLs of the User resources to remove.",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/authorizedKeysView/{user} [/computeaccounts/alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}{?instance}]
+
+#### computeaccounts.linux.getAuthorizedKeysView [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + user (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /{project}/zones/{zone}/linuxAccountViews [/computeaccounts/alpha/projects/{project}/zones/{zone}/linuxAccountViews{?instance,filter,maxResults,orderBy,pageToken,user}]
+
+#### computeaccounts.linux.getLinuxAccountViews [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + zone (required)
+  
+    + instance (required)
+  
+    + filter
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+  
+    + user
+
++ Response 200
+
+### Resource /{project}/global/users/{user}/addPublicKey [/{project}/global/users/{user}/addPublicKey]
+
+#### computeaccounts.users.addPublicKey [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + user (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A public key for authenticating to guests.",
+              "properties": {
+                "creationTimestamp": {
+                  "type": "string",
+                  "description": "[Output Only] Creation timestamp in RFC3339 text format."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An optional textual description of the resource; provided by the client when the resource is created."
+                },
+                "expirationTimestamp": {
+                  "type": "string",
+                  "description": "Optional expiration timestamp. If provided, the timestamp must be in RFC3339 text format. If not provided, the public key never expires."
+                },
+                "fingerprint": {
+                  "type": "string",
+                  "description": "[Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key."
+                },
+                "key": {
+                  "type": "string",
+                  "description": "Public key text in SSH format, defined by RFC4253 section 6.6."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/global/users/{user} [/{project}/global/users/{user}]
+
+#### computeaccounts.users.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + user (required)
+
++ Response 200
+
+#### computeaccounts.users.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + user (required)
+
++ Response 200
+
+### Resource /{project}/global/users [/computeaccounts/alpha/projects/{project}/global/users{?filter,maxResults,orderBy,pageToken}]
+
+#### computeaccounts.users.insert [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A User resource.",
+              "properties": {
+                "creationTimestamp": {
+                  "type": "string",
+                  "description": "[Output Only] Creation timestamp in RFC3339 text format."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "An optional textual description of the resource; provided by the client when the resource is created."
+                },
+                "groups": {
+                  "type": "array",
+                  "description": "[Output Only] A list of URLs to Group resources who contain the user. Users are only members of groups in the same project.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "[Output Only] Unique identifier for the resource; defined by the server.",
+                  "format": "uint64"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "[Output Only] Type of the resource. Always computeaccounts#user for users.",
+                  "default": "computeaccounts#user"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the resource; provided by the client when the resource is created.",
+                  "pattern": "[a-z][-a-z0-9_]{0,31}"
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "Email address of account's owner. This account will be validated to make sure it exists. The email can belong to any domain, but it must be tied to a Google account."
+                },
+                "publicKeys": {
+                  "type": "array",
+                  "description": "[Output Only] Public keys that this user may use to login.",
+                  "items": {
+                    "type": "object",
+                    "description": "A public key for authenticating to guests.",
+                    "properties": {
+                      "creationTimestamp": {
+                        "type": "string",
+                        "description": "[Output Only] Creation timestamp in RFC3339 text format."
+                      },
+                      "description": {
+                        "type": "string",
+                        "description": "An optional textual description of the resource; provided by the client when the resource is created."
+                      },
+                      "expirationTimestamp": {
+                        "type": "string",
+                        "description": "Optional expiration timestamp. If provided, the timestamp must be in RFC3339 text format. If not provided, the public key never expires."
+                      },
+                      "fingerprint": {
+                        "type": "string",
+                        "description": "[Output Only] The fingerprint of the key is defined by RFC4716 to be the MD5 digest of the public key."
+                      },
+                      "key": {
+                        "type": "string",
+                        "description": "Public key text in SSH format, defined by RFC4253 section 6.6."
+                      }
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "[Output Only] Server defined URL for the resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### computeaccounts.users.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + filter
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/global/users/{user}/removePublicKey [/computeaccounts/alpha/projects/{project}/global/users/{user}/removePublicKey{?fingerprint}]
+
+#### computeaccounts.users.removePublicKey [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + user (required)
+  
+    + fingerprint (required)
+
++ Response 200
+

@@ -1,0 +1,124 @@
+FORMAT: 1A
+
+# Blogger API
+
+API for access to the data within Blogger.
+
+### Resource /blogs/{blogId} [/blogs/{blogId}]
+
+#### blogger.blogs.get [GET]
+
++ Parameters
+
+    + blogId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments/{commentId} [/blogs/{blogId}/posts/{postId}/comments/{commentId}]
+
+#### blogger.comments.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments [/blogger/v2/blogs/{blogId}/posts/{postId}/comments{?fetchBodies,maxResults,pageToken,startDate}]
+
+#### blogger.comments.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + fetchBodies
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startDate
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages/{pageId} [/blogs/{blogId}/pages/{pageId}]
+
+#### blogger.pages.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages [/blogger/v2/blogs/{blogId}/pages{?fetchBodies}]
+
+#### blogger.pages.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + fetchBodies
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId} [/blogs/{blogId}/posts/{postId}]
+
+#### blogger.posts.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts [/blogger/v2/blogs/{blogId}/posts{?fetchBodies,maxResults,pageToken,startDate}]
+
+#### blogger.posts.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + fetchBodies
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startDate
+
++ Response 200
+
+### Resource /users/{userId} [/users/{userId}]
+
+#### blogger.users.get [GET]
+
++ Parameters
+
+    + userId (required)
+
++ Response 200
+
+### Resource /users/{userId}/blogs [/users/{userId}/blogs]
+
+#### blogger.users.blogs.list [GET]
+
++ Parameters
+
+    + userId (required)
+
++ Response 200
+

@@ -1,0 +1,1375 @@
+FORMAT: 1A
+
+# Books API
+
+Lets you search for books and manage your Google Books library.
+
+### Resource /users/{userId}/bookshelves/{shelf} [/books/v1/users/{userId}/bookshelves/{shelf}{?source}]
+
+#### books.bookshelves.get [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + shelf (required)
+  
+    + source
+
++ Response 200
+
+### Resource /users/{userId}/bookshelves [/books/v1/users/{userId}/bookshelves{?source}]
+
+#### books.bookshelves.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + source
+
++ Response 200
+
+### Resource /users/{userId}/bookshelves/{shelf}/volumes [/books/v1/users/{userId}/bookshelves/{shelf}/volumes{?maxResults,showPreorders,source,startIndex}]
+
+#### books.bookshelves.volumes.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + shelf (required)
+  
+    + maxResults
+  
+    + showPreorders
+  
+    + source
+  
+    + startIndex
+
++ Response 200
+
+### Resource /cloudloading/addBook [/books/v1/cloudloading/addBook{?drive_document_id,mime_type,name,upload_client_token}]
+
+#### books.cloudloading.addBook [POST]
+
++ Parameters
+
+    + drive_document_id
+  
+    + mime_type
+  
+    + name
+  
+    + upload_client_token
+
++ Response 200
+
+### Resource /cloudloading/deleteBook [/books/v1/cloudloading/deleteBook{?volumeId}]
+
+#### books.cloudloading.deleteBook [POST]
+
++ Parameters
+
+    + volumeId (required)
+
++ Response 200
+
+### Resource /cloudloading/updateBook [/cloudloading/updateBook]
+
+#### books.cloudloading.updateBook [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "string"
+                },
+                "processingState": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "volumeId": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /dictionary/listOfflineMetadata [/books/v1/dictionary/listOfflineMetadata{?cpksver}]
+
+#### books.dictionary.listOfflineMetadata [GET]
+
++ Parameters
+
+    + cpksver (required)
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layersummary/{summaryId} [/books/v1/volumes/{volumeId}/layersummary/{summaryId}{?contentVersion,source}]
+
+#### books.layers.get [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + summaryId (required)
+  
+    + contentVersion
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layersummary [/books/v1/volumes/{volumeId}/layersummary{?contentVersion,maxResults,pageToken,source}]
+
+#### books.layers.list [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + contentVersion
+  
+    + maxResults
+  
+    + pageToken
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layers/{layerId}/data/{annotationDataId} [/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}{?contentVersion,allowWebDefinitions,h,locale,scale,source,w}]
+
+#### books.layers.annotationData.get [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + layerId (required)
+  
+    + annotationDataId (required)
+  
+    + contentVersion (required)
+  
+    + allowWebDefinitions
+  
+    + h
+  
+    + locale
+  
+    + scale
+  
+    + source
+  
+    + w
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layers/{layerId}/data [/books/v1/volumes/{volumeId}/layers/{layerId}/data{?contentVersion,annotationDataId,h,locale,maxResults,pageToken,scale,source,updatedMax,updatedMin,w}]
+
+#### books.layers.annotationData.list [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + layerId (required)
+  
+    + contentVersion (required)
+  
+    + annotationDataId
+  
+    + h
+  
+    + locale
+  
+    + maxResults
+  
+    + pageToken
+  
+    + scale
+  
+    + source
+  
+    + updatedMax
+  
+    + updatedMin
+  
+    + w
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layers/{layerId}/annotations/{annotationId} [/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}{?locale,source}]
+
+#### books.layers.volumeAnnotations.get [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + layerId (required)
+  
+    + annotationId (required)
+  
+    + locale
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/{volumeId}/layers/{layerId} [/books/v1/volumes/{volumeId}/layers/{layerId}{?contentVersion,endOffset,endPosition,locale,maxResults,pageToken,showDeleted,source,startOffset,startPosition,updatedMax,updatedMin,volumeAnnotationsVersion}]
+
+#### books.layers.volumeAnnotations.list [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + layerId (required)
+  
+    + contentVersion (required)
+  
+    + endOffset
+  
+    + endPosition
+  
+    + locale
+  
+    + maxResults
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + source
+  
+    + startOffset
+  
+    + startPosition
+  
+    + updatedMax
+  
+    + updatedMin
+  
+    + volumeAnnotationsVersion
+
++ Response 200
+
+### Resource /myconfig/getUserSettings [/myconfig/getUserSettings]
+
+#### books.myconfig.getUserSettings [GET]
+
++ Response 200
+
+### Resource /myconfig/releaseDownloadAccess [/books/v1/myconfig/releaseDownloadAccess{?volumeIds,cpksver,locale,source}]
+
+#### books.myconfig.releaseDownloadAccess [POST]
+
++ Parameters
+
+    + volumeIds (required)
+  
+    + cpksver (required)
+  
+    + locale
+  
+    + source
+
++ Response 200
+
+### Resource /myconfig/requestAccess [/books/v1/myconfig/requestAccess{?source,volumeId,nonce,cpksver,licenseTypes,locale}]
+
+#### books.myconfig.requestAccess [POST]
+
++ Parameters
+
+    + source (required)
+  
+    + volumeId (required)
+  
+    + nonce (required)
+  
+    + cpksver (required)
+  
+    + licenseTypes
+  
+    + locale
+
++ Response 200
+
+### Resource /myconfig/syncVolumeLicenses [/books/v1/myconfig/syncVolumeLicenses{?source,nonce,cpksver,features,locale,showPreorders,volumeIds}]
+
+#### books.myconfig.syncVolumeLicenses [POST]
+
++ Parameters
+
+    + source (required)
+  
+    + nonce (required)
+  
+    + cpksver (required)
+  
+    + features
+  
+    + locale
+  
+    + showPreorders
+  
+    + volumeIds
+
++ Response 200
+
+### Resource /myconfig/updateUserSettings [/myconfig/updateUserSettings]
+
+#### books.myconfig.updateUserSettings [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "books#usersettings"
+                },
+                "notesExport": {
+                  "type": "object",
+                  "description": "User settings in sub-objects, each for different purposes.",
+                  "properties": {
+                    "folderName": {
+                      "type": "string"
+                    },
+                    "isEnabled": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /mylibrary/annotations/{annotationId} [/books/v1/mylibrary/annotations/{annotationId}{?source}]
+
+#### books.mylibrary.annotations.delete [DELETE]
+
++ Parameters
+
+    + annotationId (required)
+  
+    + source
+
++ Response 200
+
+#### books.mylibrary.annotations.update [PUT]
+
++ Parameters
+
+    + annotationId (required)
+  
+    + source
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "afterSelectedText": {
+                  "type": "string",
+                  "description": "Anchor text after excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty."
+                },
+                "beforeSelectedText": {
+                  "type": "string",
+                  "description": "Anchor text before excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty."
+                },
+                "clientVersionRanges": {
+                  "type": "object",
+                  "description": "Selection ranges sent from the client.",
+                  "properties": {
+                    "cfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "contentVersion": {
+                      "type": "string",
+                      "description": "Content version the client sent in."
+                    },
+                    "gbImageRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "gbTextRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "imageCfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    }
+                  }
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Timestamp for the created time of this annotation.",
+                  "format": "date-time"
+                },
+                "currentVersionRanges": {
+                  "type": "object",
+                  "description": "Selection ranges for the most recent content version.",
+                  "properties": {
+                    "cfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "contentVersion": {
+                      "type": "string",
+                      "description": "Content version applicable to ranges below."
+                    },
+                    "gbImageRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "gbTextRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "imageCfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "string",
+                  "description": "User-created data for this annotation."
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Indicates that this annotation is deleted."
+                },
+                "highlightStyle": {
+                  "type": "string",
+                  "description": "The highlight style for this annotation."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Id of this annotation, in the form of a GUID."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "books#annotation"
+                },
+                "layerId": {
+                  "type": "string",
+                  "description": "The layer this annotation is for."
+                },
+                "layerSummary": {
+                  "type": "object",
+                  "properties": {
+                    "allowedCharacterCount": {
+                      "type": "integer",
+                      "description": "Maximum allowed characters on this layer, especially for the \"copy\" layer.",
+                      "format": "int32"
+                    },
+                    "limitType": {
+                      "type": "string",
+                      "description": "Type of limitation on this layer. \"limited\" or \"unlimited\" for the \"copy\" layer."
+                    },
+                    "remainingCharacterCount": {
+                      "type": "integer",
+                      "description": "Remaining allowed characters on this layer, especially for the \"copy\" layer.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "pageIds": {
+                  "type": "array",
+                  "description": "Pages that this annotation spans.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selectedText": {
+                  "type": "string",
+                  "description": "Excerpt from the volume."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL to this resource."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Timestamp for the last time this annotation was modified.",
+                  "format": "date-time"
+                },
+                "volumeId": {
+                  "type": "string",
+                  "description": "The volume that this annotation belongs to."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /mylibrary/annotations [/books/v1/mylibrary/annotations{?contentVersion,layerId,layerIds,maxResults,pageToken,showDeleted,source,updatedMax,updatedMin,volumeId}]
+
+#### books.mylibrary.annotations.insert [POST]
+
++ Parameters
+
+    + country
+  
+    + showOnlySummaryInResponse
+  
+    + source
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "afterSelectedText": {
+                  "type": "string",
+                  "description": "Anchor text after excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty."
+                },
+                "beforeSelectedText": {
+                  "type": "string",
+                  "description": "Anchor text before excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty."
+                },
+                "clientVersionRanges": {
+                  "type": "object",
+                  "description": "Selection ranges sent from the client.",
+                  "properties": {
+                    "cfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "contentVersion": {
+                      "type": "string",
+                      "description": "Content version the client sent in."
+                    },
+                    "gbImageRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "gbTextRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "imageCfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    }
+                  }
+                },
+                "created": {
+                  "type": "string",
+                  "description": "Timestamp for the created time of this annotation.",
+                  "format": "date-time"
+                },
+                "currentVersionRanges": {
+                  "type": "object",
+                  "description": "Selection ranges for the most recent content version.",
+                  "properties": {
+                    "cfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "contentVersion": {
+                      "type": "string",
+                      "description": "Content version applicable to ranges below."
+                    },
+                    "gbImageRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "gbTextRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    },
+                    "imageCfiRange": {
+                      "type": "object",
+                      "properties": {
+                        "endOffset": {
+                          "type": "string",
+                          "description": "The offset from the ending position."
+                        },
+                        "endPosition": {
+                          "type": "string",
+                          "description": "The ending position for the range."
+                        },
+                        "startOffset": {
+                          "type": "string",
+                          "description": "The offset from the starting position."
+                        },
+                        "startPosition": {
+                          "type": "string",
+                          "description": "The starting position for the range."
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "type": "string",
+                  "description": "User-created data for this annotation."
+                },
+                "deleted": {
+                  "type": "boolean",
+                  "description": "Indicates that this annotation is deleted."
+                },
+                "highlightStyle": {
+                  "type": "string",
+                  "description": "The highlight style for this annotation."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Id of this annotation, in the form of a GUID."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "books#annotation"
+                },
+                "layerId": {
+                  "type": "string",
+                  "description": "The layer this annotation is for."
+                },
+                "layerSummary": {
+                  "type": "object",
+                  "properties": {
+                    "allowedCharacterCount": {
+                      "type": "integer",
+                      "description": "Maximum allowed characters on this layer, especially for the \"copy\" layer.",
+                      "format": "int32"
+                    },
+                    "limitType": {
+                      "type": "string",
+                      "description": "Type of limitation on this layer. \"limited\" or \"unlimited\" for the \"copy\" layer."
+                    },
+                    "remainingCharacterCount": {
+                      "type": "integer",
+                      "description": "Remaining allowed characters on this layer, especially for the \"copy\" layer.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "pageIds": {
+                  "type": "array",
+                  "description": "Pages that this annotation spans.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selectedText": {
+                  "type": "string",
+                  "description": "Excerpt from the volume."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "URL to this resource."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "Timestamp for the last time this annotation was modified.",
+                  "format": "date-time"
+                },
+                "volumeId": {
+                  "type": "string",
+                  "description": "The volume that this annotation belongs to."
+                }
+              }
+            }
+
++ Response 200
+
+#### books.mylibrary.annotations.list [GET]
+
++ Parameters
+
+    + contentVersion
+  
+    + layerId
+  
+    + layerIds
+  
+    + maxResults
+  
+    + pageToken
+  
+    + showDeleted
+  
+    + source
+  
+    + updatedMax
+  
+    + updatedMin
+  
+    + volumeId
+
++ Response 200
+
+### Resource /mylibrary/annotations/summary [/books/v1/mylibrary/annotations/summary{?layerIds,volumeId}]
+
+#### books.mylibrary.annotations.summary [POST]
+
++ Parameters
+
+    + layerIds (required)
+  
+    + volumeId (required)
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf}/addVolume [/books/v1/mylibrary/bookshelves/{shelf}/addVolume{?volumeId,reason,source}]
+
+#### books.mylibrary.bookshelves.addVolume [POST]
+
++ Parameters
+
+    + shelf (required)
+  
+    + volumeId (required)
+  
+    + reason
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf}/clearVolumes [/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes{?source}]
+
+#### books.mylibrary.bookshelves.clearVolumes [POST]
+
++ Parameters
+
+    + shelf (required)
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf} [/books/v1/mylibrary/bookshelves/{shelf}{?source}]
+
+#### books.mylibrary.bookshelves.get [GET]
+
++ Parameters
+
+    + shelf (required)
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves [/books/v1/mylibrary/bookshelves{?source}]
+
+#### books.mylibrary.bookshelves.list [GET]
+
++ Parameters
+
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf}/moveVolume [/books/v1/mylibrary/bookshelves/{shelf}/moveVolume{?volumeId,volumePosition,source}]
+
+#### books.mylibrary.bookshelves.moveVolume [POST]
+
++ Parameters
+
+    + shelf (required)
+  
+    + volumeId (required)
+  
+    + volumePosition (required)
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf}/removeVolume [/books/v1/mylibrary/bookshelves/{shelf}/removeVolume{?volumeId,reason,source}]
+
+#### books.mylibrary.bookshelves.removeVolume [POST]
+
++ Parameters
+
+    + shelf (required)
+  
+    + volumeId (required)
+  
+    + reason
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/bookshelves/{shelf}/volumes [/books/v1/mylibrary/bookshelves/{shelf}/volumes{?country,maxResults,projection,q,showPreorders,source,startIndex}]
+
+#### books.mylibrary.bookshelves.volumes.list [GET]
+
++ Parameters
+
+    + shelf (required)
+  
+    + country
+  
+    + maxResults
+  
+    + projection
+  
+    + q
+  
+    + showPreorders
+  
+    + source
+  
+    + startIndex
+
++ Response 200
+
+### Resource /mylibrary/readingpositions/{volumeId} [/books/v1/mylibrary/readingpositions/{volumeId}{?contentVersion,source}]
+
+#### books.mylibrary.readingpositions.get [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + contentVersion
+  
+    + source
+
++ Response 200
+
+### Resource /mylibrary/readingpositions/{volumeId}/setPosition [/books/v1/mylibrary/readingpositions/{volumeId}/setPosition{?timestamp,position,action,contentVersion,deviceCookie,source}]
+
+#### books.mylibrary.readingpositions.setPosition [POST]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + timestamp (required)
+  
+    + position (required)
+  
+    + action
+  
+    + contentVersion
+  
+    + deviceCookie
+  
+    + source
+
++ Response 200
+
+### Resource /onboarding/listCategories [/books/v1/onboarding/listCategories{?locale}]
+
+#### books.onboarding.listCategories [GET]
+
++ Parameters
+
+    + locale
+
++ Response 200
+
+### Resource /onboarding/listCategoryVolumes [/books/v1/onboarding/listCategoryVolumes{?categoryId,locale,maxAllowedMaturityRating,pageSize,pageToken}]
+
+#### books.onboarding.listCategoryVolumes [GET]
+
++ Parameters
+
+    + categoryId
+  
+    + locale
+  
+    + maxAllowedMaturityRating
+  
+    + pageSize
+  
+    + pageToken
+
++ Response 200
+
+### Resource /promooffer/accept [/books/v1/promooffer/accept{?androidId,device,manufacturer,model,offerId,product,serial,volumeId}]
+
+#### books.promooffer.accept [POST]
+
++ Parameters
+
+    + androidId
+  
+    + device
+  
+    + manufacturer
+  
+    + model
+  
+    + offerId
+  
+    + product
+  
+    + serial
+  
+    + volumeId
+
++ Response 200
+
+### Resource /promooffer/dismiss [/books/v1/promooffer/dismiss{?androidId,device,manufacturer,model,offerId,product,serial}]
+
+#### books.promooffer.dismiss [POST]
+
++ Parameters
+
+    + androidId
+  
+    + device
+  
+    + manufacturer
+  
+    + model
+  
+    + offerId
+  
+    + product
+  
+    + serial
+
++ Response 200
+
+### Resource /promooffer/get [/books/v1/promooffer/get{?androidId,device,manufacturer,model,product,serial}]
+
+#### books.promooffer.get [GET]
+
++ Parameters
+
+    + androidId
+  
+    + device
+  
+    + manufacturer
+  
+    + model
+  
+    + product
+  
+    + serial
+
++ Response 200
+
+### Resource /volumes/{volumeId} [/books/v1/volumes/{volumeId}{?country,partner,projection,source,user_library_consistent_read}]
+
+#### books.volumes.get [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + country
+  
+    + partner
+  
+    + projection
+  
+    + source
+  
+    + user_library_consistent_read
+
++ Response 200
+
+### Resource /volumes [/books/v1/volumes{?q,download,filter,langRestrict,libraryRestrict,maxResults,orderBy,partner,printType,projection,showPreorders,source,startIndex}]
+
+#### books.volumes.list [GET]
+
++ Parameters
+
+    + q (required)
+  
+    + download
+  
+    + filter
+  
+    + langRestrict
+  
+    + libraryRestrict
+  
+    + maxResults
+  
+    + orderBy
+  
+    + partner
+  
+    + printType
+  
+    + projection
+  
+    + showPreorders
+  
+    + source
+  
+    + startIndex
+
++ Response 200
+
+### Resource /volumes/{volumeId}/associated [/books/v1/volumes/{volumeId}/associated{?association,locale,maxAllowedMaturityRating,source}]
+
+#### books.volumes.associated.list [GET]
+
++ Parameters
+
+    + volumeId (required)
+  
+    + association
+  
+    + locale
+  
+    + maxAllowedMaturityRating
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/mybooks [/books/v1/volumes/mybooks{?acquireMethod,locale,maxResults,processingState,source,startIndex}]
+
+#### books.volumes.mybooks.list [GET]
+
++ Parameters
+
+    + acquireMethod
+  
+    + locale
+  
+    + maxResults
+  
+    + processingState
+  
+    + source
+  
+    + startIndex
+
++ Response 200
+
+### Resource /volumes/recommended [/books/v1/volumes/recommended{?locale,maxAllowedMaturityRating,source}]
+
+#### books.volumes.recommended.list [GET]
+
++ Parameters
+
+    + locale
+  
+    + maxAllowedMaturityRating
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/recommended/rate [/books/v1/volumes/recommended/rate{?rating,volumeId,locale,source}]
+
+#### books.volumes.recommended.rate [POST]
+
++ Parameters
+
+    + rating (required)
+  
+    + volumeId (required)
+  
+    + locale
+  
+    + source
+
++ Response 200
+
+### Resource /volumes/useruploaded [/books/v1/volumes/useruploaded{?locale,maxResults,processingState,source,startIndex,volumeId}]
+
+#### books.volumes.useruploaded.list [GET]
+
++ Parameters
+
+    + locale
+  
+    + maxResults
+  
+    + processingState
+  
+    + source
+  
+    + startIndex
+  
+    + volumeId
+
++ Response 200
+

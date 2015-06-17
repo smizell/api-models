@@ -1,0 +1,564 @@
+FORMAT: 1A
+
+# Google Cloud Logging API
+
+Google Cloud Logging API lets you create logs, ingest log entries, and manage log sinks.
+
+### Resource /v1beta3/projects/{projectsId}/logs [//v1beta3/projects/{projectsId}/logs{?serviceName,serviceIndexPrefix,pageSize,pageToken}]
+
+#### logging.projects.logs.list [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + serviceName
+  
+    + serviceIndexPrefix
+  
+    + pageSize
+  
+    + pageToken
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logs/{logsId} [/v1beta3/projects/{projectsId}/logs/{logsId}]
+
+#### logging.projects.logs.delete [DELETE]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logs/{logsId}/entries:write [/v1beta3/projects/{projectsId}/logs/{logsId}/entries:write]
+
+#### logging.projects.logs.entries.write [POST]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The parameters to WriteLogEntries.",
+              "properties": {
+                "commonLabels": {
+                  "type": "object",
+                  "description": "Metadata labels that apply to all entries in this request. If one of the log entries contains a (key, value) with the same key that is in `commonLabels`, then the entry's (key, value) overrides the one in `commonLabels`.",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "entries": {
+                  "type": "array",
+                  "description": "Log entries to insert.",
+                  "items": {
+                    "type": "object",
+                    "description": "An individual entry in a log.",
+                    "properties": {
+                      "metadata": {
+                        "type": "object",
+                        "description": "Additional data that is associated with a log entry, set by the service creating the log entry.",
+                        "properties": {
+                          "timestamp": {
+                            "type": "string",
+                            "description": "The time the event described by the log entry occurred. Timestamps must be later than January 1, 1970."
+                          },
+                          "severity": {
+                            "type": "string",
+                            "description": "The severity of the log entry.",
+                            "enum": [
+                              "DEFAULT",
+                              "DEBUG",
+                              "INFO",
+                              "NOTICE",
+                              "WARNING",
+                              "ERROR",
+                              "CRITICAL",
+                              "ALERT",
+                              "EMERGENCY"
+                            ]
+                          },
+                          "projectId": {
+                            "type": "string",
+                            "description": "The project ID of the Google Cloud Platform service that created the log entry."
+                          },
+                          "serviceName": {
+                            "type": "string",
+                            "description": "The API name of the Google Cloud Platform service that created the log entry. For example, `\"compute.googleapis.com\"`."
+                          },
+                          "region": {
+                            "type": "string",
+                            "description": "The region name of the Google Cloud Platform service that created the log entry. For example, `\"us-central1\"`."
+                          },
+                          "zone": {
+                            "type": "string",
+                            "description": "The zone of the Google Cloud Platform service that created the log entry. For example, `\"us-central1-a\"`."
+                          },
+                          "userId": {
+                            "type": "string",
+                            "description": "The fully-qualified email address of the authenticated user that performed or requested the action represented by the log entry. If the log entry does not apply to an action taken by an authenticated user, then the field should be empty."
+                          },
+                          "labels": {
+                            "type": "object",
+                            "description": "A set of (key, value) data that provides additional information about the log entry. If the log entry is from one of the Google Cloud Platform sources listed below, the indicated (key, value) information must be provided: Google App Engine, service_name `appengine.googleapis.com`: \"appengine.googleapis.com/module_id\",  \"appengine.googleapis.com/version_id\",  and one of: \"appengine.googleapis.com/replica_index\",  \"appengine.googleapis.com/clone_id\",  or else provide the following Compute Engine labels: Google Compute Engine, service_name `compute.googleapis.com`: \"compute.googleapis.com/resource_type\", \"instance\" \"compute.googleapis.com/resource_id\",",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "protoPayload": {
+                        "type": "object",
+                        "description": "The log entry payload, represented as a protocol buffer that is expressed as a JSON object. You can only pass `protoPayload` values that belong to a set of approved types.",
+                        "additionalProperties": {
+                          "description": "Properties of the object. Contains field @ype with type URL."
+                        }
+                      },
+                      "textPayload": {
+                        "type": "string",
+                        "description": "The log entry payload, represented as a text string."
+                      },
+                      "structPayload": {
+                        "type": "object",
+                        "description": "The log entry payload, represented as a structure that is expressed as a JSON object.",
+                        "additionalProperties": {
+                          "description": "Properties of the object."
+                        }
+                      },
+                      "insertId": {
+                        "type": "string",
+                        "description": "A unique ID for the log entry. If you provide this field, the logging service considers other log entries in the same log with the same ID as duplicates which can be removed."
+                      },
+                      "log": {
+                        "type": "string",
+                        "description": "The log to which this entry belongs. When a log entry is ingested, the value of this field is set by the logging system."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logs/{logsId}/sinks [/v1beta3/projects/{projectsId}/logs/{logsId}/sinks]
+
+#### logging.projects.logs.sinks.list [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+
++ Response 200
+
+#### logging.projects.logs.sinks.create [POST]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object that describes where a log may be written.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of this sink. This is a client-assigned identifier for the resource. This is ignored by UpdateLogSink and UpdateLogServicesSink."
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "The resource to send log entries to. The supported sink resource types are: + Google Cloud Storage: `storage.googleapis.com/BUCKET` or `BUCKET.storage.googleapis.com/` + Google BigQuery: `bigquery.googleapis.com/projects/PROJECT/datasets/DATASET` Currently the Cloud Logging API supports at most one sink for each resource type per log or log service resource."
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "_Output only._ All active errors found for this sink.",
+                  "items": {
+                    "type": "object",
+                    "description": "A problem in a sink or the sink's configuration.",
+                    "properties": {
+                      "resource": {
+                        "type": "string",
+                        "description": "The resource associated with the error. It may be different from the sink destination. For example, the sink may point to a BigQuery dataset, but the error may refer to a table resource inside the dataset."
+                      },
+                      "status": {
+                        "type": "object",
+                        "description": "Represents the RPC error status for Google APIs. See http://go/errormodel for details.",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "description": "The status code, which should be an enum value of [google.rpc.Code][].",
+                            "format": "int32"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "A developer-facing error message, which should be in English. The user-facing error message should be localized and stored in the [google.rpc.Status.details][google.rpc.Status.details] field."
+                          },
+                          "details": {
+                            "type": "array",
+                            "description": "A list of messages that carry the error details. There will be a common set of message types for APIs to use.",
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "description": "Properties of the object. Contains field @ype with type URL."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "timeNanos": {
+                        "type": "string",
+                        "description": "The last time the error was observed, in nanoseconds since the Unix epoch.",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logs/{logsId}/sinks/{sinksId} [/v1beta3/projects/{projectsId}/logs/{logsId}/sinks/{sinksId}]
+
+#### logging.projects.logs.sinks.get [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+  
+    + sinksId (required)
+
++ Response 200
+
+#### logging.projects.logs.sinks.update [PUT]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+  
+    + sinksId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object that describes where a log may be written.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of this sink. This is a client-assigned identifier for the resource. This is ignored by UpdateLogSink and UpdateLogServicesSink."
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "The resource to send log entries to. The supported sink resource types are: + Google Cloud Storage: `storage.googleapis.com/BUCKET` or `BUCKET.storage.googleapis.com/` + Google BigQuery: `bigquery.googleapis.com/projects/PROJECT/datasets/DATASET` Currently the Cloud Logging API supports at most one sink for each resource type per log or log service resource."
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "_Output only._ All active errors found for this sink.",
+                  "items": {
+                    "type": "object",
+                    "description": "A problem in a sink or the sink's configuration.",
+                    "properties": {
+                      "resource": {
+                        "type": "string",
+                        "description": "The resource associated with the error. It may be different from the sink destination. For example, the sink may point to a BigQuery dataset, but the error may refer to a table resource inside the dataset."
+                      },
+                      "status": {
+                        "type": "object",
+                        "description": "Represents the RPC error status for Google APIs. See http://go/errormodel for details.",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "description": "The status code, which should be an enum value of [google.rpc.Code][].",
+                            "format": "int32"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "A developer-facing error message, which should be in English. The user-facing error message should be localized and stored in the [google.rpc.Status.details][google.rpc.Status.details] field."
+                          },
+                          "details": {
+                            "type": "array",
+                            "description": "A list of messages that carry the error details. There will be a common set of message types for APIs to use.",
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "description": "Properties of the object. Contains field @ype with type URL."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "timeNanos": {
+                        "type": "string",
+                        "description": "The last time the error was observed, in nanoseconds since the Unix epoch.",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### logging.projects.logs.sinks.delete [DELETE]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logsId (required)
+  
+    + sinksId (required)
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logServices [//v1beta3/projects/{projectsId}/logServices{?log,pageSize,pageToken}]
+
+#### logging.projects.logServices.list [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + log
+  
+    + pageSize
+  
+    + pageToken
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logServices/{logServicesId}/indexes [//v1beta3/projects/{projectsId}/logServices/{logServicesId}/indexes{?indexPrefix,depth,log,pageSize,pageToken}]
+
+#### logging.projects.logServices.indexes.list [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+  
+    + indexPrefix
+  
+    + depth
+  
+    + log
+  
+    + pageSize
+  
+    + pageToken
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logServices/{logServicesId}/sinks [/v1beta3/projects/{projectsId}/logServices/{logServicesId}/sinks]
+
+#### logging.projects.logServices.sinks.list [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+
++ Response 200
+
+#### logging.projects.logServices.sinks.create [POST]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object that describes where a log may be written.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of this sink. This is a client-assigned identifier for the resource. This is ignored by UpdateLogSink and UpdateLogServicesSink."
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "The resource to send log entries to. The supported sink resource types are: + Google Cloud Storage: `storage.googleapis.com/BUCKET` or `BUCKET.storage.googleapis.com/` + Google BigQuery: `bigquery.googleapis.com/projects/PROJECT/datasets/DATASET` Currently the Cloud Logging API supports at most one sink for each resource type per log or log service resource."
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "_Output only._ All active errors found for this sink.",
+                  "items": {
+                    "type": "object",
+                    "description": "A problem in a sink or the sink's configuration.",
+                    "properties": {
+                      "resource": {
+                        "type": "string",
+                        "description": "The resource associated with the error. It may be different from the sink destination. For example, the sink may point to a BigQuery dataset, but the error may refer to a table resource inside the dataset."
+                      },
+                      "status": {
+                        "type": "object",
+                        "description": "Represents the RPC error status for Google APIs. See http://go/errormodel for details.",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "description": "The status code, which should be an enum value of [google.rpc.Code][].",
+                            "format": "int32"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "A developer-facing error message, which should be in English. The user-facing error message should be localized and stored in the [google.rpc.Status.details][google.rpc.Status.details] field."
+                          },
+                          "details": {
+                            "type": "array",
+                            "description": "A list of messages that carry the error details. There will be a common set of message types for APIs to use.",
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "description": "Properties of the object. Contains field @ype with type URL."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "timeNanos": {
+                        "type": "string",
+                        "description": "The last time the error was observed, in nanoseconds since the Unix epoch.",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /v1beta3/projects/{projectsId}/logServices/{logServicesId}/sinks/{sinksId} [/v1beta3/projects/{projectsId}/logServices/{logServicesId}/sinks/{sinksId}]
+
+#### logging.projects.logServices.sinks.get [GET]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+  
+    + sinksId (required)
+
++ Response 200
+
+#### logging.projects.logServices.sinks.update [PUT]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+  
+    + sinksId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An object that describes where a log may be written.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of this sink. This is a client-assigned identifier for the resource. This is ignored by UpdateLogSink and UpdateLogServicesSink."
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "The resource to send log entries to. The supported sink resource types are: + Google Cloud Storage: `storage.googleapis.com/BUCKET` or `BUCKET.storage.googleapis.com/` + Google BigQuery: `bigquery.googleapis.com/projects/PROJECT/datasets/DATASET` Currently the Cloud Logging API supports at most one sink for each resource type per log or log service resource."
+                },
+                "errors": {
+                  "type": "array",
+                  "description": "_Output only._ All active errors found for this sink.",
+                  "items": {
+                    "type": "object",
+                    "description": "A problem in a sink or the sink's configuration.",
+                    "properties": {
+                      "resource": {
+                        "type": "string",
+                        "description": "The resource associated with the error. It may be different from the sink destination. For example, the sink may point to a BigQuery dataset, but the error may refer to a table resource inside the dataset."
+                      },
+                      "status": {
+                        "type": "object",
+                        "description": "Represents the RPC error status for Google APIs. See http://go/errormodel for details.",
+                        "properties": {
+                          "code": {
+                            "type": "integer",
+                            "description": "The status code, which should be an enum value of [google.rpc.Code][].",
+                            "format": "int32"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "A developer-facing error message, which should be in English. The user-facing error message should be localized and stored in the [google.rpc.Status.details][google.rpc.Status.details] field."
+                          },
+                          "details": {
+                            "type": "array",
+                            "description": "A list of messages that carry the error details. There will be a common set of message types for APIs to use.",
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": {
+                                "description": "Properties of the object. Contains field @ype with type URL."
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "timeNanos": {
+                        "type": "string",
+                        "description": "The last time the error was observed, in nanoseconds since the Unix epoch.",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### logging.projects.logServices.sinks.delete [DELETE]
+
++ Parameters
+
+    + projectsId (required)
+  
+    + logServicesId (required)
+  
+    + sinksId (required)
+
++ Response 200
+

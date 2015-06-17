@@ -1,0 +1,1788 @@
+FORMAT: 1A
+
+# Google Dataflow API
+
+Google Dataflow API.
+
+### Resource /{projectId}/jobs [/v1b3/projects/{projectId}/jobs{?pageSize,pageToken,view}]
+
+#### dataflow.projects.jobs.create [POST]
+
++ Parameters
+
+    + projectId (required)
+  
+    + replaceJobId
+  
+    + view
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "clientRequestId": {
+                  "type": "string"
+                },
+                "createTime": {
+                  "type": "string"
+                },
+                "currentState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "currentStateTime": {
+                  "type": "string"
+                },
+                "environment": {
+                  "type": "object",
+                  "properties": {
+                    "clusterManagerApiService": {
+                      "type": "string"
+                    },
+                    "dataset": {
+                      "type": "string"
+                    },
+                    "experiments": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sdkPipelineOptions": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "tempStoragePrefix": {
+                      "type": "string"
+                    },
+                    "userAgent": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "version": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "workerPools": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "autoscalingSettings": {
+                            "type": "object",
+                            "properties": {
+                              "algorithm": {
+                                "type": "string",
+                                "enum": [
+                                  "AUTOSCALING_ALGORITHM_BASIC",
+                                  "AUTOSCALING_ALGORITHM_NONE",
+                                  "AUTOSCALING_ALGORITHM_UNKNOWN"
+                                ]
+                              },
+                              "maxNumWorkers": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "dataDisks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "diskType": {
+                                  "type": "string"
+                                },
+                                "mountPoint": {
+                                  "type": "string"
+                                },
+                                "sizeGb": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                }
+                              }
+                            }
+                          },
+                          "defaultPackageSet": {
+                            "type": "string",
+                            "enum": [
+                              "DEFAULT_PACKAGE_SET_JAVA",
+                              "DEFAULT_PACKAGE_SET_NONE",
+                              "DEFAULT_PACKAGE_SET_PYTHON",
+                              "DEFAULT_PACKAGE_SET_UNKNOWN"
+                            ]
+                          },
+                          "diskSizeGb": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "diskSourceImage": {
+                            "type": "string"
+                          },
+                          "diskType": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "machineType": {
+                            "type": "string"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "network": {
+                            "type": "string"
+                          },
+                          "numWorkers": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "onHostMaintenance": {
+                            "type": "string"
+                          },
+                          "packages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "location": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "poolArgs": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "taskrunnerSettings": {
+                            "type": "object",
+                            "properties": {
+                              "alsologtostderr": {
+                                "type": "boolean"
+                              },
+                              "baseTaskDir": {
+                                "type": "string"
+                              },
+                              "baseUrl": {
+                                "type": "string"
+                              },
+                              "commandlinesFileName": {
+                                "type": "string"
+                              },
+                              "continueOnException": {
+                                "type": "boolean"
+                              },
+                              "dataflowApiVersion": {
+                                "type": "string"
+                              },
+                              "harnessCommand": {
+                                "type": "string"
+                              },
+                              "languageHint": {
+                                "type": "string"
+                              },
+                              "logDir": {
+                                "type": "string"
+                              },
+                              "logToSerialconsole": {
+                                "type": "boolean"
+                              },
+                              "logUploadLocation": {
+                                "type": "string"
+                              },
+                              "oauthScopes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "parallelWorkerSettings": {
+                                "type": "object",
+                                "properties": {
+                                  "baseUrl": {
+                                    "type": "string"
+                                  },
+                                  "reportingEnabled": {
+                                    "type": "boolean"
+                                  },
+                                  "servicePath": {
+                                    "type": "string"
+                                  },
+                                  "shuffleServicePath": {
+                                    "type": "string"
+                                  },
+                                  "tempStoragePrefix": {
+                                    "type": "string"
+                                  },
+                                  "workerId": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "streamingWorkerMainClass": {
+                                "type": "string"
+                              },
+                              "taskGroup": {
+                                "type": "string"
+                              },
+                              "taskUser": {
+                                "type": "string"
+                              },
+                              "tempStoragePrefix": {
+                                "type": "string"
+                              },
+                              "vmId": {
+                                "type": "string"
+                              },
+                              "workflowFileName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "teardownPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "TEARDOWN_ALWAYS",
+                              "TEARDOWN_NEVER",
+                              "TEARDOWN_ON_SUCCESS",
+                              "TEARDOWN_POLICY_UNKNOWN"
+                            ]
+                          },
+                          "zone": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "executionInfo": {
+                  "type": "object",
+                  "properties": {
+                    "stages": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "stepName": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "projectId": {
+                  "type": "string"
+                },
+                "replaceJobId": {
+                  "type": "string"
+                },
+                "requestedState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      }
+                    }
+                  }
+                },
+                "transformNameMapping": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_TYPE_BATCH",
+                    "JOB_TYPE_STREAMING",
+                    "JOB_TYPE_UNKNOWN"
+                  ]
+                }
+              }
+            }
+
++ Response 200
+
+#### dataflow.projects.jobs.list [GET]
+
++ Parameters
+
+    + projectId (required)
+  
+    + pageSize
+  
+    + pageToken
+  
+    + view
+
++ Response 200
+
+### Resource /{projectId}/jobs/{jobId} [/{projectId}/jobs/{jobId}]
+
+#### dataflow.projects.jobs.get [GET]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+  
+    + view
+
++ Response 200
+
+#### dataflow.projects.jobs.patch [PATCH]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "clientRequestId": {
+                  "type": "string"
+                },
+                "createTime": {
+                  "type": "string"
+                },
+                "currentState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "currentStateTime": {
+                  "type": "string"
+                },
+                "environment": {
+                  "type": "object",
+                  "properties": {
+                    "clusterManagerApiService": {
+                      "type": "string"
+                    },
+                    "dataset": {
+                      "type": "string"
+                    },
+                    "experiments": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sdkPipelineOptions": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "tempStoragePrefix": {
+                      "type": "string"
+                    },
+                    "userAgent": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "version": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "workerPools": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "autoscalingSettings": {
+                            "type": "object",
+                            "properties": {
+                              "algorithm": {
+                                "type": "string",
+                                "enum": [
+                                  "AUTOSCALING_ALGORITHM_BASIC",
+                                  "AUTOSCALING_ALGORITHM_NONE",
+                                  "AUTOSCALING_ALGORITHM_UNKNOWN"
+                                ]
+                              },
+                              "maxNumWorkers": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "dataDisks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "diskType": {
+                                  "type": "string"
+                                },
+                                "mountPoint": {
+                                  "type": "string"
+                                },
+                                "sizeGb": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                }
+                              }
+                            }
+                          },
+                          "defaultPackageSet": {
+                            "type": "string",
+                            "enum": [
+                              "DEFAULT_PACKAGE_SET_JAVA",
+                              "DEFAULT_PACKAGE_SET_NONE",
+                              "DEFAULT_PACKAGE_SET_PYTHON",
+                              "DEFAULT_PACKAGE_SET_UNKNOWN"
+                            ]
+                          },
+                          "diskSizeGb": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "diskSourceImage": {
+                            "type": "string"
+                          },
+                          "diskType": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "machineType": {
+                            "type": "string"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "network": {
+                            "type": "string"
+                          },
+                          "numWorkers": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "onHostMaintenance": {
+                            "type": "string"
+                          },
+                          "packages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "location": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "poolArgs": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "taskrunnerSettings": {
+                            "type": "object",
+                            "properties": {
+                              "alsologtostderr": {
+                                "type": "boolean"
+                              },
+                              "baseTaskDir": {
+                                "type": "string"
+                              },
+                              "baseUrl": {
+                                "type": "string"
+                              },
+                              "commandlinesFileName": {
+                                "type": "string"
+                              },
+                              "continueOnException": {
+                                "type": "boolean"
+                              },
+                              "dataflowApiVersion": {
+                                "type": "string"
+                              },
+                              "harnessCommand": {
+                                "type": "string"
+                              },
+                              "languageHint": {
+                                "type": "string"
+                              },
+                              "logDir": {
+                                "type": "string"
+                              },
+                              "logToSerialconsole": {
+                                "type": "boolean"
+                              },
+                              "logUploadLocation": {
+                                "type": "string"
+                              },
+                              "oauthScopes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "parallelWorkerSettings": {
+                                "type": "object",
+                                "properties": {
+                                  "baseUrl": {
+                                    "type": "string"
+                                  },
+                                  "reportingEnabled": {
+                                    "type": "boolean"
+                                  },
+                                  "servicePath": {
+                                    "type": "string"
+                                  },
+                                  "shuffleServicePath": {
+                                    "type": "string"
+                                  },
+                                  "tempStoragePrefix": {
+                                    "type": "string"
+                                  },
+                                  "workerId": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "streamingWorkerMainClass": {
+                                "type": "string"
+                              },
+                              "taskGroup": {
+                                "type": "string"
+                              },
+                              "taskUser": {
+                                "type": "string"
+                              },
+                              "tempStoragePrefix": {
+                                "type": "string"
+                              },
+                              "vmId": {
+                                "type": "string"
+                              },
+                              "workflowFileName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "teardownPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "TEARDOWN_ALWAYS",
+                              "TEARDOWN_NEVER",
+                              "TEARDOWN_ON_SUCCESS",
+                              "TEARDOWN_POLICY_UNKNOWN"
+                            ]
+                          },
+                          "zone": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "executionInfo": {
+                  "type": "object",
+                  "properties": {
+                    "stages": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "stepName": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "projectId": {
+                  "type": "string"
+                },
+                "replaceJobId": {
+                  "type": "string"
+                },
+                "requestedState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      }
+                    }
+                  }
+                },
+                "transformNameMapping": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_TYPE_BATCH",
+                    "JOB_TYPE_STREAMING",
+                    "JOB_TYPE_UNKNOWN"
+                  ]
+                }
+              }
+            }
+
++ Response 200
+
+#### dataflow.projects.jobs.update [PUT]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "clientRequestId": {
+                  "type": "string"
+                },
+                "createTime": {
+                  "type": "string"
+                },
+                "currentState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "currentStateTime": {
+                  "type": "string"
+                },
+                "environment": {
+                  "type": "object",
+                  "properties": {
+                    "clusterManagerApiService": {
+                      "type": "string"
+                    },
+                    "dataset": {
+                      "type": "string"
+                    },
+                    "experiments": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sdkPipelineOptions": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "tempStoragePrefix": {
+                      "type": "string"
+                    },
+                    "userAgent": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "version": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "workerPools": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "autoscalingSettings": {
+                            "type": "object",
+                            "properties": {
+                              "algorithm": {
+                                "type": "string",
+                                "enum": [
+                                  "AUTOSCALING_ALGORITHM_BASIC",
+                                  "AUTOSCALING_ALGORITHM_NONE",
+                                  "AUTOSCALING_ALGORITHM_UNKNOWN"
+                                ]
+                              },
+                              "maxNumWorkers": {
+                                "type": "integer",
+                                "format": "int32"
+                              }
+                            }
+                          },
+                          "dataDisks": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "diskType": {
+                                  "type": "string"
+                                },
+                                "mountPoint": {
+                                  "type": "string"
+                                },
+                                "sizeGb": {
+                                  "type": "integer",
+                                  "format": "int32"
+                                }
+                              }
+                            }
+                          },
+                          "defaultPackageSet": {
+                            "type": "string",
+                            "enum": [
+                              "DEFAULT_PACKAGE_SET_JAVA",
+                              "DEFAULT_PACKAGE_SET_NONE",
+                              "DEFAULT_PACKAGE_SET_PYTHON",
+                              "DEFAULT_PACKAGE_SET_UNKNOWN"
+                            ]
+                          },
+                          "diskSizeGb": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "diskSourceImage": {
+                            "type": "string"
+                          },
+                          "diskType": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "machineType": {
+                            "type": "string"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "string"
+                            }
+                          },
+                          "network": {
+                            "type": "string"
+                          },
+                          "numWorkers": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "onHostMaintenance": {
+                            "type": "string"
+                          },
+                          "packages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "location": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "poolArgs": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "taskrunnerSettings": {
+                            "type": "object",
+                            "properties": {
+                              "alsologtostderr": {
+                                "type": "boolean"
+                              },
+                              "baseTaskDir": {
+                                "type": "string"
+                              },
+                              "baseUrl": {
+                                "type": "string"
+                              },
+                              "commandlinesFileName": {
+                                "type": "string"
+                              },
+                              "continueOnException": {
+                                "type": "boolean"
+                              },
+                              "dataflowApiVersion": {
+                                "type": "string"
+                              },
+                              "harnessCommand": {
+                                "type": "string"
+                              },
+                              "languageHint": {
+                                "type": "string"
+                              },
+                              "logDir": {
+                                "type": "string"
+                              },
+                              "logToSerialconsole": {
+                                "type": "boolean"
+                              },
+                              "logUploadLocation": {
+                                "type": "string"
+                              },
+                              "oauthScopes": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "parallelWorkerSettings": {
+                                "type": "object",
+                                "properties": {
+                                  "baseUrl": {
+                                    "type": "string"
+                                  },
+                                  "reportingEnabled": {
+                                    "type": "boolean"
+                                  },
+                                  "servicePath": {
+                                    "type": "string"
+                                  },
+                                  "shuffleServicePath": {
+                                    "type": "string"
+                                  },
+                                  "tempStoragePrefix": {
+                                    "type": "string"
+                                  },
+                                  "workerId": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "streamingWorkerMainClass": {
+                                "type": "string"
+                              },
+                              "taskGroup": {
+                                "type": "string"
+                              },
+                              "taskUser": {
+                                "type": "string"
+                              },
+                              "tempStoragePrefix": {
+                                "type": "string"
+                              },
+                              "vmId": {
+                                "type": "string"
+                              },
+                              "workflowFileName": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "teardownPolicy": {
+                            "type": "string",
+                            "enum": [
+                              "TEARDOWN_ALWAYS",
+                              "TEARDOWN_NEVER",
+                              "TEARDOWN_ON_SUCCESS",
+                              "TEARDOWN_POLICY_UNKNOWN"
+                            ]
+                          },
+                          "zone": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "executionInfo": {
+                  "type": "object",
+                  "properties": {
+                    "stages": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "stepName": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "projectId": {
+                  "type": "string"
+                },
+                "replaceJobId": {
+                  "type": "string"
+                },
+                "requestedState": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_STATE_CANCELLED",
+                    "JOB_STATE_DONE",
+                    "JOB_STATE_FAILED",
+                    "JOB_STATE_RUNNING",
+                    "JOB_STATE_STOPPED",
+                    "JOB_STATE_UNKNOWN"
+                  ]
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "properties": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      }
+                    }
+                  }
+                },
+                "transformNameMapping": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "JOB_TYPE_BATCH",
+                    "JOB_TYPE_STREAMING",
+                    "JOB_TYPE_UNKNOWN"
+                  ]
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{projectId}/jobs/{jobId}/metrics [/v1b3/projects/{projectId}/jobs/{jobId}/metrics{?startTime}]
+
+#### dataflow.projects.jobs.getMetrics [GET]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+  
+    + startTime
+
++ Response 200
+
+### Resource /{projectId}/jobs/{jobId}/messages [/v1b3/projects/{projectId}/jobs/{jobId}/messages{?endTime,minimumImportance,pageSize,pageToken,startTime}]
+
+#### dataflow.projects.jobs.messages.list [GET]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+  
+    + endTime
+  
+    + minimumImportance
+  
+    + pageSize
+  
+    + pageToken
+  
+    + startTime
+
++ Response 200
+
+### Resource /{projectId}/jobs/{jobId}/workItems:lease [/{projectId}/jobs/{jobId}/workItems:lease]
+
+#### dataflow.projects.jobs.workItems.lease [POST]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "currentWorkerTime": {
+                  "type": "string"
+                },
+                "requestedLeaseDuration": {
+                  "type": "string"
+                },
+                "workItemTypes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "workerCapabilities": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "workerId": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{projectId}/jobs/{jobId}/workItems:reportStatus [/{projectId}/jobs/{jobId}/workItems:reportStatus]
+
+#### dataflow.projects.jobs.workItems.reportStatus [POST]
+
++ Parameters
+
+    + projectId (required)
+  
+    + jobId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "currentWorkerTime": {
+                  "type": "string"
+                },
+                "workItemStatuses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "completed": {
+                        "type": "boolean"
+                      },
+                      "dynamicSourceSplit": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "residual": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "errors": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "integer",
+                              "format": "int32"
+                            },
+                            "details": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": {}
+                              }
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "metricUpdates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "cumulative": {
+                              "type": "boolean"
+                            },
+                            "internal": {},
+                            "kind": {
+                              "type": "string"
+                            },
+                            "meanCount": {},
+                            "meanSum": {},
+                            "name": {
+                              "type": "object",
+                              "properties": {
+                                "context": {
+                                  "type": "object",
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  }
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "origin": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "scalar": {},
+                            "set": {},
+                            "updateTime": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "progress": {
+                        "type": "object",
+                        "properties": {
+                          "percentComplete": {
+                            "type": "number",
+                            "format": "float"
+                          },
+                          "position": {
+                            "type": "object",
+                            "properties": {
+                              "byteOffset": {
+                                "type": "string",
+                                "format": "int64"
+                              },
+                              "end": {
+                                "type": "boolean"
+                              },
+                              "key": {
+                                "type": "string"
+                              },
+                              "recordIndex": {
+                                "type": "string",
+                                "format": "int64"
+                              },
+                              "shufflePosition": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "remainingTime": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "reportIndex": {
+                        "type": "string",
+                        "format": "int64"
+                      },
+                      "requestedLeaseDuration": {
+                        "type": "string"
+                      },
+                      "sourceFork": {
+                        "type": "object",
+                        "properties": {
+                          "primary": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "primarySource": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "residual": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "residualSource": {
+                            "type": "object",
+                            "properties": {
+                              "derivationMode": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                  "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                  "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                ]
+                              },
+                              "source": {
+                                "type": "object",
+                                "properties": {
+                                  "baseSpecs": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "additionalProperties": {}
+                                    }
+                                  },
+                                  "codec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  },
+                                  "doesNotNeedSplitting": {
+                                    "type": "boolean"
+                                  },
+                                  "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "estimatedSizeBytes": {
+                                        "type": "string",
+                                        "format": "int64"
+                                      },
+                                      "infinite": {
+                                        "type": "boolean"
+                                      },
+                                      "producesSortedKeys": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  },
+                                  "spec": {
+                                    "type": "object",
+                                    "additionalProperties": {}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "sourceOperationResponse": {
+                        "type": "object",
+                        "properties": {
+                          "getMetadata": {
+                            "type": "object",
+                            "properties": {
+                              "metadata": {
+                                "type": "object",
+                                "properties": {
+                                  "estimatedSizeBytes": {
+                                    "type": "string",
+                                    "format": "int64"
+                                  },
+                                  "infinite": {
+                                    "type": "boolean"
+                                  },
+                                  "producesSortedKeys": {
+                                    "type": "boolean"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "split": {
+                            "type": "object",
+                            "properties": {
+                              "bundles": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "derivationMode": {
+                                      "type": "string",
+                                      "enum": [
+                                        "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                        "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                        "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                        "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                      ]
+                                    },
+                                    "source": {
+                                      "type": "object",
+                                      "properties": {
+                                        "baseSpecs": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "additionalProperties": {}
+                                          }
+                                        },
+                                        "codec": {
+                                          "type": "object",
+                                          "additionalProperties": {}
+                                        },
+                                        "doesNotNeedSplitting": {
+                                          "type": "boolean"
+                                        },
+                                        "metadata": {
+                                          "type": "object",
+                                          "properties": {
+                                            "estimatedSizeBytes": {
+                                              "type": "string",
+                                              "format": "int64"
+                                            },
+                                            "infinite": {
+                                              "type": "boolean"
+                                            },
+                                            "producesSortedKeys": {
+                                              "type": "boolean"
+                                            }
+                                          }
+                                        },
+                                        "spec": {
+                                          "type": "object",
+                                          "additionalProperties": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "outcome": {
+                                "type": "string",
+                                "enum": [
+                                  "SOURCE_SPLIT_OUTCOME_SPLITTING_HAPPENED",
+                                  "SOURCE_SPLIT_OUTCOME_UNKNOWN",
+                                  "SOURCE_SPLIT_OUTCOME_USE_CURRENT"
+                                ]
+                              },
+                              "shards": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "derivationMode": {
+                                      "type": "string",
+                                      "enum": [
+                                        "SOURCE_DERIVATION_MODE_CHILD_OF_CURRENT",
+                                        "SOURCE_DERIVATION_MODE_INDEPENDENT",
+                                        "SOURCE_DERIVATION_MODE_SIBLING_OF_CURRENT",
+                                        "SOURCE_DERIVATION_MODE_UNKNOWN"
+                                      ]
+                                    },
+                                    "source": {
+                                      "type": "object",
+                                      "properties": {
+                                        "baseSpecs": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "additionalProperties": {}
+                                          }
+                                        },
+                                        "codec": {
+                                          "type": "object",
+                                          "additionalProperties": {}
+                                        },
+                                        "doesNotNeedSplitting": {
+                                          "type": "boolean"
+                                        },
+                                        "metadata": {
+                                          "type": "object",
+                                          "properties": {
+                                            "estimatedSizeBytes": {
+                                              "type": "string",
+                                              "format": "int64"
+                                            },
+                                            "infinite": {
+                                              "type": "boolean"
+                                            },
+                                            "producesSortedKeys": {
+                                              "type": "boolean"
+                                            }
+                                          }
+                                        },
+                                        "spec": {
+                                          "type": "object",
+                                          "additionalProperties": {}
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "stopPosition": {
+                        "type": "object",
+                        "properties": {
+                          "byteOffset": {
+                            "type": "string",
+                            "format": "int64"
+                          },
+                          "end": {
+                            "type": "boolean"
+                          },
+                          "key": {
+                            "type": "string"
+                          },
+                          "recordIndex": {
+                            "type": "string",
+                            "format": "int64"
+                          },
+                          "shufflePosition": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "workItemId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "workerId": {
+                  "type": "string"
+                }
+              }
+            }
+
++ Response 200
+

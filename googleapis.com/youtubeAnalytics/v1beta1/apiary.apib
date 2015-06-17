@@ -1,0 +1,248 @@
+FORMAT: 1A
+
+# YouTube Analytics API
+
+Retrieve your YouTube Analytics reports.
+
+### Resource /batchReportDefinitions [/youtube/analytics/v1beta1/batchReportDefinitions{?onBehalfOfContentOwner}]
+
+#### youtubeAnalytics.batchReportDefinitions.list [GET]
+
++ Parameters
+
+    + onBehalfOfContentOwner (required)
+
++ Response 200
+
+### Resource /batchReports [/youtube/analytics/v1beta1/batchReports{?batchReportDefinitionId,onBehalfOfContentOwner}]
+
+#### youtubeAnalytics.batchReports.list [GET]
+
++ Parameters
+
+    + batchReportDefinitionId (required)
+  
+    + onBehalfOfContentOwner (required)
+
++ Response 200
+
+### Resource /groupItems [/youtube/analytics/v1beta1/groupItems{?groupId,onBehalfOfContentOwner}]
+
+#### youtubeAnalytics.groupItems.delete [DELETE]
+
++ Parameters
+
+    + id (required)
+  
+    + onBehalfOfContentOwner
+
++ Response 200
+
+#### youtubeAnalytics.groupItems.insert [POST]
+
++ Parameters
+
+    + onBehalfOfContentOwner
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "etag": {
+                  "type": "string"
+                },
+                "groupId": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "default": "youtube#groupItem"
+                },
+                "resource": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### youtubeAnalytics.groupItems.list [GET]
+
++ Parameters
+
+    + groupId (required)
+  
+    + onBehalfOfContentOwner
+
++ Response 200
+
+### Resource /groups [/youtube/analytics/v1beta1/groups{?onBehalfOfContentOwner}]
+
+#### youtubeAnalytics.groups.delete [DELETE]
+
++ Parameters
+
+    + id (required)
+  
+    + onBehalfOfContentOwner
+
++ Response 200
+
+#### youtubeAnalytics.groups.insert [POST]
+
++ Parameters
+
+    + onBehalfOfContentOwner
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "contentDetails": {
+                  "type": "object",
+                  "properties": {
+                    "itemCount": {
+                      "type": "string",
+                      "format": "uint64"
+                    },
+                    "itemType": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "etag": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "default": "youtube#group"
+                },
+                "snippet": {
+                  "type": "object",
+                  "properties": {
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### youtubeAnalytics.groups.list [GET]
+
++ Parameters
+
+    + id
+  
+    + mine
+  
+    + onBehalfOfContentOwner
+
++ Response 200
+
+#### youtubeAnalytics.groups.update [PUT]
+
++ Parameters
+
+    + onBehalfOfContentOwner
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "contentDetails": {
+                  "type": "object",
+                  "properties": {
+                    "itemCount": {
+                      "type": "string",
+                      "format": "uint64"
+                    },
+                    "itemType": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "etag": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string",
+                  "default": "youtube#group"
+                },
+                "snippet": {
+                  "type": "object",
+                  "properties": {
+                    "publishedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /reports [/youtube/analytics/v1beta1/reports{?ids,start-date,end-date,metrics,currency,dimensions,filters,max-results,sort,start-index}]
+
+#### youtubeAnalytics.reports.query [GET]
+
++ Parameters
+
+    + ids (required)
+  
+    + start-date (required)
+  
+    + end-date (required)
+  
+    + metrics (required)
+  
+    + currency
+  
+    + dimensions
+  
+    + filters
+  
+    + max-results
+  
+    + sort
+  
+    + start-index
+
++ Response 200
+

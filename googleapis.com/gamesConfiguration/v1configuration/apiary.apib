@@ -1,0 +1,2611 @@
+FORMAT: 1A
+
+# Google Play Game Services Publishing API
+
+The Publishing API for Google Play Game Services.
+
+### Resource /achievements/{achievementId} [/achievements/{achievementId}]
+
+#### gamesConfiguration.achievementConfigurations.delete [DELETE]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+#### gamesConfiguration.achievementConfigurations.get [GET]
+
++ Parameters
+
+    + achievementId (required)
+
++ Response 200
+
+#### gamesConfiguration.achievementConfigurations.patch [PATCH]
+
++ Parameters
+
+    + achievementId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an achievement configuration resource.",
+              "properties": {
+                "achievementType": {
+                  "type": "string",
+                  "description": "The type of the achievement.\nPossible values are:  \n- \"STANDARD\" - Achievement is either locked or unlocked. \n- \"INCREMENTAL\" - Achievement is incremental."
+                },
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the achievement."
+                },
+                "initialState": {
+                  "type": "string",
+                  "description": "The initial state of the achievement.\nPossible values are:  \n- \"HIDDEN\" - Achievement is hidden. \n- \"REVEALED\" - Achievement is revealed. \n- \"UNLOCKED\" - Achievement is unlocked."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.",
+                  "default": "gamesConfiguration#achievementConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "stepsToUnlock": {
+                  "type": "integer",
+                  "description": "Steps to unlock. Only applicable to incremental achievements.",
+                  "format": "int32"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### gamesConfiguration.achievementConfigurations.update [PUT]
+
++ Parameters
+
+    + achievementId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an achievement configuration resource.",
+              "properties": {
+                "achievementType": {
+                  "type": "string",
+                  "description": "The type of the achievement.\nPossible values are:  \n- \"STANDARD\" - Achievement is either locked or unlocked. \n- \"INCREMENTAL\" - Achievement is incremental."
+                },
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the achievement."
+                },
+                "initialState": {
+                  "type": "string",
+                  "description": "The initial state of the achievement.\nPossible values are:  \n- \"HIDDEN\" - Achievement is hidden. \n- \"REVEALED\" - Achievement is revealed. \n- \"UNLOCKED\" - Achievement is unlocked."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.",
+                  "default": "gamesConfiguration#achievementConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "stepsToUnlock": {
+                  "type": "integer",
+                  "description": "Steps to unlock. Only applicable to incremental achievements.",
+                  "format": "int32"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /applications/{applicationId}/achievements [/games/v1configuration/applications/{applicationId}/achievements{?maxResults,pageToken}]
+
+#### gamesConfiguration.achievementConfigurations.insert [POST]
+
++ Parameters
+
+    + applicationId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an achievement configuration resource.",
+              "properties": {
+                "achievementType": {
+                  "type": "string",
+                  "description": "The type of the achievement.\nPossible values are:  \n- \"STANDARD\" - Achievement is either locked or unlocked. \n- \"INCREMENTAL\" - Achievement is incremental."
+                },
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the achievement."
+                },
+                "initialState": {
+                  "type": "string",
+                  "description": "The initial state of the achievement.\nPossible values are:  \n- \"HIDDEN\" - Achievement is hidden. \n- \"REVEALED\" - Achievement is revealed. \n- \"UNLOCKED\" - Achievement is unlocked."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfiguration.",
+                  "default": "gamesConfiguration#achievementConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for an achievement configuration detail.",
+                  "properties": {
+                    "description": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this achievement. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#achievementConfigurationDetail.",
+                      "default": "gamesConfiguration#achievementConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "pointValue": {
+                      "type": "integer",
+                      "description": "Point value for the achievement.",
+                      "format": "int32"
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this achievement. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "stepsToUnlock": {
+                  "type": "integer",
+                  "description": "Steps to unlock. Only applicable to incremental achievements.",
+                  "format": "int32"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### gamesConfiguration.achievementConfigurations.list [GET]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /images/{resourceId}/imageType/{imageType} [/images/{resourceId}/imageType/{imageType}]
+
+#### gamesConfiguration.imageConfigurations.upload [POST]
+
++ Parameters
+
+    + resourceId (required)
+  
+    + imageType (required)
+
++ Response 200
+
+### Resource /leaderboards/{leaderboardId} [/leaderboards/{leaderboardId}]
+
+#### gamesConfiguration.leaderboardConfigurations.delete [DELETE]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Response 200
+
+#### gamesConfiguration.leaderboardConfigurations.get [GET]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Response 200
+
+#### gamesConfiguration.leaderboardConfigurations.patch [PATCH]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an leaderboard configuration resource.",
+              "properties": {
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the leaderboard."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.",
+                  "default": "gamesConfiguration#leaderboardConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "scoreMax": {
+                  "type": "string",
+                  "description": "Maximum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreMin": {
+                  "type": "string",
+                  "description": "Minimum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreOrder": {
+                  "type": "string",
+                  "description": "The type of the leaderboard.\nPossible values are:  \n- \"LARGER_IS_BETTER\" - Larger scores posted are ranked higher. \n- \"SMALLER_IS_BETTER\" - Smaller scores posted are ranked higher."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### gamesConfiguration.leaderboardConfigurations.update [PUT]
+
++ Parameters
+
+    + leaderboardId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an leaderboard configuration resource.",
+              "properties": {
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the leaderboard."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.",
+                  "default": "gamesConfiguration#leaderboardConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "scoreMax": {
+                  "type": "string",
+                  "description": "Maximum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreMin": {
+                  "type": "string",
+                  "description": "Minimum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreOrder": {
+                  "type": "string",
+                  "description": "The type of the leaderboard.\nPossible values are:  \n- \"LARGER_IS_BETTER\" - Larger scores posted are ranked higher. \n- \"SMALLER_IS_BETTER\" - Smaller scores posted are ranked higher."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /applications/{applicationId}/leaderboards [/games/v1configuration/applications/{applicationId}/leaderboards{?maxResults,pageToken}]
+
+#### gamesConfiguration.leaderboardConfigurations.insert [POST]
+
++ Parameters
+
+    + applicationId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "This is a JSON template for an leaderboard configuration resource.",
+              "properties": {
+                "draft": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the leaderboard."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfiguration.",
+                  "default": "gamesConfiguration#leaderboardConfiguration"
+                },
+                "published": {
+                  "type": "object",
+                  "description": "This is a JSON template for a leaderboard configuration detail.",
+                  "properties": {
+                    "iconUrl": {
+                      "type": "string",
+                      "description": "The icon url of this leaderboard. Writes to this field are ignored."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#leaderboardConfigurationDetail.",
+                      "default": "gamesConfiguration#leaderboardConfigurationDetail"
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "This is a JSON template for a localized string bundle resource.",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                          "default": "gamesConfiguration#localizedStringBundle"
+                        },
+                        "translations": {
+                          "type": "array",
+                          "description": "The locale strings.",
+                          "items": {
+                            "type": "object",
+                            "description": "This is a JSON template for a localized string resource.",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                "default": "gamesConfiguration#localizedString"
+                              },
+                              "locale": {
+                                "type": "string",
+                                "description": "The locale string."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The string value."
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "scoreFormat": {
+                      "type": "object",
+                      "description": "This is a JSON template for a number format resource.",
+                      "properties": {
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "The curreny code string. Only used for CURRENCY format type."
+                        },
+                        "numDecimalPlaces": {
+                          "type": "integer",
+                          "description": "The number of decimal places for number. Only used for NUMERIC format type.",
+                          "format": "int32"
+                        },
+                        "numberFormatType": {
+                          "type": "string",
+                          "description": "The formatting for the number.\nPossible values are:  \n- \"NUMERIC\" - Numbers are formatted to have no digits or a fixed number of digits after the decimal point according to locale. An optional custom unit can be added.\n- \"TIME_DURATION\" - Numbers are formatted to hours, minutes and seconds.\n- \"CURRENCY\" - Numbers are formatted to currency according to locale."
+                        },
+                        "suffix": {
+                          "type": "object",
+                          "description": "This is a JSON template for a number affix resource.",
+                          "properties": {
+                            "few": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "many": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "one": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "two": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "zero": {
+                              "type": "object",
+                              "description": "This is a JSON template for a localized string bundle resource.",
+                              "properties": {
+                                "kind": {
+                                  "type": "string",
+                                  "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedStringBundle.",
+                                  "default": "gamesConfiguration#localizedStringBundle"
+                                },
+                                "translations": {
+                                  "type": "array",
+                                  "description": "The locale strings.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "This is a JSON template for a localized string resource.",
+                                    "properties": {
+                                      "kind": {
+                                        "type": "string",
+                                        "description": "Uniquely identifies the type of this resource. Value is always the fixed string gamesConfiguration#localizedString.",
+                                        "default": "gamesConfiguration#localizedString"
+                                      },
+                                      "locale": {
+                                        "type": "string",
+                                        "description": "The locale string."
+                                      },
+                                      "value": {
+                                        "type": "string",
+                                        "description": "The string value."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "sortRank": {
+                      "type": "integer",
+                      "description": "The sort rank of this leaderboard. Writes to this field are ignored.",
+                      "format": "int32"
+                    }
+                  }
+                },
+                "scoreMax": {
+                  "type": "string",
+                  "description": "Maximum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreMin": {
+                  "type": "string",
+                  "description": "Minimum score that can be posted to this leaderboard.",
+                  "format": "int64"
+                },
+                "scoreOrder": {
+                  "type": "string",
+                  "description": "The type of the leaderboard.\nPossible values are:  \n- \"LARGER_IS_BETTER\" - Larger scores posted are ranked higher. \n- \"SMALLER_IS_BETTER\" - Smaller scores posted are ranked higher."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token for this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### gamesConfiguration.leaderboardConfigurations.list [GET]
+
++ Parameters
+
+    + applicationId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

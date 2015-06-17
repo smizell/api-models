@@ -1,0 +1,150 @@
+FORMAT: 1A
+
+# Google Cloud Resource Manager API
+
+The Google Cloud Resource Manager API provides methods for creating, reading, and updating of project metadata, including IAM policies, and will shortly provide the same for other high-level entities (e.g. customers and resource groups). Longer term, we expect the cloudresourcemanager API to encompass other Cloud resources as well.
+
+### Resource /v1beta1/projects [//v1beta1/projects{?pageToken,pageSize,filter}]
+
+#### cloudresourcemanager.projects.create [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Project is a high-level Google Cloud Platform entity. It is a container for ACLs, APIs, AppEngine Apps, VMs, and other Google Cloud Platform resources. Projects are subordinate to Customers.",
+              "properties": {
+                "projectNumber": {
+                  "type": "string",
+                  "description": "The number uniquely identifying the project. Example: 415104041262. Read-only.",
+                  "format": "int64"
+                },
+                "projectId": {
+                  "type": "string",
+                  "description": "The unique, user-assigned id of the project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: \"tokyo-rain-123\" Read-only after creation."
+                },
+                "lifecycleState": {
+                  "type": "string",
+                  "description": "The project lifecycle state. Read-only.",
+                  "enum": [
+                    "LIFECYCLE_STATE_UNSPECIFIED",
+                    "ACTIVE",
+                    "DELETE_REQUESTED",
+                    "DELETE_IN_PROGRESS"
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The user-assigned name of the project. This field is optional and can remain unset. Allowed characters are: lower- and upper-case letters, numbers, hyphen, single-quote, double-quotes, space, and exclamation point. Example: \"My Project\" Read-write."
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "Creation time. Read-only."
+                },
+                "labels": {
+                  "type": "object",
+                  "description": "The labels associated with this project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])?. Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?. No more than 256 labels can be associated with a given resource. Note that additional character may be included in labels in the future. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: \"environment\" : \"dev\" Read-write.",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### cloudresourcemanager.projects.list [GET]
+
++ Parameters
+
+    + pageToken
+  
+    + pageSize
+  
+    + filter
+
++ Response 200
+
+### Resource /v1beta1/projects/{projectId} [/v1beta1/projects/{projectId}]
+
+#### cloudresourcemanager.projects.get [GET]
+
++ Parameters
+
+    + projectId (required)
+
++ Response 200
+
+#### cloudresourcemanager.projects.update [PUT]
+
++ Parameters
+
+    + projectId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Project is a high-level Google Cloud Platform entity. It is a container for ACLs, APIs, AppEngine Apps, VMs, and other Google Cloud Platform resources. Projects are subordinate to Customers.",
+              "properties": {
+                "projectNumber": {
+                  "type": "string",
+                  "description": "The number uniquely identifying the project. Example: 415104041262. Read-only.",
+                  "format": "int64"
+                },
+                "projectId": {
+                  "type": "string",
+                  "description": "The unique, user-assigned id of the project. It must be 6 to 30 lowercase letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: \"tokyo-rain-123\" Read-only after creation."
+                },
+                "lifecycleState": {
+                  "type": "string",
+                  "description": "The project lifecycle state. Read-only.",
+                  "enum": [
+                    "LIFECYCLE_STATE_UNSPECIFIED",
+                    "ACTIVE",
+                    "DELETE_REQUESTED",
+                    "DELETE_IN_PROGRESS"
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The user-assigned name of the project. This field is optional and can remain unset. Allowed characters are: lower- and upper-case letters, numbers, hyphen, single-quote, double-quotes, space, and exclamation point. Example: \"My Project\" Read-write."
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "Creation time. Read-only."
+                },
+                "labels": {
+                  "type": "object",
+                  "description": "The labels associated with this project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])?. Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?. No more than 256 labels can be associated with a given resource. Note that additional character may be included in labels in the future. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: \"environment\" : \"dev\" Read-write.",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### cloudresourcemanager.projects.delete [DELETE]
+
++ Parameters
+
+    + projectId (required)
+
++ Response 200
+
+### Resource /v1beta1/projects/{projectId}:undelete [/v1beta1/projects/{projectId}:undelete]
+
+#### cloudresourcemanager.projects.undelete [POST]
+
++ Parameters
+
+    + projectId (required)
+
++ Response 200
+

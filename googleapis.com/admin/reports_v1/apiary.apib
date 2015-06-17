@@ -1,0 +1,220 @@
+FORMAT: 1A
+
+# Admin Reports API
+
+Allows the administrators of Google Apps customers to fetch reports about the usage, collaboration, security and risk for their users.
+
+### Resource /activity/users/{userKey}/applications/{applicationName} [/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}{?actorIpAddress,customerId,endTime,eventName,filters,maxResults,pageToken,startTime}]
+
+#### reports.activities.list [GET]
+
++ Parameters
+
+    + userKey (required)
+  
+    + applicationName (required)
+  
+    + actorIpAddress
+  
+    + customerId
+  
+    + endTime
+  
+    + eventName
+  
+    + filters
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startTime
+
++ Response 200
+
+### Resource /activity/users/{userKey}/applications/{applicationName}/watch [/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch{?actorIpAddress,customerId,endTime,eventName,filters,maxResults,pageToken,startTime}]
+
+#### reports.activities.watch [POST]
+
++ Parameters
+
+    + userKey (required)
+  
+    + applicationName (required)
+  
+    + actorIpAddress
+  
+    + customerId
+  
+    + endTime
+  
+    + eventName
+  
+    + filters
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startTime
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An notification channel used to watch for resource changes.",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /admin/reports_v1/channels/stop [/admin/reports_v1/channels/stop]
+
+#### admin.channels.stop [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "An notification channel used to watch for resource changes.",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The address where notifications are delivered for this channel."
+                },
+                "expiration": {
+                  "type": "string",
+                  "description": "Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "A UUID or similar unique string that identifies this channel."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string \"api#channel\".",
+                  "default": "api#channel"
+                },
+                "params": {
+                  "type": "object",
+                  "description": "Additional parameters controlling delivery channel behavior. Optional.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "Declares a new parameter by name."
+                  }
+                },
+                "payload": {
+                  "type": "boolean",
+                  "description": "A Boolean value to indicate whether payload is wanted. Optional."
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "An opaque ID that identifies the resource being watched on this channel. Stable across different API versions."
+                },
+                "resourceUri": {
+                  "type": "string",
+                  "description": "A version-specific identifier for the watched resource."
+                },
+                "token": {
+                  "type": "string",
+                  "description": "An arbitrary string delivered to the target address with each notification delivered over this channel. Optional."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of delivery mechanism used for this channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /usage/dates/{date} [/admin/reports/v1/usage/dates/{date}{?customerId,pageToken,parameters}]
+
+#### reports.customerUsageReports.get [GET]
+
++ Parameters
+
+    + date (required)
+  
+    + customerId
+  
+    + pageToken
+  
+    + parameters
+
++ Response 200
+
+### Resource /usage/users/{userKey}/dates/{date} [/admin/reports/v1/usage/users/{userKey}/dates/{date}{?customerId,filters,maxResults,pageToken,parameters}]
+
+#### reports.userUsageReport.get [GET]
+
++ Parameters
+
+    + userKey (required)
+  
+    + date (required)
+  
+    + customerId
+  
+    + filters
+  
+    + maxResults
+  
+    + pageToken
+  
+    + parameters
+
++ Response 200
+

@@ -1,0 +1,62 @@
+FORMAT: 1A
+
+# Google OAuth2 API
+
+Lets you access OAuth2 protocol related APIs.
+
+### Resource /oauth2/v1/certs [/oauth2/v1/certs]
+
+#### oauth2.getCertForOpenIdConnect [GET]
+
++ Response 200
+
+### Resource /oauth2/v1/raw_public_keys [/oauth2/v1/raw_public_keys]
+
+#### oauth2.getCertForOpenIdConnectRaw [GET]
+
++ Response 200
+
+### Resource /service_accounts/v1/metadata/raw/{robotEmail} [/service_accounts/v1/metadata/raw/{robotEmail}]
+
+#### oauth2.getRobotMetadataRaw [GET]
+
++ Parameters
+
+    + robotEmail (required)
+
++ Response 200
+
+### Resource /service_accounts/v1/metadata/x509/{robotEmail} [/service_accounts/v1/metadata/x509/{robotEmail}]
+
+#### oauth2.getRobotMetadataX509 [GET]
+
++ Parameters
+
+    + robotEmail (required)
+
++ Response 200
+
+### Resource /oauth2/v1/tokeninfo [//oauth2/v1/tokeninfo{?access_token,id_token}]
+
+#### oauth2.tokeninfo [POST]
+
++ Parameters
+
+    + access_token
+  
+    + id_token
+
++ Response 200
+
+### Resource /oauth2/v1/userinfo [/oauth2/v1/userinfo]
+
+#### oauth2.userinfo.get [GET]
+
++ Response 200
+
+### Resource /userinfo/v2/me [/userinfo/v2/me]
+
+#### oauth2.userinfo.v2.me.get [GET]
+
++ Response 200
+

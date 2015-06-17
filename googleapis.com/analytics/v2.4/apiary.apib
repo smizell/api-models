@@ -1,0 +1,106 @@
+FORMAT: 1A
+
+# Google Analytics API
+
+View and manage your Google Analytics data
+
+### Resource /data [/analytics/v2.4/data{?ids,start-date,end-date,metrics,dimensions,filters,max-results,segment,sort,start-index}]
+
+#### analytics.data.get [GET]
+
++ Parameters
+
+    + ids (required)
+  
+    + start-date (required)
+  
+    + end-date (required)
+  
+    + metrics (required)
+  
+    + dimensions
+  
+    + filters
+  
+    + max-results
+  
+    + segment
+  
+    + sort
+  
+    + start-index
+
++ Response 200
+
+### Resource /management/accounts [/analytics/v2.4/management/accounts{?max-results,start-index}]
+
+#### analytics.management.accounts.list [GET]
+
++ Parameters
+
+    + max-results
+  
+    + start-index
+
++ Response 200
+
+### Resource /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals [/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals{?max-results,start-index}]
+
+#### analytics.management.goals.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + webPropertyId (required)
+  
+    + profileId (required)
+  
+    + max-results
+  
+    + start-index
+
++ Response 200
+
+### Resource /management/accounts/{accountId}/webproperties/{webPropertyId}/profiles [/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles{?max-results,start-index}]
+
+#### analytics.management.profiles.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + webPropertyId (required)
+  
+    + max-results
+  
+    + start-index
+
++ Response 200
+
+### Resource /management/segments [/analytics/v2.4/management/segments{?max-results,start-index}]
+
+#### analytics.management.segments.list [GET]
+
++ Parameters
+
+    + max-results
+  
+    + start-index
+
++ Response 200
+
+### Resource /management/accounts/{accountId}/webproperties [/analytics/v2.4/management/accounts/{accountId}/webproperties{?max-results,start-index}]
+
+#### analytics.management.webproperties.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + max-results
+  
+    + start-index
+
++ Response 200
+

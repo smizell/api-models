@@ -1,0 +1,68 @@
+FORMAT: 1A
+
+# hashtag.peel-ci.com
+
+### Resource /hashtag/related [//hashtag/related{?showID,timeWindow}]
+
+#### getRelatedHashtags [GET]
+
+Gets related hashtags for a show.
+
++ Parameters
+
+    + showID (required)
+  
+    + timeWindow
+
++ Response 200
+
+### Resource /hashtag/trendingShows [//hashtag/trendingShows{?limit,timeWindow}]
+
+#### getTrendingShows [GET]
+
+Gets trending shows.
+
++ Parameters
+
+    + limit
+  
+    + timeWindow
+
++ Response 200
+
+### Resource /hashtag/tuneinlinks [//hashtag/tuneinlinks{?tweet,hashtags,showID}]
+
+#### getTuneinLinks [GET]
+
+Gets tunein URLs (links) from either a tweet, hashtags, @mentions, or show ID.
+
++ Parameters
+
+    + tweet
+  
+    + hashtags
+  
+    + showID
+
++ Response 200
+
+### Resource /status/{showID} [/status/{showID}]
+
+#### getStatuses [GET]
+
+Gets the last 100 statuses for this show.
+
++ Parameters
+
+    + showID (required)
+
++ Response 200
+
+### Resource /health [/health]
+
+#### getHealth [GET]
+
+Get health of Tune-in service (which includes its uptime).
+
++ Response 200
+

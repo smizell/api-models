@@ -1,0 +1,223 @@
+FORMAT: 1A
+
+# Prediction API
+
+Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
+
+### Resource /{project}/hostedmodels/{hostedModelName}/predict [/{project}/hostedmodels/{hostedModelName}/predict]
+
+#### prediction.hostedmodels.predict [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + hostedModelName (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "object",
+                  "description": "Input to the model for a prediction.",
+                  "properties": {
+                    "csvInstance": {
+                      "type": "array",
+                      "description": "A list of input features, these can be strings or doubles.",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/trainedmodels/{id}/analyze [/{project}/trainedmodels/{id}/analyze]
+
+#### prediction.trainedmodels.analyze [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + id (required)
+
++ Response 200
+
+### Resource /{project}/trainedmodels/{id} [/{project}/trainedmodels/{id}]
+
+#### prediction.trainedmodels.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + id (required)
+
++ Response 200
+
+#### prediction.trainedmodels.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + id (required)
+
++ Response 200
+
+#### prediction.trainedmodels.update [PUT]
+
++ Parameters
+
+    + project (required)
+  
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "csvInstance": {
+                  "type": "array",
+                  "description": "The input features for this instance.",
+                  "items": {}
+                },
+                "output": {
+                  "type": "string",
+                  "description": "The generic output value - could be regression or class label."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/trainedmodels [/{project}/trainedmodels]
+
+#### prediction.trainedmodels.insert [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique name for the predictive model."
+                },
+                "modelType": {
+                  "type": "string",
+                  "description": "Type of predictive model (classification or regression)."
+                },
+                "sourceModel": {
+                  "type": "string",
+                  "description": "The Id of the model to be copied over."
+                },
+                "storageDataLocation": {
+                  "type": "string",
+                  "description": "Google storage location of the training data file."
+                },
+                "storagePMMLLocation": {
+                  "type": "string",
+                  "description": "Google storage location of the preprocessing pmml file."
+                },
+                "storagePMMLModelLocation": {
+                  "type": "string",
+                  "description": "Google storage location of the pmml model file."
+                },
+                "trainingInstances": {
+                  "type": "array",
+                  "description": "Instances to train model on.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "csvInstance": {
+                        "type": "array",
+                        "description": "The input features for this instance.",
+                        "items": {}
+                      },
+                      "output": {
+                        "type": "string",
+                        "description": "The generic output value - could be regression or class label."
+                      }
+                    }
+                  }
+                },
+                "utility": {
+                  "type": "array",
+                  "description": "A class weighting function, which allows the importance weights for class labels to be specified (Categorical models only).",
+                  "items": {
+                    "type": "object",
+                    "description": "Class label (string).",
+                    "additionalProperties": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/trainedmodels/list [/prediction/v1.6/projects/{project}/trainedmodels/list{?maxResults,pageToken}]
+
+#### prediction.trainedmodels.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /{project}/trainedmodels/{id}/predict [/{project}/trainedmodels/{id}/predict]
+
+#### prediction.trainedmodels.predict [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "object",
+                  "description": "Input to the model for a prediction.",
+                  "properties": {
+                    "csvInstance": {
+                      "type": "array",
+                      "description": "A list of input features, these can be strings or doubles.",
+                      "items": {}
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+

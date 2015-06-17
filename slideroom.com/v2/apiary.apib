@@ -1,0 +1,148 @@
+FORMAT: 1A
+
+# SlideRoom API V2
+
+### Resource /api/v2/application/request-export [/api/v2/application/request-export{?format,roundtype,roundname,tab.export,pdf.includeforms,pdf.includereferences,pdf.includemedia,pdf.includeapplicantattachments,pdf.includeorganizationattachments,pdf.includeratings,pdf.includefullpagemedia,pdf.includehighlights,pdf.includecomments,pdf.includecommonapp,zip.originalmedia,zip.includeforms,zip.includereferences,zip.includemedia,zip.includeapplicantattachments,zip.includeorganizationattachments,zip.includeratings,zip.includecomments,zip.includecommonapp,delivery.account,delivery.folder,since,pool,searchname,email}]
+
+#### Application_RequestExportV2 [POST]
+
+Requests the generation of application export files (tabular, pdf, zip).
+
++ Parameters
+
+    + format
+  
+    + roundtype
+  
+    + roundname
+  
+    + tab.export
+  
+    + pdf.includeforms
+  
+    + pdf.includereferences
+  
+    + pdf.includemedia
+  
+    + pdf.includeapplicantattachments
+  
+    + pdf.includeorganizationattachments
+  
+    + pdf.includeratings
+  
+    + pdf.includefullpagemedia
+  
+    + pdf.includehighlights
+  
+    + pdf.includecomments
+  
+    + pdf.includecommonapp
+  
+    + zip.originalmedia
+  
+    + zip.includeforms
+  
+    + zip.includereferences
+  
+    + zip.includemedia
+  
+    + zip.includeapplicantattachments
+  
+    + zip.includeorganizationattachments
+  
+    + zip.includeratings
+  
+    + zip.includecomments
+  
+    + zip.includecommonapp
+  
+    + delivery.account
+  
+    + delivery.folder
+  
+    + since
+  
+    + pool
+  
+    + searchname
+  
+    + email
+
++ Response 200
+
+### Resource /api/v2/export/{token} [/api/v2/export/{token}]
+
+#### Export_GetV2 [GET]
+
+Gets the status/result of a requested export.
+
++ Parameters
+
+    + token (required)
+
++ Response 200
+
+### Resource /api/v2/application/{applicationId}/request-export [/api/v2/application/{applicationId}/request-export{?format,roundtype,roundname,tab.export,pdf.includeforms,pdf.includereferences,pdf.includemedia,pdf.includeapplicantattachments,pdf.includeorganizationattachments,pdf.includeratings,pdf.includefullpagemedia,pdf.includehighlights,pdf.includecomments,pdf.includecommonapp,zip.originalmedia,zip.includeforms,zip.includereferences,zip.includemedia,zip.includeapplicantattachments,zip.includeorganizationattachments,zip.includeratings,zip.includecomments,zip.includecommonapp,delivery.account,delivery.folder}]
+
+#### Application_RequestExportByApplicationIdV2 [POST]
+
+Requests the generation of a single application export file (tabular, pdf, zip).
+
++ Parameters
+
+    + applicationId (required)
+  
+    + format
+  
+    + roundtype
+  
+    + roundname
+  
+    + tab.export
+  
+    + pdf.includeforms
+  
+    + pdf.includereferences
+  
+    + pdf.includemedia
+  
+    + pdf.includeapplicantattachments
+  
+    + pdf.includeorganizationattachments
+  
+    + pdf.includeratings
+  
+    + pdf.includefullpagemedia
+  
+    + pdf.includehighlights
+  
+    + pdf.includecomments
+  
+    + pdf.includecommonapp
+  
+    + zip.originalmedia
+  
+    + zip.includeforms
+  
+    + zip.includereferences
+  
+    + zip.includemedia
+  
+    + zip.includeapplicantattachments
+  
+    + zip.includeorganizationattachments
+  
+    + zip.includeratings
+  
+    + zip.includecomments
+  
+    + zip.includecommonapp
+  
+    + delivery.account
+  
+    + delivery.folder
+
++ Response 202
+
++ Response 400
+

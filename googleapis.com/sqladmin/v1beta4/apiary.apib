@@ -1,0 +1,1944 @@
+FORMAT: 1A
+
+# Cloud SQL Administration API
+
+API for Cloud SQL database instance management.
+
+### Resource /projects/{project}/instances/{instance}/backupRuns/{id} [/projects/{project}/instances/{instance}/backupRuns/{id}]
+
+#### sql.backupRuns.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + id (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/backupRuns [/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns{?maxResults,pageToken}]
+
+#### sql.backupRuns.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/databases/{database} [/projects/{project}/instances/{instance}/databases/{database}]
+
+#### sql.databases.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + database (required)
+
++ Response 200
+
+#### sql.databases.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + database (required)
+
++ Response 200
+
+#### sql.databases.patch [PATCH]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + database (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A database resource inside a Cloud SQL instance.",
+              "properties": {
+                "charset": {
+                  "type": "string",
+                  "description": "The MySQL charset value."
+                },
+                "collation": {
+                  "type": "string",
+                  "description": "The MySQL collation value."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instance": {
+                  "type": "string",
+                  "description": "The name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#database.",
+                  "default": "sql#database"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the database in the Cloud SQL instance. This does not include the project ID or instance name."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.databases.update [PUT]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + database (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A database resource inside a Cloud SQL instance.",
+              "properties": {
+                "charset": {
+                  "type": "string",
+                  "description": "The MySQL charset value."
+                },
+                "collation": {
+                  "type": "string",
+                  "description": "The MySQL collation value."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instance": {
+                  "type": "string",
+                  "description": "The name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#database.",
+                  "default": "sql#database"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the database in the Cloud SQL instance. This does not include the project ID or instance name."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/databases [/projects/{project}/instances/{instance}/databases]
+
+#### sql.databases.insert [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A database resource inside a Cloud SQL instance.",
+              "properties": {
+                "charset": {
+                  "type": "string",
+                  "description": "The MySQL charset value."
+                },
+                "collation": {
+                  "type": "string",
+                  "description": "The MySQL collation value."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instance": {
+                  "type": "string",
+                  "description": "The name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#database.",
+                  "default": "sql#database"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the database in the Cloud SQL instance. This does not include the project ID or instance name."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable."
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.databases.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /flags [/flags]
+
+#### sql.flags.list [GET]
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/clone [/projects/{project}/instances/{instance}/clone]
+
+#### sql.instances.clone [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Database instance clone request.",
+              "properties": {
+                "cloneContext": {
+                  "type": "object",
+                  "description": "Database instance clone context.",
+                  "properties": {
+                    "binLogCoordinates": {
+                      "type": "object",
+                      "description": "Binary log coordinates.",
+                      "properties": {
+                        "binLogFileName": {
+                          "type": "string",
+                          "description": "Name of the binary log file for a Cloud SQL instance."
+                        },
+                        "binLogPosition": {
+                          "type": "string",
+                          "description": "Position (offset) within the binary log file.",
+                          "format": "int64"
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#binLogCoordinates.",
+                          "default": "sql#binLogCoordinates"
+                        }
+                      }
+                    },
+                    "destinationInstanceName": {
+                      "type": "string",
+                      "description": "Name of the Cloud SQL instance to be created as a clone."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#cloneContext.",
+                      "default": "sql#cloneContext"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance} [/projects/{project}/instances/{instance}]
+
+#### sql.instances.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+#### sql.instances.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+#### sql.instances.patch [PATCH]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Cloud SQL instance resource.",
+              "properties": {
+                "currentDiskSize": {
+                  "type": "string",
+                  "description": "The current disk usage of the instance in bytes.",
+                  "format": "int64"
+                },
+                "databaseVersion": {
+                  "type": "string",
+                  "description": "The database engine type and version. Can be MYSQL_5_5 or MYSQL_5_6. Defaults to MYSQL_5_5. The databaseVersion can not be changed after instance creation."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instanceType": {
+                  "type": "string",
+                  "description": "The instance type. This can be one of the following.\nCLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master.\nON_PREMISES_INSTANCE: An instance running on the customer's premises.\nREAD_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica."
+                },
+                "ipAddresses": {
+                  "type": "array",
+                  "description": "The assigned IP addresses for the instance.",
+                  "items": {
+                    "type": "object",
+                    "description": "Database instance IP Mapping.",
+                    "properties": {
+                      "ipAddress": {
+                        "type": "string",
+                        "description": "The IP address assigned."
+                      },
+                      "timeToRetire": {
+                        "type": "string",
+                        "description": "The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                },
+                "ipv6Address": {
+                  "type": "string",
+                  "description": "The IPv6 address assigned to the instance."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#instance.",
+                  "default": "sql#instance"
+                },
+                "masterInstanceName": {
+                  "type": "string",
+                  "description": "The name of the instance which will act as master in the replication setup."
+                },
+                "maxDiskSize": {
+                  "type": "string",
+                  "description": "The maximum disk size of the instance in bytes.",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "onPremisesConfiguration": {
+                  "type": "object",
+                  "description": "On-premises instance configuration.",
+                  "properties": {
+                    "hostPort": {
+                      "type": "string",
+                      "description": "The host and port of the on-premises instance in host:port format"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#onPremisesConfiguration.",
+                      "default": "sql#onPremisesConfiguration"
+                    }
+                  }
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable."
+                },
+                "region": {
+                  "type": "string",
+                  "description": "The geographical region. Can be us-central, asia-east1 or europe-west1. Defaults to us-central. The region can not be changed after instance creation."
+                },
+                "replicaConfiguration": {
+                  "type": "object",
+                  "description": "Read-replica configuration for connecting to the master.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#replicaConfiguration.",
+                      "default": "sql#replicaConfiguration"
+                    },
+                    "mysqlReplicaConfiguration": {
+                      "type": "object",
+                      "description": "Read-replica configuration specific to MySQL databases.",
+                      "properties": {
+                        "caCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the trusted CA's x509 certificate."
+                        },
+                        "clientCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's x509 certificate."
+                        },
+                        "clientKey": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's private key. The corresponsing public key is encoded in the client's certificate."
+                        },
+                        "connectRetryInterval": {
+                          "type": "integer",
+                          "description": "Seconds to wait between connect retries. MySQL's default is 60 seconds.",
+                          "format": "int32"
+                        },
+                        "dumpFilePath": {
+                          "type": "string",
+                          "description": "Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#mysqlReplicaConfiguration.",
+                          "default": "sql#mysqlReplicaConfiguration"
+                        },
+                        "masterHeartbeatPeriod": {
+                          "type": "string",
+                          "description": "Interval in milliseconds between replication heartbeats.",
+                          "format": "int64"
+                        },
+                        "password": {
+                          "type": "string",
+                          "description": "The password for the replication connection."
+                        },
+                        "sslCipher": {
+                          "type": "string",
+                          "description": "A list of permissible ciphers to use for SSL encryption."
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "The username for the replication connection."
+                        },
+                        "verifyServerCertificate": {
+                          "type": "boolean",
+                          "description": "Whether or not to check the master's Common Name value in the certificate that it sends during the SSL handshake."
+                        }
+                      }
+                    }
+                  }
+                },
+                "replicaNames": {
+                  "type": "array",
+                  "description": "The replicas of the instance.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                },
+                "serverCaCert": {
+                  "type": "object",
+                  "description": "SslCerts Resource",
+                  "properties": {
+                    "cert": {
+                      "type": "string",
+                      "description": "PEM representation."
+                    },
+                    "certSerialNumber": {
+                      "type": "string",
+                      "description": "Serial number, as extracted from the certificate."
+                    },
+                    "commonName": {
+                      "type": "string",
+                      "description": "User supplied name. Constrained to [a-zA-Z.-_ ]+."
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "The time when the certificate was created in RFC 3339 format, for example 2012-11-15T16:19:00.094Z",
+                      "format": "date-time"
+                    },
+                    "expirationTime": {
+                      "type": "string",
+                      "description": "The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                      "format": "date-time"
+                    },
+                    "instance": {
+                      "type": "string",
+                      "description": "Name of the database instance."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#sslCert.",
+                      "default": "sql#sslCert"
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URI of this resource."
+                    },
+                    "sha1Fingerprint": {
+                      "type": "string",
+                      "description": "Sha1 Fingerprint."
+                    }
+                  }
+                },
+                "serviceAccountEmailAddress": {
+                  "type": "string",
+                  "description": "The service account email address assigned to the instance."
+                },
+                "settings": {
+                  "type": "object",
+                  "description": "Database instance settings.",
+                  "properties": {
+                    "activationPolicy": {
+                      "type": "string",
+                      "description": "The activation policy for this instance. This specifies when the instance should be activated and is applicable only when the instance state is RUNNABLE. This can be one of the following.\nALWAYS: The instance should always be active.\nNEVER: The instance should never be activated.\nON_DEMAND: The instance is activated upon receiving requests."
+                    },
+                    "authorizedGaeApplications": {
+                      "type": "array",
+                      "description": "The App Engine app IDs that can access this instance.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "backupConfiguration": {
+                      "type": "object",
+                      "description": "Database instance backup configuration.",
+                      "properties": {
+                        "binaryLogEnabled": {
+                          "type": "boolean",
+                          "description": "Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well."
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "Whether this configuration is enabled."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#backupConfiguration.",
+                          "default": "sql#backupConfiguration"
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "description": "Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM."
+                        }
+                      }
+                    },
+                    "crashSafeReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled."
+                    },
+                    "databaseFlags": {
+                      "type": "array",
+                      "description": "The database flags passed to the instance at startup.",
+                      "items": {
+                        "type": "object",
+                        "description": "MySQL flags for Cloud SQL instances.",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the flag. These flags are passed at instance startup, so include both MySQL server options and MySQL system variables. Flags should be specified with underscores, not hyphens. For more information, see Configuring MySQL Flags in the Google Cloud SQL documentation, as well as the official MySQL documentation for server options and system variables."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn't take a value."
+                          }
+                        }
+                      }
+                    },
+                    "databaseReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not."
+                    },
+                    "ipConfiguration": {
+                      "type": "object",
+                      "description": "IP Management configuration.",
+                      "properties": {
+                        "authorizedNetworks": {
+                          "type": "array",
+                          "description": "The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as 'slash' notation (e.g. 192.168.100.0/24).",
+                          "items": {
+                            "type": "object",
+                            "description": "An entry for an Access Control list.",
+                            "properties": {
+                              "expirationTime": {
+                                "type": "string",
+                                "description": "The time when this access control entry expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                                "format": "date-time"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "This is always sql#aclEntry.",
+                                "default": "sql#aclEntry"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "An optional label to identify this entry."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The whitelisted value for the access control list."
+                              }
+                            }
+                          }
+                        },
+                        "ipv4Enabled": {
+                          "type": "boolean",
+                          "description": "Whether the instance should be assigned an IP address or not."
+                        },
+                        "requireSsl": {
+                          "type": "boolean",
+                          "description": "Whether the mysqld should default to 'REQUIRE X509' for users connecting over IP."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#settings.",
+                      "default": "sql#settings"
+                    },
+                    "locationPreference": {
+                      "type": "object",
+                      "description": "Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.",
+                      "properties": {
+                        "followGaeApplication": {
+                          "type": "string",
+                          "description": "The AppEngine application to follow, it must be in the same region as the Cloud SQL instance."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#locationPreference.",
+                          "default": "sql#locationPreference"
+                        },
+                        "zone": {
+                          "type": "string",
+                          "description": "The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b, etc.)."
+                        }
+                      }
+                    },
+                    "pricingPlan": {
+                      "type": "string",
+                      "description": "The pricing plan for this instance. This can be either PER_USE or PACKAGE."
+                    },
+                    "replicationType": {
+                      "type": "string",
+                      "description": "The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS."
+                    },
+                    "settingsVersion": {
+                      "type": "string",
+                      "description": "The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.",
+                      "format": "int64"
+                    },
+                    "tier": {
+                      "type": "string",
+                      "description": "The tier of service for this instance, for example D1, D2. For more information, see pricing."
+                    }
+                  }
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The current serving state of the Cloud SQL instance. This can be one of the following.\nRUNNABLE: The instance is running, or is ready to run when accessed.\nSUSPENDED: The instance is not available, for example due to problems with billing.\nPENDING_CREATE: The instance is being created.\nMAINTENANCE: The instance is down for maintenance.\nFAILED: The instance creation failed.\nUNKNOWN_STATE: The state of the instance is unknown."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.instances.update [PUT]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Cloud SQL instance resource.",
+              "properties": {
+                "currentDiskSize": {
+                  "type": "string",
+                  "description": "The current disk usage of the instance in bytes.",
+                  "format": "int64"
+                },
+                "databaseVersion": {
+                  "type": "string",
+                  "description": "The database engine type and version. Can be MYSQL_5_5 or MYSQL_5_6. Defaults to MYSQL_5_5. The databaseVersion can not be changed after instance creation."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instanceType": {
+                  "type": "string",
+                  "description": "The instance type. This can be one of the following.\nCLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master.\nON_PREMISES_INSTANCE: An instance running on the customer's premises.\nREAD_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica."
+                },
+                "ipAddresses": {
+                  "type": "array",
+                  "description": "The assigned IP addresses for the instance.",
+                  "items": {
+                    "type": "object",
+                    "description": "Database instance IP Mapping.",
+                    "properties": {
+                      "ipAddress": {
+                        "type": "string",
+                        "description": "The IP address assigned."
+                      },
+                      "timeToRetire": {
+                        "type": "string",
+                        "description": "The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                },
+                "ipv6Address": {
+                  "type": "string",
+                  "description": "The IPv6 address assigned to the instance."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#instance.",
+                  "default": "sql#instance"
+                },
+                "masterInstanceName": {
+                  "type": "string",
+                  "description": "The name of the instance which will act as master in the replication setup."
+                },
+                "maxDiskSize": {
+                  "type": "string",
+                  "description": "The maximum disk size of the instance in bytes.",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "onPremisesConfiguration": {
+                  "type": "object",
+                  "description": "On-premises instance configuration.",
+                  "properties": {
+                    "hostPort": {
+                      "type": "string",
+                      "description": "The host and port of the on-premises instance in host:port format"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#onPremisesConfiguration.",
+                      "default": "sql#onPremisesConfiguration"
+                    }
+                  }
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable."
+                },
+                "region": {
+                  "type": "string",
+                  "description": "The geographical region. Can be us-central, asia-east1 or europe-west1. Defaults to us-central. The region can not be changed after instance creation."
+                },
+                "replicaConfiguration": {
+                  "type": "object",
+                  "description": "Read-replica configuration for connecting to the master.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#replicaConfiguration.",
+                      "default": "sql#replicaConfiguration"
+                    },
+                    "mysqlReplicaConfiguration": {
+                      "type": "object",
+                      "description": "Read-replica configuration specific to MySQL databases.",
+                      "properties": {
+                        "caCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the trusted CA's x509 certificate."
+                        },
+                        "clientCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's x509 certificate."
+                        },
+                        "clientKey": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's private key. The corresponsing public key is encoded in the client's certificate."
+                        },
+                        "connectRetryInterval": {
+                          "type": "integer",
+                          "description": "Seconds to wait between connect retries. MySQL's default is 60 seconds.",
+                          "format": "int32"
+                        },
+                        "dumpFilePath": {
+                          "type": "string",
+                          "description": "Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#mysqlReplicaConfiguration.",
+                          "default": "sql#mysqlReplicaConfiguration"
+                        },
+                        "masterHeartbeatPeriod": {
+                          "type": "string",
+                          "description": "Interval in milliseconds between replication heartbeats.",
+                          "format": "int64"
+                        },
+                        "password": {
+                          "type": "string",
+                          "description": "The password for the replication connection."
+                        },
+                        "sslCipher": {
+                          "type": "string",
+                          "description": "A list of permissible ciphers to use for SSL encryption."
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "The username for the replication connection."
+                        },
+                        "verifyServerCertificate": {
+                          "type": "boolean",
+                          "description": "Whether or not to check the master's Common Name value in the certificate that it sends during the SSL handshake."
+                        }
+                      }
+                    }
+                  }
+                },
+                "replicaNames": {
+                  "type": "array",
+                  "description": "The replicas of the instance.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                },
+                "serverCaCert": {
+                  "type": "object",
+                  "description": "SslCerts Resource",
+                  "properties": {
+                    "cert": {
+                      "type": "string",
+                      "description": "PEM representation."
+                    },
+                    "certSerialNumber": {
+                      "type": "string",
+                      "description": "Serial number, as extracted from the certificate."
+                    },
+                    "commonName": {
+                      "type": "string",
+                      "description": "User supplied name. Constrained to [a-zA-Z.-_ ]+."
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "The time when the certificate was created in RFC 3339 format, for example 2012-11-15T16:19:00.094Z",
+                      "format": "date-time"
+                    },
+                    "expirationTime": {
+                      "type": "string",
+                      "description": "The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                      "format": "date-time"
+                    },
+                    "instance": {
+                      "type": "string",
+                      "description": "Name of the database instance."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#sslCert.",
+                      "default": "sql#sslCert"
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URI of this resource."
+                    },
+                    "sha1Fingerprint": {
+                      "type": "string",
+                      "description": "Sha1 Fingerprint."
+                    }
+                  }
+                },
+                "serviceAccountEmailAddress": {
+                  "type": "string",
+                  "description": "The service account email address assigned to the instance."
+                },
+                "settings": {
+                  "type": "object",
+                  "description": "Database instance settings.",
+                  "properties": {
+                    "activationPolicy": {
+                      "type": "string",
+                      "description": "The activation policy for this instance. This specifies when the instance should be activated and is applicable only when the instance state is RUNNABLE. This can be one of the following.\nALWAYS: The instance should always be active.\nNEVER: The instance should never be activated.\nON_DEMAND: The instance is activated upon receiving requests."
+                    },
+                    "authorizedGaeApplications": {
+                      "type": "array",
+                      "description": "The App Engine app IDs that can access this instance.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "backupConfiguration": {
+                      "type": "object",
+                      "description": "Database instance backup configuration.",
+                      "properties": {
+                        "binaryLogEnabled": {
+                          "type": "boolean",
+                          "description": "Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well."
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "Whether this configuration is enabled."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#backupConfiguration.",
+                          "default": "sql#backupConfiguration"
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "description": "Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM."
+                        }
+                      }
+                    },
+                    "crashSafeReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled."
+                    },
+                    "databaseFlags": {
+                      "type": "array",
+                      "description": "The database flags passed to the instance at startup.",
+                      "items": {
+                        "type": "object",
+                        "description": "MySQL flags for Cloud SQL instances.",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the flag. These flags are passed at instance startup, so include both MySQL server options and MySQL system variables. Flags should be specified with underscores, not hyphens. For more information, see Configuring MySQL Flags in the Google Cloud SQL documentation, as well as the official MySQL documentation for server options and system variables."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn't take a value."
+                          }
+                        }
+                      }
+                    },
+                    "databaseReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not."
+                    },
+                    "ipConfiguration": {
+                      "type": "object",
+                      "description": "IP Management configuration.",
+                      "properties": {
+                        "authorizedNetworks": {
+                          "type": "array",
+                          "description": "The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as 'slash' notation (e.g. 192.168.100.0/24).",
+                          "items": {
+                            "type": "object",
+                            "description": "An entry for an Access Control list.",
+                            "properties": {
+                              "expirationTime": {
+                                "type": "string",
+                                "description": "The time when this access control entry expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                                "format": "date-time"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "This is always sql#aclEntry.",
+                                "default": "sql#aclEntry"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "An optional label to identify this entry."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The whitelisted value for the access control list."
+                              }
+                            }
+                          }
+                        },
+                        "ipv4Enabled": {
+                          "type": "boolean",
+                          "description": "Whether the instance should be assigned an IP address or not."
+                        },
+                        "requireSsl": {
+                          "type": "boolean",
+                          "description": "Whether the mysqld should default to 'REQUIRE X509' for users connecting over IP."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#settings.",
+                      "default": "sql#settings"
+                    },
+                    "locationPreference": {
+                      "type": "object",
+                      "description": "Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.",
+                      "properties": {
+                        "followGaeApplication": {
+                          "type": "string",
+                          "description": "The AppEngine application to follow, it must be in the same region as the Cloud SQL instance."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#locationPreference.",
+                          "default": "sql#locationPreference"
+                        },
+                        "zone": {
+                          "type": "string",
+                          "description": "The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b, etc.)."
+                        }
+                      }
+                    },
+                    "pricingPlan": {
+                      "type": "string",
+                      "description": "The pricing plan for this instance. This can be either PER_USE or PACKAGE."
+                    },
+                    "replicationType": {
+                      "type": "string",
+                      "description": "The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS."
+                    },
+                    "settingsVersion": {
+                      "type": "string",
+                      "description": "The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.",
+                      "format": "int64"
+                    },
+                    "tier": {
+                      "type": "string",
+                      "description": "The tier of service for this instance, for example D1, D2. For more information, see pricing."
+                    }
+                  }
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The current serving state of the Cloud SQL instance. This can be one of the following.\nRUNNABLE: The instance is running, or is ready to run when accessed.\nSUSPENDED: The instance is not available, for example due to problems with billing.\nPENDING_CREATE: The instance is being created.\nMAINTENANCE: The instance is down for maintenance.\nFAILED: The instance creation failed.\nUNKNOWN_STATE: The state of the instance is unknown."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/export [/projects/{project}/instances/{instance}/export]
+
+#### sql.instances.export [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Database instance export request.",
+              "properties": {
+                "exportContext": {
+                  "type": "object",
+                  "description": "Database instance export context.",
+                  "properties": {
+                    "csvExportOptions": {
+                      "type": "object",
+                      "description": "Options for exporting data as CSV.",
+                      "properties": {
+                        "selectQuery": {
+                          "type": "string",
+                          "description": "The select query used to extract the data."
+                        }
+                      }
+                    },
+                    "databases": {
+                      "type": "array",
+                      "description": "Databases (for example, guestbook) from which the export is made. If fileType is SQL and no database is specified, all databases are exported. If fileType is CSV, you can optionally specify at most one database to export. If csvExportOptions.selectQuery also specifies the database, this field will be ignored.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "fileType": {
+                      "type": "string",
+                      "description": "The file type for the specified uri.\nSQL: The file contains SQL statements.\nCSV: The file contains CSV data."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#exportContext.",
+                      "default": "sql#exportContext"
+                    },
+                    "sqlExportOptions": {
+                      "type": "object",
+                      "description": "Options for exporting data as SQL statements.",
+                      "properties": {
+                        "tables": {
+                          "type": "array",
+                          "description": "Tables to export, or that were exported, from the specified database. If you specify tables, specify one and only one database.",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form gs://bucketName/fileName. If the file already exists, the operation fails. If fileType is SQL and the filename ends with .gz, the contents are compressed."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/import [/projects/{project}/instances/{instance}/import]
+
+#### sql.instances.import [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Database instance import request.",
+              "properties": {
+                "importContext": {
+                  "type": "object",
+                  "description": "Database instance import context.",
+                  "properties": {
+                    "csvImportOptions": {
+                      "type": "object",
+                      "description": "Options for importing data as CSV.",
+                      "properties": {
+                        "columns": {
+                          "type": "array",
+                          "description": "The columns to which CSV data is imported. If not specified, all columns of the database table are loaded with CSV data.",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "table": {
+                          "type": "string",
+                          "description": "The table to which CSV data is imported."
+                        }
+                      }
+                    },
+                    "database": {
+                      "type": "string",
+                      "description": "The database (for example, guestbook) to which the import is made. If fileType is SQL and no database is specified, it is assumed that the database is specified in the file to be imported. If fileType is CSV, it must be specified."
+                    },
+                    "fileType": {
+                      "type": "string",
+                      "description": "The file type for the specified uri.\nSQL: The file contains SQL statements.\nCSV: The file contains CSV data."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#importContext.",
+                      "default": "sql#importContext"
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "A path to the file in Google Cloud Storage from which the import is made. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are supported when fileType is SQL."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances [/sql/v1beta4/projects/{project}/instances{?maxResults,pageToken}]
+
+#### sql.instances.insert [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Cloud SQL instance resource.",
+              "properties": {
+                "currentDiskSize": {
+                  "type": "string",
+                  "description": "The current disk usage of the instance in bytes.",
+                  "format": "int64"
+                },
+                "databaseVersion": {
+                  "type": "string",
+                  "description": "The database engine type and version. Can be MYSQL_5_5 or MYSQL_5_6. Defaults to MYSQL_5_5. The databaseVersion can not be changed after instance creation."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "instanceType": {
+                  "type": "string",
+                  "description": "The instance type. This can be one of the following.\nCLOUD_SQL_INSTANCE: A Cloud SQL instance that is not replicating from a master.\nON_PREMISES_INSTANCE: An instance running on the customer's premises.\nREAD_REPLICA_INSTANCE: A Cloud SQL instance configured as a read-replica."
+                },
+                "ipAddresses": {
+                  "type": "array",
+                  "description": "The assigned IP addresses for the instance.",
+                  "items": {
+                    "type": "object",
+                    "description": "Database instance IP Mapping.",
+                    "properties": {
+                      "ipAddress": {
+                        "type": "string",
+                        "description": "The IP address assigned."
+                      },
+                      "timeToRetire": {
+                        "type": "string",
+                        "description": "The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.",
+                        "format": "date-time"
+                      }
+                    }
+                  }
+                },
+                "ipv6Address": {
+                  "type": "string",
+                  "description": "The IPv6 address assigned to the instance."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#instance.",
+                  "default": "sql#instance"
+                },
+                "masterInstanceName": {
+                  "type": "string",
+                  "description": "The name of the instance which will act as master in the replication setup."
+                },
+                "maxDiskSize": {
+                  "type": "string",
+                  "description": "The maximum disk size of the instance in bytes.",
+                  "format": "int64"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the Cloud SQL instance. This does not include the project ID."
+                },
+                "onPremisesConfiguration": {
+                  "type": "object",
+                  "description": "On-premises instance configuration.",
+                  "properties": {
+                    "hostPort": {
+                      "type": "string",
+                      "description": "The host and port of the on-premises instance in host:port format"
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#onPremisesConfiguration.",
+                      "default": "sql#onPremisesConfiguration"
+                    }
+                  }
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable."
+                },
+                "region": {
+                  "type": "string",
+                  "description": "The geographical region. Can be us-central, asia-east1 or europe-west1. Defaults to us-central. The region can not be changed after instance creation."
+                },
+                "replicaConfiguration": {
+                  "type": "object",
+                  "description": "Read-replica configuration for connecting to the master.",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#replicaConfiguration.",
+                      "default": "sql#replicaConfiguration"
+                    },
+                    "mysqlReplicaConfiguration": {
+                      "type": "object",
+                      "description": "Read-replica configuration specific to MySQL databases.",
+                      "properties": {
+                        "caCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the trusted CA's x509 certificate."
+                        },
+                        "clientCertificate": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's x509 certificate."
+                        },
+                        "clientKey": {
+                          "type": "string",
+                          "description": "PEM representation of the slave's private key. The corresponsing public key is encoded in the client's certificate."
+                        },
+                        "connectRetryInterval": {
+                          "type": "integer",
+                          "description": "Seconds to wait between connect retries. MySQL's default is 60 seconds.",
+                          "format": "int32"
+                        },
+                        "dumpFilePath": {
+                          "type": "string",
+                          "description": "Path to a SQL dump file in Google Cloud Storage from which the slave instance is to be created. The URI is in the form gs://bucketName/fileName. Compressed gzip files (.gz) are also supported. Dumps should have the binlog co-ordinates from which replication should begin. This can be accomplished by setting --master-data to 1 when using mysqldump."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#mysqlReplicaConfiguration.",
+                          "default": "sql#mysqlReplicaConfiguration"
+                        },
+                        "masterHeartbeatPeriod": {
+                          "type": "string",
+                          "description": "Interval in milliseconds between replication heartbeats.",
+                          "format": "int64"
+                        },
+                        "password": {
+                          "type": "string",
+                          "description": "The password for the replication connection."
+                        },
+                        "sslCipher": {
+                          "type": "string",
+                          "description": "A list of permissible ciphers to use for SSL encryption."
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "The username for the replication connection."
+                        },
+                        "verifyServerCertificate": {
+                          "type": "boolean",
+                          "description": "Whether or not to check the master's Common Name value in the certificate that it sends during the SSL handshake."
+                        }
+                      }
+                    }
+                  }
+                },
+                "replicaNames": {
+                  "type": "array",
+                  "description": "The replicas of the instance.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The URI of this resource."
+                },
+                "serverCaCert": {
+                  "type": "object",
+                  "description": "SslCerts Resource",
+                  "properties": {
+                    "cert": {
+                      "type": "string",
+                      "description": "PEM representation."
+                    },
+                    "certSerialNumber": {
+                      "type": "string",
+                      "description": "Serial number, as extracted from the certificate."
+                    },
+                    "commonName": {
+                      "type": "string",
+                      "description": "User supplied name. Constrained to [a-zA-Z.-_ ]+."
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "The time when the certificate was created in RFC 3339 format, for example 2012-11-15T16:19:00.094Z",
+                      "format": "date-time"
+                    },
+                    "expirationTime": {
+                      "type": "string",
+                      "description": "The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                      "format": "date-time"
+                    },
+                    "instance": {
+                      "type": "string",
+                      "description": "Name of the database instance."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#sslCert.",
+                      "default": "sql#sslCert"
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URI of this resource."
+                    },
+                    "sha1Fingerprint": {
+                      "type": "string",
+                      "description": "Sha1 Fingerprint."
+                    }
+                  }
+                },
+                "serviceAccountEmailAddress": {
+                  "type": "string",
+                  "description": "The service account email address assigned to the instance."
+                },
+                "settings": {
+                  "type": "object",
+                  "description": "Database instance settings.",
+                  "properties": {
+                    "activationPolicy": {
+                      "type": "string",
+                      "description": "The activation policy for this instance. This specifies when the instance should be activated and is applicable only when the instance state is RUNNABLE. This can be one of the following.\nALWAYS: The instance should always be active.\nNEVER: The instance should never be activated.\nON_DEMAND: The instance is activated upon receiving requests."
+                    },
+                    "authorizedGaeApplications": {
+                      "type": "array",
+                      "description": "The App Engine app IDs that can access this instance.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "backupConfiguration": {
+                      "type": "object",
+                      "description": "Database instance backup configuration.",
+                      "properties": {
+                        "binaryLogEnabled": {
+                          "type": "boolean",
+                          "description": "Whether binary log is enabled. If backup configuration is disabled, binary log must be disabled as well."
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "description": "Whether this configuration is enabled."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#backupConfiguration.",
+                          "default": "sql#backupConfiguration"
+                        },
+                        "startTime": {
+                          "type": "string",
+                          "description": "Start time for the daily backup configuration in UTC timezone in the 24 hour format - HH:MM."
+                        }
+                      }
+                    },
+                    "crashSafeReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled."
+                    },
+                    "databaseFlags": {
+                      "type": "array",
+                      "description": "The database flags passed to the instance at startup.",
+                      "items": {
+                        "type": "object",
+                        "description": "MySQL flags for Cloud SQL instances.",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "description": "The name of the flag. These flags are passed at instance startup, so include both MySQL server options and MySQL system variables. Flags should be specified with underscores, not hyphens. For more information, see Configuring MySQL Flags in the Google Cloud SQL documentation, as well as the official MySQL documentation for server options and system variables."
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "The value of the flag. Booleans should be set to on for true and off for false. This field must be omitted if the flag doesn't take a value."
+                          }
+                        }
+                      }
+                    },
+                    "databaseReplicationEnabled": {
+                      "type": "boolean",
+                      "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not."
+                    },
+                    "ipConfiguration": {
+                      "type": "object",
+                      "description": "IP Management configuration.",
+                      "properties": {
+                        "authorizedNetworks": {
+                          "type": "array",
+                          "description": "The list of external networks that are allowed to connect to the instance using the IP. In CIDR notation, also known as 'slash' notation (e.g. 192.168.100.0/24).",
+                          "items": {
+                            "type": "object",
+                            "description": "An entry for an Access Control list.",
+                            "properties": {
+                              "expirationTime": {
+                                "type": "string",
+                                "description": "The time when this access control entry expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+                                "format": "date-time"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "This is always sql#aclEntry.",
+                                "default": "sql#aclEntry"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "An optional label to identify this entry."
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The whitelisted value for the access control list."
+                              }
+                            }
+                          }
+                        },
+                        "ipv4Enabled": {
+                          "type": "boolean",
+                          "description": "Whether the instance should be assigned an IP address or not."
+                        },
+                        "requireSsl": {
+                          "type": "boolean",
+                          "description": "Whether the mysqld should default to 'REQUIRE X509' for users connecting over IP."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#settings.",
+                      "default": "sql#settings"
+                    },
+                    "locationPreference": {
+                      "type": "object",
+                      "description": "Preferred location. This specifies where a Cloud SQL instance should preferably be located, either in a specific Compute Engine zone, or co-located with an App Engine application. Note that if the preferred location is not available, the instance will be located as close as possible within the region. Only one location may be specified.",
+                      "properties": {
+                        "followGaeApplication": {
+                          "type": "string",
+                          "description": "The AppEngine application to follow, it must be in the same region as the Cloud SQL instance."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "This is always sql#locationPreference.",
+                          "default": "sql#locationPreference"
+                        },
+                        "zone": {
+                          "type": "string",
+                          "description": "The preferred Compute Engine zone (e.g. us-centra1-a, us-central1-b, etc.)."
+                        }
+                      }
+                    },
+                    "pricingPlan": {
+                      "type": "string",
+                      "description": "The pricing plan for this instance. This can be either PER_USE or PACKAGE."
+                    },
+                    "replicationType": {
+                      "type": "string",
+                      "description": "The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS."
+                    },
+                    "settingsVersion": {
+                      "type": "string",
+                      "description": "The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.",
+                      "format": "int64"
+                    },
+                    "tier": {
+                      "type": "string",
+                      "description": "The tier of service for this instance, for example D1, D2. For more information, see pricing."
+                    }
+                  }
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The current serving state of the Cloud SQL instance. This can be one of the following.\nRUNNABLE: The instance is running, or is ready to run when accessed.\nSUSPENDED: The instance is not available, for example due to problems with billing.\nPENDING_CREATE: The instance is being created.\nMAINTENANCE: The instance is down for maintenance.\nFAILED: The instance creation failed.\nUNKNOWN_STATE: The state of the instance is unknown."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.instances.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/promoteReplica [/projects/{project}/instances/{instance}/promoteReplica]
+
+#### sql.instances.promoteReplica [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/resetSslConfig [/projects/{project}/instances/{instance}/resetSslConfig]
+
+#### sql.instances.resetSslConfig [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/restart [/projects/{project}/instances/{instance}/restart]
+
+#### sql.instances.restart [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/restoreBackup [/projects/{project}/instances/{instance}/restoreBackup]
+
+#### sql.instances.restoreBackup [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Database instance restore backup request.",
+              "properties": {
+                "restoreBackupContext": {
+                  "type": "object",
+                  "description": "Database instance restore from backup context.",
+                  "properties": {
+                    "backupRunId": {
+                      "type": "string",
+                      "description": "The ID of the backup run to restore from.",
+                      "format": "int64"
+                    },
+                    "instanceId": {
+                      "type": "string",
+                      "description": "The ID of the instance that the backup was taken from."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "This is always sql#restoreBackupContext.",
+                      "default": "sql#restoreBackupContext"
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/startReplica [/projects/{project}/instances/{instance}/startReplica]
+
+#### sql.instances.startReplica [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/stopReplica [/projects/{project}/instances/{instance}/stopReplica]
+
+#### sql.instances.stopReplica [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/operations/{operation} [/projects/{project}/operations/{operation}]
+
+#### sql.operations.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + operation (required)
+
++ Response 200
+
+### Resource /projects/{project}/operations [/sql/v1beta4/projects/{project}/operations{?instance,maxResults,pageToken}]
+
+#### sql.operations.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint} [/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}]
+
+#### sql.sslCerts.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + sha1Fingerprint (required)
+
++ Response 200
+
+#### sql.sslCerts.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + sha1Fingerprint (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/sslCerts [/projects/{project}/instances/{instance}/sslCerts]
+
+#### sql.sslCerts.insert [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "SslCerts insert request.",
+              "properties": {
+                "commonName": {
+                  "type": "string",
+                  "description": "User supplied name. Must be a distinct name from the other certificates for this instance. New certificates will not be usable until the instance is restarted."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.sslCerts.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+### Resource /projects/{project}/tiers [/projects/{project}/tiers]
+
+#### sql.tiers.list [GET]
+
++ Parameters
+
+    + project (required)
+
++ Response 200
+
+### Resource /projects/{project}/instances/{instance}/users [/sql/v1beta4/projects/{project}/instances/{instance}/users{?host,name}]
+
+#### sql.users.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + host (required)
+  
+    + name (required)
+
++ Response 200
+
+#### sql.users.insert [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Cloud SQL user resource.",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "host": {
+                  "type": "string",
+                  "description": "The host name from which the user can connect. For insert operations, host defaults to an empty string. For update operations, host is specified as part of the request URL. The host name is not mutable with this API."
+                },
+                "instance": {
+                  "type": "string",
+                  "description": "The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for update since it is already specified on the URL."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#user.",
+                  "default": "sql#user"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the user in the Cloud SQL instance. Can be omitted for update since it is already specified on the URL."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "The password for the user."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for update since it is already specified on the URL."
+                }
+              }
+            }
+
++ Response 200
+
+#### sql.users.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+
++ Response 200
+
+#### sql.users.update [PUT]
+
++ Parameters
+
+    + project (required)
+  
+    + instance (required)
+  
+    + host (required)
+  
+    + name (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A Cloud SQL user resource.",
+              "properties": {
+                "etag": {
+                  "type": "string",
+                  "description": "HTTP 1.1 Entity tag for the resource."
+                },
+                "host": {
+                  "type": "string",
+                  "description": "The host name from which the user can connect. For insert operations, host defaults to an empty string. For update operations, host is specified as part of the request URL. The host name is not mutable with this API."
+                },
+                "instance": {
+                  "type": "string",
+                  "description": "The name of the Cloud SQL instance. This does not include the project ID. Can be omitted for update since it is already specified on the URL."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "This is always sql#user.",
+                  "default": "sql#user"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the user in the Cloud SQL instance. Can be omitted for update since it is already specified on the URL."
+                },
+                "password": {
+                  "type": "string",
+                  "description": "The password for the user."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for update since it is already specified on the URL."
+                }
+              }
+            }
+
++ Response 200
+

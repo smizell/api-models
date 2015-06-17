@@ -1,0 +1,1019 @@
+FORMAT: 1A
+
+# Google Maps Coordinate API
+
+Lets you view and manage jobs in a Coordinate team.
+
+### Resource /teams/{teamId}/custom_fields [/teams/{teamId}/custom_fields]
+
+#### coordinate.customFieldDef.list [GET]
+
++ Parameters
+
+    + teamId (required)
+
++ Response 200
+
+### Resource /teams/{teamId}/jobs/{jobId} [/coordinate/v1/teams/{teamId}/jobs/{jobId}{?address,assignee,customField,customerName,customerPhoneNumber,lat,lng,note,progress,title}]
+
+#### coordinate.jobs.get [GET]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+
++ Response 200
+
+#### coordinate.jobs.patch [PATCH]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+  
+    + address
+  
+    + assignee
+  
+    + customField
+  
+    + customerName
+  
+    + customerPhoneNumber
+  
+    + lat
+  
+    + lng
+  
+    + note
+  
+    + progress
+  
+    + title
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A job.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Job id.",
+                  "format": "uint64"
+                },
+                "jobChange": {
+                  "type": "array",
+                  "description": "List of job changes since it was created. The first change corresponds to the state of the job when it was created.",
+                  "items": {
+                    "type": "object",
+                    "description": "Change to a job. For example assigning the job to a different worker.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Identifies this object as a job change.",
+                        "default": "coordinate#jobChange"
+                      },
+                      "state": {
+                        "type": "object",
+                        "description": "Current state of a job.",
+                        "properties": {
+                          "assignee": {
+                            "type": "string",
+                            "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                          },
+                          "customFields": {
+                            "type": "object",
+                            "description": "Collection of custom fields.",
+                            "properties": {
+                              "customField": {
+                                "type": "array",
+                                "description": "Collection of custom fields.",
+                                "items": {
+                                  "type": "object",
+                                  "description": "Custom field.",
+                                  "properties": {
+                                    "customFieldId": {
+                                      "type": "string",
+                                      "description": "Custom field id.",
+                                      "format": "int64"
+                                    },
+                                    "kind": {
+                                      "type": "string",
+                                      "description": "Identifies this object as a custom field.",
+                                      "default": "coordinate#customField"
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "Custom field value."
+                                    }
+                                  }
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a collection of custom fields.",
+                                "default": "coordinate#customFields"
+                              }
+                            }
+                          },
+                          "customerName": {
+                            "type": "string",
+                            "description": "Customer name."
+                          },
+                          "customerPhoneNumber": {
+                            "type": "string",
+                            "description": "Customer phone number."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "Identifies this object as a job state.",
+                            "default": "coordinate#jobState"
+                          },
+                          "location": {
+                            "type": "object",
+                            "description": "Location of a job.",
+                            "properties": {
+                              "addressLine": {
+                                "type": "array",
+                                "description": "Address.",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a location.",
+                                "default": "coordinate#location"
+                              },
+                              "lat": {
+                                "type": "number",
+                                "description": "Latitude.",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "description": "Longitude.",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "note": {
+                            "type": "array",
+                            "description": "Note added to the job.",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "progress": {
+                            "type": "string",
+                            "description": "Job progress."
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Job title."
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "description": "Time at which this change was applied.",
+                        "format": "uint64"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this object as a job.",
+                  "default": "coordinate#job"
+                },
+                "state": {
+                  "type": "object",
+                  "description": "Current state of a job.",
+                  "properties": {
+                    "assignee": {
+                      "type": "string",
+                      "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                    },
+                    "customFields": {
+                      "type": "object",
+                      "description": "Collection of custom fields.",
+                      "properties": {
+                        "customField": {
+                          "type": "array",
+                          "description": "Collection of custom fields.",
+                          "items": {
+                            "type": "object",
+                            "description": "Custom field.",
+                            "properties": {
+                              "customFieldId": {
+                                "type": "string",
+                                "description": "Custom field id.",
+                                "format": "int64"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a custom field.",
+                                "default": "coordinate#customField"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "Custom field value."
+                              }
+                            }
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a collection of custom fields.",
+                          "default": "coordinate#customFields"
+                        }
+                      }
+                    },
+                    "customerName": {
+                      "type": "string",
+                      "description": "Customer name."
+                    },
+                    "customerPhoneNumber": {
+                      "type": "string",
+                      "description": "Customer phone number."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies this object as a job state.",
+                      "default": "coordinate#jobState"
+                    },
+                    "location": {
+                      "type": "object",
+                      "description": "Location of a job.",
+                      "properties": {
+                        "addressLine": {
+                          "type": "array",
+                          "description": "Address.",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a location.",
+                          "default": "coordinate#location"
+                        },
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude.",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "array",
+                      "description": "Note added to the job.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "progress": {
+                      "type": "string",
+                      "description": "Job progress."
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Job title."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### coordinate.jobs.update [PUT]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+  
+    + address
+  
+    + assignee
+  
+    + customField
+  
+    + customerName
+  
+    + customerPhoneNumber
+  
+    + lat
+  
+    + lng
+  
+    + note
+  
+    + progress
+  
+    + title
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A job.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Job id.",
+                  "format": "uint64"
+                },
+                "jobChange": {
+                  "type": "array",
+                  "description": "List of job changes since it was created. The first change corresponds to the state of the job when it was created.",
+                  "items": {
+                    "type": "object",
+                    "description": "Change to a job. For example assigning the job to a different worker.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Identifies this object as a job change.",
+                        "default": "coordinate#jobChange"
+                      },
+                      "state": {
+                        "type": "object",
+                        "description": "Current state of a job.",
+                        "properties": {
+                          "assignee": {
+                            "type": "string",
+                            "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                          },
+                          "customFields": {
+                            "type": "object",
+                            "description": "Collection of custom fields.",
+                            "properties": {
+                              "customField": {
+                                "type": "array",
+                                "description": "Collection of custom fields.",
+                                "items": {
+                                  "type": "object",
+                                  "description": "Custom field.",
+                                  "properties": {
+                                    "customFieldId": {
+                                      "type": "string",
+                                      "description": "Custom field id.",
+                                      "format": "int64"
+                                    },
+                                    "kind": {
+                                      "type": "string",
+                                      "description": "Identifies this object as a custom field.",
+                                      "default": "coordinate#customField"
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "Custom field value."
+                                    }
+                                  }
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a collection of custom fields.",
+                                "default": "coordinate#customFields"
+                              }
+                            }
+                          },
+                          "customerName": {
+                            "type": "string",
+                            "description": "Customer name."
+                          },
+                          "customerPhoneNumber": {
+                            "type": "string",
+                            "description": "Customer phone number."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "Identifies this object as a job state.",
+                            "default": "coordinate#jobState"
+                          },
+                          "location": {
+                            "type": "object",
+                            "description": "Location of a job.",
+                            "properties": {
+                              "addressLine": {
+                                "type": "array",
+                                "description": "Address.",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a location.",
+                                "default": "coordinate#location"
+                              },
+                              "lat": {
+                                "type": "number",
+                                "description": "Latitude.",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "description": "Longitude.",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "note": {
+                            "type": "array",
+                            "description": "Note added to the job.",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "progress": {
+                            "type": "string",
+                            "description": "Job progress."
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Job title."
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "description": "Time at which this change was applied.",
+                        "format": "uint64"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this object as a job.",
+                  "default": "coordinate#job"
+                },
+                "state": {
+                  "type": "object",
+                  "description": "Current state of a job.",
+                  "properties": {
+                    "assignee": {
+                      "type": "string",
+                      "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                    },
+                    "customFields": {
+                      "type": "object",
+                      "description": "Collection of custom fields.",
+                      "properties": {
+                        "customField": {
+                          "type": "array",
+                          "description": "Collection of custom fields.",
+                          "items": {
+                            "type": "object",
+                            "description": "Custom field.",
+                            "properties": {
+                              "customFieldId": {
+                                "type": "string",
+                                "description": "Custom field id.",
+                                "format": "int64"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a custom field.",
+                                "default": "coordinate#customField"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "Custom field value."
+                              }
+                            }
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a collection of custom fields.",
+                          "default": "coordinate#customFields"
+                        }
+                      }
+                    },
+                    "customerName": {
+                      "type": "string",
+                      "description": "Customer name."
+                    },
+                    "customerPhoneNumber": {
+                      "type": "string",
+                      "description": "Customer phone number."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies this object as a job state.",
+                      "default": "coordinate#jobState"
+                    },
+                    "location": {
+                      "type": "object",
+                      "description": "Location of a job.",
+                      "properties": {
+                        "addressLine": {
+                          "type": "array",
+                          "description": "Address.",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a location.",
+                          "default": "coordinate#location"
+                        },
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude.",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "array",
+                      "description": "Note added to the job.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "progress": {
+                      "type": "string",
+                      "description": "Job progress."
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Job title."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /teams/{teamId}/jobs [/coordinate/v1/teams/{teamId}/jobs{?maxResults,minModifiedTimestampMs,pageToken}]
+
+#### coordinate.jobs.insert [POST]
+
++ Parameters
+
+    + teamId (required)
+  
+    + address (required)
+  
+    + lat (required)
+  
+    + lng (required)
+  
+    + title (required)
+  
+    + assignee
+  
+    + customField
+  
+    + customerName
+  
+    + customerPhoneNumber
+  
+    + note
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A job.",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Job id.",
+                  "format": "uint64"
+                },
+                "jobChange": {
+                  "type": "array",
+                  "description": "List of job changes since it was created. The first change corresponds to the state of the job when it was created.",
+                  "items": {
+                    "type": "object",
+                    "description": "Change to a job. For example assigning the job to a different worker.",
+                    "properties": {
+                      "kind": {
+                        "type": "string",
+                        "description": "Identifies this object as a job change.",
+                        "default": "coordinate#jobChange"
+                      },
+                      "state": {
+                        "type": "object",
+                        "description": "Current state of a job.",
+                        "properties": {
+                          "assignee": {
+                            "type": "string",
+                            "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                          },
+                          "customFields": {
+                            "type": "object",
+                            "description": "Collection of custom fields.",
+                            "properties": {
+                              "customField": {
+                                "type": "array",
+                                "description": "Collection of custom fields.",
+                                "items": {
+                                  "type": "object",
+                                  "description": "Custom field.",
+                                  "properties": {
+                                    "customFieldId": {
+                                      "type": "string",
+                                      "description": "Custom field id.",
+                                      "format": "int64"
+                                    },
+                                    "kind": {
+                                      "type": "string",
+                                      "description": "Identifies this object as a custom field.",
+                                      "default": "coordinate#customField"
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "Custom field value."
+                                    }
+                                  }
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a collection of custom fields.",
+                                "default": "coordinate#customFields"
+                              }
+                            }
+                          },
+                          "customerName": {
+                            "type": "string",
+                            "description": "Customer name."
+                          },
+                          "customerPhoneNumber": {
+                            "type": "string",
+                            "description": "Customer phone number."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "Identifies this object as a job state.",
+                            "default": "coordinate#jobState"
+                          },
+                          "location": {
+                            "type": "object",
+                            "description": "Location of a job.",
+                            "properties": {
+                              "addressLine": {
+                                "type": "array",
+                                "description": "Address.",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a location.",
+                                "default": "coordinate#location"
+                              },
+                              "lat": {
+                                "type": "number",
+                                "description": "Latitude.",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "description": "Longitude.",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "note": {
+                            "type": "array",
+                            "description": "Note added to the job.",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "progress": {
+                            "type": "string",
+                            "description": "Job progress."
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Job title."
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "string",
+                        "description": "Time at which this change was applied.",
+                        "format": "uint64"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this object as a job.",
+                  "default": "coordinate#job"
+                },
+                "state": {
+                  "type": "object",
+                  "description": "Current state of a job.",
+                  "properties": {
+                    "assignee": {
+                      "type": "string",
+                      "description": "Email address of the assignee, or the string \"DELETED_USER\" if the account is no longer available."
+                    },
+                    "customFields": {
+                      "type": "object",
+                      "description": "Collection of custom fields.",
+                      "properties": {
+                        "customField": {
+                          "type": "array",
+                          "description": "Collection of custom fields.",
+                          "items": {
+                            "type": "object",
+                            "description": "Custom field.",
+                            "properties": {
+                              "customFieldId": {
+                                "type": "string",
+                                "description": "Custom field id.",
+                                "format": "int64"
+                              },
+                              "kind": {
+                                "type": "string",
+                                "description": "Identifies this object as a custom field.",
+                                "default": "coordinate#customField"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "Custom field value."
+                              }
+                            }
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a collection of custom fields.",
+                          "default": "coordinate#customFields"
+                        }
+                      }
+                    },
+                    "customerName": {
+                      "type": "string",
+                      "description": "Customer name."
+                    },
+                    "customerPhoneNumber": {
+                      "type": "string",
+                      "description": "Customer phone number."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies this object as a job state.",
+                      "default": "coordinate#jobState"
+                    },
+                    "location": {
+                      "type": "object",
+                      "description": "Location of a job.",
+                      "properties": {
+                        "addressLine": {
+                          "type": "array",
+                          "description": "Address.",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "kind": {
+                          "type": "string",
+                          "description": "Identifies this object as a location.",
+                          "default": "coordinate#location"
+                        },
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude.",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "array",
+                      "description": "Note added to the job.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "progress": {
+                      "type": "string",
+                      "description": "Job progress."
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Job title."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### coordinate.jobs.list [GET]
+
++ Parameters
+
+    + teamId (required)
+  
+    + maxResults
+  
+    + minModifiedTimestampMs
+  
+    + pageToken
+
++ Response 200
+
+### Resource /teams/{teamId}/workers/{workerEmail}/locations [/coordinate/v1/teams/{teamId}/workers/{workerEmail}/locations{?startTimestampMs,maxResults,pageToken}]
+
+#### coordinate.location.list [GET]
+
++ Parameters
+
+    + teamId (required)
+  
+    + workerEmail (required)
+  
+    + startTimestampMs (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /teams/{teamId}/jobs/{jobId}/schedule [/coordinate/v1/teams/{teamId}/jobs/{jobId}/schedule{?allDay,duration,endTime,startTime}]
+
+#### coordinate.schedule.get [GET]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+
++ Response 200
+
+#### coordinate.schedule.patch [PATCH]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+  
+    + allDay
+  
+    + duration
+  
+    + endTime
+  
+    + startTime
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Job schedule.",
+              "properties": {
+                "allDay": {
+                  "type": "boolean",
+                  "description": "Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true."
+                },
+                "duration": {
+                  "type": "string",
+                  "description": "Job duration in milliseconds.",
+                  "format": "uint64"
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Scheduled end time in milliseconds since epoch.",
+                  "format": "uint64"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this object as a job schedule.",
+                  "default": "coordinate#schedule"
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Scheduled start time in milliseconds since epoch.",
+                  "format": "uint64"
+                }
+              }
+            }
+
++ Response 200
+
+#### coordinate.schedule.update [PUT]
+
++ Parameters
+
+    + teamId (required)
+  
+    + jobId (required)
+  
+    + allDay
+  
+    + duration
+  
+    + endTime
+  
+    + startTime
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Job schedule.",
+              "properties": {
+                "allDay": {
+                  "type": "boolean",
+                  "description": "Whether the job is scheduled for the whole day. Time of day in start/end times is ignored if this is true."
+                },
+                "duration": {
+                  "type": "string",
+                  "description": "Job duration in milliseconds.",
+                  "format": "uint64"
+                },
+                "endTime": {
+                  "type": "string",
+                  "description": "Scheduled end time in milliseconds since epoch.",
+                  "format": "uint64"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this object as a job schedule.",
+                  "default": "coordinate#schedule"
+                },
+                "startTime": {
+                  "type": "string",
+                  "description": "Scheduled start time in milliseconds since epoch.",
+                  "format": "uint64"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /teams [/coordinate/v1/teams{?admin,dispatcher,worker}]
+
+#### coordinate.team.list [GET]
+
++ Parameters
+
+    + admin
+  
+    + dispatcher
+  
+    + worker
+
++ Response 200
+
+### Resource /teams/{teamId}/workers [/teams/{teamId}/workers]
+
+#### coordinate.worker.list [GET]
+
++ Parameters
+
+    + teamId (required)
+
++ Response 200
+

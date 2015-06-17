@@ -1,0 +1,1578 @@
+FORMAT: 1A
+
+# Blogger API
+
+API for access to the data within Blogger.
+
+### Resource /users/{userId}/blogs/{blogId} [/blogger/v3/users/{userId}/blogs/{blogId}{?maxPosts}]
+
+#### blogger.blogUserInfos.get [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + blogId (required)
+  
+    + maxPosts
+
++ Response 200
+
+### Resource /blogs/{blogId} [/blogger/v3/blogs/{blogId}{?maxPosts,view}]
+
+#### blogger.blogs.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + maxPosts
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/byurl [/blogger/v3/blogs/byurl{?url,view}]
+
+#### blogger.blogs.getByUrl [GET]
+
++ Parameters
+
+    + url (required)
+  
+    + view
+
++ Response 200
+
+### Resource /users/{userId}/blogs [/blogger/v3/users/{userId}/blogs{?fetchUserInfo,role,status,view}]
+
+#### blogger.blogs.listByUser [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + fetchUserInfo
+  
+    + role
+  
+    + status
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments/{commentId}/approve [/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve]
+
+#### blogger.comments.approve [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments/{commentId} [/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}{?view}]
+
+#### blogger.comments.delete [DELETE]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+
++ Response 200
+
+#### blogger.comments.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments [/blogger/v3/blogs/{blogId}/posts/{postId}/comments{?endDate,fetchBodies,maxResults,pageToken,startDate,status,view}]
+
+#### blogger.comments.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + endDate
+  
+    + fetchBodies
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startDate
+  
+    + status
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/comments [/blogger/v3/blogs/{blogId}/comments{?endDate,fetchBodies,maxResults,pageToken,startDate,status}]
+
+#### blogger.comments.listByBlog [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + endDate
+  
+    + fetchBodies
+  
+    + maxResults
+  
+    + pageToken
+  
+    + startDate
+  
+    + status
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments/{commentId}/spam [/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam]
+
+#### blogger.comments.markAsSpam [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent [/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent]
+
+#### blogger.comments.removeContent [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + commentId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/pageviews [/blogger/v3/blogs/{blogId}/pageviews{?range}]
+
+#### blogger.pageViews.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + range
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages/{pageId} [/blogger/v3/blogs/{blogId}/pages/{pageId}{?publish,revert}]
+
+#### blogger.pages.delete [DELETE]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+
++ Response 200
+
+#### blogger.pages.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+  
+    + view
+
++ Response 200
+
+#### blogger.pages.patch [PATCH]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+  
+    + publish
+  
+    + revert
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Page.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Page creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The page author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The page author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Page creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Page.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the blog containing this page."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The body content of this Page, in HTML."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier for this resource."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#page",
+                  "default": "blogger#page"
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was published.",
+                  "format": "date-time"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The status of the page for admin resources (either LIVE or DRAFT)."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of this entity. This is the name displayed in the Admin user interface."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL that this Page is displayed at."
+                }
+              }
+            }
+
++ Response 200
+
+#### blogger.pages.update [PUT]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+  
+    + publish
+  
+    + revert
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Page.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Page creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The page author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The page author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Page creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Page.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the blog containing this page."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The body content of this Page, in HTML."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier for this resource."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#page",
+                  "default": "blogger#page"
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was published.",
+                  "format": "date-time"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The status of the page for admin resources (either LIVE or DRAFT)."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of this entity. This is the name displayed in the Admin user interface."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL that this Page is displayed at."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages [/blogger/v3/blogs/{blogId}/pages{?fetchBodies,maxResults,pageToken,status,view}]
+
+#### blogger.pages.insert [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + isDraft
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Page.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Page creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The page author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The page author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Page creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Page.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the blog containing this page."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The body content of this Page, in HTML."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier for this resource."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#page",
+                  "default": "blogger#page"
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was published.",
+                  "format": "date-time"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The status of the page for admin resources (either LIVE or DRAFT)."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of this entity. This is the name displayed in the Admin user interface."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Page was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL that this Page is displayed at."
+                }
+              }
+            }
+
++ Response 200
+
+#### blogger.pages.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + fetchBodies
+  
+    + maxResults
+  
+    + pageToken
+  
+    + status
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages/{pageId}/publish [/blogs/{blogId}/pages/{pageId}/publish]
+
+#### blogger.pages.publish [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/pages/{pageId}/revert [/blogs/{blogId}/pages/{pageId}/revert]
+
+#### blogger.pages.revert [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + pageId (required)
+
++ Response 200
+
+### Resource /users/{userId}/blogs/{blogId}/posts/{postId} [/blogger/v3/users/{userId}/blogs/{blogId}/posts/{postId}{?maxComments}]
+
+#### blogger.postUserInfos.get [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + blogId (required)
+  
+    + postId (required)
+  
+    + maxComments
+
++ Response 200
+
+### Resource /users/{userId}/blogs/{blogId}/posts [/blogger/v3/users/{userId}/blogs/{blogId}/posts{?endDate,fetchBodies,labels,maxResults,orderBy,pageToken,startDate,status,view}]
+
+#### blogger.postUserInfos.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + blogId (required)
+  
+    + endDate
+  
+    + fetchBodies
+  
+    + labels
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+  
+    + startDate
+  
+    + status
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId} [/blogger/v3/blogs/{blogId}/posts/{postId}{?fetchBody,fetchImages,maxComments,publish,revert}]
+
+#### blogger.posts.delete [DELETE]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+
++ Response 200
+
+#### blogger.posts.get [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + fetchBody
+  
+    + fetchImages
+  
+    + maxComments
+  
+    + view
+
++ Response 200
+
+#### blogger.posts.patch [PATCH]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + fetchBody
+  
+    + fetchImages
+  
+    + maxComments
+  
+    + publish
+  
+    + revert
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Post.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Post creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The Post author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The Post author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Post creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Post.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Blog that contains this Post."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The content of the Post. May contain HTML markup."
+                },
+                "customMetaData": {
+                  "type": "string",
+                  "description": "The JSON meta-data for the Post."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier of this Post."
+                },
+                "images": {
+                  "type": "array",
+                  "description": "Display image for the Post.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#post",
+                  "default": "blogger#post"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The list of labels this Post was tagged with.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "The location for geotagged posts.",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Location's latitude.",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Location's longitude.",
+                      "format": "double"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Location name."
+                    },
+                    "span": {
+                      "type": "string",
+                      "description": "Location's viewport span. Can be used when rendering a map preview."
+                    }
+                  }
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was published.",
+                  "format": "date-time"
+                },
+                "readerComments": {
+                  "type": "string",
+                  "description": "Comment control and display setting for readers of this post."
+                },
+                "replies": {
+                  "type": "object",
+                  "description": "The container of comments on this Post.",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "description": "The List of Comments for this Post.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "author": {
+                            "type": "object",
+                            "description": "The author of this Comment.",
+                            "properties": {
+                              "displayName": {
+                                "type": "string",
+                                "description": "The display name."
+                              },
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the Comment creator."
+                              },
+                              "image": {
+                                "type": "object",
+                                "description": "The comment creator's avatar.",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "description": "The comment creator's avatar URL."
+                                  }
+                                }
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "The URL of the Comment creator's Profile page."
+                              }
+                            }
+                          },
+                          "blog": {
+                            "type": "object",
+                            "description": "Data about the blog containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the blog containing this comment."
+                              }
+                            }
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "The actual content of the comment. May include HTML markup."
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "The identifier for this resource."
+                          },
+                          "inReplyTo": {
+                            "type": "object",
+                            "description": "Data about the comment this is in reply to.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identified of the parent of this comment."
+                              }
+                            }
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "The kind of this entry. Always blogger#comment",
+                            "default": "blogger#comment"
+                          },
+                          "post": {
+                            "type": "object",
+                            "description": "Data about the post containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the post containing this comment."
+                              }
+                            }
+                          },
+                          "published": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was published.",
+                            "format": "date-time"
+                          },
+                          "selfLink": {
+                            "type": "string",
+                            "description": "The API REST URL to fetch this resource from."
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The status of the comment (only populated for admin users)"
+                          },
+                          "updated": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was last updated.",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URL of the comments on this post."
+                    },
+                    "totalItems": {
+                      "type": "string",
+                      "description": "The count of comments on this post.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the post. Only set for admin-level requests"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of the Post."
+                },
+                "titleLink": {
+                  "type": "string",
+                  "description": "The title link URL, similar to atom's related link."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL where this Post is displayed."
+                }
+              }
+            }
+
++ Response 200
+
+#### blogger.posts.update [PUT]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + fetchBody
+  
+    + fetchImages
+  
+    + maxComments
+  
+    + publish
+  
+    + revert
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Post.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Post creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The Post author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The Post author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Post creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Post.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Blog that contains this Post."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The content of the Post. May contain HTML markup."
+                },
+                "customMetaData": {
+                  "type": "string",
+                  "description": "The JSON meta-data for the Post."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier of this Post."
+                },
+                "images": {
+                  "type": "array",
+                  "description": "Display image for the Post.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#post",
+                  "default": "blogger#post"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The list of labels this Post was tagged with.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "The location for geotagged posts.",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Location's latitude.",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Location's longitude.",
+                      "format": "double"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Location name."
+                    },
+                    "span": {
+                      "type": "string",
+                      "description": "Location's viewport span. Can be used when rendering a map preview."
+                    }
+                  }
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was published.",
+                  "format": "date-time"
+                },
+                "readerComments": {
+                  "type": "string",
+                  "description": "Comment control and display setting for readers of this post."
+                },
+                "replies": {
+                  "type": "object",
+                  "description": "The container of comments on this Post.",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "description": "The List of Comments for this Post.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "author": {
+                            "type": "object",
+                            "description": "The author of this Comment.",
+                            "properties": {
+                              "displayName": {
+                                "type": "string",
+                                "description": "The display name."
+                              },
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the Comment creator."
+                              },
+                              "image": {
+                                "type": "object",
+                                "description": "The comment creator's avatar.",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "description": "The comment creator's avatar URL."
+                                  }
+                                }
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "The URL of the Comment creator's Profile page."
+                              }
+                            }
+                          },
+                          "blog": {
+                            "type": "object",
+                            "description": "Data about the blog containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the blog containing this comment."
+                              }
+                            }
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "The actual content of the comment. May include HTML markup."
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "The identifier for this resource."
+                          },
+                          "inReplyTo": {
+                            "type": "object",
+                            "description": "Data about the comment this is in reply to.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identified of the parent of this comment."
+                              }
+                            }
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "The kind of this entry. Always blogger#comment",
+                            "default": "blogger#comment"
+                          },
+                          "post": {
+                            "type": "object",
+                            "description": "Data about the post containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the post containing this comment."
+                              }
+                            }
+                          },
+                          "published": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was published.",
+                            "format": "date-time"
+                          },
+                          "selfLink": {
+                            "type": "string",
+                            "description": "The API REST URL to fetch this resource from."
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The status of the comment (only populated for admin users)"
+                          },
+                          "updated": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was last updated.",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URL of the comments on this post."
+                    },
+                    "totalItems": {
+                      "type": "string",
+                      "description": "The count of comments on this post.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the post. Only set for admin-level requests"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of the Post."
+                },
+                "titleLink": {
+                  "type": "string",
+                  "description": "The title link URL, similar to atom's related link."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL where this Post is displayed."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/bypath [/blogger/v3/blogs/{blogId}/posts/bypath{?path,maxComments,view}]
+
+#### blogger.posts.getByPath [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + path (required)
+  
+    + maxComments
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts [/blogger/v3/blogs/{blogId}/posts{?endDate,fetchBodies,fetchImages,labels,maxResults,orderBy,pageToken,startDate,status,view}]
+
+#### blogger.posts.insert [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + fetchBody
+  
+    + fetchImages
+  
+    + isDraft
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The author of this Post.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Post creator."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The Post author's avatar.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The Post author's avatar URL."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL of the Post creator's Profile page."
+                    }
+                  }
+                },
+                "blog": {
+                  "type": "object",
+                  "description": "Data about the blog containing this Post.",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The identifier of the Blog that contains this Post."
+                    }
+                  }
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The content of the Post. May contain HTML markup."
+                },
+                "customMetaData": {
+                  "type": "string",
+                  "description": "The JSON meta-data for the Post."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "Etag of the resource."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The identifier of this Post."
+                },
+                "images": {
+                  "type": "array",
+                  "description": "Display image for the Post.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of this entity. Always blogger#post",
+                  "default": "blogger#post"
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "The list of labels this Post was tagged with.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "The location for geotagged posts.",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Location's latitude.",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Location's longitude.",
+                      "format": "double"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Location name."
+                    },
+                    "span": {
+                      "type": "string",
+                      "description": "Location's viewport span. Can be used when rendering a map preview."
+                    }
+                  }
+                },
+                "published": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was published.",
+                  "format": "date-time"
+                },
+                "readerComments": {
+                  "type": "string",
+                  "description": "Comment control and display setting for readers of this post."
+                },
+                "replies": {
+                  "type": "object",
+                  "description": "The container of comments on this Post.",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "description": "The List of Comments for this Post.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "author": {
+                            "type": "object",
+                            "description": "The author of this Comment.",
+                            "properties": {
+                              "displayName": {
+                                "type": "string",
+                                "description": "The display name."
+                              },
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the Comment creator."
+                              },
+                              "image": {
+                                "type": "object",
+                                "description": "The comment creator's avatar.",
+                                "properties": {
+                                  "url": {
+                                    "type": "string",
+                                    "description": "The comment creator's avatar URL."
+                                  }
+                                }
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "The URL of the Comment creator's Profile page."
+                              }
+                            }
+                          },
+                          "blog": {
+                            "type": "object",
+                            "description": "Data about the blog containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the blog containing this comment."
+                              }
+                            }
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "The actual content of the comment. May include HTML markup."
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "The identifier for this resource."
+                          },
+                          "inReplyTo": {
+                            "type": "object",
+                            "description": "Data about the comment this is in reply to.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identified of the parent of this comment."
+                              }
+                            }
+                          },
+                          "kind": {
+                            "type": "string",
+                            "description": "The kind of this entry. Always blogger#comment",
+                            "default": "blogger#comment"
+                          },
+                          "post": {
+                            "type": "object",
+                            "description": "Data about the post containing this comment.",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "The identifier of the post containing this comment."
+                              }
+                            }
+                          },
+                          "published": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was published.",
+                            "format": "date-time"
+                          },
+                          "selfLink": {
+                            "type": "string",
+                            "description": "The API REST URL to fetch this resource from."
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "The status of the comment (only populated for admin users)"
+                          },
+                          "updated": {
+                            "type": "string",
+                            "description": "RFC 3339 date-time when this comment was last updated.",
+                            "format": "date-time"
+                          }
+                        }
+                      }
+                    },
+                    "selfLink": {
+                      "type": "string",
+                      "description": "The URL of the comments on this post."
+                    },
+                    "totalItems": {
+                      "type": "string",
+                      "description": "The count of comments on this post.",
+                      "format": "int64"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "The API REST URL to fetch this resource from."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of the post. Only set for admin-level requests"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "The title of the Post."
+                },
+                "titleLink": {
+                  "type": "string",
+                  "description": "The title link URL, similar to atom's related link."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "RFC 3339 date-time when this Post was last updated.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL where this Post is displayed."
+                }
+              }
+            }
+
++ Response 200
+
+#### blogger.posts.list [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + endDate
+  
+    + fetchBodies
+  
+    + fetchImages
+  
+    + labels
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+  
+    + startDate
+  
+    + status
+  
+    + view
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/publish [/blogger/v3/blogs/{blogId}/posts/{postId}/publish{?publishDate}]
+
+#### blogger.posts.publish [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+  
+    + publishDate
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/{postId}/revert [/blogs/{blogId}/posts/{postId}/revert]
+
+#### blogger.posts.revert [POST]
+
++ Parameters
+
+    + blogId (required)
+  
+    + postId (required)
+
++ Response 200
+
+### Resource /blogs/{blogId}/posts/search [/blogger/v3/blogs/{blogId}/posts/search{?q,fetchBodies,orderBy}]
+
+#### blogger.posts.search [GET]
+
++ Parameters
+
+    + blogId (required)
+  
+    + q (required)
+  
+    + fetchBodies
+  
+    + orderBy
+
++ Response 200
+
+### Resource /users/{userId} [/users/{userId}]
+
+#### blogger.users.get [GET]
+
++ Parameters
+
+    + userId (required)
+
++ Response 200
+

@@ -1,0 +1,863 @@
+FORMAT: 1A
+
+# AdSense Host API
+
+Gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.
+
+### Resource /accounts/{accountId} [/accounts/{accountId}]
+
+#### adsensehost.accounts.get [GET]
+
++ Parameters
+
+    + accountId (required)
+
++ Response 200
+
+### Resource /accounts [/adsensehost/v4.1/accounts{?filterAdClientId}]
+
+#### adsensehost.accounts.list [GET]
+
++ Parameters
+
+    + filterAdClientId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId} [/accounts/{accountId}/adclients/{adClientId}]
+
+#### adsensehost.accounts.adclients.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients [/adsensehost/v4.1/accounts/{accountId}/adclients{?maxResults,pageToken}]
+
+#### adsensehost.accounts.adclients.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId} [/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}]
+
+#### adsensehost.accounts.adunits.delete [DELETE]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+#### adsensehost.accounts.adunits.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode [/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode{?hostCustomChannelId}]
+
+#### adsensehost.accounts.adunits.getAdCode [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+  
+    + hostCustomChannelId
+
++ Response 200
+
+### Resource /accounts/{accountId}/adclients/{adClientId}/adunits [/accounts/{accountId}/adclients/{adClientId}/adunits]
+
+#### adsensehost.accounts.adunits.insert [POST]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Identity code of this ad unit, not necessarily unique across ad clients."
+                },
+                "contentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to content ads (AFC) and highend mobile content ads (AFMC).",
+                  "properties": {
+                    "backupOption": {
+                      "type": "object",
+                      "description": "The backup option to be used in instances where no ad is available.",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "description": "Color to use when type is set to COLOR. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the backup option. Possible values are BLANK, COLOR and URL."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "URL to use when type is set to URL."
+                        }
+                      }
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit. Size values are in the form SIZE_{width}_{height}."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit. Possible values are TEXT, TEXT_IMAGE, IMAGE and LINK."
+                    }
+                  }
+                },
+                "customStyle": {
+                  "type": "object",
+                  "properties": {
+                    "colors": {
+                      "type": "object",
+                      "description": "The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.",
+                      "properties": {
+                        "background": {
+                          "type": "string",
+                          "description": "The color of the ad background."
+                        },
+                        "border": {
+                          "type": "string",
+                          "description": "The color of the ad border."
+                        },
+                        "text": {
+                          "type": "string",
+                          "description": "The color of the ad text."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "The color of the ad title."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The color of the ad url."
+                        }
+                      }
+                    },
+                    "corners": {
+                      "type": "string",
+                      "description": "The style of the corners in the ad. Possible values are SQUARE, SLIGHTLY_ROUNDED and VERY_ROUNDED."
+                    },
+                    "font": {
+                      "type": "object",
+                      "description": "The font which is included in the style.",
+                      "properties": {
+                        "family": {
+                          "type": "string",
+                          "description": "The family of the font. Possible values are: ACCOUNT_DEFAULT_FAMILY, ADSENSE_DEFAULT_FAMILY, ARIAL, TIMES and VERDANA."
+                        },
+                        "size": {
+                          "type": "string",
+                          "description": "The size of the font. Possible values are: ACCOUNT_DEFAULT_SIZE, ADSENSE_DEFAULT_SIZE, SMALL, MEDIUM and LARGE."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Kind this is, in this case adsensehost#adStyle.",
+                      "default": "adsensehost#adStyle"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#adUnit.",
+                  "default": "adsensehost#adUnit"
+                },
+                "mobileContentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to WAP mobile content ads (AFMC).",
+                  "properties": {
+                    "markupLanguage": {
+                      "type": "string",
+                      "description": "The markup language to use for this ad unit."
+                    },
+                    "scriptingLanguage": {
+                      "type": "string",
+                      "description": "The scripting language to use for this ad unit."
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit."
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this ad unit."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of this ad unit. Possible values are:\nNEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.\n\nACTIVE: Indicates that there has been activity on this ad unit in the last seven days.\n\nINACTIVE: Indicates that there has been no activity on this ad unit in the last seven days."
+                }
+              }
+            }
+
++ Response 200
+
+#### adsensehost.accounts.adunits.list [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + includeInactive
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+#### adsensehost.accounts.adunits.patch [PATCH]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+  
+    + adUnitId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Identity code of this ad unit, not necessarily unique across ad clients."
+                },
+                "contentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to content ads (AFC) and highend mobile content ads (AFMC).",
+                  "properties": {
+                    "backupOption": {
+                      "type": "object",
+                      "description": "The backup option to be used in instances where no ad is available.",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "description": "Color to use when type is set to COLOR. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the backup option. Possible values are BLANK, COLOR and URL."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "URL to use when type is set to URL."
+                        }
+                      }
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit. Size values are in the form SIZE_{width}_{height}."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit. Possible values are TEXT, TEXT_IMAGE, IMAGE and LINK."
+                    }
+                  }
+                },
+                "customStyle": {
+                  "type": "object",
+                  "properties": {
+                    "colors": {
+                      "type": "object",
+                      "description": "The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.",
+                      "properties": {
+                        "background": {
+                          "type": "string",
+                          "description": "The color of the ad background."
+                        },
+                        "border": {
+                          "type": "string",
+                          "description": "The color of the ad border."
+                        },
+                        "text": {
+                          "type": "string",
+                          "description": "The color of the ad text."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "The color of the ad title."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The color of the ad url."
+                        }
+                      }
+                    },
+                    "corners": {
+                      "type": "string",
+                      "description": "The style of the corners in the ad. Possible values are SQUARE, SLIGHTLY_ROUNDED and VERY_ROUNDED."
+                    },
+                    "font": {
+                      "type": "object",
+                      "description": "The font which is included in the style.",
+                      "properties": {
+                        "family": {
+                          "type": "string",
+                          "description": "The family of the font. Possible values are: ACCOUNT_DEFAULT_FAMILY, ADSENSE_DEFAULT_FAMILY, ARIAL, TIMES and VERDANA."
+                        },
+                        "size": {
+                          "type": "string",
+                          "description": "The size of the font. Possible values are: ACCOUNT_DEFAULT_SIZE, ADSENSE_DEFAULT_SIZE, SMALL, MEDIUM and LARGE."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Kind this is, in this case adsensehost#adStyle.",
+                      "default": "adsensehost#adStyle"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#adUnit.",
+                  "default": "adsensehost#adUnit"
+                },
+                "mobileContentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to WAP mobile content ads (AFMC).",
+                  "properties": {
+                    "markupLanguage": {
+                      "type": "string",
+                      "description": "The markup language to use for this ad unit."
+                    },
+                    "scriptingLanguage": {
+                      "type": "string",
+                      "description": "The scripting language to use for this ad unit."
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit."
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this ad unit."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of this ad unit. Possible values are:\nNEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.\n\nACTIVE: Indicates that there has been activity on this ad unit in the last seven days.\n\nINACTIVE: Indicates that there has been no activity on this ad unit in the last seven days."
+                }
+              }
+            }
+
++ Response 200
+
+#### adsensehost.accounts.adunits.update [PUT]
+
++ Parameters
+
+    + accountId (required)
+  
+    + adClientId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Identity code of this ad unit, not necessarily unique across ad clients."
+                },
+                "contentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to content ads (AFC) and highend mobile content ads (AFMC).",
+                  "properties": {
+                    "backupOption": {
+                      "type": "object",
+                      "description": "The backup option to be used in instances where no ad is available.",
+                      "properties": {
+                        "color": {
+                          "type": "string",
+                          "description": "Color to use when type is set to COLOR. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash."
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Type of the backup option. Possible values are BLANK, COLOR and URL."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "URL to use when type is set to URL."
+                        }
+                      }
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit. Size values are in the form SIZE_{width}_{height}."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit. Possible values are TEXT, TEXT_IMAGE, IMAGE and LINK."
+                    }
+                  }
+                },
+                "customStyle": {
+                  "type": "object",
+                  "properties": {
+                    "colors": {
+                      "type": "object",
+                      "description": "The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.",
+                      "properties": {
+                        "background": {
+                          "type": "string",
+                          "description": "The color of the ad background."
+                        },
+                        "border": {
+                          "type": "string",
+                          "description": "The color of the ad border."
+                        },
+                        "text": {
+                          "type": "string",
+                          "description": "The color of the ad text."
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "The color of the ad title."
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "The color of the ad url."
+                        }
+                      }
+                    },
+                    "corners": {
+                      "type": "string",
+                      "description": "The style of the corners in the ad. Possible values are SQUARE, SLIGHTLY_ROUNDED and VERY_ROUNDED."
+                    },
+                    "font": {
+                      "type": "object",
+                      "description": "The font which is included in the style.",
+                      "properties": {
+                        "family": {
+                          "type": "string",
+                          "description": "The family of the font. Possible values are: ACCOUNT_DEFAULT_FAMILY, ADSENSE_DEFAULT_FAMILY, ARIAL, TIMES and VERDANA."
+                        },
+                        "size": {
+                          "type": "string",
+                          "description": "The size of the font. Possible values are: ACCOUNT_DEFAULT_SIZE, ADSENSE_DEFAULT_SIZE, SMALL, MEDIUM and LARGE."
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Kind this is, in this case adsensehost#adStyle.",
+                      "default": "adsensehost#adStyle"
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#adUnit.",
+                  "default": "adsensehost#adUnit"
+                },
+                "mobileContentAdsSettings": {
+                  "type": "object",
+                  "description": "Settings specific to WAP mobile content ads (AFMC).",
+                  "properties": {
+                    "markupLanguage": {
+                      "type": "string",
+                      "description": "The markup language to use for this ad unit."
+                    },
+                    "scriptingLanguage": {
+                      "type": "string",
+                      "description": "The scripting language to use for this ad unit."
+                    },
+                    "size": {
+                      "type": "string",
+                      "description": "Size of this ad unit."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Type of this ad unit."
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this ad unit."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Status of this ad unit. Possible values are:\nNEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.\n\nACTIVE: Indicates that there has been activity on this ad unit in the last seven days.\n\nINACTIVE: Indicates that there has been no activity on this ad unit in the last seven days."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /accounts/{accountId}/reports [/adsensehost/v4.1/accounts/{accountId}/reports{?startDate,endDate,dimension,filter,locale,maxResults,metric,sort,startIndex}]
+
+#### adsensehost.accounts.reports.generate [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + startDate (required)
+  
+    + endDate (required)
+  
+    + dimension
+  
+    + filter
+  
+    + locale
+  
+    + maxResults
+  
+    + metric
+  
+    + sort
+  
+    + startIndex
+
++ Response 200
+
+### Resource /adclients/{adClientId} [/adclients/{adClientId}]
+
+#### adsensehost.adclients.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+
++ Response 200
+
+### Resource /adclients [/adsensehost/v4.1/adclients{?maxResults,pageToken}]
+
+#### adsensehost.adclients.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /associationsessions/start [/adsensehost/v4.1/associationsessions/start{?productCode,websiteUrl,userLocale,websiteLocale}]
+
+#### adsensehost.associationsessions.start [GET]
+
++ Parameters
+
+    + productCode (required)
+  
+    + websiteUrl (required)
+  
+    + userLocale
+  
+    + websiteLocale
+
++ Response 200
+
+### Resource /associationsessions/verify [/adsensehost/v4.1/associationsessions/verify{?token}]
+
+#### adsensehost.associationsessions.verify [GET]
+
++ Parameters
+
+    + token (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels/{customChannelId} [/adclients/{adClientId}/customchannels/{customChannelId}]
+
+#### adsensehost.customchannels.delete [DELETE]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Response 200
+
+#### adsensehost.customchannels.get [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/customchannels [/adclients/{adClientId}/customchannels]
+
+#### adsensehost.customchannels.insert [POST]
+
++ Parameters
+
+    + adClientId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Code of this custom channel, not necessarily unique across ad clients."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#customChannel.",
+                  "default": "adsensehost#customChannel"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this custom channel."
+                }
+              }
+            }
+
++ Response 200
+
+#### adsensehost.customchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+#### adsensehost.customchannels.patch [PATCH]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + customChannelId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Code of this custom channel, not necessarily unique across ad clients."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#customChannel.",
+                  "default": "adsensehost#customChannel"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this custom channel."
+                }
+              }
+            }
+
++ Response 200
+
+#### adsensehost.customchannels.update [PUT]
+
++ Parameters
+
+    + adClientId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Code of this custom channel, not necessarily unique across ad clients."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#customChannel.",
+                  "default": "adsensehost#customChannel"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of this custom channel."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /reports [/adsensehost/v4.1/reports{?startDate,endDate,dimension,filter,locale,maxResults,metric,sort,startIndex}]
+
+#### adsensehost.reports.generate [GET]
+
++ Parameters
+
+    + startDate (required)
+  
+    + endDate (required)
+  
+    + dimension
+  
+    + filter
+  
+    + locale
+  
+    + maxResults
+  
+    + metric
+  
+    + sort
+  
+    + startIndex
+
++ Response 200
+
+### Resource /adclients/{adClientId}/urlchannels/{urlChannelId} [/adclients/{adClientId}/urlchannels/{urlChannelId}]
+
+#### adsensehost.urlchannels.delete [DELETE]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + urlChannelId (required)
+
++ Response 200
+
+### Resource /adclients/{adClientId}/urlchannels [/adsensehost/v4.1/adclients/{adClientId}/urlchannels{?maxResults,pageToken}]
+
+#### adsensehost.urlchannels.insert [POST]
+
++ Parameters
+
+    + adClientId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Kind of resource this is, in this case adsensehost#urlChannel.",
+                  "default": "adsensehost#urlChannel"
+                },
+                "urlPattern": {
+                  "type": "string",
+                  "description": "URL Pattern of this URL channel. Does not include \"http://\" or \"https://\". Example: www.example.com/home"
+                }
+              }
+            }
+
++ Response 200
+
+#### adsensehost.urlchannels.list [GET]
+
++ Parameters
+
+    + adClientId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

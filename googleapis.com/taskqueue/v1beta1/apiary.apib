@@ -1,0 +1,74 @@
+FORMAT: 1A
+
+# TaskQueue API
+
+Lets you access a Google App Engine Pull Task Queue over REST.
+
+### Resource /{project}/taskqueues/{taskqueue} [/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}{?getStats}]
+
+#### taskqueue.taskqueues.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + getStats
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks/{task} [/{project}/taskqueues/{taskqueue}/tasks/{task}]
+
+#### taskqueue.tasks.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+
++ Response 200
+
+#### taskqueue.tasks.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks/lease [/taskqueue/v1beta1/projects/{project}/taskqueues/{taskqueue}/tasks/lease{?numTasks,leaseSecs}]
+
+#### taskqueue.tasks.lease [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + numTasks (required)
+  
+    + leaseSecs (required)
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks [/{project}/taskqueues/{taskqueue}/tasks]
+
+#### taskqueue.tasks.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+
++ Response 200
+

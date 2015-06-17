@@ -1,0 +1,380 @@
+FORMAT: 1A
+
+# Ad Exchange Buyer API
+
+Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
+
+### Resource /accounts/{id} [/accounts/{id}]
+
+#### adexchangebuyer.accounts.get [GET]
+
++ Parameters
+
+    + id (required)
+
++ Response 200
+
+#### adexchangebuyer.accounts.patch [PATCH]
+
++ Parameters
+
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Configuration data for an Ad Exchange buyer account.",
+              "properties": {
+                "bidderLocation": {
+                  "type": "array",
+                  "description": "Your bidder locations that have distinct URLs.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "maximumQps": {
+                        "type": "integer",
+                        "description": "The maximum queries per second the Ad Exchange will send.",
+                        "format": "int32"
+                      },
+                      "region": {
+                        "type": "string",
+                        "description": "The geographical region the Ad Exchange should send requests from. Only used by some quota systems, but always setting the value is recommended. Allowed values:  \n- ASIA \n- EUROPE \n- US_EAST \n- US_WEST"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "The URL to which the Ad Exchange will send bid requests."
+                      }
+                    }
+                  }
+                },
+                "cookieMatchingNid": {
+                  "type": "string",
+                  "description": "The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this."
+                },
+                "cookieMatchingUrl": {
+                  "type": "string",
+                  "description": "The base URL used in cookie match requests."
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "Account id.",
+                  "format": "int32"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "adexchangebuyer#account"
+                },
+                "maximumActiveCreatives": {
+                  "type": "integer",
+                  "description": "The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.",
+                  "format": "int32"
+                },
+                "maximumTotalQps": {
+                  "type": "integer",
+                  "description": "The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.",
+                  "format": "int32"
+                },
+                "numberActiveCreatives": {
+                  "type": "integer",
+                  "description": "The number of creatives that this account inserted or bid with in the last 30 days.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+#### adexchangebuyer.accounts.update [PUT]
+
++ Parameters
+
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "Configuration data for an Ad Exchange buyer account.",
+              "properties": {
+                "bidderLocation": {
+                  "type": "array",
+                  "description": "Your bidder locations that have distinct URLs.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "maximumQps": {
+                        "type": "integer",
+                        "description": "The maximum queries per second the Ad Exchange will send.",
+                        "format": "int32"
+                      },
+                      "region": {
+                        "type": "string",
+                        "description": "The geographical region the Ad Exchange should send requests from. Only used by some quota systems, but always setting the value is recommended. Allowed values:  \n- ASIA \n- EUROPE \n- US_EAST \n- US_WEST"
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "The URL to which the Ad Exchange will send bid requests."
+                      }
+                    }
+                  }
+                },
+                "cookieMatchingNid": {
+                  "type": "string",
+                  "description": "The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this."
+                },
+                "cookieMatchingUrl": {
+                  "type": "string",
+                  "description": "The base URL used in cookie match requests."
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "Account id.",
+                  "format": "int32"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "adexchangebuyer#account"
+                },
+                "maximumActiveCreatives": {
+                  "type": "integer",
+                  "description": "The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.",
+                  "format": "int32"
+                },
+                "maximumTotalQps": {
+                  "type": "integer",
+                  "description": "The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.",
+                  "format": "int32"
+                },
+                "numberActiveCreatives": {
+                  "type": "integer",
+                  "description": "The number of creatives that this account inserted or bid with in the last 30 days.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /accounts [/accounts]
+
+#### adexchangebuyer.accounts.list [GET]
+
++ Response 200
+
+### Resource /creatives/{accountId}/{buyerCreativeId} [/creatives/{accountId}/{buyerCreativeId}]
+
+#### adexchangebuyer.creatives.get [GET]
+
++ Parameters
+
+    + accountId (required)
+  
+    + buyerCreativeId (required)
+
++ Response 200
+
+### Resource /creatives [/adexchangebuyer/v1.2/creatives{?maxResults,pageToken,statusFilter}]
+
+#### adexchangebuyer.creatives.insert [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A creative and its classification data.",
+              "properties": {
+                "HTMLSnippet": {
+                  "type": "string",
+                  "description": "The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set."
+                },
+                "accountId": {
+                  "type": "integer",
+                  "description": "Account id.",
+                  "format": "int32"
+                },
+                "advertiserId": {
+                  "type": "array",
+                  "description": "Detected advertiser id, if any. Read-only. This field should not be set in requests.",
+                  "items": {
+                    "type": "string",
+                    "format": "int64"
+                  }
+                },
+                "advertiserName": {
+                  "type": "string",
+                  "description": "The name of the company being advertised in the creative."
+                },
+                "agencyId": {
+                  "type": "string",
+                  "description": "The agency id for this creative.",
+                  "format": "int64"
+                },
+                "attribute": {
+                  "type": "array",
+                  "description": "All attributes for the ads that may be shown from this snippet.",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "buyerCreativeId": {
+                  "type": "string",
+                  "description": "A buyer-specific id identifying the creative in this ad."
+                },
+                "clickThroughUrl": {
+                  "type": "array",
+                  "description": "The set of destination urls for the snippet.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "corrections": {
+                  "type": "array",
+                  "description": "Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "details": {
+                        "type": "array",
+                        "description": "Additional details about the correction.",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "reason": {
+                        "type": "string",
+                        "description": "The type of correction that was applied to the creative."
+                      }
+                    }
+                  }
+                },
+                "disapprovalReasons": {
+                  "type": "array",
+                  "description": "The reasons for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "details": {
+                        "type": "array",
+                        "description": "Additional details about the reason for disapproval.",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "reason": {
+                        "type": "string",
+                        "description": "The categorized reason for disapproval."
+                      }
+                    }
+                  }
+                },
+                "filteringReasons": {
+                  "type": "object",
+                  "description": "The filtering reasons for the creative. Read-only. This field should not be set in requests.",
+                  "properties": {
+                    "date": {
+                      "type": "string",
+                      "description": "The date in ISO 8601 format for the data. The data is collected from 00:00:00 to 23:59:59 in PST."
+                    },
+                    "reasons": {
+                      "type": "array",
+                      "description": "The filtering reasons.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "filteringCount": {
+                            "type": "string",
+                            "description": "The number of times the creative was filtered for the status. The count is aggregated across all publishers on the exchange.",
+                            "format": "int64"
+                          },
+                          "filteringStatus": {
+                            "type": "integer",
+                            "description": "The filtering status code. Please refer to the creative-status-codes.txt file for different statuses.",
+                            "format": "int32"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Ad height.",
+                  "format": "int32"
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Resource type.",
+                  "default": "adexchangebuyer#creative"
+                },
+                "productCategories": {
+                  "type": "array",
+                  "description": "Detected product categories, if any. Read-only. This field should not be set in requests.",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "restrictedCategories": {
+                  "type": "array",
+                  "description": "All restricted categories for the ads that may be shown from this snippet.",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "sensitiveCategories": {
+                  "type": "array",
+                  "description": "Detected sensitive categories, if any. Read-only. This field should not be set in requests.",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Creative serving status. Read-only. This field should not be set in requests."
+                },
+                "vendorType": {
+                  "type": "array",
+                  "description": "All vendor types for the ads that may be shown from this snippet.",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                },
+                "videoURL": {
+                  "type": "string",
+                  "description": "The url to fetch a video ad. If set, HTMLSnippet should not be set."
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "Ad width.",
+                  "format": "int32"
+                }
+              }
+            }
+
++ Response 200
+
+#### adexchangebuyer.creatives.list [GET]
+
++ Parameters
+
+    + maxResults
+  
+    + pageToken
+  
+    + statusFilter
+
++ Response 200
+

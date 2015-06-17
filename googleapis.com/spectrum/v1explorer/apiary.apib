@@ -1,0 +1,1546 @@
+FORMAT: 1A
+
+# Google Spectrum Database API
+
+API for spectrum-management functions.
+
+### Resource /getSpectrum [/getSpectrum]
+
+#### spectrum.paws.getSpectrum [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request message for the available spectrum query protocol which must include the device's geolocation.",
+              "properties": {
+                "antenna": {
+                  "type": "object",
+                  "description": "Antenna characteristics provide additional information, such as the antenna height, antenna type, etc. Whether antenna characteristics must be provided in a request depends on the device type and regulatory domain.",
+                  "properties": {
+                    "height": {
+                      "type": "number",
+                      "description": "The antenna height in meters. Whether the antenna height is required depends on the device type and the regulatory domain. Note that the height may be negative.",
+                      "format": "double"
+                    },
+                    "heightType": {
+                      "type": "string",
+                      "description": "If the height is required, then the height type (AGL for above ground level or AMSL for above mean sea level) is also required. The default is AGL."
+                    },
+                    "heightUncertainty": {
+                      "type": "number",
+                      "description": "The height uncertainty in meters. Whether this is required depends on the regulatory domain.",
+                      "format": "double"
+                    }
+                  }
+                },
+                "capabilities": {
+                  "type": "object",
+                  "description": "Device capabilities provide additional information that may be used by a device to provide additional information to the database that may help it to determine available spectrum. If the database does not support device capabilities it will ignore the parameter altogether.",
+                  "properties": {
+                    "frequencyRanges": {
+                      "type": "array",
+                      "description": "An optional list of frequency ranges supported by the device. Each element must contain start and stop frequencies in which the device can operate. Channel identifiers are optional. When specified, the database should not return available spectrum that falls outside these ranges or channel IDs.",
+                      "items": {
+                        "type": "object",
+                        "description": "A specific range of frequencies together with the associated maximum power level and channel identifier.",
+                        "properties": {
+                          "channelId": {
+                            "type": "string",
+                            "description": "The database may include a channel identifier, when applicable. When it is included, the device should treat it as informative. The length of the identifier should not exceed 16 characters."
+                          },
+                          "maxPowerDBm": {
+                            "type": "number",
+                            "description": "The maximum total power level (EIRP)—computed over the corresponding operating bandwidth—that is permitted within the frequency range. Depending on the context in which the frequency-range element appears, this value may be required. For example, it is required in the available-spectrum response, available-spectrum-batch response, and spectrum-use notification message, but it should not be present (it is not applicable) when the frequency range appears inside a device-capabilities message.",
+                            "format": "double"
+                          },
+                          "startHz": {
+                            "type": "number",
+                            "description": "The required inclusive start of the frequency range (in Hertz).",
+                            "format": "double"
+                          },
+                          "stopHz": {
+                            "type": "number",
+                            "description": "The required exclusive end of the frequency range (in Hertz).",
+                            "format": "double"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "deviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "This parameter is used to specify the geolocation of the device.",
+                  "properties": {
+                    "confidence": {
+                      "type": "integer",
+                      "description": "The location confidence level, as an integer percentage, may be required, depending on the regulatory domain. When the parameter is optional and not provided, its value is assumed to be 95. Valid values range from 0 to 99, since, in practice, 100-percent confidence is not achievable. The confidence value is meaningful only when geolocation refers to a point with uncertainty.",
+                      "format": "int32"
+                    },
+                    "point": {
+                      "type": "object",
+                      "description": "A \"point\" with uncertainty is represented using the Ellipse shape.",
+                      "properties": {
+                        "center": {
+                          "type": "object",
+                          "description": "A single geolocation on the globe.",
+                          "properties": {
+                            "latitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            },
+                            "longitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            }
+                          }
+                        },
+                        "orientation": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the orientation of the ellipse, representing the rotation, in degrees, of the semi-major axis from North towards the East. For example, when the uncertainty is greatest along the North-South direction, orientation is 0 degrees; conversely, if the uncertainty is greatest along the East-West direction, orientation is 90 degrees. When orientation is not present, the orientation is assumed to be 0.",
+                          "format": "double"
+                        },
+                        "semiMajorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        },
+                        "semiMinorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "description": "A region is represented using the polygonal shape.",
+                      "properties": {
+                        "exterior": {
+                          "type": "array",
+                          "description": "When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:  \n- A connecting line shall not cross another connecting line of the same polygon. \n- The vertices must be defined in a counterclockwise order. \n- The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km. \n- All vertices are assumed to be at the same altitude. \n- Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).",
+                          "items": {
+                            "type": "object",
+                            "description": "A single geolocation on the globe.",
+                            "properties": {
+                              "latitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "masterDeviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "This parameter contains device-owner information required as part of device registration. The regulatory domains may require additional parameters.\n\nAll contact information must be expressed using the structure defined by the vCard format specification. Only the contact fields of vCard are supported:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses  \n\nNote that the vCard specification defines maximum lengths for each field.",
+                  "properties": {
+                    "operator": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "owner": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "requestType": {
+                  "type": "string",
+                  "description": "The request type parameter is an optional parameter that can be used to modify an available spectrum request, but its use depends on applicable regulatory rules. It may be used, for example, to request generic slave device parameters without having to specify the device descriptor for a specific device. When the requestType parameter is missing, the request is for a specific device (master or slave), and the deviceDesc parameter for the device on whose behalf the request is made is required."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /getSpectrumBatch [/getSpectrumBatch]
+
+#### spectrum.paws.getSpectrumBatch [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request message for a batch available spectrum query protocol.",
+              "properties": {
+                "antenna": {
+                  "type": "object",
+                  "description": "Antenna characteristics provide additional information, such as the antenna height, antenna type, etc. Whether antenna characteristics must be provided in a request depends on the device type and regulatory domain.",
+                  "properties": {
+                    "height": {
+                      "type": "number",
+                      "description": "The antenna height in meters. Whether the antenna height is required depends on the device type and the regulatory domain. Note that the height may be negative.",
+                      "format": "double"
+                    },
+                    "heightType": {
+                      "type": "string",
+                      "description": "If the height is required, then the height type (AGL for above ground level or AMSL for above mean sea level) is also required. The default is AGL."
+                    },
+                    "heightUncertainty": {
+                      "type": "number",
+                      "description": "The height uncertainty in meters. Whether this is required depends on the regulatory domain.",
+                      "format": "double"
+                    }
+                  }
+                },
+                "capabilities": {
+                  "type": "object",
+                  "description": "Device capabilities provide additional information that may be used by a device to provide additional information to the database that may help it to determine available spectrum. If the database does not support device capabilities it will ignore the parameter altogether.",
+                  "properties": {
+                    "frequencyRanges": {
+                      "type": "array",
+                      "description": "An optional list of frequency ranges supported by the device. Each element must contain start and stop frequencies in which the device can operate. Channel identifiers are optional. When specified, the database should not return available spectrum that falls outside these ranges or channel IDs.",
+                      "items": {
+                        "type": "object",
+                        "description": "A specific range of frequencies together with the associated maximum power level and channel identifier.",
+                        "properties": {
+                          "channelId": {
+                            "type": "string",
+                            "description": "The database may include a channel identifier, when applicable. When it is included, the device should treat it as informative. The length of the identifier should not exceed 16 characters."
+                          },
+                          "maxPowerDBm": {
+                            "type": "number",
+                            "description": "The maximum total power level (EIRP)—computed over the corresponding operating bandwidth—that is permitted within the frequency range. Depending on the context in which the frequency-range element appears, this value may be required. For example, it is required in the available-spectrum response, available-spectrum-batch response, and spectrum-use notification message, but it should not be present (it is not applicable) when the frequency range appears inside a device-capabilities message.",
+                            "format": "double"
+                          },
+                          "startHz": {
+                            "type": "number",
+                            "description": "The required inclusive start of the frequency range (in Hertz).",
+                            "format": "double"
+                          },
+                          "stopHz": {
+                            "type": "number",
+                            "description": "The required exclusive end of the frequency range (in Hertz).",
+                            "format": "double"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "deviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "locations": {
+                  "type": "array",
+                  "description": "A geolocation list is required. This allows a device to specify its current location plus additional anticipated locations when allowed by the regulatory domain. At least one location must be included. Geolocation must be given as the location of the radiation center of the device's antenna. If a location specifies a region, rather than a point, the database may return an UNIMPLEMENTED error if it does not support query by region.\n\nThere is no upper limit on the number of locations included in a available spectrum batch request, but the database may restrict the number of locations it supports by returning a response with fewer locations than specified in the batch request. Note that geolocations must be those of the master device (a device with geolocation capability that makes an available spectrum batch request), whether the master device is making the request on its own behalf or on behalf of a slave device (one without geolocation capability).",
+                  "items": {
+                    "type": "object",
+                    "description": "This parameter is used to specify the geolocation of the device.",
+                    "properties": {
+                      "confidence": {
+                        "type": "integer",
+                        "description": "The location confidence level, as an integer percentage, may be required, depending on the regulatory domain. When the parameter is optional and not provided, its value is assumed to be 95. Valid values range from 0 to 99, since, in practice, 100-percent confidence is not achievable. The confidence value is meaningful only when geolocation refers to a point with uncertainty.",
+                        "format": "int32"
+                      },
+                      "point": {
+                        "type": "object",
+                        "description": "A \"point\" with uncertainty is represented using the Ellipse shape.",
+                        "properties": {
+                          "center": {
+                            "type": "object",
+                            "description": "A single geolocation on the globe.",
+                            "properties": {
+                              "latitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              }
+                            }
+                          },
+                          "orientation": {
+                            "type": "number",
+                            "description": "A floating-point number that expresses the orientation of the ellipse, representing the rotation, in degrees, of the semi-major axis from North towards the East. For example, when the uncertainty is greatest along the North-South direction, orientation is 0 degrees; conversely, if the uncertainty is greatest along the East-West direction, orientation is 90 degrees. When orientation is not present, the orientation is assumed to be 0.",
+                            "format": "double"
+                          },
+                          "semiMajorAxis": {
+                            "type": "number",
+                            "description": "A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                            "format": "double"
+                          },
+                          "semiMinorAxis": {
+                            "type": "number",
+                            "description": "A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                            "format": "double"
+                          }
+                        }
+                      },
+                      "region": {
+                        "type": "object",
+                        "description": "A region is represented using the polygonal shape.",
+                        "properties": {
+                          "exterior": {
+                            "type": "array",
+                            "description": "When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:  \n- A connecting line shall not cross another connecting line of the same polygon. \n- The vertices must be defined in a counterclockwise order. \n- The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km. \n- All vertices are assumed to be at the same altitude. \n- Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).",
+                            "items": {
+                              "type": "object",
+                              "description": "A single geolocation on the globe.",
+                              "properties": {
+                                "latitude": {
+                                  "type": "number",
+                                  "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                  "format": "double"
+                                },
+                                "longitude": {
+                                  "type": "number",
+                                  "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                  "format": "double"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "masterDeviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "owner": {
+                  "type": "object",
+                  "description": "This parameter contains device-owner information required as part of device registration. The regulatory domains may require additional parameters.\n\nAll contact information must be expressed using the structure defined by the vCard format specification. Only the contact fields of vCard are supported:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses  \n\nNote that the vCard specification defines maximum lengths for each field.",
+                  "properties": {
+                    "operator": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "owner": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "requestType": {
+                  "type": "string",
+                  "description": "The request type parameter is an optional parameter that can be used to modify an available spectrum batch request, but its use depends on applicable regulatory rules. For example, It may be used to request generic slave device parameters without having to specify the device descriptor for a specific device. When the requestType parameter is missing, the request is for a specific device (master or slave), and the device descriptor parameter for the device on whose behalf the batch request is made is required."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /init [/init]
+
+#### spectrum.paws.init [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The initialization request message allows the master device to initiate exchange of capabilities with the database.",
+              "properties": {
+                "deviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "This parameter is used to specify the geolocation of the device.",
+                  "properties": {
+                    "confidence": {
+                      "type": "integer",
+                      "description": "The location confidence level, as an integer percentage, may be required, depending on the regulatory domain. When the parameter is optional and not provided, its value is assumed to be 95. Valid values range from 0 to 99, since, in practice, 100-percent confidence is not achievable. The confidence value is meaningful only when geolocation refers to a point with uncertainty.",
+                      "format": "int32"
+                    },
+                    "point": {
+                      "type": "object",
+                      "description": "A \"point\" with uncertainty is represented using the Ellipse shape.",
+                      "properties": {
+                        "center": {
+                          "type": "object",
+                          "description": "A single geolocation on the globe.",
+                          "properties": {
+                            "latitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            },
+                            "longitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            }
+                          }
+                        },
+                        "orientation": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the orientation of the ellipse, representing the rotation, in degrees, of the semi-major axis from North towards the East. For example, when the uncertainty is greatest along the North-South direction, orientation is 0 degrees; conversely, if the uncertainty is greatest along the East-West direction, orientation is 90 degrees. When orientation is not present, the orientation is assumed to be 0.",
+                          "format": "double"
+                        },
+                        "semiMajorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        },
+                        "semiMinorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "description": "A region is represented using the polygonal shape.",
+                      "properties": {
+                        "exterior": {
+                          "type": "array",
+                          "description": "When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:  \n- A connecting line shall not cross another connecting line of the same polygon. \n- The vertices must be defined in a counterclockwise order. \n- The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km. \n- All vertices are assumed to be at the same altitude. \n- Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).",
+                          "items": {
+                            "type": "object",
+                            "description": "A single geolocation on the globe.",
+                            "properties": {
+                              "latitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /notifySpectrumUse [/notifySpectrumUse]
+
+#### spectrum.paws.notifySpectrumUse [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The spectrum-use notification message which must contain the geolocation of the Device and parameters required by the regulatory domain.",
+              "properties": {
+                "deviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "This parameter is used to specify the geolocation of the device.",
+                  "properties": {
+                    "confidence": {
+                      "type": "integer",
+                      "description": "The location confidence level, as an integer percentage, may be required, depending on the regulatory domain. When the parameter is optional and not provided, its value is assumed to be 95. Valid values range from 0 to 99, since, in practice, 100-percent confidence is not achievable. The confidence value is meaningful only when geolocation refers to a point with uncertainty.",
+                      "format": "int32"
+                    },
+                    "point": {
+                      "type": "object",
+                      "description": "A \"point\" with uncertainty is represented using the Ellipse shape.",
+                      "properties": {
+                        "center": {
+                          "type": "object",
+                          "description": "A single geolocation on the globe.",
+                          "properties": {
+                            "latitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            },
+                            "longitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            }
+                          }
+                        },
+                        "orientation": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the orientation of the ellipse, representing the rotation, in degrees, of the semi-major axis from North towards the East. For example, when the uncertainty is greatest along the North-South direction, orientation is 0 degrees; conversely, if the uncertainty is greatest along the East-West direction, orientation is 90 degrees. When orientation is not present, the orientation is assumed to be 0.",
+                          "format": "double"
+                        },
+                        "semiMajorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        },
+                        "semiMinorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "description": "A region is represented using the polygonal shape.",
+                      "properties": {
+                        "exterior": {
+                          "type": "array",
+                          "description": "When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:  \n- A connecting line shall not cross another connecting line of the same polygon. \n- The vertices must be defined in a counterclockwise order. \n- The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km. \n- All vertices are assumed to be at the same altitude. \n- Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).",
+                          "items": {
+                            "type": "object",
+                            "description": "A single geolocation on the globe.",
+                            "properties": {
+                              "latitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "spectra": {
+                  "type": "array",
+                  "description": "A spectrum list is required in the spectrum-use notification. The list specifies the spectrum that the device expects to use, which includes frequency ranges and maximum power levels. The list may be empty if the device decides not to use any of spectrum. For consistency, the psdBandwidthHz value should match that from one of the spectrum elements in the corresponding available spectrum response previously sent to the device by the database. Note that maximum power levels in the spectrum element must be expressed as power spectral density over the specified psdBandwidthHz value. The actual bandwidth to be used (as computed from the start and stop frequencies) may be different from the psdBandwidthHz value. As an example, when regulatory rules express maximum power spectral density in terms of maximum power over any 100 kHz band, then the psdBandwidthHz value should be set to 100 kHz, even though the actual bandwidth used can be 20 kHz.",
+                  "items": {
+                    "type": "object",
+                    "description": "Available spectrum can be logically characterized by a list of frequency ranges and permissible power levels for each range.",
+                    "properties": {
+                      "bandwidth": {
+                        "type": "number",
+                        "description": "The bandwidth (in Hertz) for which permissible power levels are specified. For example, FCC regulation would require only one spectrum specification at 6MHz bandwidth, but Ofcom regulation would require two specifications, at 0.1MHz and 8MHz. This parameter may be empty if there is no available spectrum. It will be present otherwise.",
+                        "format": "double"
+                      },
+                      "frequencyRanges": {
+                        "type": "array",
+                        "description": "The list of frequency ranges and permissible power levels. The list may be empty if there is no available spectrum, otherwise it will be present.",
+                        "items": {
+                          "type": "object",
+                          "description": "A specific range of frequencies together with the associated maximum power level and channel identifier.",
+                          "properties": {
+                            "channelId": {
+                              "type": "string",
+                              "description": "The database may include a channel identifier, when applicable. When it is included, the device should treat it as informative. The length of the identifier should not exceed 16 characters."
+                            },
+                            "maxPowerDBm": {
+                              "type": "number",
+                              "description": "The maximum total power level (EIRP)—computed over the corresponding operating bandwidth—that is permitted within the frequency range. Depending on the context in which the frequency-range element appears, this value may be required. For example, it is required in the available-spectrum response, available-spectrum-batch response, and spectrum-use notification message, but it should not be present (it is not applicable) when the frequency range appears inside a device-capabilities message.",
+                              "format": "double"
+                            },
+                            "startHz": {
+                              "type": "number",
+                              "description": "The required inclusive start of the frequency range (in Hertz).",
+                              "format": "double"
+                            },
+                            "stopHz": {
+                              "type": "number",
+                              "description": "The required exclusive end of the frequency range (in Hertz).",
+                              "format": "double"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /register [/register]
+
+#### spectrum.paws.register [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The registration request message contains the required registration parameters.",
+              "properties": {
+                "antenna": {
+                  "type": "object",
+                  "description": "Antenna characteristics provide additional information, such as the antenna height, antenna type, etc. Whether antenna characteristics must be provided in a request depends on the device type and regulatory domain.",
+                  "properties": {
+                    "height": {
+                      "type": "number",
+                      "description": "The antenna height in meters. Whether the antenna height is required depends on the device type and the regulatory domain. Note that the height may be negative.",
+                      "format": "double"
+                    },
+                    "heightType": {
+                      "type": "string",
+                      "description": "If the height is required, then the height type (AGL for above ground level or AMSL for above mean sea level) is also required. The default is AGL."
+                    },
+                    "heightUncertainty": {
+                      "type": "number",
+                      "description": "The height uncertainty in meters. Whether this is required depends on the regulatory domain.",
+                      "format": "double"
+                    }
+                  }
+                },
+                "deviceDesc": {
+                  "type": "object",
+                  "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                  "properties": {
+                    "etsiEnDeviceCategory": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceEmissionsClass": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                    },
+                    "etsiEnTechnologyId": {
+                      "type": "string",
+                      "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                    },
+                    "fccId": {
+                      "type": "string",
+                      "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                    },
+                    "fccTvbdDeviceType": {
+                      "type": "string",
+                      "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                    },
+                    "manufacturerId": {
+                      "type": "string",
+                      "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                    },
+                    "modelId": {
+                      "type": "string",
+                      "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                    },
+                    "rulesetIds": {
+                      "type": "array",
+                      "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "serialNumber": {
+                      "type": "string",
+                      "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                    }
+                  }
+                },
+                "deviceOwner": {
+                  "type": "object",
+                  "description": "This parameter contains device-owner information required as part of device registration. The regulatory domains may require additional parameters.\n\nAll contact information must be expressed using the structure defined by the vCard format specification. Only the contact fields of vCard are supported:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses  \n\nNote that the vCard specification defines maximum lengths for each field.",
+                  "properties": {
+                    "operator": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "owner": {
+                      "type": "object",
+                      "description": "A vCard-in-JSON message that contains only the fields needed for PAWS:  \n- fn: Full name of an individual \n- org: Name of the organization \n- adr: Address fields \n- tel: Telephone numbers \n- email: Email addresses",
+                      "properties": {
+                        "adr": {
+                          "type": "object",
+                          "description": "The structure used to represent a street address.",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "description": "The postal code associated with the address. For example: 94423."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The country name. For example: US."
+                            },
+                            "locality": {
+                              "type": "string",
+                              "description": "The city or local equivalent portion of the address. For example: San Jose."
+                            },
+                            "pobox": {
+                              "type": "string",
+                              "description": "An optional post office box number."
+                            },
+                            "region": {
+                              "type": "string",
+                              "description": "The state or local equivalent portion of the address. For example: CA."
+                            },
+                            "street": {
+                              "type": "string",
+                              "description": "The street number and name. For example: 123 Any St."
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "fn": {
+                          "type": "string",
+                          "description": "The full name of the contact person. For example: John A. Smith."
+                        },
+                        "org": {
+                          "type": "object",
+                          "description": "The structure used to represent an organization and an email address.",
+                          "properties": {
+                            "text": {
+                              "type": "string",
+                              "description": "The text string associated with this item. For example, for an org field: ACME, inc. For an email field: smith@example.com."
+                            }
+                          }
+                        },
+                        "tel": {
+                          "type": "object",
+                          "description": "The structure used to represent a telephone number.",
+                          "properties": {
+                            "uri": {
+                              "type": "string",
+                              "description": "A nested telephone URI of the form: tel:+1-123-456-7890."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "location": {
+                  "type": "object",
+                  "description": "This parameter is used to specify the geolocation of the device.",
+                  "properties": {
+                    "confidence": {
+                      "type": "integer",
+                      "description": "The location confidence level, as an integer percentage, may be required, depending on the regulatory domain. When the parameter is optional and not provided, its value is assumed to be 95. Valid values range from 0 to 99, since, in practice, 100-percent confidence is not achievable. The confidence value is meaningful only when geolocation refers to a point with uncertainty.",
+                      "format": "int32"
+                    },
+                    "point": {
+                      "type": "object",
+                      "description": "A \"point\" with uncertainty is represented using the Ellipse shape.",
+                      "properties": {
+                        "center": {
+                          "type": "object",
+                          "description": "A single geolocation on the globe.",
+                          "properties": {
+                            "latitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            },
+                            "longitude": {
+                              "type": "number",
+                              "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                              "format": "double"
+                            }
+                          }
+                        },
+                        "orientation": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the orientation of the ellipse, representing the rotation, in degrees, of the semi-major axis from North towards the East. For example, when the uncertainty is greatest along the North-South direction, orientation is 0 degrees; conversely, if the uncertainty is greatest along the East-West direction, orientation is 90 degrees. When orientation is not present, the orientation is assumed to be 0.",
+                          "format": "double"
+                        },
+                        "semiMajorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the major axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        },
+                        "semiMinorAxis": {
+                          "type": "number",
+                          "description": "A floating-point number that expresses the location uncertainty along the minor axis of the ellipse. May be required by the regulatory domain. When the uncertainty is optional, the default value is 0.",
+                          "format": "double"
+                        }
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "description": "A region is represented using the polygonal shape.",
+                      "properties": {
+                        "exterior": {
+                          "type": "array",
+                          "description": "When the geolocation describes a region, the exterior field refers to a list of latitude/longitude points that represent the vertices of a polygon. The first and last points must be the same. Thus, a minimum of four points is required. The following polygon restrictions from RFC5491 apply:  \n- A connecting line shall not cross another connecting line of the same polygon. \n- The vertices must be defined in a counterclockwise order. \n- The edges of a polygon are defined by the shortest path between two points in space (not a geodesic curve). Consequently, the length between two adjacent vertices should be restricted to a maximum of 130 km. \n- All vertices are assumed to be at the same altitude. \n- Polygon shapes should be restricted to a maximum of 15 vertices (16 points that include the repeated vertex).",
+                          "items": {
+                            "type": "object",
+                            "description": "A single geolocation on the globe.",
+                            "properties": {
+                              "latitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the latitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              },
+                              "longitude": {
+                                "type": "number",
+                                "description": "A required floating-point number that expresses the longitude in degrees using the WGS84 datum. For details on this encoding, see the National Imagery and Mapping Agency's Technical Report TR8350.2.",
+                                "format": "double"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /verifyDevice [/verifyDevice]
+
+#### spectrum.paws.verifyDevice [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The device validation request message.",
+              "properties": {
+                "deviceDescs": {
+                  "type": "array",
+                  "description": "A list of device descriptors, which specifies the slave devices to be validated, is required.",
+                  "items": {
+                    "type": "object",
+                    "description": "The device descriptor contains parameters that identify the specific device, such as its manufacturer serial number, regulatory-specific identifier (e.g., FCC ID), and any other device characteristics required by regulatory domains.",
+                    "properties": {
+                      "etsiEnDeviceCategory": {
+                        "type": "string",
+                        "description": "Specifies the ETSI white space device category. Valid values are the strings master and slave. This field is case-insensitive. Consult the ETSI documentation for details about the device types."
+                      },
+                      "etsiEnDeviceEmissionsClass": {
+                        "type": "string",
+                        "description": "Specifies the ETSI white space device emissions class. The values are represented by numeric strings, such as 1, 2, etc. Consult the ETSI documentation for details about the device types."
+                      },
+                      "etsiEnDeviceType": {
+                        "type": "string",
+                        "description": "Specifies the ETSI white space device type. Valid values are single-letter strings, such as A, B, etc. Consult the ETSI documentation for details about the device types."
+                      },
+                      "etsiEnTechnologyId": {
+                        "type": "string",
+                        "description": "Specifies the ETSI white space device technology identifier. The string value must not exceed 64 characters in length. Consult the ETSI documentation for details about the device types."
+                      },
+                      "fccId": {
+                        "type": "string",
+                        "description": "Specifies the device's FCC certification identifier. The value is an identifier string whose length should not exceed 32 characters. Note that, in practice, a valid FCC ID may be limited to 19 characters."
+                      },
+                      "fccTvbdDeviceType": {
+                        "type": "string",
+                        "description": "Specifies the TV Band White Space device type, as defined by the FCC. Valid values are FIXED, MODE_1, MODE_2."
+                      },
+                      "manufacturerId": {
+                        "type": "string",
+                        "description": "The manufacturer's ID may be required by the regulatory domain. This should represent the name of the device manufacturer, should be consistent across all devices from the same manufacturer, and should be distinct from that of other manufacturers. The string value must not exceed 64 characters in length."
+                      },
+                      "modelId": {
+                        "type": "string",
+                        "description": "The device's model ID may be required by the regulatory domain. The string value must not exceed 64 characters in length."
+                      },
+                      "rulesetIds": {
+                        "type": "array",
+                        "description": "The list of identifiers for rulesets supported by the device. A database may require that the device provide this list before servicing the device requests. If the database does not support any of the rulesets specified in the list, the database may refuse to service the device requests. If present, the list must contain at least one entry.\n\nFor information about the valid requests, see section 9.2 of the PAWS specification. Currently, FccTvBandWhiteSpace-2010 is the only supported ruleset.",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "serialNumber": {
+                        "type": "string",
+                        "description": "The manufacturer's device serial number; required by the applicable regulatory domain. The length of the value must not exceed 64 characters."
+                      }
+                    }
+                  }
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The message type (e.g., INIT_REQ, AVAIL_SPECTRUM_REQ, ...).\n\nRequired field."
+                },
+                "version": {
+                  "type": "string",
+                  "description": "The PAWS version. Must be exactly 1.0.\n\nRequired field."
+                }
+              }
+            }
+
++ Response 200
+

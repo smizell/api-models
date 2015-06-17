@@ -1,0 +1,254 @@
+FORMAT: 1A
+
+# TaskQueue API
+
+Lets you access a Google App Engine Pull Task Queue over REST.
+
+### Resource /{project}/taskqueues/{taskqueue} [/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}{?getStats}]
+
+#### taskqueue.taskqueues.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + getStats
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks/{task} [/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}{?newLeaseSeconds}]
+
+#### taskqueue.tasks.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+
++ Response 200
+
+#### taskqueue.tasks.get [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+
++ Response 200
+
+#### taskqueue.tasks.patch [PATCH]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+  
+    + newLeaseSeconds (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "enqueueTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task was enqueued.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Name of the task."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of object returned, in this case set to task.",
+                  "default": "taskqueues#task"
+                },
+                "leaseTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task lease will expire. This value is 0 if the task isnt currently leased out to a worker.",
+                  "format": "int64"
+                },
+                "payloadBase64": {
+                  "type": "string",
+                  "description": "A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded."
+                },
+                "queueName": {
+                  "type": "string",
+                  "description": "Name of the queue that the task is in."
+                },
+                "retry_count": {
+                  "type": "integer",
+                  "description": "The number of leases applied to this task.",
+                  "format": "int32"
+                },
+                "tag": {
+                  "type": "string",
+                  "description": "Tag for the task, could be used later to lease tasks grouped by a specific tag."
+                }
+              }
+            }
+
++ Response 200
+
+#### taskqueue.tasks.update [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + task (required)
+  
+    + newLeaseSeconds (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "enqueueTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task was enqueued.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Name of the task."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of object returned, in this case set to task.",
+                  "default": "taskqueues#task"
+                },
+                "leaseTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task lease will expire. This value is 0 if the task isnt currently leased out to a worker.",
+                  "format": "int64"
+                },
+                "payloadBase64": {
+                  "type": "string",
+                  "description": "A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded."
+                },
+                "queueName": {
+                  "type": "string",
+                  "description": "Name of the queue that the task is in."
+                },
+                "retry_count": {
+                  "type": "integer",
+                  "description": "The number of leases applied to this task.",
+                  "format": "int32"
+                },
+                "tag": {
+                  "type": "string",
+                  "description": "Tag for the task, could be used later to lease tasks grouped by a specific tag."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks [/{project}/taskqueues/{taskqueue}/tasks]
+
+#### taskqueue.tasks.insert [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "enqueueTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task was enqueued.",
+                  "format": "int64"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "Name of the task."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The kind of object returned, in this case set to task.",
+                  "default": "taskqueues#task"
+                },
+                "leaseTimestamp": {
+                  "type": "string",
+                  "description": "Time (in seconds since the epoch) at which the task lease will expire. This value is 0 if the task isnt currently leased out to a worker.",
+                  "format": "int64"
+                },
+                "payloadBase64": {
+                  "type": "string",
+                  "description": "A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded."
+                },
+                "queueName": {
+                  "type": "string",
+                  "description": "Name of the queue that the task is in."
+                },
+                "retry_count": {
+                  "type": "integer",
+                  "description": "The number of leases applied to this task.",
+                  "format": "int32"
+                },
+                "tag": {
+                  "type": "string",
+                  "description": "Tag for the task, could be used later to lease tasks grouped by a specific tag."
+                }
+              }
+            }
+
++ Response 200
+
+#### taskqueue.tasks.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+
++ Response 200
+
+### Resource /{project}/taskqueues/{taskqueue}/tasks/lease [/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/lease{?numTasks,leaseSecs,groupByTag,tag}]
+
+#### taskqueue.tasks.lease [POST]
+
++ Parameters
+
+    + project (required)
+  
+    + taskqueue (required)
+  
+    + numTasks (required)
+  
+    + leaseSecs (required)
+  
+    + groupByTag
+  
+    + tag
+
++ Response 200
+

@@ -1,0 +1,1119 @@
+FORMAT: 1A
+
+# Google+ Domains API
+
+The Google+ API enables developers to build on top of the Google+ platform.
+
+### Resource /activities/{activityId} [/activities/{activityId}]
+
+#### plusDomains.activities.get [GET]
+
++ Parameters
+
+    + activityId (required)
+
++ Response 200
+
+### Resource /people/{userId}/activities [/plusDomains/v1/people/{userId}/activities{?preview}]
+
+#### plusDomains.activities.insert [POST]
+
++ Parameters
+
+    + userId (required)
+  
+    + preview
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "access": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string",
+                      "description": "Description of the access granted, suitable for display."
+                    },
+                    "domainRestricted": {
+                      "type": "boolean",
+                      "description": "Whether access is restricted to the domain."
+                    },
+                    "items": {
+                      "type": "array",
+                      "description": "The list of access entries.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "displayName": {
+                            "type": "string",
+                            "description": "A descriptive name for this entry. Suitable for display."
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "The ID of the entry. For entries of type \"person\" or \"circle\", this is the ID of the resource. For other types, this property is not set."
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "The type of entry describing to whom access is granted. Possible values are:  \n- \"person\" - Access to an individual. \n- \"circle\" - Access to members of a circle. \n- \"myCircles\" - Access to members of all the person's circles. \n- \"extendedCircles\" - Access to members of all the person's circles, plus all of the people in their circles. \n- \"domain\" - Access to members of the person's Google Apps domain. \n- \"public\" - Access to anyone on the web."
+                          }
+                        }
+                      }
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies this resource as a collection of access controls. Value: \"plus#acl\".",
+                      "default": "plus#acl"
+                    }
+                  }
+                },
+                "actor": {
+                  "type": "object",
+                  "description": "The person who performed this activity.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The name of the actor, suitable for display."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the actor's Person resource."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The image representation of the actor.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the actor's profile photo. To resize the image and crop it to a square, append the query string ?sz=x, where x is the dimension in pixels of each side."
+                        }
+                      }
+                    },
+                    "name": {
+                      "type": "object",
+                      "description": "An object representation of the individual components of name.",
+                      "properties": {
+                        "familyName": {
+                          "type": "string",
+                          "description": "The family name (\"last name\") of the actor."
+                        },
+                        "givenName": {
+                          "type": "string",
+                          "description": "The given name (\"first name\") of the actor."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The link to the actor's Google profile."
+                    }
+                  }
+                },
+                "address": {
+                  "type": "string",
+                  "description": "Street address where this activity occurred."
+                },
+                "annotation": {
+                  "type": "string",
+                  "description": "Additional content added by the person who shared this activity, applicable only when resharing an activity."
+                },
+                "crosspostSource": {
+                  "type": "string",
+                  "description": "If this activity is a crosspost from another system, this property specifies the ID of the original activity."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "geocode": {
+                  "type": "string",
+                  "description": "Latitude and longitude where this activity occurred. Format is latitude followed by longitude, space separated."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of this activity."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this resource as an activity. Value: \"plus#activity\".",
+                  "default": "plus#activity"
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "address": {
+                      "type": "object",
+                      "description": "The physical address of the place.",
+                      "properties": {
+                        "formatted": {
+                          "type": "string",
+                          "description": "The formatted address for display."
+                        }
+                      }
+                    },
+                    "displayName": {
+                      "type": "string",
+                      "description": "The display name of the place."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The id of the place."
+                    },
+                    "kind": {
+                      "type": "string",
+                      "description": "Identifies this resource as a place. Value: \"plus#place\".",
+                      "default": "plus#place"
+                    },
+                    "position": {
+                      "type": "object",
+                      "description": "The position of the place.",
+                      "properties": {
+                        "latitude": {
+                          "type": "number",
+                          "description": "The latitude of this position.",
+                          "format": "double"
+                        },
+                        "longitude": {
+                          "type": "number",
+                          "description": "The longitude of this position.",
+                          "format": "double"
+                        }
+                      }
+                    }
+                  }
+                },
+                "object": {
+                  "type": "object",
+                  "description": "The object of this activity.",
+                  "properties": {
+                    "actor": {
+                      "type": "object",
+                      "description": "If this activity's object is itself another activity, such as when a person reshares an activity, this property specifies the original activity's actor.",
+                      "properties": {
+                        "displayName": {
+                          "type": "string",
+                          "description": "The original actor's name, which is suitable for display."
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the original actor."
+                        },
+                        "image": {
+                          "type": "object",
+                          "description": "The image representation of the original actor.",
+                          "properties": {
+                            "url": {
+                              "type": "string",
+                              "description": "A URL that points to a thumbnail photo of the original actor."
+                            }
+                          }
+                        },
+                        "url": {
+                          "type": "string",
+                          "description": "A link to the original actor's Google profile."
+                        }
+                      }
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "description": "The media objects attached to this activity.",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "content": {
+                            "type": "string",
+                            "description": "If the attachment is an article, this property contains a snippet of text from the article. It can also include descriptions for other types."
+                          },
+                          "displayName": {
+                            "type": "string",
+                            "description": "The title of the attachment, such as a photo caption or an article title."
+                          },
+                          "embed": {
+                            "type": "object",
+                            "description": "If the attachment is a video, the embeddable link.",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Media type of the link."
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "URL of the link."
+                              }
+                            }
+                          },
+                          "fullImage": {
+                            "type": "object",
+                            "description": "The full image URL for photo attachments.",
+                            "properties": {
+                              "height": {
+                                "type": "integer",
+                                "description": "The height, in pixels, of the linked resource.",
+                                "format": "uint32"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Media type of the link."
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "URL of the image."
+                              },
+                              "width": {
+                                "type": "integer",
+                                "description": "The width, in pixels, of the linked resource.",
+                                "format": "uint32"
+                              }
+                            }
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "The ID of the attachment."
+                          },
+                          "image": {
+                            "type": "object",
+                            "description": "The preview image for photos or videos.",
+                            "properties": {
+                              "height": {
+                                "type": "integer",
+                                "description": "The height, in pixels, of the linked resource.",
+                                "format": "uint32"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Media type of the link."
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "Image URL."
+                              },
+                              "width": {
+                                "type": "integer",
+                                "description": "The width, in pixels, of the linked resource.",
+                                "format": "uint32"
+                              }
+                            }
+                          },
+                          "objectType": {
+                            "type": "string",
+                            "description": "The type of media object. Possible values include, but are not limited to, the following values:  \n- \"photo\" - A photo. \n- \"album\" - A photo album. \n- \"video\" - A video. \n- \"article\" - An article, specified by a link."
+                          },
+                          "previewThumbnails": {
+                            "type": "array",
+                            "description": "When previewing, these are the optional thumbnails for the post. When posting an article, choose one by setting the attachment.image.url property. If you don't choose one, one will be chosen for you.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "url": {
+                                  "type": "string",
+                                  "description": "URL of the thumbnail image."
+                                }
+                              }
+                            }
+                          },
+                          "thumbnails": {
+                            "type": "array",
+                            "description": "If the attachment is an album, this property is a list of potential additional thumbnails from the album.",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "description": {
+                                  "type": "string",
+                                  "description": "Potential name of the thumbnail."
+                                },
+                                "image": {
+                                  "type": "object",
+                                  "description": "Image resource.",
+                                  "properties": {
+                                    "height": {
+                                      "type": "integer",
+                                      "description": "The height, in pixels, of the linked resource.",
+                                      "format": "uint32"
+                                    },
+                                    "type": {
+                                      "type": "string",
+                                      "description": "Media type of the link."
+                                    },
+                                    "url": {
+                                      "type": "string",
+                                      "description": "Image url."
+                                    },
+                                    "width": {
+                                      "type": "integer",
+                                      "description": "The width, in pixels, of the linked resource.",
+                                      "format": "uint32"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "type": "string",
+                                  "description": "URL of the webpage containing the image."
+                                }
+                              }
+                            }
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "The link to the attachment, which should be of type text/html."
+                          }
+                        }
+                      }
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "The HTML-formatted content, which is suitable for display."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the object. When resharing an activity, this is the ID of the activity that is being reshared."
+                    },
+                    "objectType": {
+                      "type": "string",
+                      "description": "The type of the object. Possible values include, but are not limited to, the following values:  \n- \"note\" - Textual content. \n- \"activity\" - A Google+ activity."
+                    },
+                    "originalContent": {
+                      "type": "string",
+                      "description": "The content (text) as provided by the author, which is stored without any HTML formatting. When creating or updating an activity, this value must be supplied as plain text in the request."
+                    },
+                    "plusoners": {
+                      "type": "object",
+                      "description": "People who +1'd this activity.",
+                      "properties": {
+                        "selfLink": {
+                          "type": "string",
+                          "description": "The URL for the collection of people who +1'd this activity."
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "description": "Total number of people who +1'd this activity.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "replies": {
+                      "type": "object",
+                      "description": "Comments in reply to this activity.",
+                      "properties": {
+                        "selfLink": {
+                          "type": "string",
+                          "description": "The URL for the collection of comments in reply to this activity."
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "description": "Total number of comments on this activity.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "resharers": {
+                      "type": "object",
+                      "description": "People who reshared this activity.",
+                      "properties": {
+                        "selfLink": {
+                          "type": "string",
+                          "description": "The URL for the collection of resharers."
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "description": "Total number of people who reshared this activity.",
+                          "format": "uint32"
+                        }
+                      }
+                    },
+                    "statusForViewer": {
+                      "type": "object",
+                      "description": "Status of the activity as seen by the viewer.",
+                      "properties": {
+                        "canComment": {
+                          "type": "boolean",
+                          "description": "Whether the viewer can comment on the activity."
+                        },
+                        "canPlusone": {
+                          "type": "boolean",
+                          "description": "Whether the viewer can +1 the activity."
+                        },
+                        "canUpdate": {
+                          "type": "boolean",
+                          "description": "Whether the viewer can edit or delete the activity."
+                        },
+                        "isPlusOned": {
+                          "type": "boolean",
+                          "description": "Whether the viewer has +1'd the activity."
+                        },
+                        "resharingDisabled": {
+                          "type": "boolean",
+                          "description": "Whether reshares are disabled for the activity."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "The URL that points to the linked resource."
+                    }
+                  }
+                },
+                "placeId": {
+                  "type": "string",
+                  "description": "ID of the place where this activity occurred."
+                },
+                "placeName": {
+                  "type": "string",
+                  "description": "Name of the place where this activity occurred."
+                },
+                "provider": {
+                  "type": "object",
+                  "description": "The service provider that initially published this activity.",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Name of the service provider."
+                    }
+                  }
+                },
+                "published": {
+                  "type": "string",
+                  "description": "The time at which this activity was initially published. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "radius": {
+                  "type": "string",
+                  "description": "Radius, in meters, of the region where this activity occurred, centered at the latitude and longitude identified in geocode."
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of this activity."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "The time at which this activity was last updated. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The link to this activity."
+                },
+                "verb": {
+                  "type": "string",
+                  "description": "This activity's verb, which indicates the action that was performed. Possible values include, but are not limited to, the following values:  \n- \"post\" - Publish content to the stream. \n- \"share\" - Reshare an activity."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /people/{userId}/activities/{collection} [/plusDomains/v1/people/{userId}/activities/{collection}{?maxResults,pageToken}]
+
+#### plusDomains.activities.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + collection (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /people/{userId}/audiences [/plusDomains/v1/people/{userId}/audiences{?maxResults,pageToken}]
+
+#### plusDomains.audiences.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /circles/{circleId}/people [/plusDomains/v1/circles/{circleId}/people{?maxResults,pageToken}]
+
+#### plusDomains.circles.addPeople [PUT]
+
++ Parameters
+
+    + circleId (required)
+  
+    + email
+  
+    + userId
+
++ Response 200
+
+#### plusDomains.circles.removePeople [DELETE]
+
++ Parameters
+
+    + circleId (required)
+  
+    + email
+  
+    + userId
+
++ Response 200
+
+#### plusDomains.people.listByCircle [GET]
+
++ Parameters
+
+    + circleId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /circles/{circleId} [/circles/{circleId}]
+
+#### plusDomains.circles.get [GET]
+
++ Parameters
+
+    + circleId (required)
+
++ Response 200
+
+#### plusDomains.circles.patch [PATCH]
+
++ Parameters
+
+    + circleId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "The description of this circle."
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The circle name."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the circle."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this resource as a circle. Value: \"plus#circle\".",
+                  "default": "plus#circle"
+                },
+                "people": {
+                  "type": "object",
+                  "description": "The people in this circle.",
+                  "properties": {
+                    "totalItems": {
+                      "type": "integer",
+                      "description": "The total number of people in this circle.",
+                      "format": "uint32"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this circle resource"
+                }
+              }
+            }
+
++ Response 200
+
+#### plusDomains.circles.remove [DELETE]
+
++ Parameters
+
+    + circleId (required)
+
++ Response 200
+
+#### plusDomains.circles.update [PUT]
+
++ Parameters
+
+    + circleId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "The description of this circle."
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The circle name."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the circle."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this resource as a circle. Value: \"plus#circle\".",
+                  "default": "plus#circle"
+                },
+                "people": {
+                  "type": "object",
+                  "description": "The people in this circle.",
+                  "properties": {
+                    "totalItems": {
+                      "type": "integer",
+                      "description": "The total number of people in this circle.",
+                      "format": "uint32"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this circle resource"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /people/{userId}/circles [/plusDomains/v1/people/{userId}/circles{?maxResults,pageToken}]
+
+#### plusDomains.circles.insert [POST]
+
++ Parameters
+
+    + userId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "The description of this circle."
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The circle name."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the circle."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this resource as a circle. Value: \"plus#circle\".",
+                  "default": "plus#circle"
+                },
+                "people": {
+                  "type": "object",
+                  "description": "The people in this circle.",
+                  "properties": {
+                    "totalItems": {
+                      "type": "integer",
+                      "description": "The total number of people in this circle.",
+                      "format": "uint32"
+                    }
+                  }
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this circle resource"
+                }
+              }
+            }
+
++ Response 200
+
+#### plusDomains.circles.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+
+### Resource /comments/{commentId} [/comments/{commentId}]
+
+#### plusDomains.comments.get [GET]
+
++ Parameters
+
+    + commentId (required)
+
++ Response 200
+
+### Resource /activities/{activityId}/comments [/plusDomains/v1/activities/{activityId}/comments{?maxResults,pageToken,sortOrder}]
+
+#### plusDomains.comments.insert [POST]
+
++ Parameters
+
+    + activityId (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "actor": {
+                  "type": "object",
+                  "description": "The person who posted this comment.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The name of this actor, suitable for display."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "The ID of the actor."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The image representation of this actor.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the actor's profile photo. To resize the image and crop it to a square, append the query string ?sz=x, where x is the dimension in pixels of each side."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "A link to the Person resource for this actor."
+                    }
+                  }
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of this comment."
+                },
+                "inReplyTo": {
+                  "type": "array",
+                  "description": "The activity this comment replied to.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the activity."
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "The URL of the activity."
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies this resource as a comment. Value: \"plus#comment\".",
+                  "default": "plus#comment"
+                },
+                "object": {
+                  "type": "object",
+                  "description": "The object of this comment.",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "description": "The HTML-formatted content, suitable for display."
+                    },
+                    "objectType": {
+                      "type": "string",
+                      "description": "The object type of this comment. Possible values are:  \n- \"comment\" - A comment in reply to an activity.",
+                      "default": "comment"
+                    },
+                    "originalContent": {
+                      "type": "string",
+                      "description": "The content (text) as provided by the author, stored without any HTML formatting. When creating or updating a comment, this value must be supplied as plain text in the request."
+                    }
+                  }
+                },
+                "plusoners": {
+                  "type": "object",
+                  "description": "People who +1'd this comment.",
+                  "properties": {
+                    "totalItems": {
+                      "type": "integer",
+                      "description": "Total number of people who +1'd this comment.",
+                      "format": "uint32"
+                    }
+                  }
+                },
+                "published": {
+                  "type": "string",
+                  "description": "The time at which this comment was initially published. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "selfLink": {
+                  "type": "string",
+                  "description": "Link to this comment resource."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "The time at which this comment was last updated. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "verb": {
+                  "type": "string",
+                  "description": "This comment's verb, indicating what action was performed. Possible values are:  \n- \"post\" - Publish content to the stream.",
+                  "default": "post"
+                }
+              }
+            }
+
++ Response 200
+
+#### plusDomains.comments.list [GET]
+
++ Parameters
+
+    + activityId (required)
+  
+    + maxResults
+  
+    + pageToken
+  
+    + sortOrder
+
++ Response 200
+
+### Resource /people/{userId}/media/{collection} [/people/{userId}/media/{collection}]
+
+#### plusDomains.media.insert [POST]
+
++ Parameters
+
+    + userId (required)
+  
+    + collection (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "object",
+                  "description": "The person who uploaded this media.",
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "The author's name."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "ID of the author."
+                    },
+                    "image": {
+                      "type": "object",
+                      "description": "The author's Google profile image.",
+                      "properties": {
+                        "url": {
+                          "type": "string",
+                          "description": "The URL of the author's profile photo. To resize the image and crop it to a square, append the query string ?sz=x, where x is the dimension in pixels of each side."
+                        }
+                      }
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "A link to the author's Google profile."
+                    }
+                  }
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The display name for this media."
+                },
+                "etag": {
+                  "type": "string",
+                  "description": "ETag of this response for caching purposes."
+                },
+                "exif": {
+                  "type": "object",
+                  "description": "Exif information of the media item.",
+                  "properties": {
+                    "time": {
+                      "type": "string",
+                      "description": "The time the media was captured. Formatted as an RFC 3339 timestamp.",
+                      "format": "date-time"
+                    }
+                  }
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "The height in pixels of the original image.",
+                  "format": "uint32"
+                },
+                "id": {
+                  "type": "string",
+                  "description": "ID of this media, which is generated by the API."
+                },
+                "kind": {
+                  "type": "string",
+                  "description": "The type of resource.",
+                  "default": "plus#media"
+                },
+                "mediaCreatedTime": {
+                  "type": "string",
+                  "description": "The time at which this media was originally created in UTC. Formatted as an RFC 3339 timestamp that matches this example: 2010-11-25T14:30:27.655Z",
+                  "format": "date-time"
+                },
+                "mediaUrl": {
+                  "type": "string",
+                  "description": "The URL of this photo or video's still image."
+                },
+                "published": {
+                  "type": "string",
+                  "description": "The time at which this media was uploaded. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "sizeBytes": {
+                  "type": "string",
+                  "description": "The size in bytes of this video.",
+                  "format": "int64"
+                },
+                "streams": {
+                  "type": "array",
+                  "description": "The list of video streams for this video. There might be several different streams available for a single video, either Flash or MPEG, of various sizes",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "height": {
+                        "type": "integer",
+                        "description": "The height, in pixels, of the video resource.",
+                        "format": "int32"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "MIME type of the video stream."
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "URL of the video stream."
+                      },
+                      "width": {
+                        "type": "integer",
+                        "description": "The width, in pixels, of the video resource.",
+                        "format": "int32"
+                      }
+                    }
+                  }
+                },
+                "summary": {
+                  "type": "string",
+                  "description": "A description, or caption, for this media."
+                },
+                "updated": {
+                  "type": "string",
+                  "description": "The time at which this media was last updated. This includes changes to media metadata. Formatted as an RFC 3339 timestamp.",
+                  "format": "date-time"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The URL for the page that hosts this media."
+                },
+                "videoDuration": {
+                  "type": "string",
+                  "description": "The duration in milliseconds of this video.",
+                  "format": "int64"
+                },
+                "videoStatus": {
+                  "type": "string",
+                  "description": "The encoding status of this video. Possible values are:  \n- \"UPLOADING\" - Not all the video bytes have been received. \n- \"PENDING\" - Video not yet processed. \n- \"FAILED\" - Video processing failed. \n- \"READY\" - A single video stream is playable. \n- \"FINAL\" - All video streams are playable."
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "The width in pixels of the original image.",
+                  "format": "uint32"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /people/{userId} [/people/{userId}]
+
+#### plusDomains.people.get [GET]
+
++ Parameters
+
+    + userId (required)
+
++ Response 200
+
+### Resource /people/{userId}/people/{collection} [/plusDomains/v1/people/{userId}/people/{collection}{?maxResults,orderBy,pageToken}]
+
+#### plusDomains.people.list [GET]
+
++ Parameters
+
+    + userId (required)
+  
+    + collection (required)
+  
+    + maxResults
+  
+    + orderBy
+  
+    + pageToken
+
++ Response 200
+
+### Resource /activities/{activityId}/people/{collection} [/plusDomains/v1/activities/{activityId}/people/{collection}{?maxResults,pageToken}]
+
+#### plusDomains.people.listByActivity [GET]
+
++ Parameters
+
+    + activityId (required)
+  
+    + collection (required)
+  
+    + maxResults
+  
+    + pageToken
+
++ Response 200
+

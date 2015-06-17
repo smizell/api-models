@@ -1,0 +1,193 @@
+FORMAT: 1A
+
+# Google Site Verification API
+
+Lets you programatically verify ownership of websites or domains with Google.
+
+### Resource /webResource/{id} [/webResource/{id}]
+
+#### siteVerification.webResource.delete [DELETE]
+
++ Parameters
+
+    + id (required)
+
++ Response 200
+
+#### siteVerification.webResource.get [GET]
+
++ Parameters
+
+    + id (required)
+
++ Response 200
+
+#### siteVerification.webResource.patch [PATCH]
+
++ Parameters
+
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The string used to identify this site. This value should be used in the \"id\" portion of the REST URL for the Get, Update, and Delete operations."
+                },
+                "owners": {
+                  "type": "array",
+                  "description": "The email addresses of all verified owners.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "site": {
+                  "type": "object",
+                  "description": "The address and type of a site that is verified or will be verified.",
+                  "properties": {
+                    "identifier": {
+                      "type": "string",
+                      "description": "The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the site identifier is a domain name."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The site type. Can be SITE or INET_DOMAIN (domain name)."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### siteVerification.webResource.update [PUT]
+
++ Parameters
+
+    + id (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The string used to identify this site. This value should be used in the \"id\" portion of the REST URL for the Get, Update, and Delete operations."
+                },
+                "owners": {
+                  "type": "array",
+                  "description": "The email addresses of all verified owners.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "site": {
+                  "type": "object",
+                  "description": "The address and type of a site that is verified or will be verified.",
+                  "properties": {
+                    "identifier": {
+                      "type": "string",
+                      "description": "The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the site identifier is a domain name."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The site type. Can be SITE or INET_DOMAIN (domain name)."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /token [/token]
+
+#### siteVerification.webResource.getToken [POST]
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "site": {
+                  "type": "object",
+                  "description": "The site for which a verification token will be generated.",
+                  "properties": {
+                    "identifier": {
+                      "type": "string",
+                      "description": "The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the site identifier is a domain name."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The type of resource to be verified. Can be SITE or INET_DOMAIN (domain name)."
+                    }
+                  }
+                },
+                "verificationMethod": {
+                  "type": "string",
+                  "description": "The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used."
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /webResource [/webResource]
+
+#### siteVerification.webResource.insert [POST]
+
++ Parameters
+
+    + verificationMethod (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The string used to identify this site. This value should be used in the \"id\" portion of the REST URL for the Get, Update, and Delete operations."
+                },
+                "owners": {
+                  "type": "array",
+                  "description": "The email addresses of all verified owners.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "site": {
+                  "type": "object",
+                  "description": "The address and type of a site that is verified or will be verified.",
+                  "properties": {
+                    "identifier": {
+                      "type": "string",
+                      "description": "The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the site identifier is a domain name."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "The site type. Can be SITE or INET_DOMAIN (domain name)."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### siteVerification.webResource.list [GET]
+
++ Response 200
+

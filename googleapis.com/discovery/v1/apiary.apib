@@ -1,0 +1,30 @@
+FORMAT: 1A
+
+# APIs Discovery Service
+
+Lets you discover information about other Google APIs, such as what APIs are available, the resource and method details for each API.
+
+### Resource /apis/{api}/{version}/rest [/apis/{api}/{version}/rest]
+
+#### discovery.apis.getRest [GET]
+
++ Parameters
+
+    + api (required)
+  
+    + version (required)
+
++ Response 200
+
+### Resource /apis [/discovery/v1/apis{?name,preferred}]
+
+#### discovery.apis.list [GET]
+
++ Parameters
+
+    + name
+  
+    + preferred
+
++ Response 200
+

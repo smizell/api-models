@@ -1,0 +1,142 @@
+FORMAT: 1A
+
+# Webmaster Tools API
+
+Lets you view Google Webmaster Tools data for your verified sites.
+
+### Resource /sites/{siteUrl}/sitemaps/{feedpath} [/sites/{siteUrl}/sitemaps/{feedpath}]
+
+#### webmasters.sitemaps.delete [DELETE]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + feedpath (required)
+
++ Response 200
+
+#### webmasters.sitemaps.get [GET]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + feedpath (required)
+
++ Response 200
+
+#### webmasters.sitemaps.submit [PUT]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + feedpath (required)
+
++ Response 200
+
+### Resource /sites/{siteUrl}/sitemaps [/webmasters/v3/sites/{siteUrl}/sitemaps{?sitemapIndex}]
+
+#### webmasters.sitemaps.list [GET]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + sitemapIndex
+
++ Response 200
+
+### Resource /sites/{siteUrl} [/sites/{siteUrl}]
+
+#### webmasters.sites.add [PUT]
+
++ Parameters
+
+    + siteUrl (required)
+
++ Response 200
+
+#### webmasters.sites.delete [DELETE]
+
++ Parameters
+
+    + siteUrl (required)
+
++ Response 200
+
+#### webmasters.sites.get [GET]
+
++ Parameters
+
+    + siteUrl (required)
+
++ Response 200
+
+### Resource /sites [/sites]
+
+#### webmasters.sites.list [GET]
+
++ Response 200
+
+### Resource /sites/{siteUrl}/urlCrawlErrorsCounts/query [/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query{?category,latestCountsOnly,platform}]
+
+#### webmasters.urlcrawlerrorscounts.query [GET]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + category
+  
+    + latestCountsOnly
+  
+    + platform
+
++ Response 200
+
+### Resource /sites/{siteUrl}/urlCrawlErrorsSamples/{url} [/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}{?category,platform}]
+
+#### webmasters.urlcrawlerrorssamples.get [GET]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + url (required)
+  
+    + category (required)
+  
+    + platform (required)
+
++ Response 200
+
+#### webmasters.urlcrawlerrorssamples.markAsFixed [DELETE]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + url (required)
+  
+    + category (required)
+  
+    + platform (required)
+
++ Response 200
+
+### Resource /sites/{siteUrl}/urlCrawlErrorsSamples [/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples{?category,platform}]
+
+#### webmasters.urlcrawlerrorssamples.list [GET]
+
++ Parameters
+
+    + siteUrl (required)
+  
+    + category (required)
+  
+    + platform (required)
+
++ Response 200
+

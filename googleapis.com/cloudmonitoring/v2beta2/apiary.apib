@@ -1,0 +1,359 @@
+FORMAT: 1A
+
+# Cloud Monitoring API
+
+API for accessing Google Cloud and API monitoring data.
+
+### Resource /{project}/metricDescriptors [/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors{?count,pageToken,query}]
+
+#### cloudmonitoring.metricDescriptors.create [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "A metricDescriptor defines the name, label keys, and data type of a particular metric.",
+              "properties": {
+                "description": {
+                  "type": "string",
+                  "description": "Description of this metric."
+                },
+                "labels": {
+                  "type": "array",
+                  "description": "Labels defined for this metric.",
+                  "items": {
+                    "type": "object",
+                    "description": "A label in a metric is a description of this metric, including the key of this description (what the description is), and the value for this description.",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "Label description."
+                      },
+                      "key": {
+                        "type": "string",
+                        "description": "Label key."
+                      }
+                    }
+                  }
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this metric."
+                },
+                "project": {
+                  "type": "string",
+                  "description": "The project ID to which the metric belongs."
+                },
+                "typeDescriptor": {
+                  "type": "object",
+                  "description": "A type in a metric contains information about how the metric is collected and what its data points look like.",
+                  "properties": {
+                    "metricType": {
+                      "type": "string",
+                      "description": "The method of collecting data for the metric. See Metric types."
+                    },
+                    "valueType": {
+                      "type": "string",
+                      "description": "The data type of of individual points in the metric's time series. See Metric value types."
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+#### cloudmonitoring.metricDescriptors.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + count
+  
+    + pageToken
+  
+    + query
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request of cloudmonitoring.metricDescriptors.list.",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"cloudmonitoring#listMetricDescriptorsRequest\".",
+                  "default": "cloudmonitoring#listMetricDescriptorsRequest"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/metricDescriptors/{metric} [/{project}/metricDescriptors/{metric}]
+
+#### cloudmonitoring.metricDescriptors.delete [DELETE]
+
++ Parameters
+
+    + project (required)
+  
+    + metric (required)
+
++ Response 200
+
+### Resource /{project}/timeseries/{metric} [/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}{?youngest,aggregator,count,labels,oldest,pageToken,timespan,window}]
+
+#### cloudmonitoring.timeseries.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + metric (required)
+  
+    + youngest (required)
+  
+    + aggregator
+  
+    + count
+  
+    + labels
+  
+    + oldest
+  
+    + pageToken
+  
+    + timespan
+  
+    + window
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request of cloudmonitoring.timeseries.list",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"cloudmonitoring#listTimeseriesRequest\".",
+                  "default": "cloudmonitoring#listTimeseriesRequest"
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/timeseries:write [/{project}/timeseries:write]
+
+#### cloudmonitoring.timeseries.write [POST]
+
++ Parameters
+
+    + project (required)
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request of cloudmonitoring.timeseries.write",
+              "properties": {
+                "commonLabels": {
+                  "type": "object",
+                  "description": "The label's name.",
+                  "additionalProperties": {
+                    "type": "string",
+                    "description": "The label's name."
+                  }
+                },
+                "timeseries": {
+                  "type": "array",
+                  "description": "Provide time series specific labels and the data points for each time series. The labels in timeseries and the common_labels should form a complete list of labels that required by the metric.",
+                  "items": {
+                    "type": "object",
+                    "description": "When writing time series, TimeseriesPoint should be used instead of Timeseries, to enforce single point for each time series in the timeseries.write request.",
+                    "properties": {
+                      "point": {
+                        "type": "object",
+                        "description": "Point is a single point in a time series. It consists of a start time, an end time, and a value.",
+                        "properties": {
+                          "boolValue": {
+                            "type": "boolean",
+                            "description": "The value of this data point. Either \"true\" or \"false\"."
+                          },
+                          "distributionValue": {
+                            "type": "object",
+                            "description": "Distribution data point value type. When writing distribution points, try to be consistent with the boundaries of your buckets. If you must modify the bucket boundaries, then do so by merging, partitioning, or appending rather than skewing them.",
+                            "properties": {
+                              "buckets": {
+                                "type": "array",
+                                "description": "The finite buckets.",
+                                "items": {
+                                  "type": "object",
+                                  "description": "The histogram's bucket. Buckets that form the histogram of a distribution value. If the upper bound of a bucket, say U1, does not equal the lower bound of the next bucket, say L2, this means that there is no event in [U1, L2).",
+                                  "properties": {
+                                    "count": {
+                                      "type": "string",
+                                      "description": "The number of events whose values are in the interval defined by this bucket.",
+                                      "format": "int64"
+                                    },
+                                    "lowerBound": {
+                                      "type": "number",
+                                      "description": "The lower bound of the value interval of this bucket (inclusive).",
+                                      "format": "double"
+                                    },
+                                    "upperBound": {
+                                      "type": "number",
+                                      "description": "The upper bound of the value interval of this bucket (exclusive).",
+                                      "format": "double"
+                                    }
+                                  }
+                                }
+                              },
+                              "overflowBucket": {
+                                "type": "object",
+                                "description": "The overflow bucket is a special bucket that does not have the upperBound field; it includes all of the events that are no less than its lower bound.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of events whose values are in the interval defined by this bucket.",
+                                    "format": "int64"
+                                  },
+                                  "lowerBound": {
+                                    "type": "number",
+                                    "description": "The lower bound of the value interval of this bucket (inclusive).",
+                                    "format": "double"
+                                  }
+                                }
+                              },
+                              "underflowBucket": {
+                                "type": "object",
+                                "description": "The underflow bucket is a special bucket that does not have the lowerBound field; it includes all of the events that are less than its upper bound.",
+                                "properties": {
+                                  "count": {
+                                    "type": "string",
+                                    "description": "The number of events whose values are in the interval defined by this bucket.",
+                                    "format": "int64"
+                                  },
+                                  "upperBound": {
+                                    "type": "number",
+                                    "description": "The upper bound of the value interval of this bucket (exclusive).",
+                                    "format": "double"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "doubleValue": {
+                            "type": "number",
+                            "description": "The value of this data point as a double-precision floating-point number.",
+                            "format": "double"
+                          },
+                          "end": {
+                            "type": "string",
+                            "description": "The interval [start, end] is the time period to which the point's value applies. For gauge metrics, whose values are instantaneous measurements, this interval should be empty (start should equal end). For cumulative metrics (of which deltas and rates are special cases), the interval should be non-empty. Both start and end are RFC 3339 strings.",
+                            "format": "date-time"
+                          },
+                          "int64Value": {
+                            "type": "string",
+                            "description": "The value of this data point as a 64-bit integer.",
+                            "format": "int64"
+                          },
+                          "start": {
+                            "type": "string",
+                            "description": "The interval [start, end] is the time period to which the point's value applies. For gauge metrics, whose values are instantaneous measurements, this interval should be empty (start should equal end). For cumulative metrics (of which deltas and rates are special cases), the interval should be non-empty. Both start and end are RFC 3339 strings.",
+                            "format": "date-time"
+                          },
+                          "stringValue": {
+                            "type": "string",
+                            "description": "The value of this data point in string format."
+                          }
+                        }
+                      },
+                      "timeseriesDesc": {
+                        "type": "object",
+                        "description": "TimeseriesDescriptor identifies a single time series.",
+                        "properties": {
+                          "labels": {
+                            "type": "object",
+                            "description": "The label's name.",
+                            "additionalProperties": {
+                              "type": "string",
+                              "description": "The label's name."
+                            }
+                          },
+                          "metric": {
+                            "type": "string",
+                            "description": "The name of the metric."
+                          },
+                          "project": {
+                            "type": "string",
+                            "description": "The Developers Console project number to which this time series belongs."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
++ Response 200
+
+### Resource /{project}/timeseriesDescriptors/{metric} [/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}{?youngest,aggregator,count,labels,oldest,pageToken,timespan,window}]
+
+#### cloudmonitoring.timeseriesDescriptors.list [GET]
+
++ Parameters
+
+    + project (required)
+  
+    + metric (required)
+  
+    + youngest (required)
+  
+    + aggregator
+  
+    + count
+  
+    + labels
+  
+    + oldest
+  
+    + pageToken
+  
+    + timespan
+  
+    + window
+
++ Request
+
+    + Schema
+
+            {
+              "type": "object",
+              "description": "The request of cloudmonitoring.timeseriesDescriptors.list",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "description": "Identifies what kind of resource this is. Value: the fixed string \"cloudmonitoring#listTimeseriesDescriptorsRequest\".",
+                  "default": "cloudmonitoring#listTimeseriesDescriptorsRequest"
+                }
+              }
+            }
+
++ Response 200
+
